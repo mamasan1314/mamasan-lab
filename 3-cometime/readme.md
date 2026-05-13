@@ -21,11 +21,11 @@
 
 ## Co Me Time 是什麼？
 
-Co Me Time = Come + Me Time
+Co Me Time = Coffee + Me Time
 
 意思是：
 
-> 「回來自己的時間。」
+> 「跟自己喝杯咖啡的時間。」
 
 在這裡，人可以暫時放下社會角色、焦慮與比較，重新整理自己。
 

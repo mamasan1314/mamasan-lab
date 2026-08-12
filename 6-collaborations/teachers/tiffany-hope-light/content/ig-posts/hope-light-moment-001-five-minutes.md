@@ -10,7 +10,7 @@
 | 貼文形式 | 單張圖片 + Caption |
 | 圖片 | [`assets/hope-light-moment-001-five-minutes.png`](./assets/hope-light-moment-001-five-minutes.png) |
 | 加字版圖片 | [`assets/hope-light-moment-001-five-minutes-contact.png`](./assets/hope-light-moment-001-five-minutes-contact.png) |
-| 發布狀態 | 草稿 |
+| 發布狀態 | draft / early version |
 
 ## 封面文字建議
 

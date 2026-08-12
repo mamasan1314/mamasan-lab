@@ -1,6 +1,6 @@
-# Reels Caption｜希望之盒∞頻率蠟燭
+# Reels Caption｜希望之光∞頻率蠟燭
 
-希望之盒∞頻率蠟燭
+希望之光∞頻率蠟燭
 
 10 款主題能量，  
 陪你在不同的人生狀態裡，  
@@ -21,4 +21,3 @@ LINE: @happy139
 IG: .hopelight.ig / hopelight.moment
 
 `#希望之光` `#HopeLightMoment` `#頻率蠟燭` `#蠟燭儀式` `#生活儀式感` `#陪伴自己` `#找回自己的節奏`
-

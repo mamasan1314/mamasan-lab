@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
 Add-Type -AssemblyName System.Drawing
 
@@ -157,6 +157,16 @@ function Draw-Frame {
         $g.FillRectangle($cover, $px, $py, $pw, $ph)
         $g.DrawString('$139', $priceFont, $priceBrush, $px + 22, $py + 12)
         $g.DrawString('不含運，可任選', $smallPriceFont, $priceBrush, $px + 20, $py + 78)
+
+        $nameFont = New-Font $fontNames 30 ([System.Drawing.FontStyle]::Bold)
+        $nameX = $mainRect.X + [int](747 * $scaleX)
+        $nameY = $mainRect.Y + [int](578 * $scaleY)
+        $nameW = [int](354 * $scaleX)
+        $nameH = [int](62 * $scaleY)
+        $g.FillRectangle($cover, $nameX, $nameY, $nameW, $nameH)
+        $g.DrawString('希望之光∞頻率蠟燭', $nameFont, $priceBrush, $nameX + 8, $nameY + 6)
+        $nameFont.Dispose()
+
         $priceFont.Dispose()
         $smallPriceFont.Dispose()
         $cover.Dispose()
@@ -201,7 +211,7 @@ $brandFont = New-Font $fontNames 44 ([System.Drawing.FontStyle]::Bold)
 $contactFont = New-Font $fontNames 31 ([System.Drawing.FontStyle]::Regular)
 
 $slides = @(
-    @{ File = "11.jpg"; Title = "希望之盒∞頻率蠟燭"; Subtitle = '10款主題能量｜NT$139／顆' },
+    @{ File = "11.jpg"; Title = "希望之光∞頻率蠟燭"; Subtitle = '10款主題能量｜NT$139／顆' },
     @{ File = "01.jpg"; Title = "貴人常臨蠟燭"; Subtitle = "吸引貴人相助，廣結良緣" },
     @{ File = "02.jpg"; Title = "清晰專注蠟燭"; Subtitle = "穩定思緒流動，開啟專注狀態" },
     @{ File = "03.jpg"; Title = "感情升溫蠟燭"; Subtitle = "守護關係，提升溫度" },

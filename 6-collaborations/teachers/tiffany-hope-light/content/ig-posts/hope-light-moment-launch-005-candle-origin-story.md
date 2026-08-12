@@ -11,7 +11,7 @@
 | 圖片 | [`assets/hope-light-moment-launch-005-candle-origin-story-product-aligned-base.png`](./assets/hope-light-moment-launch-005-candle-origin-story-product-aligned-base.png) |
 | 加字版圖片 | [`assets/hope-light-moment-launch-005-candle-origin-story-product-aligned.png`](./assets/hope-light-moment-launch-005-candle-origin-story-product-aligned.png) |
 | 備用氛圍版 | [`assets/hope-light-moment-launch-005-candle-origin-story.png`](./assets/hope-light-moment-launch-005-candle-origin-story.png) |
-| 發布狀態 | 草稿，故事細節需老師確認 |
+| 發布狀態 | needs-review，故事細節需老師確認 |
 
 ## 封面文字建議
 

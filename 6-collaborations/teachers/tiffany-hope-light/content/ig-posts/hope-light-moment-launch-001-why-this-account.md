@@ -11,7 +11,7 @@
 | 圖片 | [`assets/hope-light-moment-launch-001-why-this-account-product-aligned-base.png`](./assets/hope-light-moment-launch-001-why-this-account-product-aligned-base.png) |
 | 加字版圖片 | [`assets/hope-light-moment-launch-001-why-this-account-product-aligned.png`](./assets/hope-light-moment-launch-001-why-this-account-product-aligned.png) |
 | 備用氛圍版 | [`assets/hope-light-moment-launch-001-why-this-account.png`](./assets/hope-light-moment-launch-001-why-this-account.png) |
-| 發布狀態 | 草稿 |
+| 發布狀態 | ready-to-review |
 
 ## 封面文字建議
 

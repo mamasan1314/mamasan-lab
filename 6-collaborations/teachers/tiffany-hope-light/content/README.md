@@ -7,4 +7,4 @@
 | 路徑 | 用途 |
 |---|---|
 | [`ig-posts`](./ig-posts) | IG 單篇文章、Caption、圖片素材與生成 prompt |
-
+| [`reels`](./reels) | Reels／短影片素材、畫面與輸出檔 |

@@ -8,6 +8,9 @@
 | 定位 | 陪伴自己 |
 | 主題 | 說明兩個 IG 的角色 |
 | 貼文形式 | 單張圖片 + Caption |
+| 圖片 | [`assets/hope-light-moment-launch-002-two-accounts-product-aligned-base.png`](./assets/hope-light-moment-launch-002-two-accounts-product-aligned-base.png) |
+| 加字版圖片 | [`assets/hope-light-moment-launch-002-two-accounts-product-aligned.png`](./assets/hope-light-moment-launch-002-two-accounts-product-aligned.png) |
+| 備用氛圍版 | [`assets/hope-light-moment-launch-002-two-accounts.png`](./assets/hope-light-moment-launch-002-two-accounts.png) |
 | 發布狀態 | 草稿 |
 
 ## 封面文字建議
@@ -81,7 +84,7 @@ Hope Light Moment｜陪伴自己
 
 ## 圖片方向
 
-畫面可用兩道不同但相連的光：一邊偏清晨的清晰光線，一邊偏夜晚的燭光。不要做成神秘感太重的圖，要像生活品牌。
+優先使用接近實品的彩色鋁殼茶蠟系列陳列，呈現「同一品牌、兩個入口」的感覺。不要使用與實品差異太大的蠟燭容器。
 
 ## 圖片生成 Prompt
 
@@ -99,4 +102,3 @@ Text: no text.
 Constraints: no logos, no readable writing, no people, no religious symbols, no medical claims, no supernatural effects.
 Avoid: fantasy portals, dramatic beams, stock-photo look, clutter.
 ```
-

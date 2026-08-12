@@ -8,6 +8,9 @@
 | 定位 | 陪伴自己 |
 | 主題 | 開帳號原因與品牌開場 |
 | 貼文形式 | 單張圖片 + Caption |
+| 圖片 | [`assets/hope-light-moment-launch-001-why-this-account-product-aligned-base.png`](./assets/hope-light-moment-launch-001-why-this-account-product-aligned-base.png) |
+| 加字版圖片 | [`assets/hope-light-moment-launch-001-why-this-account-product-aligned.png`](./assets/hope-light-moment-launch-001-why-this-account-product-aligned.png) |
+| 備用氛圍版 | [`assets/hope-light-moment-launch-001-why-this-account.png`](./assets/hope-light-moment-launch-001-why-this-account.png) |
 | 發布狀態 | 草稿 |
 
 ## 封面文字建議
@@ -76,7 +79,7 @@ Hope Light Moment
 
 ## 圖片方向
 
-一張安靜、柔和的開場圖。可以是窗邊光線、桌上蠟燭、空白卡片或筆記本，不需要人物。畫面要有「新帳號開場」的乾淨感。
+優先使用接近實品的彩色鋁殼茶蠟、乾燥花草與礦石畫面。舊氛圍圖可保留為品牌方向參考，但若貼文出現蠟燭，應避免使用與實品外觀差異太大的杯狀蠟燭。
 
 ## 圖片生成 Prompt
 
@@ -94,4 +97,3 @@ Text: no text.
 Constraints: no logos, no readable writing, no hands, no people, no religious symbols, no medical or supernatural claims.
 Avoid: stock-photo stiffness, fantasy glow, garish colors, overly luxurious styling.
 ```
-

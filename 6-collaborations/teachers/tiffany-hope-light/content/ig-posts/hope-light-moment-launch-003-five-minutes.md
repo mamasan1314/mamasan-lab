@@ -8,8 +8,9 @@
 | 定位 | 陪伴自己 |
 | 主題 | 每天 5 分鐘，回到自己身邊 |
 | 貼文形式 | 單張圖片 + Caption |
-| 可搭配圖片 | [`assets/hope-light-moment-001-five-minutes.png`](./assets/hope-light-moment-001-five-minutes.png) |
-| 可搭配加字版 | [`assets/hope-light-moment-001-five-minutes-contact.png`](./assets/hope-light-moment-001-five-minutes-contact.png) |
+| 圖片 | [`assets/hope-light-moment-launch-003-five-minutes-product-aligned-base.png`](./assets/hope-light-moment-launch-003-five-minutes-product-aligned-base.png) |
+| 加字版圖片 | [`assets/hope-light-moment-launch-003-five-minutes-product-aligned.png`](./assets/hope-light-moment-launch-003-five-minutes-product-aligned.png) |
+| 備用氛圍版 | [`assets/hope-light-moment-launch-003-five-minutes.png`](./assets/hope-light-moment-launch-003-five-minutes.png) |
 | 發布狀態 | 草稿 |
 
 ## 封面文字建議
@@ -81,7 +82,7 @@ Hope Light Moment
 
 ## 圖片方向
 
-可沿用已生成的燭光、筆記本與陶杯圖片。若重新生成，保持安靜桌面、燭光與空白筆記本。
+優先使用粉色小鋁杯茶蠟、木片、粉晶與筆記本畫面。若重新生成，需維持實品方向：小鋁殼茶蠟、彩色蠟面、花草或晶石點綴。
 
 ## 圖片生成 Prompt
 
@@ -99,4 +100,3 @@ Text: no text.
 Constraints: no logo, no watermark, no readable writing in the journal, no hands, no religious symbols, no medical or supernatural claims.
 Avoid: garish colors, fantasy effects, stock-photo look, visible brand names.
 ```
-

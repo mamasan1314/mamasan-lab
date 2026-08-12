@@ -8,6 +8,9 @@
 | 定位 | 陪伴自己 |
 | 主題 | 老師故事與蠟燭起點 |
 | 貼文形式 | 單張圖片 + Caption |
+| 圖片 | [`assets/hope-light-moment-launch-005-candle-origin-story-product-aligned-base.png`](./assets/hope-light-moment-launch-005-candle-origin-story-product-aligned-base.png) |
+| 加字版圖片 | [`assets/hope-light-moment-launch-005-candle-origin-story-product-aligned.png`](./assets/hope-light-moment-launch-005-candle-origin-story-product-aligned.png) |
+| 備用氛圍版 | [`assets/hope-light-moment-launch-005-candle-origin-story.png`](./assets/hope-light-moment-launch-005-candle-origin-story.png) |
 | 發布狀態 | 草稿，故事細節需老師確認 |
 
 ## 封面文字建議
@@ -90,7 +93,7 @@
 
 ## 圖片方向
 
-畫面可以是桌上蠟燭、鉛筆、空白筆記本、柔和光線。不要拍出具體兒童臉或個資，讓故事保持保護感。
+畫面可以是接近實品的小鋁殼茶蠟、鉛筆、空白筆記本、柔和光線。不要拍出具體兒童臉或個資，讓故事保持保護感。
 
 ## 圖片生成 Prompt
 
@@ -108,4 +111,3 @@ Text: no text.
 Constraints: no people, no children, no faces, no school names, no readable writing, no logos, no religious symbols, no medical or performance claims.
 Avoid: classroom scene, childish styling, fantasy glow, stock-photo look, clutter.
 ```
-

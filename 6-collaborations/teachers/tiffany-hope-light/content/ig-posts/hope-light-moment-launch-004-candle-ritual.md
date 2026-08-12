@@ -8,6 +8,9 @@
 | 定位 | 陪伴自己 |
 | 主題 | 蠟燭與日常儀式 |
 | 貼文形式 | 單張圖片 + Caption |
+| 圖片 | [`assets/hope-light-moment-launch-004-candle-ritual-product-aligned-base.png`](./assets/hope-light-moment-launch-004-candle-ritual-product-aligned-base.png) |
+| 加字版圖片 | [`assets/hope-light-moment-launch-004-candle-ritual-product-aligned.png`](./assets/hope-light-moment-launch-004-candle-ritual-product-aligned.png) |
+| 備用氛圍版 | [`assets/hope-light-moment-launch-004-candle-ritual.png`](./assets/hope-light-moment-launch-004-candle-ritual.png) |
 | 發布狀態 | 草稿 |
 
 ## 封面文字建議
@@ -80,7 +83,7 @@
 
 ## 圖片方向
 
-蠟燭作為畫面主角，旁邊可有手寫空白卡、布料、香氛小物，但不要出現宗教符號或過度神祕的視覺。
+蠟燭作為畫面主角，需接近實品：小鋁殼茶蠟、彩色蠟面、乾燥花草與晶石。旁邊可有木片、空白卡、粉晶或紫水晶，但不要出現宗教符號或過度神祕的視覺。
 
 ## 圖片生成 Prompt
 
@@ -98,4 +101,3 @@ Text: no text.
 Constraints: no logos, no readable writing, no hands, no people, no religious symbols, no supernatural or medical claims.
 Avoid: mystical fantasy, smoke-heavy scene, harsh shadows, clutter, luxury advertisement style.
 ```
-

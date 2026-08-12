@@ -21,6 +21,7 @@ graph TD
     Dir3["📁 3-cometime<br>(諮詢系統)"]
     Dir4["📁 4-persona-lab<br>(人格觀察)"]
     Dir5["📁 5-ideas<br>(想法收納)"]
+    Dir6["📁 6-collaborations<br>(合作案件)"]
 
     %% Links from Root
     Root --> core
@@ -30,6 +31,7 @@ graph TD
     Root --> Dir3
     Root --> Dir4
     Root --> Dir5
+    Root --> Dir6
 
     %% 0-manifesto
     Dir0 --> M1["lab-rules.md<br>(規則)"]
@@ -63,12 +65,20 @@ graph TD
     %% 5-ideas
     Dir5 --> I1["backlog.md<br>(待辦與想法清單)"]
 
+    %% 6-collaborations
+    Dir6 --> CL1["README.md<br>(合作案導覽)"]
+    Dir6 --> CL2["📂 teachers/"]
+    CL2 --> CL2a["tiffany-hope-light<br>(Hope Light)"]
+    CL2a --> CL2b["profile.md<br>(老師與品牌檔案)"]
+    CL2a --> CL2c["📂 context/"]
+    CL2a --> CL2d["2026-08-brand-integration<br>(品牌整合專案)"]
+
     %% Styling
     classDef folder fill:#f9f9f9,stroke:#333,stroke-width:2px;
     classDef file fill:#e1f5fe,stroke:#0288d1,stroke-width:1px;
     classDef root fill:#ffe0b2,stroke:#f57c00,stroke-width:2px;
     
     class Root root;
-    class Dir0,Dir1,Dir2,Dir3,Dir4,Dir5,PL3 folder;
-    class README,Brand,Intro,PodcastIdea,M1,M2,M3,M4,P1,P2,P3,V1,V2,C1,C2,C3,PL1,PL2,PL3a,PL3b,PL3c,I1 file;
+    class Dir0,Dir1,Dir2,Dir3,Dir4,Dir5,Dir6,PL3,CL2,CL2a,CL2c,CL2d folder;
+    class README,Brand,Intro,PodcastIdea,M1,M2,M3,M4,P1,P2,P3,V1,V2,C1,C2,C3,PL1,PL2,PL3a,PL3b,PL3c,I1,CL1,CL2b file;
 ```

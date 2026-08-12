@@ -22,7 +22,7 @@
 | [`/3-cometime`](./3-cometime) | ☕ Co Me Time 諮詢系統（Coffee Me Time） |
 | [`/4-persona-lab`](./4-persona-lab) | 👤 人格百態觀察與樣本 |
 | [`/5-ideas`](./5-ideas) | 💡 想法收納盒與孵化中計畫 |
-| [`/6-resources`](./6-resources) | 📚 學習筆記、AI 提示詞與工具 |
+| [`/6-collaborations`](./6-collaborations) | 🤝 老師、品牌與創作者合作案件 |
 
 ---
 

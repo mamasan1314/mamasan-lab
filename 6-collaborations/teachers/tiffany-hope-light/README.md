@@ -16,6 +16,7 @@
 |---|---|
 | [`profile.md`](./profile.md) | 老師背景、品牌核心、帳號分工、產品與待確認事項 |
 | [`context/Hope_Light_品牌整合_對話壓縮資料.md`](./context/Hope_Light_品牌整合_對話壓縮資料.md) | 後續可重用的品牌專案母資料 |
+| [`content`](./content) | IG 文章、Caption、圖片素材與內容排程草稿 |
 | [`2026-08-brand-integration`](./2026-08-brand-integration) | 從 Manus 收錄的 2026-08 品牌整合交付案 |
 
 ## 使用提醒
@@ -23,4 +24,3 @@
 - 對外文案避免保證療效、招財、桃花、睡眠、學業或醫療結果。
 - 價格、成本、庫存、分潤、產品規格與正式名稱未確認前，不要寫成定案。
 - 兩個 IG 不是分割產品，而是同一品牌的兩個入口：`Hope Light.ig` 偏「看見自己」，`Hope Light Moment` 偏「陪伴自己」。
-

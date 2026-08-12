@@ -1,0 +1,13 @@
+# Local dependencies and reproducible intermediate artifacts
+working/vendor/
+working/extracted/
+working/validation/
+working/diagnostic_workbooks/
+
+# Superseded detailed draft retained locally while open in Word
+outputs/希望之光_下一步待辦與Moment內容規劃_202608.docx
+outputs/希望之光_下一步待辦與Moment內容規劃_202608.pdf
+
+# Superseded first meeting draft retained locally while open in Word
+outputs/希望之光_下次會議討論稿_IG與15篇內容_202608.docx
+outputs/希望之光_下次會議討論稿_IG與15篇內容_202608.pdf

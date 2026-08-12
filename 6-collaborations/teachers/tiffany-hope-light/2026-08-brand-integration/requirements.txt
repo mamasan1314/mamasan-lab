@@ -1,0 +1,6 @@
+openpyxl==3.1.5
+Pillow==12.3.0
+PyMuPDF==1.28.2
+pypdf==6.15.0
+python-docx==1.2.0
+XlsxWriter==3.2.9

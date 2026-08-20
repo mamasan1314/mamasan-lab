@@ -1,6 +1,6 @@
 # AI Builder n=1 前導｜mamasan 的第一次可重入協作
 
-Status: proposed; awaiting mamasan acceptance  
+Status: proposed; commit-first, no required learning form
 Proposed: 2026-08-20  
 Canonical program: [Three Realms Academy / AI Builder](https://github.com/darrenfiy/Three-Realms-Academy/tree/main/PROGRAMS/ai-builder)
 
@@ -14,15 +14,15 @@ mamasan 已經不是「還沒有 repo 的初學者」。她擁有 `mamasan-lab`�
 
 這也是 Darren 的第一個教學驗證。作品可以證明他會做；只有學員的獨立重入，才能開始證明他會教。
 
-## 雙方接受後才成立
+## 開始前的口頭對齊
 
-開始前，mamasan 與 Darren 要一起確認：
+這次前導不設報名表、學習單或必填回填。開始前只需口頭對齊：
 
-- [ ] mamasan 願意作為 AI Builder n=1 前導學員。
-- [ ] 她知道這是教學實驗，不是 Darren 接管 `mamasan-lab`。
-- [ ] 她選擇一個可以進 Git 的真實作品種子。
-- [ ] 雙方確認哪些過程可留在 repo、哪些只適合口頭或私人筆記。
-- [ ] 若要公開作為案例，另確認姓名、畫面、引言與成果的公開範圍。
+- mamasan 願意把這次協作視為 AI Builder n=1 前導。
+- 這是教學實驗，不是 Darren 接管 `mamasan-lab`。
+- 她選擇一個可以進 Git 的真實作品種子。
+- 客戶秘密、帳密、健康與財務資料不進 Git。
+- 若要對外使用姓名、畫面、引言或成果，另取得明確同意；沒有同意就只保留 repo 內的事實證據。
 
 ## 建議作品種子
 
@@ -60,22 +60,20 @@ Darren 不做：
 - 在她尚未理解差異時代替她 commit。
 - 課後自動成為她 repo 的長期維護者。
 
-## 最小完成證據
+## 證據直接留在 Git
 
-當天完成：
+不要求 mamasan 另外證明自己學了什麼，也不要求 Darren 代她整理心得。實際做出的工作直接成為證據：
 
-- [ ] 有一個由 mamasan 選擇的真實作品變更。
-- [ ] 她能指出 AI 提議、自己的修改與最後決定之間的差別。
-- [ ] 她至少拒絕或改寫一項 AI 內容。
-- [ ] 她看過 diff，並理解這次留下了什麼。
-- [ ] commit 由她本人放行，訊息能說明選擇而不是只寫 `update`。
-- [ ] 她能說出下一格。
+| Git 中可見的事實 | 能支持的判斷 |
+|---|---|
+| commit 作者、時間與訊息 | 誰在什麼時候放行哪一手 |
+| diff | 作品實際增加、刪除或改寫了什麼 |
+| 後續 commit | mamasan 是否自行重入並繼續發展 |
+| revert、封存或改寫 | 她是否能修正先前決定，而不是盲從 AI |
 
-D+7 完成：
+當天若留下由 mamasan 本人放行、訊息清楚且內容有界的真實 commit，就有第一次協作證據。若之後再由她自行留下第二筆有意義的 commit、revert 或封存決定，才多了一層「能獨立重入」的教學證據。
 
-- [ ] 她能自行重新進入 repo。
-- [ ] 她留下第二筆有意義的變更，或清楚決定封存／撤回先前的一手。
-- [ ] 她能用自己的話說出：AI 在哪裡幫上忙、哪裡仍必須由自己決定。
+口頭復盤、心得或推薦語都可以有，但完全自願，不是完成條件，也不取代 Git 事實。
 
 ## 什麼才可以成為 Darren 的教學實績
 
@@ -85,6 +83,6 @@ D+7 完成：
 
 如果 D+7 沒有發生，仍然留下復盤，但不宣稱教學方法已被驗證。
 
-## 紀錄
+## 對外敘事邊界
 
-使用 [`learning-log.md`](./learning-log.md) 記錄。它只保存學習決策與可公開證據，不貼入客戶秘密、完整私人對話、帳密、健康或財務資料。
+commit 可以證明作品與協作發生過，但不自動授權公開 mamasan 的姓名、私人對話或客戶內容。Darren 要把這段經驗用於招生、簡報或廣告時，仍須另外取得 mamasan 對具體素材的同意。

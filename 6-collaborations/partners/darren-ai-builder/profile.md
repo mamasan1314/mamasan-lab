@@ -1,0 +1,72 @@
+# Darren｜能力資產與協作邊界
+
+Audit date: 2026-08-20  
+Purpose: 讓 mamasan 知道 Darren 已經能承擔什麼、哪些仍需試點，以及兩人可以如何共同接案。
+
+## 一句話定位
+
+> 把老師散落在對話、筆記與腦中的知識，整理成一個老師自己能再次進入，並可逐步長成網站、內容、預約、收款與 AI 協作流程的作品系統。
+
+Darren 的價值不只是「叫 AI 做東西」，而是能在多個 AI、程式、內容與現實責任之間，持續做選擇、留下版本、部署成品並守住邊界。
+
+## 已有作品證據
+
+截至本次盤點，下列公開入口皆已上線：
+
+- [Three-Quarters International 官網](https://three-quarters.net/)
+- [四分之三共生公開網站](https://three-quarters.org/)
+- [Three Realms Wiki](https://wiki.three-quarters.net/)
+- [Hub](https://hub.three-quarters.net/)
+- [言途 Dialogue Trainer](https://dialogue-trainer.three-quarters.net/)
+- [Fathom](https://fathom.three-quarters.net/)
+- [三界觀察報](https://news.three-quarters.net/)
+
+本機驗證紀錄：
+
+- Hub：39 個測試檔、132 個測試全數通過。
+- Fathom：14 個測試檔、65 個測試全數通過。
+- 三界觀察報：production build 通過，產出 54 個靜態頁面。
+- Wiki：已有 7 種語系內容結構。
+
+這些證據足以證明 Darren 具備實作與維護能力；它們還不能單獨證明教學成效、外部客戶轉換率或同時服務多客戶的容量。
+
+## 可複用能力
+
+| 層次 | 已有能力 |
+|---|---|
+| 品牌與內容 | 從長對話整理定位、受眾、服務、內容柱、聲音指南與發布流程 |
+| 網站 | 純 HTML/CSS、Next.js、RWD、多語系、SEO、網域、DNS 與部署 |
+| AI 應用 | Gemini／生成式 AI 串接、結構化輸出、知識邊界、真人審核閘門 |
+| 身分與資料 | Google／Firebase 登入、Firestore、權限、雲端儲存與管理入口 |
+| 金流 | Oen、Stripe、銀行轉帳、Webhook、訂單狀態、訂閱與冪等防重複入帳 |
+| 營運 | Git／GitHub、Docker、Cloud Run、Cloud Build、內容帳本、隱私與操作文件 |
+| 研究邊界 | EEG 檔案解析與資料治理；明確不把研究輔助說成醫療診斷 |
+
+## 現在適合承接
+
+- 老師的定位整理、品牌官網與一頁式服務頁。
+- LINE 官方帳號基礎架構、歡迎流程、圖文選單與常見問答設計。
+- 預約、表單、名單收集、簡單會員登入與基本分析。
+- AI 輔助內容工作流與「AI 起草、真人放行」的小編流程。
+- 有界的單一金流商串接、訂單通知與測試環境驗收。
+- 教人把真實作品做成 repo，學會看 diff、選擇與留下下一手。
+
+## 需要先試點或找協力者
+
+- LINE Messaging API／AI Bot：目前有系統能力，但尚無正式 LINE Bot 交付案例。
+- 高度客製視覺：需要成熟模板或視覺設計夥伴共同交付。
+- 多客戶並行維運：Darren 目前仍是一人主力，初期以一個完整案為上限。
+- 涉及醫療、心理、投資或大量敏感資料的系統：需專業法遵與領域人員加入。
+
+## 不對外承諾
+
+- AI 心理師、AI 療癒師、EEG 診斷或投資建議。
+- 保證招生、保證營收、保證 SEO 排名或保證療效。
+- 未經真人審核即自動發布敏感內容。
+- 由 Darren 永久代替學員或客戶維護其 repo、帳號與作品主權。
+
+## 目前最需要被 mamasan 驗證的事
+
+Darren 的作品已證明「會做」，mamasan 這次前導要回答的是「能不能教會另一個人做」。真正的完成證據不是稱讚，而是：
+
+> mamasan 能在沒有 Darren 代做的情況下，自己重入 repo、說出 AI 提了什麼、她拒絕或改寫了什麼，並留下下一筆有意義的 commit。

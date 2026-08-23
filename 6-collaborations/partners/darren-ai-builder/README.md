@@ -28,9 +28,17 @@ mamasan 是最早在 Darren 協助下建立自己 repo 的創作者。這次協�
 | [`service-map.md`](./service-map.md) | 對老師合作案的初步服務產品與報價邊界 |
 | [`shareable-service-menu.md`](./shareable-service-menu.md) | A 可直接轉傳給老師的標準價／試辦價服務表 |
 | [`2026-08-ai-builder-pilot`](./2026-08-ai-builder-pilot) | mamasan 作為第一位候選學員的 n=1 前導實驗 |
+| [Clarity／清晰度](https://github.com/darrenfiy/Three-Realms-Academy/tree/main/PROGRAMS/clarity) | 從 mamasan／Tiffany 合作壓力長出的通用定位工具與對話 agent；正典在 Academy |
 
 AI Builder 的課程正典仍在 Three Realms Academy：
 [`PROGRAMS/ai-builder`](https://github.com/darrenfiy/Three-Realms-Academy/tree/main/PROGRAMS/ai-builder)。本資料夾只保存 mamasan 這一位真人的協作入口與證據，不複製整套課程。
+
+## 清晰度專案的出生地
+
+2026-08-20，mamasan 想替 Tiffany 找到一個能上台使用的「定位」，這個真實問題先長出
+上台定位表，之後再長出匠人姊妹表與對話式 clarity agent 架構。通用方法現由
+Three Realms Academy 的 `PROGRAMS/clarity/` 孵化；本 repo 保留出生地、合作關係與
+當事人明確同意後的案件證據，不建立平行副本。
 
 ## 案件合作關係
 

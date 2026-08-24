@@ -8,6 +8,7 @@
 |---|---|
 | [`profile.md`](./profile.md) | Tiffany／Hope Light 的品牌 profile、帳號分工、服務與待確認事項 |
 | [`product-facts.md`](./product-facts.md) | 對外文案必須固定的產品事實，例如蠟燭價格、聯絡資訊、文案界線 |
+| [`line-admin/README.md`](./line-admin/README.md) | LINE Official Account Manager 的本機登入工作階段、安全界線與唯讀稽核 |
 | [`content/index.md`](./content/index.md) | 目前已產出的 IG 貼文、圖片、Reels 與素材狀態總表 |
 | [`context`](./context) | 對話壓縮、品牌背景、長期可重用的策略母資料 |
 | [`references`](./references) | 實品照片、產品表與視覺風格參考 |

@@ -1,0 +1,18 @@
+{
+  "name": "hopebox-admin-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reusable HopeBox WordPress access and management helpers",
+  "scripts": {
+    "audit": "node scripts/audit-access.cjs",
+    "audit:visible": "node scripts/audit-access.cjs --visible",
+    "check": "node --check lib/hopebox-session.cjs && node --check scripts/audit-access.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "playwright-core": "1.62.1"
+  }
+}
+

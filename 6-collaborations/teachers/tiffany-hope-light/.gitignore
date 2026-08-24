@@ -1,0 +1,19 @@
+# Private website handoff and credentials
+/Hope_Light 帳號密碼.txt
+website-access.local.*
+credentials.local.*
+
+# Local environment secrets (at any level in this collaboration folder)
+.env
+.env.*
+!.env.example
+
+# Private keys and service-account exports
+*.pem
+*.key
+service-account*.json
+auth.local.json
+
+# Reproducible website-admin dependencies and local output
+node_modules/
+website-admin/audit-result*.json

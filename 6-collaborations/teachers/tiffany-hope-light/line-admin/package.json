@@ -1,0 +1,19 @@
+{
+  "name": "hope-light-line-admin-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reusable LINE Official Account Manager session and read-only audit helpers",
+  "scripts": {
+    "login": "node scripts/connect-session.cjs",
+    "audit": "node scripts/audit-access.cjs",
+    "audit:visible": "node scripts/audit-access.cjs --visible",
+    "check": "node --check lib/line-oa-session.cjs && node --check scripts/connect-session.cjs && node --check scripts/audit-access.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "playwright-core": "1.62.1"
+  }
+}
+

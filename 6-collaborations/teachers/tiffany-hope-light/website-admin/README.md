@@ -84,3 +84,12 @@ npm run audit -- --credential "D:\private\hopebox.txt" --browser "C:\path\to\chr
 4. 變更完成後檢查公開頁面，回報實際修改數量與未能處理的例外。
 
 WordPress Application Password 尚未建立。若未來主要工作可以透過 REST API 完成，可另外建立一組可撤銷的應用程式密碼，讓相容的批次工作略過互動式後台登入。
+
+## 官方 LINE 導流
+
+最後確認：2026-08-24（Asia/Taipei）
+
+- 官方 LINE ID：`@happy139`
+- 加好友網址：`https://lin.ee/vG7eI1Dv`
+- 網站位置：「老師介紹頁」的「預約與老師對話」按鈕
+- WordPress 後台可以修改網站上的按鈕文字與目標網址；LINE 官方帳號本身的名稱、個人檔案、圖文選單、訊息與好友管理，需在 LINE Official Account Manager 處理，不能從 WordPress 修改。

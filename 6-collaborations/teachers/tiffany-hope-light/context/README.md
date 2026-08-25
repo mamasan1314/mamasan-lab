@@ -5,4 +5,5 @@
 目前主要母資料：
 
 - [`Hope_Light_品牌整合_對話壓縮資料.md`](./Hope_Light_品牌整合_對話壓縮資料.md)
+- [`2026-08-24-website-line-admin-handoff.md`](./2026-08-24-website-line-admin-handoff.md)：HopeBox 與 LINE 後台的今日工作紀錄、稽核結論、重入方式與下一步。
 

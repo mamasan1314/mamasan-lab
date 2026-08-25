@@ -1,6 +1,6 @@
 # Hope Light 產品事實與對外文案界線
 
-最後整理日期：2026-08-12
+最後整理日期：2026-08-24
 
 這份文件是 Tiffany／Hope Light 對外內容的事實基準。若舊素材、截圖或草稿裡出現不同資訊，先以這份為準，再向老師確認。
 
@@ -11,7 +11,8 @@
 | 中文品牌 | 希望之光 |
 | 英文品牌 | Hope Light |
 | 生活陪伴帳號 | Hope Light Moment |
-| LINE | `@happy139` |
+| LINE 官方帳號 | `@happy139` |
+| LINE 加好友網址 | `https://lin.ee/vG7eI1Dv` |
 | IG | `.hopelight.ig / hopelight.moment` |
 
 建議圖片固定露出：
@@ -21,6 +22,8 @@
 LINE: @happy139
 IG: .hopelight.ig / hopelight.moment
 ```
+
+網站目前在「老師介紹頁」以「預約與老師對話」按鈕導向上述 LINE 加好友網址；已於 2026-08-24 從後台與公開頁面交叉確認。
 
 ## 頻率蠟燭
 
@@ -79,7 +82,7 @@ IG: .hopelight.ig / hopelight.moment
 ## 發布前快速檢查
 
 - 價格是否為 `NT$139／顆，不含運，可任選`。
-- 聯絡資訊是否為 `LINE: @happy139`、`IG: .hopelight.ig / hopelight.moment`。
+- 聯絡資訊是否為 `LINE: @happy139`、`LINE 加好友網址: https://lin.ee/vG7eI1Dv`、`IG: .hopelight.ig / hopelight.moment`。
 - 圖片中的蠟燭是否接近實品：小鋁殼、彩色蠟面、乾燥花草或礦石。
 - 文案是否沒有承諾具體結果或療效。
 - 若是老師個人故事，是否已取得老師確認。

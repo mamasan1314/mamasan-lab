@@ -1,6 +1,6 @@
 # Darren × mamasan｜AI Builder 協作
 
-Status: relationship recorded; n=1 pilot available when both sides choose to begin
+Status: relationship recorded; first paid teacher case delivered 2026-08-26 (awaiting client decisions)
 Started: 2026-08-20
 
 ## 這段關係是什麼
@@ -25,7 +25,7 @@ mamasan 是最早在 Darren 協助下建立自己 repo 的創作者。這次協�
 | 文件 | 用途 |
 |---|---|
 | [`profile.md`](./profile.md) | Darren 目前已被作品證明的能力、可承接範圍與缺口 |
-| [`service-map.md`](./service-map.md) | 對老師合作案的初步服務產品與報價邊界 |
+| [`service-map.md`](./service-map.md) | 對老師合作案的初步服務產品、報價邊界與首案定價紀錄 |
 | [`shareable-service-menu.md`](./shareable-service-menu.md) | A 可直接轉傳給老師的標準價／試辦價服務表 |
 | [`2026-08-ai-builder-pilot`](./2026-08-ai-builder-pilot) | mamasan 作為第一位候選學員的 n=1 前導實驗 |
 | [Clarity／清晰度](https://github.com/darrenfiy/Three-Realms-Academy/tree/main/PROGRAMS/clarity) | 從 mamasan／Tiffany 合作壓力長出的通用定位工具與對話 agent；正典在 Academy |
@@ -51,6 +51,24 @@ AI Builder 的學習關係與商業案件分開處理。當 A 對接她身邊的
 - A 可以在製作成本上加入自己的訪談、策略、溝通、專案管理與合理利潤，再形成給老師的整合報價。
 
 2026-08-20 與 Tiffany 的會談沿用以上邊界：A 是主角與窗口，Darren 陪同；若案件成立，再由 A 決定是否向 Darren 發包。
+
+## 第一個交付案：教材／體系整理
+
+2026-08-26，這條合作關係長出第一份實際交付：一套課程教材的體系整理。它同時催生了一個新的服務項目，見 [`service-map.md`](./service-map.md) 與 [`shareable-service-menu.md`](./shareable-service-menu.md)。
+
+三條交付原則（已執行，非承諾）：
+
+- 老師的內容一個字不改；只整理結構、合併重複、理順順序
+- 需要老師決定的，做成決策單交回去，不代做決定
+- 交付物用老師自己的語言，不留下我們的術語與框架
+
+首案採獲客定價（標準價 NT$18,000，本次 NT$5,000），性質與理由記在 `service-map.md` 的首案定價紀錄，**不進公開服務表**；第二、三案回到試辦價 NT$12,000。
+
+### 案例對外使用
+
+依本文件〈邊界〉，**在取得老師明確同意前，不具名、不引用其材料、不將其稱為成功案例。** 目前可對外說明的形式是去識別的方法描述（素材規模、工作內容、成果形態），不含品牌、姓名與畫面。
+
+具名見證與轉介是首案定價的交換條件之一，須由 A 在老師實際滿意後另行徵詢，不預設同意。
 
 ## 邊界
 

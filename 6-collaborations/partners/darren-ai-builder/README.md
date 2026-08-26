@@ -1,6 +1,6 @@
 # Darren × mamasan｜AI Builder 協作
 
-Status: relationship recorded; first paid teacher case delivered 2026-08-26 (awaiting client decisions)
+Status: relationship recorded; first teacher draft delivered 2026-08-26 but not accepted; workflow under revision
 Started: 2026-08-20
 
 ## 這段關係是什麼
@@ -25,8 +25,9 @@ mamasan 是最早在 Darren 協助下建立自己 repo 的創作者。這次協�
 | 文件 | 用途 |
 |---|---|
 | [`profile.md`](./profile.md) | Darren 目前已被作品證明的能力、可承接範圍與缺口 |
-| [`service-map.md`](./service-map.md) | 對老師合作案的初步服務產品、報價邊界與首案定價紀錄 |
-| [`shareable-service-menu.md`](./shareable-service-menu.md) | A 可直接轉傳給老師的標準價／試辦價服務表 |
+| [`service-map.md`](./service-map.md) | Darren 對 A 的分包服務、價格假設與責任邊界 |
+| [`subcontract-service-menu.md`](./subcontract-service-menu.md) | Darren 給 A 的分包價格參考；不是老師端報價單 |
+| [`translation-qc-workflow.md`](./translation-qc-workflow.md) | Darren → mamasan → 老師的翻譯、QC／QA、驗收與報價流向 |
 | [`2026-08-ai-builder-pilot`](./2026-08-ai-builder-pilot) | mamasan 作為第一位候選學員的 n=1 前導實驗 |
 | [Clarity／清晰度](https://github.com/darrenfiy/Three-Realms-Academy/tree/main/PROGRAMS/clarity) | 從 mamasan／Tiffany 合作壓力長出的通用定位工具與對話 agent；正典在 Academy |
 
@@ -49,26 +50,30 @@ AI Builder 的學習關係與商業案件分開處理。當 A 對接她身邊的
 - A 接案後若需要 Darren 製作，由 A 與 Darren 另談分包範圍、時程與費用。
 - A 對老師報價前，應先把可能發包給 Darren 的製作預算納入，不先承諾功能再要求 Darren 吸收。
 - A 可以在製作成本上加入自己的訪談、策略、溝通、專案管理與合理利潤，再形成給老師的整合報價。
+- Darren 先把草稿、變更帳本與新增內容清單交給 A；A 完成 QC／QA 並願意承擔後，才由 A 對老師交付。
+- Darren 的報價對象是 A，不是老師；老師端價格由 A 依整體服務另行提出。
 
 2026-08-20 與 Tiffany 的會談沿用以上邊界：A 是主角與窗口，Darren 陪同；若案件成立，再由 A 決定是否向 Darren 發包。
 
-## 第一個交付案：教材／體系整理
+## 第一個實際案例：教材／體系整理
 
-2026-08-26，這條合作關係長出第一份實際交付：一套課程教材的體系整理。它同時催生了一個新的服務項目，見 [`service-map.md`](./service-map.md) 與 [`shareable-service-menu.md`](./shareable-service-menu.md)。
+2026-08-26，這條合作關係長出第一份實際製作：一套課程教材的體系整理。mamasan 將問題單與 PPT 草稿交給 Tiffany 後，Tiffany 明確表示不滿意，認為成果大量改動了她原本的文案。因此本案目前是**已製作、已交付、未被老師接受**，不是成功案例。
 
-三條交付原則（已執行，非承諾）：
+這次失敗暴露的不是「能不能做出簡報」，而是合作鏈少了一道必要角色：mamasan 必須在 Darren 與 Tiffany 之間擔任翻譯者與交付前 QC／QA。完整更正見 [`translation-qc-workflow.md`](./translation-qc-workflow.md)；案件回顧見 [`../../teachers/tiffany-hope-light/2026-08-掌運卡/working/2026-08-26-post-delivery-review.md`](../../teachers/tiffany-hope-light/2026-08-掌運卡/working/2026-08-26-post-delivery-review.md)。
 
-- 老師的內容一個字不改；只整理結構、合併重複、理順順序
-- 需要老師決定的，做成決策單交回去，不代做決定
-- 交付物用老師自己的語言，不留下我們的術語與框架
+更正後的三條原則：
 
-首案採獲客定價（標準價 NT$18,000，本次 NT$5,000），性質與理由記在 `service-map.md` 的首案定價紀錄，**不進公開服務表**；第二、三案回到試辦價 NT$12,000。
+- **先約定改寫層級。** 原文校整、結構整理與依義重建是三種不同工作，不能等做完才讓老師發現。
+- **重大改寫可回查。** 每個新增規則、命名與教學設計都要附來源與理由，不能只交成品。
+- **A 核准後才交老師。** A 必須理解 Darren 做了什麼、判斷是否仍是老師聽得進去的聲音，並完成 QC／QA。
+
+現有價目改列為 **Darren 對 A 的分包參考價**；不是 Tiffany 的報價，也不能寫成已向 Tiffany 收費。首案是否採 NT$5,000 分包價、後續是否採 NT$12,000／NT$18,000，仍由 A 與 Darren 另行確認。
 
 ### 案例對外使用
 
-依本文件〈邊界〉，**在取得老師明確同意前，不具名、不引用其材料、不將其稱為成功案例。** 目前可對外說明的形式是去識別的方法描述（素材規模、工作內容、成果形態），不含品牌、姓名與畫面。
+依本文件〈邊界〉，**在取得老師明確同意前，不具名、不引用其材料、不將其稱為成功案例。** 目前連「客戶滿意成果」也尚未成立；對外只能將它作為內部流程學習，不應拿未被接受的交付替服務背書。
 
-具名見證與轉介是首案定價的交換條件之一，須由 A 在老師實際滿意後另行徵詢，不預設同意。
+具名見證、案例使用與轉介都不是 Darren 分包價可向 Tiffany 直接交換的條件。若 A 未來要和老師商議，須在老師實際接受成果後另行徵詢，不預設同意。
 
 ## 邊界
 

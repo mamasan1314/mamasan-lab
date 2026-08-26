@@ -4,6 +4,8 @@ Tiffany 於 2026-08-25 提供兩份不同階段的課程 PowerPoint，作為掌�
 
 2026-08-26，mamasan 已將第一輪問題與 v0.2 PPT 交付 Tiffany。Tiffany 認為成果大量改動她原本的文案，對交付不滿意。**v0.2 已交付但未被接受，不是正式版。**完整回顧與新流程見 [`working/2026-08-26-post-delivery-review.md`](./working/2026-08-26-post-delivery-review.md)。
 
+同日，mamasan 確認下一輪先採 L0：九月版為主本、0305 只作差異對照，完整牌義與特殊組合不再由摘要取代；Tiffany 最新回饋覆蓋封面、歷史、六字與 52 張／Joker 頁。已生成 **85 頁 v0.3 L0 內部校整候選**，目前只交給 mamasan 做 QC，尚未交付 Tiffany。
+
 ## 原始資料
 
 原檔統一放在 [`source`](./source)，保留 Tiffany 提供時的檔名與內容：
@@ -13,8 +15,18 @@ Tiffany 於 2026-08-25 提供兩份不同階段的課程 PowerPoint，作為掌�
 
 ## 目前狀態
 
-- 階段：**v0.2 已交付、未接受；暫停直接改版，先由 mamasan 完成逐頁 QC／QA 與需求翻譯**
+- 階段：**v0.3 L0 校整候選已製作，待 mamasan 逐頁 QC 與交付決定；尚未送 Tiffany**
 - 原始檔：只作來源保存，不直接覆寫
+
+### 目前的內部候選（未交付 Tiffany）
+
+- v0.3 L0 PPTX（85 頁）：[`outputs/掌運卡_L0校整候選_v0.3_20260826.pptx`](./outputs/掌運卡_L0校整候選_v0.3_20260826.pptx)
+- 逐頁來源稿：[`outputs/掌運卡_L0校整候選_v0.3_逐頁來源稿.md`](./outputs/掌運卡_L0校整候選_v0.3_逐頁來源稿.md)
+- 給 mamasan 的 QC 單：[`outputs/掌運卡_v0.3_給mamasan的QC單.md`](./outputs/掌運卡_v0.3_給mamasan的QC單.md)
+- 來源、變更、風險與新增標記帳本：[`working/v0.3-L0-變更帳本.md`](./working/v0.3-L0-變更帳本.md)
+- 自動驗證：[`working/v0.3-L0-驗證報告.md`](./working/v0.3-L0-驗證報告.md)
+- 建置腳本：[`working/build-deck-v0.3-l0.ps1`](./working/build-deck-v0.3-l0.ps1)
+- 預覽圖不納入保存；需要目視 QC 時可用建置腳本的 `-ExportPreviews` 重新產生。
 
 ### 已交付的歷史版本（未核准）
 
@@ -33,7 +45,7 @@ Tiffany 於 2026-08-25 提供兩份不同階段的課程 PowerPoint，作為掌�
 - 內容盤點：[`working/content-audit.md`](./working/content-audit.md)
 - 知識母架構：[`working/knowledge-architecture.md`](./working/knowledge-architecture.md)
 - 建置腳本：[`working/build-deck-v0.2.ps1`](./working/build-deck-v0.2.ps1)
-- 預覽圖：[`working/previews-v0.2`](./working/previews-v0.2)
+- 預覽圖未保存；需要時可由歷史建置腳本以 `-ExportPreviews` 重新產生。
 
 ### 已取代
 
@@ -41,8 +53,8 @@ Tiffany 於 2026-08-25 提供兩份不同階段的課程 PowerPoint，作為掌�
 
 ### 後續閘門
 
-1. mamasan 逐頁標記 v0.2 的可保留、退回原語與待問項目。
-2. 蒐集 Tiffany 認為「改動過多」的具體例子，確認下一輪採 L0、L1 或 L2。
-3. Darren 只對 mamasan 提交下一版草稿、變更帳本與新增內容清單。
-4. mamasan 完成 QC／QA 並願意承擔後，才由她對 Tiffany 交付。
+1. mamasan 依 v0.3 QC 單檢查封面、最新回饋、完整牌義、特殊組合與橘色待確認標記。
+2. mamasan 決定這次只帶哪些核心問題給 Tiffany，不直接轉送內部稽核帳本。
+3. mamasan 完成 QC／QA 並願意承擔後，才由她對 Tiffany 交付 v0.3。
+4. Tiffany 先確認內容完整性與作者聲音；任何縮頁、合併或 L1／L2 工作另開下一輪。
 5. Tiffany 接受前，不稱正式版、成功案例或已完成服務。

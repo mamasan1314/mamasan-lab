@@ -1,5 +1,6 @@
 ﻿param(
-    [string]$ProjectDir = (Split-Path -Parent $PSScriptRoot)
+    [string]$ProjectDir = (Split-Path -Parent $PSScriptRoot),
+    [switch]$ExportPreviews
 )
 
 $ErrorActionPreference = 'Stop'
@@ -10,7 +11,7 @@ $previewDir = Join-Path $ProjectDir 'working\previews-v0.1'
 $outputPath = Join-Path $outputDir '掌運卡_簡潔教學版_講師草稿_v0.1_20260825.pptx'
 
 New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
-New-Item -ItemType Directory -Path $previewDir -Force | Out-Null
+if ($ExportPreviews) { New-Item -ItemType Directory -Path $previewDir -Force | Out-Null }
 
 function Convert-HexColor {
     param([Parameter(Mandatory = $true)][string]$Hex)
@@ -292,10 +293,12 @@ try {
 
     $presentation.SaveAs($outputPath, 24)
 
-    $previewSlides = @(1, 7, 13, 28, 34, 38)
-    foreach ($index in $previewSlides) {
-        $previewPath = Join-Path $previewDir ('slide-{0:D2}.png' -f $index)
-        $presentation.Slides.Item($index).Export($previewPath, 'PNG', 1600, 900)
+    if ($ExportPreviews) {
+        $previewSlides = @(1, 7, 13, 28, 34, 38)
+        foreach ($index in $previewSlides) {
+            $previewPath = Join-Path $previewDir ('slide-{0:D2}.png' -f $index)
+            $presentation.Slides.Item($index).Export($previewPath, 'PNG', 1600, 900)
+        }
     }
 }
 finally {

@@ -1,5 +1,6 @@
 # Private website handoff and credentials
 /Hope_Light 帳號密碼.txt
+/IG 帳密.txt
 website-access.local.*
 credentials.local.*
 
@@ -18,3 +19,4 @@ auth.local.json
 node_modules/
 website-admin/audit-result*.json
 website-admin/booking-*-result-local.json
+website-admin/instagram-audit-result*.json

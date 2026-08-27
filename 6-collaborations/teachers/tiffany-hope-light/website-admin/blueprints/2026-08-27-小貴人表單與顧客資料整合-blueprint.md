@@ -1,6 +1,6 @@
 # 小貴人表單與顧客資料整合 Blueprint
 
-文件狀態：`v0.1｜給 mamasan 核對的工作草稿`  
+文件狀態：`v0.2｜給 mamasan 核對的工作草稿`  
 日期：`2026-08-27（Asia/Taipei）`  
 整理層級：`L1 結構整理`  
 核對順序：`Darren 草稿 → mamasan QC／QA → Tiffany 決定是否採用`  
@@ -54,6 +54,7 @@ Tiffany 目前約有 400 位曾在 IG 回覆、表示想購買小貴人的人。
 | HopeLight 預約 | 已有預約名單與時段設定 | 管理目前的服務預約 | 尚未確認適合大量 10 分鐘諮詢；不可直接混用既有兩小時時段 |
 | MailPoet | 選單存在，但尚未完成可用設定 | 未來可做訂閱與分眾寄信 | 目前不能當作已上線名單系統 |
 | WordPress Users | 有網站使用者帳號 | 管理登入權限 | 不是 CRM |
+| 兩個 Instagram 帳號 | 已收到本機帳密交接；2026-08-27 唯讀測試皆到達額外驗證步驟 | 驗證完成後可檢查專業帳號功能；未來可用官方 API 接收新留言／私訊事件 | 尚未完成登入，帳號類型、Meta Business 權限、App 與 Token 均未確認 |
 | Airtable | 尚未安裝、尚未建立、尚未連線 | 規劃作為跨表單、訂單與諮詢的營運 CRM | 需先決定帳號、權限、費用與個資使用方式 |
 
 ### 3.3 現有 CRM 草稿
@@ -70,19 +71,35 @@ Tiffany 目前約有 400 位曾在 IG 回覆、表示想購買小貴人的人。
 
 這份 Excel 可作為欄位與流程參考，但目前是靜態規劃稿，沒有和網站連線；部分輸入驗證只預設到約 300 列，因此不建議直接拿來承接本次約 400 筆正式登記。
 
+### 3.4 Instagram 唯讀登入查核
+
+**[後台查核｜2026-08-27]**
+
+- 本機交接檔包含兩組 Instagram 登入資料，已加入專案 `.gitignore`。
+- 交接檔目前未被 Git 追蹤，Git 歷史也沒有曾經提交過。
+- 兩個帳號都已送出一次登入資料，流程皆到達「需要額外驗證」狀態，沒有出現密碼錯誤。
+- 額外驗證尚未由帳號持有人完成，因此目前不能宣稱完整登入成功。
+- 帳號是 Business、Creator 或 Personal，仍是未知。
+- Meta Business Suite、Meta App、OAuth、Webhook、Access Token 與 API 權限均尚未建立或查證。
+- 稽核沒有開啟私訊、發送訊息、回覆留言或修改設定。
+
+結論：帳號密碼可以作為人工登入的第一步，但不能代替 Meta 官方 OAuth／Token 串接。下一次需要由 mamasan 或帳號持有人配合完成驗證碼或安全確認，才可繼續查核帳號類型。
+
 ## 4. 建議的整體架構
 
 **[新設計]**
 
 ```text
-約 400 位 IG 意願名單
-          │
-          ▼
+兩個 IG 帳號 ──新留言／私訊──► Meta 官方 Webhook ──► IG 詢問紀錄
+       │                                                │
+       └──約 400 位歷史意願名單                         │
+                         │                              │
+                         ▼                              │
 HopeBox 小貴人專屬登記表（Elementor）
           │
           ├── 原始送出備份 ──► Elementor Submissions
-          │
-          └── 自動傳送 ──────► Airtable CRM
+          │                                                │
+          └── 自動傳送 ──────► Airtable CRM ◄──────────────┘
                                       │
                     ┌─────────────────┼─────────────────┐
                     ▼                 ▼                 ▼
@@ -99,6 +116,7 @@ HopeBox 小貴人專屬登記表（Elementor）
 |---|---|---|
 | Elementor Submissions | 原始表單收件匣／備份 | 顧客當時實際送出的內容、送出時間、同意版本 |
 | Airtable | 營運 CRM／每日工作台 | 一人一筆顧客、活動登記、負責人、下一步、訂單與諮詢摘要 |
+| Instagram／Meta API（未來） | 新詢問入口 | 新留言／私訊事件的來源帳號、平台識別、時間與處理狀態；不預設保存完整聊天全文 |
 | WooCommerce | 商店正式帳本 | 商品、金額、付款、完整收件地址、出貨與退款狀態 |
 | HopeLight 預約或獨立短時段排程 | 預約正式帳本 | 諮詢日期、時間、狀態與預約編號 |
 | MailPoet（未來） | 經同意後的行銷名單 | 明確同意接收行銷訊息的人，不是所有買家 |
@@ -205,6 +223,29 @@ HopeBox 小貴人專屬登記表（Elementor）
 - 處理結果
 - 下一個任務日期
 
+### 5.6 IG 詢問 Instagram Inquiries
+
+用途：把兩個 IG 帳號的新留言／私訊變成可追蹤的詢問，不把整個 Inbox 複製到 Airtable。
+
+建議欄位：
+
+- 詢問 ID
+- 來源 IG 帳號
+- Instagram-scoped user ID
+- IG 帳號名稱快照
+- 來源類型：留言／私訊／限時動態回覆
+- 來源貼文／媒體 ID
+- 首次詢問時間
+- 最近互動時間
+- 詢問分類
+- 處理狀態
+- 對應顧客 ID（填表或人工核對後才連結）
+- 對應活動登記 ID
+- 負責人與下一步
+- 簡短摘要
+
+預設不保存完整聊天全文、圖片或附件。若營運上確實需要保存，需另行決定目的、權限、保存期間與刪除規則。
+
 ## 6. 小貴人表單欄位調整
 
 **[新設計]**
@@ -260,9 +301,27 @@ HopeBox 小貴人專屬登記表（Elementor）
 
 - 新表單：Elementor → Airtable。
 - 新訂單與訂單狀態：WooCommerce → Airtable。
+- 新 IG 留言／私訊：Meta Webhook → Airtable 的 IG 詢問表。
 - 每日一次：比對 WooCommerce 與 Airtable 是否漏單或狀態不同。
 - 初期採單向同步，不允許 Airtable 回寫付款、地址或退款資料到 WooCommerce。
 - API 金鑰、Webhook 密鑰及 Airtable Token 只能存放在伺服器或受控的秘密設定，不可放進公開網頁、Markdown、Git 或聊天紀錄。
+
+### 7.4 Instagram 歷史詢問與未來詢問
+
+**[後台查核＋新設計]**
+
+官方 API 適合承接「完成設定之後」的新事件，但不能假設可完整取回幾個月前的所有對話：
+
+- IG Professional Account 的 Conversations API 可以取得對話與訊息，但 Requests 資料夾中超過 30 天沒有活動的對話可能不會回傳。
+- 由貼文留言觸發的私人回覆，官方 API 要求在留言建立後 7 天內送出；幾個月前的留言不適用這條自動回覆路徑。
+- 兩個 IG 帳號需要分別完成 OAuth 授權；同一套接收程式可以把兩邊事件送進同一個 Airtable，並用「來源 IG 帳號」區分。
+
+因此本案分兩條路：
+
+1. **歷史約 400 人**：以 IG 後台目前仍看得到的留言／對話為人工核對來源，導向小貴人表單；真正填表的人才正式進顧客 CRM。不可承諾 API 能完整回填全部舊詢問。
+2. **未來新詢問**：帳號類型與 Meta 授權完成後，以官方 Webhook 自動建立 IG 詢問，再於對方填表或留下可核對聯絡方式時連到 Contacts。
+
+第一版只做「收到事件、建立待辦、人工回覆」，不自動大量發私訊。
 
 ## 8. 建議的處理狀態
 
@@ -304,6 +363,7 @@ HopeBox 小貴人專屬登記表（Elementor）
 7. 表單需附個資告知，說明蒐集者、目的、資料類別、利用期間／地區／對象／方式、當事人權利，以及不提供資料的影響。
 8. 客戶資料、匯出 CSV、API 回應、Token、Cookie 與偵錯檔不得提交到 Git。
 9. 尚需由 mamasan 決定未成交名單保留多久，以及顧客提出查詢、更正、停用或刪除要求時由誰處理。
+10. IG 主帳號密碼只能作為過渡登入方式；正式串接改用可撤銷的 OAuth／Access Token，並優先用 Meta Business 的人員／任務權限取代長期共用密碼。
 
 ## 10. 本次活動必須先關閉的營運決策
 
@@ -321,6 +381,10 @@ HopeBox 小貴人專屬登記表（Elementor）
 | 諮詢使用期限、改期與遲到規則 | 400 人若全數使用，總量為 4,000 分鐘，也就是 66 小時 40 分鐘 |
 | 「24 小時內聯繫」是自動回覆還是人工確認 | 400 筆同時進件時，人工承諾可能無法完成 |
 | Airtable 帳號擁有者與管理者 | 確保資料不綁在個人或外包帳號上 |
+| 誰負責完成兩個 IG 帳號的額外驗證 | 未完成前無法查核帳號類型或建立正式授權 |
+| 兩個 IG 是否為 Professional Account | Personal Account 無法直接使用本案規劃的專業訊息／留言 API |
+| 歷史約 400 人採人工導流或另做可取回資料盤點 | 官方 API 對舊 Requests 與留言私人回覆有時間限制 |
+| 第一版是否只建立詢問待辦、不自動回覆 | 降低誤發、限流與舊訊息自動觸達風險 |
 | 未成交名單保留期間 | 影響個資告知與日後清理 |
 
 ## 11. 建議上線階段
@@ -330,17 +394,27 @@ HopeBox 小貴人專屬登記表（Elementor）
 - mamasan 核對本 Blueprint。
 - Tiffany 核准品項、價格、庫存、優惠與諮詢規則。
 - 決定 Airtable 是否可作為外部 CRM，以及帳號與權限歸屬。
+- 由帳號持有人完成兩個 IG 帳號的額外驗證，確認帳號類型與可用 Meta 權限。
 - 核准個資告知與行銷同意文字。
 
 完成條件：第 10 節沒有會阻擋上線的空白決策。
 
 ### Phase 1：用假資料建立 Airtable
 
-- 建立五張資料表與簡化工作介面。
+- 建立六張資料表與簡化工作介面。
 - 使用假姓名、假電話、假訂單進行測試。
 - 建立新名單、待付款、已付款、待出貨、諮詢待排等檢視。
 
 完成條件：尚未使用真實個資，也能完整跑完一筆流程。
+
+### Phase 1B：Instagram 官方串接準備
+
+- 確認兩個 IG 帳號皆為可用的 Professional Account。
+- 決定採 Instagram Login 或現有 Meta Business／Facebook Login 路徑。
+- 由 Hope Light／mamasan 持有 Meta App 與正式授權，不綁在外包個人帳號。
+- 以假測試帳號驗證留言與私訊 Webhook；不先對真實 400 人發送訊息。
+
+完成條件：兩個來源帳號可分辨、Token 可撤銷、Webhook 失敗會留下紀錄。
 
 ### Phase 2：建立活動表單與結帳流程
 
@@ -383,6 +457,9 @@ HopeBox 小貴人專屬登記表（Elementor）
 - 同步失敗時會留下可處理的錯誤，而不是安靜漏單。
 - 測試紀錄、匯入報告與 Git 中不含真實個資或秘密金鑰。
 - mamasan 能從簡化畫面看見「今天要處理誰、下一步是什麼」。
+- 兩個 IG 帳號的新事件進入 Airtable 時，能正確標示來源帳號且不重複建立詢問。
+- IG 尚未授權或 Token 失效時會出現明確警示，不會安靜漏件。
+- 第一版不會因舊留言或舊私訊自動大量發送回覆。
 
 ## 13. 目前不在本 Blueprint 內的事項
 
@@ -391,17 +468,20 @@ HopeBox 小貴人專屬登記表（Elementor）
 - 尚不承諾採用特定 Airtable 方案或費用。
 - 尚不建立雙向同步。
 - 尚不把舊 Excel、IG 私訊或其他來源的全部名單自動匯入。
+- 尚不自動大量回覆幾個月前的 IG 留言或私訊，也不宣稱可由 API 完整取回全部 400 人。
 - 尚不更改 HopeLight 既有服務名稱、時長、價格或預約時段。
 
 ## 14. 給 mamasan 的核對方式
 
-建議 mamasan 先回答以下五題，再決定是否交給 Tiffany：
+建議 mamasan 先回答以下七題，再決定是否交給 Tiffany：
 
 1. 是否同意「WooCommerce 管訂單、Airtable 管顧客進度」？
 2. 是否同意完整地址只放 WooCommerce，不放 Airtable？
 3. 是否願意採用外部 Airtable；帳號要由誰持有？
 4. 第 10 節的活動規則，哪些已確定、哪些要問 Tiffany？
 5. Tiffany 最後需要看到完整 CRM，還是只看簡化的待辦畫面？
+6. 兩個 IG 帳號的驗證碼／安全確認，之後由誰配合完成？
+7. 歷史約 400 人是否同意先採「IG 人工導流到表單」，未來新詢問才做 Webhook 自動進 CRM？
 
 ## 15. 來源與參考
 
@@ -419,6 +499,10 @@ HopeBox 小貴人專屬登記表（Elementor）
 - [Airtable：Building and sharing forms](https://support.airtable.com/articles/9431794285-building-and-sharing-forms-in-airtable)
 - [Airtable：Getting started with automations](https://support.airtable.com/articles/3669392397-getting-started-with-airtable-automations)
 - [Airtable：Permissions overview](https://support.airtable.com/articles/3994336578-airtable-permissions-overview)
+- [Meta 官方 Instagram API Workspace](https://www.postman.com/meta/instagram/overview)
+- [Meta 官方 Instagram Conversations API](https://www.postman.com/meta/instagram/folder/23987686-6a91368f-1fa8-4614-9ed6-7d1e08c21e62)
+- [Meta 官方 Instagram Private Replies](https://www.postman.com/meta/instagram/documentation/6yqw8pt/instagram-api?entity=request-23987686-23eacf45-3728-4e41-bcc7-6d164959327c)
+- [Meta：Facebook Page 與工作權限](https://www.facebook.com/help/289207354498410/r.php/)
 - [法務部：個人資料保護法第 8 條告知義務](https://www.moj.gov.tw/media/2809/31011536015.pdf?mediaDL=true)
 
 ## 16. 變更帳本
@@ -429,4 +513,5 @@ HopeBox 小貴人專屬登記表（Elementor）
 | v0.1 | 2026-08-27 | [後台查核] | 收錄 Elementor Submissions、WooCommerce、預約、MailPoet 與 WordPress Users 的現況 |
 | v0.1 | 2026-08-27 | [新設計] | 新增 Elementor → Airtable → WooCommerce／預約的分工與同步架構 |
 | v0.1 | 2026-08-27 | [新設計] | 新增既有 Woo 顧客匯入、去重、權限、分階段上線及驗收規則 |
-
+| v0.2 | 2026-08-27 | [後台查核] | 兩個 IG 帳號皆到達額外驗證步驟；完整登入、帳號類型與 Meta Business 狀態仍待驗證 |
+| v0.2 | 2026-08-27 | [新設計] | 新增兩個 IG 帳號、IG 詢問表、官方 Webhook、歷史／未來詢問分流與驗收規則 |

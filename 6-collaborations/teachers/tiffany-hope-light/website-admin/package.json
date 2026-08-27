@@ -6,8 +6,11 @@
   "scripts": {
     "audit": "node scripts/audit-access.cjs",
     "audit:visible": "node scripts/audit-access.cjs --visible",
+    "instagram:audit": "node scripts/inspect-instagram-access.cjs",
+    "instagram:audit:visible": "node scripts/inspect-instagram-access.cjs --visible",
+    "instagram:login": "node scripts/inspect-instagram-access.cjs --visible --wait-for-verification",
     "booking": "node scripts/manage-booking-slots.cjs",
-    "check": "node --check lib/hopebox-session.cjs && node --check scripts/audit-access.cjs && node --check scripts/manage-booking-slots.cjs"
+    "check": "node --check lib/hopebox-session.cjs && node --check lib/instagram-session.cjs && node --check scripts/audit-access.cjs && node --check scripts/inspect-instagram-access.cjs && node --check scripts/manage-booking-slots.cjs"
   },
   "engines": {
     "node": ">=20"

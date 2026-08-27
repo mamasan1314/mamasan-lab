@@ -105,6 +105,45 @@ powershell -NoProfile -ExecutionPolicy Bypass -File '.\scripts\run-booking-tool.
 
 個人 Codex 技能名稱：`manage-hopelight-booking`。repository 來源保存在 `skill/manage-hopelight-booking/`。
 
+## Instagram 唯讀登入稽核
+
+兩個 Hope Light Instagram 帳號的本機交接檔放在 `../IG 帳密.txt`。該檔已由上層 `.gitignore` 忽略；不得把內容、Cookie、驗證碼或 Access Token 輸出到終端、文件或 Git。
+
+執行不開啟私訊內容的唯讀登入檢查：
+
+```powershell
+npm run instagram:audit
+```
+
+如果 Instagram 無頭頁面沒有載入登入欄位，可改用可見瀏覽器：
+
+```powershell
+npm run instagram:audit:visible
+```
+
+帳號持有人已準備好驗證碼或安全確認時，可開啟最多等待五分鐘的互動登入：
+
+```powershell
+npm run instagram:login
+```
+
+工具會依序開啟兩個帳號；在瀏覽器完成當前帳號的驗證後，才會繼續下一個帳號。不要把驗證碼貼進終端、文件或 Git。
+
+工具入口：
+
+- `lib/instagram-session.cjs`：讀取兩組本機交接資料，為每個帳號使用獨立的本機瀏覽器 profile。
+- `scripts/inspect-instagram-access.cjs`：只回報登入、額外驗證與專業帳號 UI 訊號；帳號一律以 `account-1`、`account-2` 表示。
+
+本機工作階段預設位置：
+
+- Windows：`%LOCALAPPDATA%\mamasan-lab\instagram-browser-profiles`
+- macOS：`~/Library/Application Support/mamasan-lab/instagram-browser-profiles`
+- Linux：`~/.local/share/mamasan-lab/instagram-browser-profiles`
+
+最後檢查：2026-08-27（Asia/Taipei）。兩個帳號都到達 Instagram 額外驗證步驟，沒有出現密碼錯誤；帳號持有人尚未完成驗證，因此完整登入、Business／Creator／Personal 類型與 Meta Business 權限仍未確認。檢查沒有開啟私訊、發訊息、回覆留言或修改設定。
+
+這個登入工具不等於 Instagram API 串接。正式把新留言／私訊接到 CRM 時，仍需由帳號持有人完成 Meta OAuth、授予最小必要權限並使用可撤銷的 Access Token；不可讓自動化長期使用主帳號密碼。
+
 ## 官方 LINE 導流
 
 最後確認：2026-08-24（Asia/Taipei）

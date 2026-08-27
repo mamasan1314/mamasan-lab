@@ -1,0 +1,4 @@
+interface:
+  display_name: "HopeLight 預約管理"
+  short_description: "安全建立、檢查並驗證 Tiffany 的 HopeLight 預約時段"
+  default_prompt: "使用 $manage-hopelight-booking 安全預檢、設定並驗證 Tiffany 的 HopeLight 預約時段。"

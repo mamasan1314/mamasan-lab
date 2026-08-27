@@ -17,3 +17,4 @@ auth.local.json
 # Reproducible website-admin dependencies and local output
 node_modules/
 website-admin/audit-result*.json
+website-admin/booking-*-result-local.json

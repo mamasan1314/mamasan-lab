@@ -6,7 +6,8 @@
   "scripts": {
     "audit": "node scripts/audit-access.cjs",
     "audit:visible": "node scripts/audit-access.cjs --visible",
-    "check": "node --check lib/hopebox-session.cjs && node --check scripts/audit-access.cjs"
+    "booking": "node scripts/manage-booking-slots.cjs",
+    "check": "node --check lib/hopebox-session.cjs && node --check scripts/audit-access.cjs && node --check scripts/manage-booking-slots.cjs"
   },
   "engines": {
     "node": ">=20"

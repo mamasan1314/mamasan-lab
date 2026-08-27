@@ -85,6 +85,26 @@ npm run audit -- --credential "D:\private\hopebox.txt" --browser "C:\path\to\chr
 
 WordPress Application Password 尚未建立。若未來主要工作可以透過 REST API 完成，可另外建立一組可撤銷的應用程式密碼，讓相容的批次工作略過互動式後台登入。
 
+## 預約時段批次管理
+
+使用 `scripts/manage-booking-slots.cjs` 讀取 `plans/` 內的 JSON 計畫。工具預設只做 dry-run，會檢查既有時段衝突；加入 `-Apply` 後才會送出，並同時驗證後台排程與公開預約端點。
+
+Windows 可使用會自動尋找 Node.js 的入口：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File '.\scripts\run-booking-tool.ps1' -Plan 'plans\plan-name.json'
+```
+
+預檢無衝突後再套用：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File '.\scripts\run-booking-tool.ps1' -Plan 'plans\plan-name.json' -Apply -Output 'booking-apply-result-local.json'
+```
+
+計畫固定使用 `Asia/Taipei`、ISO 日期與 `HH:MM-HH:MM`。`slotMinutes` 會強制檢查每段長度；不明確的全天、跨時區或僅線上需求先列入 `pending`，不要自行推定。`booking-*-result-local.json` 已由 Git 忽略。
+
+個人 Codex 技能名稱：`manage-hopelight-booking`。repository 來源保存在 `skill/manage-hopelight-booking/`。
+
 ## 官方 LINE 導流
 
 最後確認：2026-08-24（Asia/Taipei）

@@ -337,8 +337,30 @@ npm run instagram:publish -- --profile hopelight --image <網址> --caption-file
 Meta 不接受本機檔案上傳，它會自行前往指定網址抓取素材。圖片與影片都一樣。
 
 目前作法是把素材放進 `three-quarters.net`（GitHub Pages）的 `assets/images/`。
-這是可行的權宜方案，但素材會**永久公開**；README 原訂的短效 signed URL 尚未實作。
-發布客戶素材前應先評估這一點。
+這是可行的權宜方案，但素材會**永久公開**；短效 signed URL 尚未實作。
+**不要用這個方式發布 Tiffany 的素材**，她的產品影片不應永久掛在協作者的個人網站上。
+
+#### 已確認不可行：直接上傳檔案
+
+2026-08-31 實測，以 `media_type=REELS` 加 `upload_type=resumable` 建立容器：
+
+```text
+HTTP 400  The parameter video_url is required  (IGApiException, code 100)
+```
+
+Meta 忽略 `upload_type=resumable`，仍要求公開網址。官方文件說明直接上傳
+（resumable upload 至 `rupload.facebook.com`）**僅供已實作 Facebook Login for Business
+的 App 使用**，本專案走 Instagram Login，因此沒有這條路。不需要再測一次。
+
+若日後改用 Facebook Login for Business（需先完成 Page ↔ Instagram 連結），
+即可直接上傳檔案，hosting 問題消失；代價是重新授權、更換權杖體系，
+並重新引入本專案刻意避開的粉絲專頁依賴。
+
+#### 建議的素材供應方式
+
+優先採本機暫時服務加臨時隧道：發布時於本機起 HTTP 服務並開通道，
+把該網址交給 Meta 抓取，完成後立即關閉。素材不離開本機，網址發布後即失效。
+次選為 R2／S3 短效簽名網址。兩者都尚未實作。
 
 ### 圖片與 Reels 的差異
 

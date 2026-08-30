@@ -61,11 +61,21 @@ https://lin.ee/W7z3hTm
   由協作者另行新增的文案。
 - 本檔為已發布素材的來源歸檔，不要重複上傳。
 
-## 待處理：LINE 連結不一致
+## LINE 連結查證結果（已釐清，非不一致）
 
-這則已發布 Caption 使用的加好友網址是 `https://lin.ee/W7z3hTm`，
-與 [`../../../product-facts.md`](../../../product-facts.md) 記載的 `https://lin.ee/vG7eI1Dv`（`@happy139`）**不同**。
+這則 Caption 使用的加好友網址是 `https://lin.ee/W7z3hTm`，與
+[`../../../product-facts.md`](../../../product-facts.md) 記載的 `https://lin.ee/vG7eI1Dv` 不同字串。
+2026-08-31 追查兩條短連結的轉址目標，確認**指向同一個 LINE 官方帳號**：
 
-Caption 中的帳號名稱寫作「希望之光｜腦意識調頻」。目前無法判斷是兩個不同的 LINE 官方帳號、
-舊連結，或 product-facts 已過期，因此**不修改任何一方**，先記錄待 Tiffany 或 mamasan 確認。
-在確認前，對外文案沿用 product-facts 的版本。
+```text
+lin.ee/W7z3hTm   -> line.me/R/ti/p/@290ykfry?ts=08171137
+lin.ee/vG7eI1Dv  -> line.me/R/ti/p/@290ykfry?ts=06230108
+```
+
+差異只在 `ts` 參數，推測為短連結的產生時間（0623 與 0817）。同一個官方帳號可以產生多條
+`lin.ee` 加好友短連結，舊連結不會失效，因此兩條並存屬正常狀態，不是錯誤。
+
+`@290ykfry` 是 LINE 自動配發的 Basic ID，`@happy139` 是自訂的 Premium ID，兩者為同一帳號的
+不同識別碼。product-facts 記載的 `@happy139` 與 `lin.ee/vG7eI1Dv` 均為有效值。
+
+仍待決定的是**對外統一使用哪一條**，理由見 product-facts 的聯絡資訊段落。

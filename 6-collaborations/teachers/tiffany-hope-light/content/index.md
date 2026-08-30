@@ -35,9 +35,10 @@
 公開網址 https://www.instagram.com/reel/Dcquxa8KVBX/ ，media ID `18108277667141280`，
 發布時間 2026-08-30 22:31:11（Asia/Taipei），實際 Caption 已逐字保存於該專案 README。
 
-**待確認**：該則 Caption 的 LINE 加好友網址為 `https://lin.ee/W7z3hTm`，與
-[`../product-facts.md`](../product-facts.md) 記載的 `https://lin.ee/vG7eI1Dv` 不一致，
-需向 Tiffany 或 mamasan 確認何者為準。
+該則 Caption 的 LINE 加好友網址為 `https://lin.ee/W7z3hTm`，與
+[`../product-facts.md`](../product-facts.md) 記載的 `https://lin.ee/vG7eI1Dv` 字串不同，
+但 2026-08-31 追查轉址確認**兩條指向同一個官方帳號** `@290ykfry`，並非不一致。
+細節見該 Reel 專案 README。待決定的只是對外統一使用哪一條。
 
 ## 素材狀態
 

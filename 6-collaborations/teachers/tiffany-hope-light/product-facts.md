@@ -13,6 +13,8 @@
 | 生活陪伴帳號 | Hope Light Moment |
 | LINE 官方帳號 | `@happy139` |
 | LINE 加好友網址 | `https://lin.ee/vG7eI1Dv` |
+| LINE Basic ID | `@290ykfry`（系統配發，與 `@happy139` 為同一帳號） |
+| 其他有效短連結 | `https://lin.ee/W7z3hTm`（2026-08-30 IG Reel 使用；同一帳號） |
 | IG | `.hopelight.ig / hopelight.moment` |
 
 建議圖片固定露出：

@@ -178,6 +178,8 @@ npm run meta:audit
 
 同日進一步做唯讀操作面檢查：選定 `@hopelight.ig` 後，Meta Business Suite 首頁顯示先前選定的 Instagram 個人檔案無法使用該工具；直接開啟該資產的收件匣則顯示「很抱歉，目前無法查看此內容」。因此目前只能確認資產與部分權限存在，無法讀取貼文內容、留言、私訊或 Requests，也無法由這個 session 核實歷史「約 400 位」名單。這是「目前權限／工具不可用」，不能解讀成舊資料已不存在。檢查沒有開啟任何對話、輸出顧客姓名或文字、回覆、按讚、刪除或修改資料。
 
+同日後續：使用者表示已完成 Facebook 粉絲專頁完整控制的重新指派／接受，但 Meta 明示需持有完整控制至少一週才能連結 Instagram；Page ↔ `@hopelight.ig` 尚未連成，最早應在滿 `7 × 24` 小時後重試。Tiffany 的直接 Instagram 工作階段可正常開啟 `@hopelight.ig` 本人個人檔案與 Create 入口；日常發布不再建議依靠瀏覽器 UI 自動化。完整狀態、權限層次與下一步 API 方案見 [`../context/2026-08-30-meta-instagram-access-handoff.md`](../context/2026-08-30-meta-instagram-access-handoff.md)。
+
 可重跑唯讀稽核：
 
 ```powershell

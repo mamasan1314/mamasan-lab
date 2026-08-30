@@ -1,6 +1,6 @@
 # Hope Light Content Index
 
-最後整理日期：2026-08-12
+最後整理日期：2026-08-30
 
 這份索引用來快速確認目前 Tiffany／Hope Light 已經產出的內容、素材狀態與下一步。
 
@@ -27,8 +27,9 @@
 | 主題 | 狀態 | 輸出 | 專案 |
 |---|---|---|---|
 | 希望之光∞頻率蠟燭介紹，NT$139／顆 | ready-to-review | [`reels/candle-intro-139/output/hope-light-candle-intro-139.mp4`](./reels/candle-intro-139/output/hope-light-candle-intro-139.mp4) | [`reels/candle-intro-139`](./reels/candle-intro-139) |
+| @hopelight.ig｜2026-08-30 手動發布短片 001 | published-manually / user-confirmed | [`reels/hopelight-ig-reel-2026-08-30-001/source/hopelight-ig-reel-2026-08-30-001.mp4`](./reels/hopelight-ig-reel-2026-08-30-001/source/hopelight-ig-reel-2026-08-30-001.mp4) | [`reels/hopelight-ig-reel-2026-08-30-001`](./reels/hopelight-ig-reel-2026-08-30-001) |
 
-備註：目前影片是無音樂、無旁白版。Telegram 可用 `send as a file` 保留 MP4 檔案格式。
+備註：蠟燭介紹影片目前是無音樂、無旁白版。2026-08-30 短片由使用者自行發布；Caption、公開網址與確切時間尚未補入 repository。
 
 ## 素材狀態
 

@@ -7,6 +7,7 @@
 | 主題 | 狀態 | 專案 |
 |---|---|---|
 | 希望之光∞頻率蠟燭介紹，NT$139／顆 | ready-to-review | [`candle-intro-139`](./candle-intro-139) |
+| @hopelight.ig｜2026-08-30 手動發布短片 001 | published-manually / user-confirmed | [`hopelight-ig-reel-2026-08-30-001`](./hopelight-ig-reel-2026-08-30-001) |
 
 ## 使用提醒
 

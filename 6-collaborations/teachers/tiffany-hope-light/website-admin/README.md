@@ -188,7 +188,7 @@ npm run meta:audit:portfolio
 
 ## Instagram 發布 App（hopelight-publisher-IG）
 
-建立日期：2026-08-31（Asia/Taipei）
+建立日期：2026-08-31（Asia/Taipei）｜狀態：**權杖已驗證可用**
 
 走 `Instagram API with Instagram Login`，授權來源是 Instagram 帳號本身，不經過 Facebook 粉絲專頁，也不經過商家資產管理組合；因此不受 Page ↔ Instagram 的七天等待期阻擋。
 
@@ -203,14 +203,69 @@ npm run meta:audit:portfolio
 
 App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密，可以留在文件裡。**App Secret 是機密**，只存在本機 `.env`，已被 `.gitignore` 忽略；不得提交、輸出到終端、寫進文件或貼進聊天。變數名稱見 [`.env.example`](./.env.example)。
 
+### 2026-08-31 唯讀驗證結果
+
+以 `npm run instagram:whoami` 對 `/me` 做唯讀核對，通過：
+
+| 欄位 | 值 |
+|---|---|
+| username | `@hopelight.ig` |
+| 帳號類型 | `MEDIA_CREATOR`（創作者帳號） |
+| IG user id | `17841480182265940` |
+| 貼文數 | 38 |
+| 權杖前綴 | `IGA…`，長度 182 |
+
+`IGA` 前綴確認走的是 Instagram Login 路線；若看到 `EAA` 代表被導到 Facebook Graph，是錯的路線。
+回報的 IG user id 與 2026-08-30 商家組合稽核看到的資產 ID 一致，交叉確認打到的是同一個帳號。
+
+### 權杖到期
+
+**Instagram 沒有永久權杖，Dashboard 不顯示到期日不代表沒有期限。** 長效權杖 60 天，
+必須在滿 24 小時後、到期前呼叫 refresh 才能續命；刷新會換發新權杖，需同步更新 `.env`。
+
+- 產生日：2026-08-31
+- 推定到期：**2026-10-30**
+- 建議動作：2026-10-中旬前刷新，不要等到最後一週
+
+實際到期秒數只能透過 refresh 端點取得，而該端點會換發新權杖，因此不做「只為了查到期日」的呼叫。
+
+### 權限決定與理由
+
+只要兩項：`instagram_business_basic`、`instagram_business_content_publish`。
+官方發布文件確認發布只需這兩項，且 Standard Access 即可。
+
+| 未採用 | 理由 |
+|---|---|
+| `instagram_business_manage_messages` | 發布用不到。更重要的是授權畫面會出現「存取私訊」，牴觸本專案不讀取私訊的界線 |
+| `instagram_business_manage_comments` | 目前沒有留言管理需求，需要時再加 |
+| Webhooks | 用於**接收**留言與私訊事件，本專案只做**送出**，且它要求 App 進入已發布狀態 |
+| 應用程式檢閱（App Review） | 只在存取「不在 App 角色內」的帳號時才需要。`@hopelight.ig` 以 Instagram tester 身分授權，不需要審查。將來要服務多位老師且不逐一加 tester 時才評估，屆時另需商業驗證 |
+
+### 待觀察
+
+帳號類型是 `MEDIA_CREATOR` 而非 `BUSINESS`。發布 API 對創作者帳號的支援在歷史上曾有差異，
+第一次實際發布時若出現權限或帳號類型錯誤，先確認這一點，不要直接歸因於權杖。
+
+另外，官方文件指出：若 Instagram 帳號連到需要「粉絲專頁發布授權（PPA）」的粉專，
+完成 PPA 前無法以 API 發布。目前尚未連結 Page，暫時不受影響；
+2026-09-07 之後若完成 Page 連結，需重新驗證發布是否仍正常。
+
+### 唯讀核對指令
+
+```powershell
+npm run instagram:whoami
+```
+
+只讀取帳號識別欄位，不發布、不修改、不讀取貼文內容、留言或私訊，也不輸出權杖。
+
 ### 尚未完成
 
-1. 在 App Dashboard 的 `API setup with Instagram login` 設定 redirect URI 與上述兩項權限。
-2. 將 `@hopelight.ig` 加為 Instagram tester；Tiffany 在 IG 的「應用程式與網站 → 測試人員邀請」接受。
-3. Tiffany 走一次 OAuth 並按 Allow；不索取、不保存她的密碼。
-4. 先做唯讀 `/me` 帳號核對，確認打到的是正確帳號。
-5. 短效 token 換長效 token，並規劃到期前的安全刷新。
-6. 發布工具預設停在預檢，只有明確 `--publish` 才送出；成功後記錄 media ID、permalink、Caption、發布時間與來源檔。
+1. ~~權限設定、tester 指派、授權、唯讀 `/me` 核對~~ 已於 2026-08-31 完成。
+2. 建立發布工具：預設停在預檢，只有明確 `--publish` 才送出。
+3. 素材以短效 signed HTTPS URL 提供給 Meta，完成後刪除暫存。
+4. 發布成功後記錄 media ID、公開 permalink、實際 Caption、發布時間與來源檔。
+5. 排定 2026-10-中旬的權杖刷新，並在刷新後更新 `.env` 與本節的到期日。
+6. 商家登入（Business Login）與 redirect URI 目前未設定；服務第二個帳號時才需要。
 
 ## 官方 LINE 導流
 

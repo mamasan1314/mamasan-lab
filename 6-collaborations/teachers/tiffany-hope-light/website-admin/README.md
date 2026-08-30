@@ -186,6 +186,32 @@ npm run meta:audit
 npm run meta:audit:portfolio
 ```
 
+## Instagram 發布 App（hopelight-publisher-IG）
+
+建立日期：2026-08-31（Asia/Taipei）
+
+走 `Instagram API with Instagram Login`，授權來源是 Instagram 帳號本身，不經過 Facebook 粉絲專頁，也不經過商家資產管理組合；因此不受 Page ↔ Instagram 的七天等待期阻擋。
+
+| 項目 | 值 |
+|---|---|
+| App 名稱 | `hopelight-publisher-IG` |
+| Instagram App ID | `1965739860772119` |
+| App 擁有者 | Darren／mamasan，不掛在「珈語老師」商家組合底下 |
+| 目標帳號 | `@hopelight.ig`（資產 ID `17841480182265940`），所有權仍屬 Tiffany |
+| 存取層級 | Standard Access，只服務已加入 App 的 tester 帳號 |
+| 預定權限 | `instagram_business_basic`、`instagram_business_content_publish`，不多要 |
+
+App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密，可以留在文件裡。**App Secret 是機密**，只存在本機 `.env`，已被 `.gitignore` 忽略；不得提交、輸出到終端、寫進文件或貼進聊天。變數名稱見 [`.env.example`](./.env.example)。
+
+### 尚未完成
+
+1. 在 App Dashboard 的 `API setup with Instagram login` 設定 redirect URI 與上述兩項權限。
+2. 將 `@hopelight.ig` 加為 Instagram tester；Tiffany 在 IG 的「應用程式與網站 → 測試人員邀請」接受。
+3. Tiffany 走一次 OAuth 並按 Allow；不索取、不保存她的密碼。
+4. 先做唯讀 `/me` 帳號核對，確認打到的是正確帳號。
+5. 短效 token 換長效 token，並規劃到期前的安全刷新。
+6. 發布工具預設停在預檢，只有明確 `--publish` 才送出；成功後記錄 media ID、permalink、Caption、發布時間與來源檔。
+
 ## 官方 LINE 導流
 
 最後確認：2026-08-24（Asia/Taipei）

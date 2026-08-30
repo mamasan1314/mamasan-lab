@@ -1,0 +1,54 @@
+# mamasan-lab 全域憑證安全網
+#
+# 個別合作資料夾可以有自己的 .gitignore（例如 teachers/tiffany-hope-light/）。
+# 這一份是最後一道防線，讓憑證即使被放進沒有個別保護的資料夾也不會被提交。
+#
+# 原則：機密只留在本機，Git 裡只留「變數名稱」與「使用說明」。
+# 若某個檔案確定不含機密而被這裡誤擋，用 git add -f 個別放行，不要放寬規則。
+
+# ---- 環境變數 ----
+.env
+.env.*
+*.env
+!.env.example
+!*.env.example
+
+# ---- 金鑰與憑證檔 ----
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+service-account*.json
+credentials.local.*
+auth.local.json
+*-result-local.json
+
+# ---- 依檔名攔截的憑證檔 ----
+# 只擋資料類副檔名，不擋 .md：文件本來就不該放機密，
+# 而靜默忽略一份說明文件比漏擋更難察覺。
+*密鑰*.txt
+*密鑰*.json
+*密碼*.txt
+*密碼*.json
+*帳密*.txt
+*帳密*.json
+*金鑰*.txt
+*金鑰*.json
+*憑證*.txt
+*憑證*.json
+*帳號密碼*.txt
+*token*.txt
+*Token*.txt
+*secret*.txt
+*Secret*.txt
+*credential*.txt
+*Credential*.txt
+*app-secret*
+*app_secret*
+
+# ---- 相依套件與本機產出 ----
+node_modules/
+*.log
+.DS_Store
+Thumbs.db

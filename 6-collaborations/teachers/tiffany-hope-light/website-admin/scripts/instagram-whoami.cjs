@@ -5,6 +5,11 @@
 
 const { fetchAccountIdentity, loadApiConfig } = require('../lib/instagram-api.cjs');
 
+function optionValue(args, name) {
+  const index = args.indexOf(name);
+  return index >= 0 ? args[index + 1] : undefined;
+}
+
 function describeTokenShape(token) {
   const prefix = token.slice(0, 3);
   const family =
@@ -19,12 +24,21 @@ function describeTokenShape(token) {
 }
 
 async function main() {
-  const config = loadApiConfig();
+  const args = process.argv.slice(2);
+  const config = loadApiConfig({ profile: optionValue(args, '--profile') });
   const shape = describeTokenShape(config.accessToken);
 
+  // 正式帳號是真實客戶資產，在畫面上必須一眼看得出來。
+  const banner = config.isProduction
+    ? '*** 正式帳號 PRODUCTION — 這是真實客戶帳號 ***'
+    : '--- 沙盒帳號 SANDBOX — 可安全測試 ---';
+
+  console.log(banner);
   console.log('Instagram 權杖唯讀核對');
   console.log('------------------------------------');
-  console.log(`設定檔      : ${config.envFile}`);
+  console.log(`帳號設定檔  : ${config.profileName}（${config.mode}）`);
+  console.log(`可用設定檔  : ${config.availableProfiles.map((p) => `${p.name}/${p.mode}`).join('、')}`);
+  console.log(`設定檔案    : ${config.envFile}`);
   console.log(`App ID      : ${config.appId || '(未設定)'}`);
   console.log(`權杖前綴    : ${shape.prefix}… 長度 ${shape.length}`);
   console.log(`權杖類型    : ${shape.family}`);
@@ -41,12 +55,15 @@ async function main() {
   console.log('');
 
   if (!config.targetUsername) {
-    console.log('提醒：.env 沒有設定 INSTAGRAM_TARGET_USERNAME，略過目標帳號比對。');
+    console.log(`提醒：設定檔 ${config.profileName} 沒有登記使用者名稱，略過比對。`);
+    console.log(`建議在 .env 補上：INSTAGRAM_PROFILE_${config.profileName.toUpperCase()}_USERNAME=${identity.username}`);
+    console.log('登記之後，工具每次都會確認打到的是不是同一個帳號。');
     return;
   }
 
   if (identity.username?.toLowerCase() === config.targetUsername.toLowerCase()) {
     console.log(`核對結果    : 通過，與預期的 @${config.targetUsername} 相同。`);
+  console.log(banner);
   } else {
     console.log(`核對結果    : 不符。預期 @${config.targetUsername}，實際 @${identity.username}。`);
     console.log('在確認原因之前，不要用這個權杖發布任何內容。');

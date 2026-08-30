@@ -29,7 +29,41 @@ function parseEnvFile(contents) {
   return values;
 }
 
-function loadApiConfig(envFile = DEFAULT_ENV_FILE) {
+// 具名帳號設定檔：INSTAGRAM_PROFILE_<名稱>_TOKEN／_USERNAME／_MODE
+// mode 為 production 的設定檔代表真實客戶帳號，寫入類工具必須額外要求明確確認。
+function collectProfiles(values) {
+  const profiles = new Map();
+
+  for (const [key, value] of Object.entries(values)) {
+    const match = key.match(/^INSTAGRAM_PROFILE_([A-Z0-9]+)_(TOKEN|USERNAME|MODE)$/u);
+    if (!match) continue;
+    const name = match[1].toLowerCase();
+    const entry = profiles.get(name) || { name, accessToken: '', username: '', mode: '' };
+    if (match[2] === 'TOKEN') entry.accessToken = value;
+    if (match[2] === 'USERNAME') entry.username = value.replace(/^@/u, '');
+    if (match[2] === 'MODE') entry.mode = value.toLowerCase();
+    profiles.set(name, entry);
+  }
+
+  // 相容舊格式：單一 INSTAGRAM_LONG_LIVED_TOKEN 視為 hopelight 正式帳號。
+  if (values.INSTAGRAM_LONG_LIVED_TOKEN && !profiles.has('hopelight')) {
+    profiles.set('hopelight', {
+      name: 'hopelight',
+      accessToken: values.INSTAGRAM_LONG_LIVED_TOKEN,
+      username: (values.INSTAGRAM_TARGET_USERNAME || '').replace(/^@/u, ''),
+      mode: 'production',
+      legacy: true,
+    });
+  }
+
+  for (const entry of profiles.values()) {
+    if (!entry.mode) entry.mode = 'sandbox';
+    entry.isProduction = entry.mode === 'production';
+  }
+  return profiles;
+}
+
+function loadApiConfig({ envFile = DEFAULT_ENV_FILE, profile } = {}) {
   const resolved = path.resolve(envFile);
   if (!fs.existsSync(resolved)) {
     throw new Error(
@@ -38,18 +72,44 @@ function loadApiConfig(envFile = DEFAULT_ENV_FILE) {
   }
 
   const values = parseEnvFile(fs.readFileSync(resolved, 'utf8'));
-  const config = {
+  const profiles = collectProfiles(values);
+  const usable = [...profiles.values()].filter((entry) => entry.accessToken);
+
+  if (usable.length === 0) {
+    throw new Error('.env 裡沒有任何可用的帳號設定檔，請參考 .env.example。');
+  }
+
+  const requested = (profile || values.INSTAGRAM_DEFAULT_PROFILE || '').toLowerCase();
+  let selected;
+
+  if (requested) {
+    selected = profiles.get(requested);
+    if (!selected || !selected.accessToken) {
+      throw new Error(
+        `找不到名為 ${requested} 的帳號設定檔。可用：${usable.map((e) => e.name).join('、')}`,
+      );
+    }
+  } else if (usable.length === 1) {
+    selected = usable[0];
+  } else {
+    // 多個設定檔但沒有指定預設，寧可停下來，也不要替使用者猜要打哪個帳號。
+    throw new Error(
+      `設定了多個帳號（${usable.map((e) => e.name).join('、')}）但沒有指定要用哪一個。` +
+        '請加上 --profile <名稱>，或在 .env 設定 INSTAGRAM_DEFAULT_PROFILE。',
+    );
+  }
+
+  return {
     appId: values.INSTAGRAM_APP_ID || '',
     appSecret: values.INSTAGRAM_APP_SECRET || '',
-    accessToken: values.INSTAGRAM_LONG_LIVED_TOKEN || '',
-    targetUsername: (values.INSTAGRAM_TARGET_USERNAME || '').replace(/^@/u, ''),
+    accessToken: selected.accessToken,
+    profileName: selected.name,
+    mode: selected.mode,
+    isProduction: selected.isProduction,
+    targetUsername: selected.username,
+    availableProfiles: usable.map((e) => ({ name: e.name, mode: e.mode, username: e.username })),
     envFile: resolved,
   };
-
-  if (!config.accessToken) {
-    throw new Error('.env 裡的 INSTAGRAM_LONG_LIVED_TOKEN 是空的。');
-  }
-  return config;
 }
 
 // 權杖只放在 header，不放 query string，避免出現在轉址紀錄或伺服器 log。
@@ -97,6 +157,7 @@ async function fetchAccountIdentity(config) {
 
 module.exports = {
   DEFAULT_ENV_FILE,
+  collectProfiles,
   fetchAccountIdentity,
   graphGet,
   loadApiConfig,

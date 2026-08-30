@@ -229,43 +229,105 @@ App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密
 
 實際到期秒數只能透過 refresh 端點取得，而該端點會換發新權杖，因此不做「只為了查到期日」的呼叫。
 
-### 權限決定與理由
+### 權限現況與取捨
 
-只要兩項：`instagram_business_basic`、`instagram_business_content_publish`。
-官方發布文件確認發布只需這兩項，且 Standard Access 即可。
+**已授予（2026-08-31 實測確認，兩個帳號皆同）**
+
+| 權限 | 用途 |
+|---|---|
+| `instagram_business_basic` | 讀取帳號身分與貼文清單 |
+| `instagram_business_content_publish` | 建立媒體容器與發布 |
+| `instagram_business_manage_comments` | 留言讀取與回覆，為自動回覆預備 |
+| `instagram_business_manage_messages` | 私訊讀取與回覆，為自動回覆預備 |
+
+**未採用**
 
 | 未採用 | 理由 |
 |---|---|
-| `instagram_business_manage_messages` | 發布用不到。更重要的是授權畫面會出現「存取私訊」，牴觸本專案不讀取私訊的界線 |
-| `instagram_business_manage_comments` | 目前沒有留言管理需求，需要時再加 |
-| Webhooks | 用於**接收**留言與私訊事件，本專案只做**送出**，且它要求 App 進入已發布狀態 |
-| 應用程式檢閱（App Review） | 只在存取「不在 App 角色內」的帳號時才需要。`@hopelight.ig` 以 Instagram tester 身分授權，不需要審查。將來要服務多位老師且不逐一加 tester 時才評估，屆時另需商業驗證 |
+| `instagram_business_manage_insights` | 目前沒有數據分析需求 |
+| 應用程式檢閱（App Review） | 只在存取「不在 App 角色內」的帳號時才需要。兩個帳號都以 Instagram tester 身分授權，不需審查。將來要服務多位老師且不逐一加 tester 時才評估，屆時另需商業驗證 |
+
+### 重要更正：Dashboard 產生的權杖不帶同意快照
+
+本文件先前記載「在 App 加權限不會讓已發出的權杖獲得新權限」。**該說法錯誤，已撤回。**
+
+2026-08-31 實測：在 App 加入 `manage_comments` 與 `manage_messages` 之後，
+先前已發出、未重新授權的 `@hopelight.ig` 權杖同樣取得了這兩項能力。
+
+原因是這些權杖由 **App Dashboard 直接產生**，不經過真正的 OAuth 同意畫面，
+因此不帶「使用者當初同意了哪些範圍」的快照，而是反映 **App 當下擁有的權限**。
+
+實務含意：
+
+- **Dashboard 產生的權杖無法逐支限制權限範圍**，它拿到 App 的全部權限。
+- 若需要發出「只能發布、不能讀私訊」的權杖，必須改走 Business Login 的 OAuth 流程，
+  在授權網址中明確指定 `scope`。這也是先前判斷「商家登入之後再說」需要修正的地方。
+- 每次調整 App 權限，都應重跑 `npm run instagram:capabilities` 確認兩個帳號的實際能力，
+  不要依賴「當初授權了什麼」的記憶。
+
+### 帳號設定檔與誤發防護
+
+同一個 App 同時持有正式與沙盒兩個帳號的權杖，工具以具名設定檔區分：
+
+| 設定檔 | 帳號 | MODE |
+|---|---|---|
+| `hopelight` | `@hopelight.ig`（Tiffany 品牌主帳號） | `production` |
+| `sandbox` | `@darrenfiy`（Darren 自有帳號） | `sandbox` |
+
+- 預設設定檔為 `sandbox`：未指定時，錯誤往安全方向掉。
+- 存在多個設定檔又未指定時，工具直接中止，不替使用者猜測目標帳號。
+- `production` 設定檔在輸出頭尾各顯示一次警告橫幅。
+- 登記 `_USERNAME` 後，工具會比對權杖實際打到的帳號，不符即中止。
+
+注意：`@darrenfiy` 是有 384 篇貼文的真實帳號，不是空白測試帳號。
+在其上做發布測試會對真實追蹤者可見；若需完全無痕的測試環境，應另開乾淨帳號。
 
 ### 待觀察
 
-帳號類型是 `MEDIA_CREATOR` 而非 `BUSINESS`。發布 API 對創作者帳號的支援在歷史上曾有差異，
+兩個帳號的類型都是 `MEDIA_CREATOR` 而非 `BUSINESS`。發布 API 對創作者帳號的支援在歷史上曾有差異，
 第一次實際發布時若出現權限或帳號類型錯誤，先確認這一點，不要直接歸因於權杖。
 
 另外，官方文件指出：若 Instagram 帳號連到需要「粉絲專頁發布授權（PPA）」的粉專，
 完成 PPA 前無法以 API 發布。目前尚未連結 Page，暫時不受影響；
 2026-09-07 之後若完成 Page 連結，需重新驗證發布是否仍正常。
 
-### 唯讀核對指令
+### 唯讀核對與權限盤點指令
 
 ```powershell
-npm run instagram:whoami
+npm run instagram:whoami                            # 沙盒帳號身分核對
+npm run instagram:whoami -- --profile hopelight     # 正式帳號
+npm run instagram:capabilities                      # 逐項盤點實際擁有的權限
+npm run instagram:capabilities -- --profile hopelight
 ```
 
-只讀取帳號識別欄位，不發布、不修改、不讀取貼文內容、留言或私訊，也不輸出權杖。
+兩支工具都不發布、不修改，也不輸出權杖、留言內容或訊息內容。
+
+權限盤點的判定方式：每一項都設計成能分辨「被權限擋下」與「權限已通、被其他原因擋下」。
+例如發布權限的測法是送出無效素材網址建立媒體容器——若回報的是素材錯誤而非權限錯誤，
+即代表已通過權限檢查，且不會有任何內容被建立。無法分辨時一律回報「無法判定」，不猜測。
 
 ### 尚未完成
 
 1. ~~權限設定、tester 指派、授權、唯讀 `/me` 核對~~ 已於 2026-08-31 完成。
-2. 建立發布工具：預設停在預檢，只有明確 `--publish` 才送出。
-3. 素材以短效 signed HTTPS URL 提供給 Meta，完成後刪除暫存。
-4. 發布成功後記錄 media ID、公開 permalink、實際 Caption、發布時間與來源檔。
-5. 排定 2026-10-中旬的權杖刷新，並在刷新後更新 `.env` 與本節的到期日。
-6. 商家登入（Business Login）與 redirect URI 目前未設定；服務第二個帳號時才需要。
+2. ~~建立沙盒測試帳號與誤發防護~~ 已完成。
+3. 建立發布工具：預設停在預檢，只有明確 `--publish` 才送出，且 `production` 設定檔需額外確認。
+4. 素材以短效 signed HTTPS URL 提供給 Meta，完成後刪除暫存。
+5. 發布成功後記錄 media ID、公開 permalink、實際 Caption、發布時間與來源檔。
+6. 排定 2026-10-中旬的權杖刷新，並在刷新後更新 `.env` 與到期日。
+
+### 自動回覆的實際規模
+
+已取得 `manage_messages` 與 `manage_comments`，但權限只是入場券。仍待處理：
+
+| 項目 | 狀態 |
+|---|---|
+| Webhook 訂閱設定 | 未做。自動回覆必須靠 Webhook 接收事件，無法用輪詢取代 |
+| 公開 HTTPS 端點 | 未做。測試階段可用隧道工具，正式需 24 小時在線的伺服器 |
+| 開發模式能否收到 Webhook 事件 | **未知，需實測**。Dashboard 表示接收 Webhooks 需 App 為已發布狀態，但對測試人員帳號是否適用尚未驗證 |
+| 24 小時回覆窗 | Instagram 私訊限制，超過時限不能主動回覆，會影響自動回覆的設計 |
+| 回覆內容的責任歸屬 | 未定。AI 代 Tiffany 回覆客戶，錯誤回覆由誰負責、哪些問題不得自動回答，需與 mamasan 議定 |
+
+規模判斷：發布工具是單機 CLI；自動回覆是需要上線維運的服務。兩者不是同一個量級。
 
 ## 官方 LINE 導流
 

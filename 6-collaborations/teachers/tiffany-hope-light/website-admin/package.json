@@ -17,8 +17,9 @@
     "meta:audit:content": "node scripts/audit-meta-content-access.cjs",
     "meta:audit:content:visible": "node scripts/audit-meta-content-access.cjs --visible",
     "booking": "node scripts/manage-booking-slots.cjs",
-    "check": "node --check lib/hopebox-session.cjs && node --check lib/instagram-session.cjs && node --check lib/meta-business-session.cjs && node --check scripts/audit-access.cjs && node --check scripts/inspect-instagram-access.cjs && node --check scripts/connect-meta-business.cjs && node --check scripts/audit-meta-instagram-access.cjs && node --check scripts/audit-meta-business-portfolio.cjs && node --check scripts/audit-meta-content-access.cjs && node --check scripts/manage-booking-slots.cjs && node --check lib/instagram-api.cjs && node --check scripts/instagram-whoami.cjs",
-    "instagram:whoami": "node scripts/instagram-whoami.cjs"
+    "check": "node --check lib/hopebox-session.cjs && node --check lib/instagram-session.cjs && node --check lib/meta-business-session.cjs && node --check scripts/audit-access.cjs && node --check scripts/inspect-instagram-access.cjs && node --check scripts/connect-meta-business.cjs && node --check scripts/audit-meta-instagram-access.cjs && node --check scripts/audit-meta-business-portfolio.cjs && node --check scripts/audit-meta-content-access.cjs && node --check scripts/manage-booking-slots.cjs && node --check lib/instagram-api.cjs && node --check scripts/instagram-whoami.cjs && node --check scripts/instagram-capabilities.cjs",
+    "instagram:whoami": "node scripts/instagram-whoami.cjs",
+    "instagram:capabilities": "node scripts/instagram-capabilities.cjs"
   },
   "engines": {
     "node": ">=20"

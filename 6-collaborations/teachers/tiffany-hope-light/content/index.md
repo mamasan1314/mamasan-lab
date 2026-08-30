@@ -1,6 +1,6 @@
 # Hope Light Content Index
 
-最後整理日期：2026-08-30
+最後整理日期：2026-08-31
 
 這份索引用來快速確認目前 Tiffany／Hope Light 已經產出的內容、素材狀態與下一步。
 
@@ -27,9 +27,17 @@
 | 主題 | 狀態 | 輸出 | 專案 |
 |---|---|---|---|
 | 希望之光∞頻率蠟燭介紹，NT$139／顆 | ready-to-review | [`reels/candle-intro-139/output/hope-light-candle-intro-139.mp4`](./reels/candle-intro-139/output/hope-light-candle-intro-139.mp4) | [`reels/candle-intro-139`](./reels/candle-intro-139) |
-| @hopelight.ig｜2026-08-30 手動發布短片 001 | published-manually / user-confirmed | [`reels/hopelight-ig-reel-2026-08-30-001/source/hopelight-ig-reel-2026-08-30-001.mp4`](./reels/hopelight-ig-reel-2026-08-30-001/source/hopelight-ig-reel-2026-08-30-001.mp4) | [`reels/hopelight-ig-reel-2026-08-30-001`](./reels/hopelight-ig-reel-2026-08-30-001) |
+| @hopelight.ig｜2026-08-30 手動發布 Reel 001 | published / api-verified | [`reels/hopelight-ig-reel-2026-08-30-001/source/hopelight-ig-reel-2026-08-30-001.mp4`](./reels/hopelight-ig-reel-2026-08-30-001/source/hopelight-ig-reel-2026-08-30-001.mp4) | [`reels/hopelight-ig-reel-2026-08-30-001`](./reels/hopelight-ig-reel-2026-08-30-001) |
 
-備註：蠟燭介紹影片目前是無音樂、無旁白版。2026-08-30 短片由使用者自行發布；Caption、公開網址與確切時間尚未補入 repository。
+備註：蠟燭介紹影片目前是無音樂、無旁白版。
+
+2026-08-30 短片由 Tiffany 自行發布，2026-08-31 已用 Instagram Graph API 唯讀核實並補齊紀錄：
+公開網址 https://www.instagram.com/reel/Dcquxa8KVBX/ ，media ID `18108277667141280`，
+發布時間 2026-08-30 22:31:11（Asia/Taipei），實際 Caption 已逐字保存於該專案 README。
+
+**待確認**：該則 Caption 的 LINE 加好友網址為 `https://lin.ee/W7z3hTm`，與
+[`../product-facts.md`](../product-facts.md) 記載的 `https://lin.ee/vG7eI1Dv` 不一致，
+需向 Tiffany 或 mamasan 確認何者為準。
 
 ## 素材狀態
 

@@ -144,6 +144,44 @@ npm run instagram:login
 
 這個登入工具不等於 Instagram API 串接。正式把新留言／私訊接到 CRM 時，仍需由帳號持有人完成 Meta OAuth、授予最小必要權限並使用可撤銷的 Access Token；不可讓自動化長期使用主帳號密碼。
 
+### Hope Light Moment 的 Meta 委派登入
+
+`@hopelight.moment`（Meta 資產 ID `17841439133515848`；商家資產管理組合 ID `1564680272358249`）已由 Meta Business 指派給 Darren。委派登入一律使用 Darren 自己的 Facebook／Meta 身分，不讀取 `IG 帳密.txt`，也不執行會依序登入兩個帳號的 `instagram:login`。
+
+第一次在新主機建立專用工作階段：
+
+```powershell
+npm run meta:login
+```
+
+在開啟的瀏覽器內完成 Facebook／Meta 登入與安全驗證。工具只在 Meta Business 設定頁確認 `@hopelight.moment` 的資產是否可見；不開啟私訊、不查看其他 IG 帳號、不發文也不修改設定。完成後工作階段只保存在本機：
+
+- Windows：`%LOCALAPPDATA%\mamasan-lab\meta-business-profiles\hopelight-moment`
+- macOS：`~/Library/Application Support/mamasan-lab/meta-business-profiles/hopelight-moment`
+- Linux：`~/.local/share/mamasan-lab/meta-business-profiles/hopelight-moment`
+
+之後可執行唯讀稽核：
+
+```powershell
+npm run meta:audit
+```
+
+若無頭模式被 Meta 阻擋，可改用 `npm run meta:audit:visible`。可用 `META_BUSINESS_BROWSER_PATH` 與 `META_BUSINESS_PROFILE_DIR` 覆寫本機瀏覽器或 profile 路徑；目標帳號與資產 ID 固定在工具內，不接受參數覆寫。Cookie、Facebook 登入資訊、驗證碼與 Token 都不得放入 repository、OneDrive、終端輸出或文件。
+
+最後唯讀驗證：2026-08-30（Asia/Taipei）。可見與無頭模式都以本機保存的 Meta session 成功開啟新版 Instagram 資產設定頁；頁面同時顯示 `@hopelight.moment` 與資產 ID `17841439133515848`，且沒有權限拒絕訊號。Meta 在 Darren 可見兩個商家組合後會先開啟商家選擇頁，因此工具已固定使用上述商家組合 ID。這確認的是 Darren 可透過 Meta Business 存取該資產，不代表已實際測試發文、私訊、留言、廣告、權限變更或其他寫入能力。
+
+### 珈語老師商家組合與 hopelight.ig
+
+最後唯讀驗證：2026-08-30（Asia/Taipei）。沿用 Darren 的本機 Meta session 可看見「珈語老師」商家資產管理組合（ID `889448907217740`），商家資訊顯示主要粉絲專頁為「無」。Darren 在人員頁的層級為「部分管理權限／基本」，不是完整控制。第一次檢查時 Instagram 帳號頁顯示「沒有已指派的 Instagram 帳號」；Tiffany 調整後重跑，`@hopelight.ig`（資產 ID `17841480182265940`）已出現在該頁，且 Darren 的資產權限訊號為「部分管理權限」。
+
+目前可確認「商家可見＋Instagram 資產可見＋部分管理權限」，但沒有用發文、私訊、留言或設定變更測試各項寫入能力。`@hopelight.ig` 本身仍以另一個商家使用者身分出現在人員頁；Darren 不具商家組合完整控制權。檢查沒有開啟私訊、修改人員、指派資產或變更任何設定。
+
+可重跑唯讀稽核：
+
+```powershell
+npm run meta:audit:portfolio
+```
+
 ## 官方 LINE 導流
 
 最後確認：2026-08-24（Asia/Taipei）

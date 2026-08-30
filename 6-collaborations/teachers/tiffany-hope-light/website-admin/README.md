@@ -306,13 +306,73 @@ npm run instagram:capabilities -- --profile hopelight
 例如發布權限的測法是送出無效素材網址建立媒體容器——若回報的是素材錯誤而非權限錯誤，
 即代表已通過權限檢查，且不會有任何內容被建立。無法分辨時一律回報「無法判定」，不猜測。
 
+### 發布工具
+
+```powershell
+# 圖片，預檢（不發布）
+npm run instagram:publish -- --image <公開HTTPS網址> --caption-file <檔案>
+
+# Reels，預檢
+npm run instagram:publish -- --video <公開HTTPS網址> --caption-file <檔案>
+
+# 實際發布
+npm run instagram:publish -- --image <網址> --caption-file <檔案> --publish
+
+# 發布到正式帳號需要兩個旗標
+npm run instagram:publish -- --profile hopelight --image <網址> --caption-file <檔案> --publish --confirm-production
+```
+
+其他參數：`--cover <網址>` 指定 Reels 封面；`--no-share-to-feed` 讓 Reels 不同時出現在動態。
+
+安全設計：
+
+1. **預設只做預檢與建立容器，不發布。** 要發布必須明確加 `--publish`。
+2. `production` 設定檔另需 `--confirm-production`。
+3. 發布前比對權杖實際打到的帳號與設定檔登記名稱，不符即中止。
+4. Caption 一律由檔案讀入，避免命令列跳脫竄改內容。
+5. 容器狀態輪詢到 `FINISHED` 才發布；`ERROR`、`EXPIRED` 或逾時一律中止。
+
+### 素材必須是公開 HTTPS 網址
+
+Meta 不接受本機檔案上傳，它會自行前往指定網址抓取素材。圖片與影片都一樣。
+
+目前作法是把素材放進 `three-quarters.net`（GitHub Pages）的 `assets/images/`。
+這是可行的權宜方案，但素材會**永久公開**；README 原訂的短效 signed URL 尚未實作。
+發布客戶素材前應先評估這一點。
+
+### 圖片與 Reels 的差異
+
+| | 圖片 | Reels |
+|---|---|---|
+| 參數 | `image_url` | `video_url` + `media_type=REELS` |
+| 處理 | 幾乎即時 | **非同步轉檔，需數十秒至數分鐘** |
+| 發布時機 | 容器建立後即可 | **必須等 `status_code` 變成 `FINISHED`** |
+
+2026-08-30 由 Tiffany 手動上傳的 Reel，技術上可由本工具以 `--video` 發布。
+
+### 2026-08-31 端對端發布驗證
+
+以沙盒帳號 `@darrenfiy` 完成從無到有的完整流程，確認整條鏈路可用：
+
+| 項目 | 結果 |
+|---|---|
+| media ID | `18006306593987726` |
+| 公開網址 | https://www.instagram.com/p/DcrMOoMj3JQ/ |
+| 發布時間 | 2026-08-31 02:47:59（Asia/Taipei） |
+| 素材 | HTML 經 Chrome 轉 1080×1080 JPEG，託管於 three-quarters.net |
+| 帳號提及 | `@hopelight.ig`、`@alishasatojp`，已確認可正常標註 |
+| Hashtag | 五個，已確認可用 |
+
+流程照設計走：先預檢建容器，確認無誤後才以 `--publish` 送出。
+
 ### 尚未完成
 
 1. ~~權限設定、tester 指派、授權、唯讀 `/me` 核對~~ 已於 2026-08-31 完成。
 2. ~~建立沙盒測試帳號與誤發防護~~ 已完成。
-3. 建立發布工具：預設停在預檢，只有明確 `--publish` 才送出，且 `production` 設定檔需額外確認。
-4. 素材以短效 signed HTTPS URL 提供給 Meta，完成後刪除暫存。
-5. 發布成功後記錄 media ID、公開 permalink、實際 Caption、發布時間與來源檔。
+3. ~~建立發布工具，含預檢閘門與正式帳號確認~~ 已完成，圖片與 Reels 皆支援。
+4. 素材以短效 signed HTTPS URL 提供給 Meta，完成後刪除暫存。**尚未實作**，
+   目前素材放在公開網站上且不會自動移除。
+5. 尚未對 `@hopelight.ig` 發布過任何內容；正式發布前須經 mamasan 確認。
 6. 排定 2026-10-中旬的權杖刷新，並在刷新後更新 `.env` 與到期日。
 
 ### 自動回覆的實際規模

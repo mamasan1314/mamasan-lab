@@ -19,7 +19,7 @@
 | [`references`](./references) | 實品照片、產品表與視覺風格參考 |
 | [`content`](./content) | IG 貼文、圖片、Reels、Caption 與發布素材 |
 | [`2026-08-brand-integration`](./2026-08-brand-integration) | 從 Manus 收進來的 2026-08 品牌整合專案歸檔 |
-| [`2026-08-掌運卡`](./2026-08-掌運卡) | Tiffany 提供的掌運卡專案；v0.2 已交付但未被接受，v0.3 L0 校整候選已製作、待 mamasan QC，尚未再交付 Tiffany |
+| [`2026-08-掌運卡`](./2026-08-掌運卡) | Tiffany 提供的掌運卡專案；v0.2 已交付但未被接受，v0.3 已交付但無回應，2026-08-31 起**擱置** |
 
 ## 品牌核心
 

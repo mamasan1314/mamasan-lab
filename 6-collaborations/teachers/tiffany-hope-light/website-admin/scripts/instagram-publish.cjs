@@ -9,10 +9,16 @@
 //   4. Caption 一律由檔案讀入，避免命令列跳脫造成內容被截斷或竄改。
 //   5. 影片由 Meta 非同步轉檔，必須等容器狀態變成 FINISHED 才能發布；
 //      工具會輪詢並在 ERROR 或逾時時中止，不會拿未就緒的容器去發。
+//   6. --result-json 會把每個階段的結果原子性寫成機器可讀 JSON。呼叫端不必
+//      解析人類可讀輸出，也就不會把「發布類型」之類的前段欄位誤讀成結果。
+//      關鍵在於送出 /media_publish 之前就先落地 publishAttempted=true：
+//      回應遺失時，呼叫端有依據可以對帳，而不是盲目重送。
+//      JSON 只含非機密欄位；權杖與 App Secret 一律不寫入。
 
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
-const { fetchAccountIdentity, graphGet, loadApiConfig } = require('../lib/instagram-api.cjs');
+const { fetchAccountIdentity, graphGet, loadApiConfig, redact } = require('../lib/instagram-api.cjs');
 
 const GRAPH_HOST = 'https://graph.instagram.com';
 const API_VERSION = 'v23.0';
@@ -20,6 +26,49 @@ const API_VERSION = 'v23.0';
 function optionValue(args, name) {
   const index = args.indexOf(name);
   return index >= 0 ? args[index + 1] : undefined;
+}
+
+// 結果檔以「先寫暫存再 rename」落地，避免呼叫端讀到寫了一半的 JSON。
+function createResultWriter(resultPath) {
+  const state = {
+    schemaVersion: 1,
+    tool: 'instagram-publish',
+    stage: 'starting',
+    outcome: 'pending',
+    publishRequested: false,
+    publishAttempted: false,
+    mediaType: null,
+    profileName: null,
+    isProduction: null,
+    actualHandle: null,
+    captionSha256: null,
+    containerId: null,
+    containerStatus: null,
+    mediaId: null,
+    permalink: null,
+    publishedAt: null,
+    error: null,
+    updatedAt: null,
+  };
+  // 未指定結果檔時仍在記憶體維護狀態，錯誤分類才不會因為少一個旗標而失準。
+  if (!resultPath) {
+    return { update: (patch) => { Object.assign(state, patch); }, enabled: false, state };
+  }
+  const resolved = path.resolve(resultPath);
+  const update = (patch) => {
+    Object.assign(state, patch);
+    state.updatedAt = new Date().toISOString();
+    const temporary = resolved + '.' + crypto.randomBytes(6).toString('hex') + '.tmp';
+    fs.writeFileSync(temporary, JSON.stringify(state, null, 2) + '\n', { mode: 0o600 });
+    fs.renameSync(temporary, resolved);
+  };
+  return { update, enabled: true, state };
+}
+
+function safeErrorClass(state) {
+  if (state.publishAttempted && !state.mediaId) return 'publish_outcome_unknown';
+  if (state.containerId) return 'failed_after_container';
+  return 'failed_before_container';
 }
 
 async function graphPost(endpoint, params, config) {
@@ -41,8 +90,13 @@ async function graphPost(endpoint, params, config) {
   return body;
 }
 
+let resultWriter = createResultWriter(null);
+// 僅供錯誤訊息脫敏使用；不得整包印出或寫入任何檔案。
+let activeConfig = null;
+
 async function main() {
   const args = process.argv.slice(2);
+  resultWriter = createResultWriter(optionValue(args, '--result-json'));
   const imageUrl = optionValue(args, '--image');
   const videoUrl = optionValue(args, '--video');
   const coverUrl = optionValue(args, '--cover');
@@ -54,7 +108,7 @@ async function main() {
   const confirmedProduction = args.includes('--confirm-production');
 
   if ((!imageUrl && !videoUrl) || !captionFile) {
-    console.error('用法：node scripts/instagram-publish.cjs (--image <網址> | --video <網址>) --caption-file <檔案> [--cover <網址>] [--profile <名稱>] [--no-share-to-feed] [--publish]');
+    console.error('用法：node scripts/instagram-publish.cjs (--image <網址> | --video <網址>) --caption-file <檔案> [--cover <網址>] [--profile <名稱>] [--no-share-to-feed] [--publish] [--result-json <檔案>]');
     process.exitCode = 1;
     return;
   }
@@ -69,6 +123,7 @@ async function main() {
 
   const caption = fs.readFileSync(path.resolve(captionFile), 'utf8').replace(/\s+$/u, '');
   const config = loadApiConfig({ profile: optionValue(args, '--profile') });
+  activeConfig = config;
 
   console.log(
     config.isProduction
@@ -85,6 +140,16 @@ async function main() {
       `帳號比對失敗：設定檔登記 @${config.targetUsername}，權杖實際打到 @${identity.username}。已中止。`,
     );
   }
+
+  resultWriter.update({
+    stage: 'preflight',
+    publishRequested: shouldPublish,
+    mediaType: isReel ? 'REELS' : 'IMAGE',
+    profileName: config.profileName,
+    isProduction: config.isProduction,
+    actualHandle: '@' + identity.username,
+    captionSha256: crypto.createHash('sha256').update(caption, 'utf8').digest('hex'),
+  });
 
   console.log(`發布類型    : ${isReel ? 'REELS（影片）' : 'IMAGE（圖片）'}`);
   console.log(`素材網址    : ${mediaUrl}`);
@@ -112,6 +177,7 @@ async function main() {
     params.image_url = imageUrl;
   }
   const container = await graphPost('/me/media', params, config);
+  resultWriter.update({ stage: 'container_created', containerId: String(container.id) });
   console.log(`容器已建立  : ${container.id}`);
 
   // 影片由 Meta 非同步轉檔。未達 FINISHED 就發布會失敗，因此一律等到就緒。
@@ -131,11 +197,13 @@ async function main() {
     await new Promise((resolve) => setTimeout(resolve, isReel ? 5000 : 2000));
   }
   console.log(`容器狀態    : ${statusCode || '未回報'}            `);
+  resultWriter.update({ containerStatus: statusCode || null });
   if (statusCode !== 'FINISHED') {
     throw new Error(`容器在時限內未就緒（最後狀態 ${statusCode || '未知'}），已中止，未發布。`);
   }
 
   if (!shouldPublish) {
+    resultWriter.update({ stage: 'preflight_complete', outcome: 'not_published' });
     console.log('');
     console.log('預檢完成，未發布。容器 24 小時後自動失效。');
     console.log(`要實際發布請重跑並加上 --publish（容器 ID：${container.id}）。`);
@@ -144,7 +212,11 @@ async function main() {
 
   console.log('');
   console.log('步驟 2／2：發布…');
+  // 送出前先落地。回應若遺失，這個欄位是「已經送出過」的唯一憑據；
+  // 呼叫端必須據此對帳，不得重送。
+  resultWriter.update({ stage: 'publishing', publishAttempted: true });
   const published = await graphPost('/me/media_publish', { creation_id: container.id }, config);
+  resultWriter.update({ mediaId: String(published.id) });
   console.log(`已發布      : media ID ${published.id}`);
 
   const detail = await graphGet(`/${published.id}`, {
@@ -153,13 +225,41 @@ async function main() {
   });
   console.log(`公開網址    : ${detail.permalink}`);
   console.log(`發布時間    : ${detail.timestamp}`);
+  resultWriter.update({
+    stage: 'published',
+    outcome: 'published',
+    permalink: detail.permalink,
+    publishedAt: detail.timestamp,
+    mediaType: detail.media_type,
+  });
   console.log(`類型        : ${detail.media_type}`);
   console.log('');
   console.log('請把 media ID、公開網址、實際 Caption 與來源檔記入發布帳本。');
 }
 
-main().catch((error) => {
-  console.error('失敗：', error.message);
-  if (error.apiCode) console.error(`Meta 錯誤代碼：${error.apiCode}／子代碼 ${error.apiSubcode ?? '無'}`);
-  process.exitCode = 1;
-});
+module.exports = { createResultWriter, safeErrorClass };
+
+// 只有直接執行時才會發動。被 require 時僅暴露純函式，不觸發任何網路動作。
+if (require.main === module) {
+  main().catch((error) => {
+    try {
+      resultWriter.update({
+        stage: 'failed',
+        outcome: resultWriter.state.publishAttempted && !resultWriter.state.mediaId
+          ? 'unknown'
+          : 'failed',
+        error: {
+          class: safeErrorClass(resultWriter.state),
+          message: redact(error.message, activeConfig),
+          apiCode: error.apiCode ?? null,
+          apiSubcode: error.apiSubcode ?? null,
+        },
+      });
+    } catch {
+      // 結果檔寫入失敗不得掩蓋原始錯誤。
+    }
+    console.error('失敗：', error.message);
+    if (error.apiCode) console.error(`Meta 錯誤代碼：${error.apiCode}／子代碼 ${error.apiSubcode ?? '無'}`);
+    process.exitCode = 1;
+  });
+}

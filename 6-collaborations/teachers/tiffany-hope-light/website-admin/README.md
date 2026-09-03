@@ -197,35 +197,43 @@ npm run meta:audit:portfolio
 | App 名稱 | `hopelight-publisher-IG` |
 | Instagram App ID | `1965739860772119` |
 | App 擁有者 | Darren／mamasan，不掛在「珈語老師」商家組合底下 |
-| 目標帳號 | `@hopelight.ig`（資產 ID `17841480182265940`），所有權仍屬 Tiffany |
+| 目標帳號 | `@hopelight.ig`（IG user id `17841480182265940`）、`@hopelight.moment`（IG user id `17841439133515848`），所有權皆屬 Tiffany |
 | 存取層級 | Standard Access，只服務已加入 App 的 tester 帳號 |
 | 預定權限 | `instagram_business_basic`、`instagram_business_content_publish`，不多要 |
 
 App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密，可以留在文件裡。**App Secret 是機密**，只存在本機 `.env`，已被 `.gitignore` 忽略；不得提交、輸出到終端、寫進文件或貼進聊天。變數名稱見 [`.env.example`](./.env.example)。
 
-### 2026-08-31 唯讀驗證結果
+### 唯讀驗證結果
 
-以 `npm run instagram:whoami` 對 `/me` 做唯讀核對，通過：
+以 `npm run instagram:whoami` 對 `/me` 做唯讀核對。最後一次全帳號核對：**2026-09-03**，三個設定檔全數通過。
 
-| 欄位 | 值 |
-|---|---|
-| username | `@hopelight.ig` |
-| 帳號類型 | `MEDIA_CREATOR`（創作者帳號） |
-| IG user id | `17841480182265940` |
-| 貼文數 | 38 |
-| 權杖前綴 | `IGA…`，長度 182 |
+| 設定檔 | username | 帳號類型 | IG user id | 權杖長度 |
+|---|---|---|---|---|
+| `hopelight` | `@hopelight.ig` | `MEDIA_CREATOR` | `17841480182265940` | 182 |
+| `moment` | `@hopelight.moment` | `BUSINESS` | `17841439133515848` | 183 |
+| `darrenfiy` | `@darrenfiy` | `MEDIA_CREATOR` | `17841413097901775` | 181 |
 
-`IGA` 前綴確認走的是 Instagram Login 路線；若看到 `EAA` 代表被導到 Facebook Graph，是錯的路線。
-回報的 IG user id 與 2026-08-30 商家組合稽核看到的資產 ID 一致，交叉確認打到的是同一個帳號。
+三支權杖前綴皆為 `IGA…`，確認走的是 Instagram Login 路線；若看到 `EAA` 代表被導到 Facebook Graph，是錯的路線。
+`@hopelight.ig` 回報的 IG user id 與 2026-08-30 商家組合稽核看到的資產 ID 一致，交叉確認打到的是同一個帳號。
+
+注意：`@hopelight.moment` 的 IG user id `17841439133515848` 一度被誤填進 `.env` 的 `INSTAGRAM_APP_ID`。
+**App 只有一個**，三個帳號共用 `1965739860772119`；IG user id 與 App ID 不是同一種東西。
 
 ### 權杖到期
 
 **Instagram 沒有永久權杖，Dashboard 不顯示到期日不代表沒有期限。** 長效權杖 60 天，
 必須在滿 24 小時後、到期前呼叫 refresh 才能續命；刷新會換發新權杖，需同步更新 `.env`。
 
-- 產生日：2026-08-31
-- 推定到期：**2026-10-30**
-- 建議動作：2026-10-中旬前刷新，不要等到最後一週
+**三支權杖各自計時，不能一次刷新解決。**
+
+| 設定檔 | 產生日 | 推定到期 | 建議刷新 |
+|---|---|---|---|
+| `hopelight` | 2026-08-31 | **2026-10-30** | 2026-10 中旬 |
+| `darrenfiy` | 2026-08-31 | **2026-10-30** | 2026-10 中旬 |
+| `moment` | 2026-09-03 | **2026-11-02** | 2026-10 下旬 |
+
+`moment` 的產生日以 2026-09-03 記錄。若實際在 Dashboard 產生的日期不同，請同步修正本表——
+到期日是從產生日起算的 60 天，記錯就會在毫無預警的情況下失效。
 
 實際到期秒數只能透過 refresh 端點取得，而該端點會換發新權杖，因此不做「只為了查到期日」的呼叫。
 
@@ -245,7 +253,7 @@ App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密
 | 未採用 | 理由 |
 |---|---|
 | `instagram_business_manage_insights` | 目前沒有數據分析需求 |
-| 應用程式檢閱（App Review） | 只在存取「不在 App 角色內」的帳號時才需要。兩個帳號都以 Instagram tester 身分授權，不需審查。將來要服務多位老師且不逐一加 tester 時才評估，屆時另需商業驗證 |
+| 應用程式檢閱（App Review） | 只在存取「不在 App 角色內」的帳號時才需要。三個帳號都以 Instagram tester 身分授權，不需審查。將來要服務多位老師且不逐一加 tester 時才評估，屆時另需商業驗證 |
 
 ### 重要更正：Dashboard 產生的權杖不帶同意快照
 
@@ -262,30 +270,47 @@ App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密
 - **Dashboard 產生的權杖無法逐支限制權限範圍**，它拿到 App 的全部權限。
 - 若需要發出「只能發布、不能讀私訊」的權杖，必須改走 Business Login 的 OAuth 流程，
   在授權網址中明確指定 `scope`。這也是先前判斷「商家登入之後再說」需要修正的地方。
-- 每次調整 App 權限，都應重跑 `npm run instagram:capabilities` 確認兩個帳號的實際能力，
+- 每次調整 App 權限，都應重跑 `npm run instagram:capabilities` 確認三個帳號的實際能力，
   不要依賴「當初授權了什麼」的記憶。
 
 ### 帳號設定檔與誤發防護
 
-同一個 App 同時持有正式與沙盒兩個帳號的權杖，工具以具名設定檔區分：
+同一個 App 同時持有三個帳號的權杖，工具以具名設定檔區分：
 
 | 設定檔 | 帳號 | MODE |
 |---|---|---|
 | `hopelight` | `@hopelight.ig`（Tiffany 品牌主帳號） | `production` |
-| `sandbox` | `@darrenfiy`（Darren 自有帳號） | `sandbox` |
+| `moment` | `@hopelight.moment`（Tiffany 第二帳號） | `production` |
+| `darrenfiy` | `@darrenfiy`（Darren 自有帳號） | `production` |
 
-- 預設設定檔為 `sandbox`：未指定時，錯誤往安全方向掉。
-- 存在多個設定檔又未指定時，工具直接中止，不替使用者猜測目標帳號。
+- **沒有預設設定檔**（`INSTAGRAM_DEFAULT_PROFILE` 刻意留空）：三個設定檔全部指向
+  真實帳號，沒有一個適合當「猜錯時掉進去的地方」。未指定時工具直接中止並列出
+  可用名稱，不替使用者猜測目標帳號。
+- 這個設定檔在 2026-09-03 之前叫 `sandbox`、MODE 是 `sandbox`，兩者都是錯的。
+  舊名讓 `--confirm-production` 防線對這個真帳號永不觸發，也讓兩段錯的引擎程式碼
+  看起來是對的，當天造成三次故障。詳見 `Control-Room/worklogs/social-publishing/`。
 - `production` 設定檔在輸出頭尾各顯示一次警告橫幅。
 - 登記 `_USERNAME` 後，工具會比對權杖實際打到的帳號，不符即中止。
+- 設定檔名稱只允許 `[A-Z0-9]`，**不可含底線**。`INSTAGRAM_PROFILE_HOPELIGHT_MOMENT_TOKEN`
+  這類寫法會被安靜忽略、不報錯，因此第二帳號的設定檔名是 `moment` 而不是 `hopelight_moment`。
+- 舊格式 `INSTAGRAM_LONG_LIVED_TOKEN` 天生只能表達一個帳號，且在程式中被寫死為
+  `hopelight`／`production`。2026-09-03 已全面改用具名格式並移除舊鍵。
+  **遷移時務必補上 `_MODE=production`**，否則會落回預設的 `sandbox`，
+  警告橫幅與 `--confirm-production` 保護會一起無聲消失。
 
 注意：`@darrenfiy` 是有 384 篇貼文的真實帳號，不是空白測試帳號。
-在其上做發布測試會對真實追蹤者可見；若需完全無痕的測試環境，應另開乾淨帳號。
+在其上做發布測試會對真實追蹤者可見。它現在登記為 `production`，會顯示警告橫幅、
+要求 `--confirm-production`——這正是它應得的待遇。
+若哪天需要完全無痕的測試環境，要另開乾淨帳號，不要把這一個改回 `sandbox`。
 
 ### 待觀察
 
-兩個帳號的類型都是 `MEDIA_CREATOR` 而非 `BUSINESS`。發布 API 對創作者帳號的支援在歷史上曾有差異，
+`@hopelight.ig` 與 `@darrenfiy` 的類型是 `MEDIA_CREATOR` 而非 `BUSINESS`。發布 API 對創作者帳號的支援在歷史上曾有差異，
 第一次實際發布時若出現權限或帳號類型錯誤，先確認這一點，不要直接歸因於權杖。
+`@hopelight.moment` 是 `BUSINESS`，不受這一條影響，是三個帳號中未知數最少的。
+
+`moment` 尚未跑過 `npm run instagram:capabilities`，其四項權限未經逐項實測。
+依「Dashboard 產生的權杖反映 App 當下權限」的結論，預期與另兩支相同，但這是推論，不是量測。
 
 另外，官方文件指出：若 Instagram 帳號連到需要「粉絲專頁發布授權（PPA）」的粉專，
 完成 PPA 前無法以 API 發布。目前尚未連結 Page，暫時不受影響；
@@ -295,9 +320,11 @@ App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密
 
 ```powershell
 npm run instagram:whoami                            # 沙盒帳號身分核對
-npm run instagram:whoami -- --profile hopelight     # 正式帳號
+npm run instagram:whoami -- --profile hopelight     # 正式帳號 @hopelight.ig
+npm run instagram:whoami -- --profile moment        # 正式帳號 @hopelight.moment
 npm run instagram:capabilities                      # 逐項盤點實際擁有的權限
 npm run instagram:capabilities -- --profile hopelight
+npm run instagram:capabilities -- --profile moment
 ```
 
 兩支工具都不發布、不修改，也不輸出權杖、留言內容或訊息內容。
@@ -374,7 +401,8 @@ Meta 忽略 `upload_type=resumable`，仍要求公開網址。官方文件說明
 
 ### 2026-08-31 端對端發布驗證
 
-以沙盒帳號 `@darrenfiy` 完成從無到有的完整流程，確認整條鏈路可用：
+以 `@darrenfiy` 完成從無到有的完整流程，確認整條鏈路可用
+（當時該設定檔名為 `sandbox`，但帳號一直是公開真帳號）：
 
 | 項目 | 結果 |
 |---|---|
@@ -390,12 +418,14 @@ Meta 忽略 `upload_type=resumable`，仍要求公開網址。官方文件說明
 ### 尚未完成
 
 1. ~~權限設定、tester 指派、授權、唯讀 `/me` 核對~~ 已於 2026-08-31 完成。
-2. ~~建立沙盒測試帳號與誤發防護~~ 已完成。
+2. ~~建立誤發防護~~ 已完成（`_USERNAME` 比對、`--confirm-production`、無預設設定檔）。
+   **沒有真正的沙盒帳號**：`@darrenfiy` 一度被當成沙盒，它不是。
 3. ~~建立發布工具，含預檢閘門與正式帳號確認~~ 已完成，圖片與 Reels 皆支援。
 4. 素材以短效 signed HTTPS URL 提供給 Meta，完成後刪除暫存。**尚未實作**，
    目前素材放在公開網站上且不會自動移除。
-5. 尚未對 `@hopelight.ig` 發布過任何內容；正式發布前須經 mamasan 確認。
-6. 排定 2026-10-中旬的權杖刷新，並在刷新後更新 `.env` 與到期日。
+5. 尚未對 `@hopelight.ig` 或 `@hopelight.moment` 發布過任何內容；正式發布前須經 mamasan 確認。
+6. 排定三支權杖的刷新（`hopelight`／`darrenfiy` 2026-10 中旬、`moment` 2026-10 下旬），
+   刷新後同步更新 `.env` 與本文件的到期日表。
 
 ### 自動回覆的實際規模
 

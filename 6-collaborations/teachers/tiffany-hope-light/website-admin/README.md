@@ -257,6 +257,11 @@ npm run meta:audit:portfolio
 
 ## Instagram 發布 App（hopelight-publisher-IG）
 
+> **2026-09-04 邊界更新：** 通用 Instagram Graph API 與發布 adapter 的 canonical copy
+> 已移至 `Manus/tools/social-publishing/platforms/instagram/adapter/`。本資料夾的
+> `lib/instagram-api.cjs`、`instagram-publish.cjs` 與 `instagram-whoami.cjs` 是相容入口，
+> 用來保留既有 npm 指令與 Hope Light 的 legacy credential handoff；不要在此複製新功能。
+
 建立日期：2026-08-31（Asia/Taipei）｜狀態：**權杖已驗證可用**
 
 走 `Instagram API with Instagram Login`，授權來源是 Instagram 帳號本身，不經過 Facebook 粉絲專頁，也不經過商家資產管理組合；因此不受 Page ↔ Instagram 的七天等待期阻擋。

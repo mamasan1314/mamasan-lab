@@ -386,22 +386,24 @@ App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密
 - **Dashboard 產生的權杖無法逐支限制權限範圍**，它拿到 App 的全部權限。
 - 若需要發出「只能發布、不能讀私訊」的權杖，必須改走 Business Login 的 OAuth 流程，
   在授權網址中明確指定 `scope`。這也是先前判斷「商家登入之後再說」需要修正的地方。
-- 每次調整 App 權限，都應重跑 `npm run instagram:capabilities` 確認三個帳號的實際能力，
-  不要依賴「當初授權了什麼」的記憶。
+- 每次調整 App 權限，都應重跑 `capabilities` 確認三個帳號的實際能力，不要依賴
+  「當初授權了什麼」的記憶。本工作區只轉接兩支；`darrenfiy` 要從 Manus 跑
+  `node social.mjs capabilities --talent darrenfiy --channel instagram`。
 
 ### 帳號設定檔與誤發防護
 
-同一個 App 同時持有三個帳號的權杖，工具以具名設定檔區分：
+**2026-09-05 起本工作區不再持有任何權杖。**下表是 Manus 側具名設定檔的對照；
+本工作區的相容入口只轉接前兩支。
 
-| 設定檔 | 帳號 | MODE |
-|---|---|---|
-| `hopelight` | `@hopelight.ig`（Tiffany 品牌主帳號） | `production` |
-| `moment` | `@hopelight.moment`（Tiffany 第二帳號） | `production` |
-| `darrenfiy` | `@darrenfiy`（Darren 自有帳號） | `production` |
+| 設定檔 | 帳號 | MODE | 本工作區可轉接 |
+|---|---|---|---|
+| `hopelight` | `@hopelight.ig`（Tiffany 品牌主帳號） | `production` | 是 |
+| `moment` | `@hopelight.moment`（Tiffany 第二帳號） | `production` | 是 |
+| `darrenfiy` | `@darrenfiy`（Darren 自有帳號） | `production` | 否 —— 直接用 Manus `social.mjs` |
 
-- **沒有預設設定檔**（`INSTAGRAM_DEFAULT_PROFILE` 刻意留空）：三個設定檔全部指向
-  真實帳號，沒有一個適合當「猜錯時掉進去的地方」。未指定時工具直接中止並列出
-  可用名稱，不替使用者猜測目標帳號。
+- **沒有預設設定檔**：三個設定檔全部指向真實帳號，沒有一個適合當「猜錯時掉進去的
+  地方」。未指定 `--profile` 時相容層直接中止，不替使用者猜測目標帳號。
+  （舊機制是 `.env` 的 `INSTAGRAM_DEFAULT_PROFILE` 刻意留空；那個檔案已退役。）
 - 這個設定檔在 2026-09-03 之前叫 `sandbox`、MODE 是 `sandbox`，兩者都是錯的。
   舊名讓 `--confirm-production` 防線對這個真帳號永不觸發，也讓兩段錯的引擎程式碼
   看起來是對的，當天造成三次故障。詳見 `Control-Room/worklogs/social-publishing/`。

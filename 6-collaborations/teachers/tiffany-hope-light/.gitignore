@@ -8,6 +8,7 @@ credentials.local.*
 .env
 .env.*
 !.env.example
+website-admin/env
 
 # Private keys and service-account exports
 *.pem

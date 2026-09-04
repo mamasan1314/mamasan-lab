@@ -4,6 +4,7 @@
 // Compatibility entry point only. Identity checks are part of the canonical Manus adapter.
 
 const path = require('node:path');
+const fs = require('node:fs');
 
 const adapterPath = path.resolve(
   __dirname,
@@ -11,6 +12,12 @@ const adapterPath = path.resolve(
   'Manus', 'tools', 'social-publishing', 'platforms', 'instagram', 'adapter',
   'scripts', 'instagram-whoami.cjs',
 );
+if (!fs.existsSync(adapterPath)) {
+  throw new Error(
+    '找不到 Manus Instagram adapter。mamasan-lab 與 Manus 必須放在同一個 Fourth-Life 目錄下；預期位置：'
+      + adapterPath,
+  );
+}
 const adapter = require(adapterPath);
 
 function legacyArgs(args) {

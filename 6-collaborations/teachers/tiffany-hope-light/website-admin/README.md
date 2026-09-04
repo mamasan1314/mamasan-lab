@@ -257,6 +257,16 @@ npm run meta:audit:portfolio
 
 ## Instagram 發布 App（hopelight-publisher-IG）
 
+> **2026-09-05 憑證遷移：`instagram:whoami`／`instagram:stats`／`instagram:capabilities`
+> 這三支目前不能用。** 三個帳號的權杖已封存進公司 Vault
+> （`Three-Quarters-International/SECURITY/secrets/`），本資料夾的 `env` 已不含任何帳號設定檔，
+> 所以這三支載入設定就會失敗。這不是壞掉，是它們還沒跟上憑證的新住址。
+>
+> 身分核對已有替代品：`Manus/tools/social-publishing` 的
+> `node social.mjs whoami --talent <人> --channel <頻道>`。
+> `stats` 與 `capabilities` 尚無替代，待決定是搬進 Manus 還是改讀 Vault。
+> 見 `Control-Room/worklogs/ai-brand-operations/WORKLOG-2026-09-05.md`。
+
 > **2026-09-04 邊界更新：** 通用 Instagram Graph API 與發布 adapter 的 canonical copy
 > 已移至 `Manus/tools/social-publishing/platforms/instagram/adapter/`。本資料夾的
 > `lib/instagram-api.cjs`、`instagram-publish.cjs` 與 `instagram-whoami.cjs` 是相容入口，

@@ -257,20 +257,15 @@ npm run meta:audit:portfolio
 
 ## Instagram 發布 App（hopelight-publisher-IG）
 
-> **2026-09-05 憑證遷移：`instagram:whoami`／`instagram:stats`／`instagram:capabilities`
-> 這三支目前不能用。** 三個帳號的權杖已封存進公司 Vault
-> （`Three-Quarters-International/SECURITY/secrets/`），本資料夾的 `env` 已不含任何帳號設定檔，
-> 所以這三支載入設定就會失敗。這不是壞掉，是它們還沒跟上憑證的新住址。
->
-> 身分核對已有替代品：`Manus/tools/social-publishing` 的
-> `node social.mjs whoami --talent <人> --channel <頻道>`。
-> `stats` 與 `capabilities` 尚無替代，待決定是搬進 Manus 還是改讀 Vault。
-> 見 `Control-Room/worklogs/ai-brand-operations/WORKLOG-2026-09-05.md`。
+> **2026-09-05 憑證遷移已收口。** `instagram:whoami`、`instagram:stats`、
+> `instagram:capabilities` 的 canonical implementation 都在 Manus；這裡只保留 Hope Light
+> 的 npm 相容入口。相容層把 `hopelight`／`moment` 翻成公司 channel 後交給 Manus，
+> 自己不知道 Vault 在哪，也不讀密文。為避免猜錯帳號，三支現在都必須明示 `--profile`。
 
-> **2026-09-04 邊界更新：** 通用 Instagram Graph API 與發布 adapter 的 canonical copy
+> **2026-09-04 邊界更新：** 通用 Instagram Graph API 與 adapter 的 canonical copy
 > 已移至 `Manus/tools/social-publishing/platforms/instagram/adapter/`。本資料夾的
-> `lib/instagram-api.cjs`、`instagram-publish.cjs` 與 `instagram-whoami.cjs` 是相容入口，
-> 用來保留既有 npm 指令與 Hope Light 的 legacy credential handoff；不要在此複製新功能。
+> `lib/instagram-api.cjs` 與 `instagram-*.cjs` 是相容入口，只保留既有 npm 指令；
+> 不要在此複製新功能或重新接回 credential handoff。
 
 建立日期：2026-08-31（Asia/Taipei）｜狀態：**權杖已驗證可用**
 
@@ -280,24 +275,26 @@ npm run meta:audit:portfolio
 |---|---|
 | App 名稱 | `hopelight-publisher-IG` |
 | Instagram App ID | `1965739860772119` |
-| App 擁有者 | Darren／mamasan，不掛在「珈語老師」商家組合底下 |
+| App 擁有者 | 四分之三國際；不掛在「珈語老師」商家組合底下 |
 | 目標帳號 | `@hopelight.ig`（IG user id `17841480182265940`）、`@hopelight.moment`（IG user id `17841439133515848`），所有權皆屬 Tiffany |
 | 存取層級 | Standard Access，只服務已加入 App 的 tester 帳號 |
 | 預定權限 | `instagram_business_basic`、`instagram_business_content_publish`，不多要 |
 
-App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密，可以留在文件裡。**App Secret 是機密**，只存在本機 `.env`，已被 `.gitignore` 忽略；不得提交、輸出到終端、寫進文件或貼進聊天。變數名稱見 [`.env.example`](./.env.example)。
+App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密，可以留在文件裡。
+**App Secret 是機密**，已封存在公司 Vault；本客戶工作區不再保管它。不得輸出到終端、
+寫進文件或貼進聊天。[`.env.example`](./.env.example) 只保留退役告示，避免有人重建舊 handoff。
 
 ### 唯讀驗證結果
 
-以 `npm run instagram:whoami` 對 `/me` 做唯讀核對。最後一次全帳號核對：**2026-09-03**，三個設定檔全數通過。
+以 `npm run instagram:whoami` 對 `/me` 做唯讀核對。遷移前最後一次全帳號核對：
+**2026-09-03**，三個設定檔全數通過；現在本客戶工作區只轉接下列兩支 Hope Light 帳號。
 
 | 設定檔 | username | 帳號類型 | IG user id | 權杖長度 |
 |---|---|---|---|---|
 | `hopelight` | `@hopelight.ig` | `MEDIA_CREATOR` | `17841480182265940` | 182 |
 | `moment` | `@hopelight.moment` | `BUSINESS` | `17841439133515848` | 183 |
-| `darrenfiy` | `@darrenfiy` | `MEDIA_CREATOR` | `17841413097901775` | 181 |
 
-三支權杖前綴皆為 `IGA…`，確認走的是 Instagram Login 路線；若看到 `EAA` 代表被導到 Facebook Graph，是錯的路線。
+兩支客戶權杖前綴皆為 `IGA…`，確認走的是 Instagram Login 路線；若看到 `EAA` 代表被導到 Facebook Graph，是錯的路線。
 `@hopelight.ig` 回報的 IG user id 與 2026-08-30 商家組合稽核看到的資產 ID 一致，交叉確認打到的是同一個帳號。
 
 注意：`@hopelight.moment` 的 IG user id `17841439133515848` 一度被誤填進 `.env` 的 `INSTAGRAM_APP_ID`。
@@ -306,14 +303,15 @@ App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密
 ### 權杖到期
 
 **Instagram 沒有永久權杖，Dashboard 不顯示到期日不代表沒有期限。** 長效權杖 60 天，
-必須在滿 24 小時後、到期前呼叫 refresh 才能續命；刷新會換發新權杖，需同步更新 `.env`。
+必須在滿 24 小時後、到期前呼叫 refresh 才能續命；刷新會換發新權杖，Manus 會把新值
+重新封存到同一個 Vault 位址。
 
-**三支權杖各自計時，不能一次刷新解決。**
+**兩支客戶權杖各自計時，不能一次刷新解決。** Darren 自有帳號的期限由公司 repo 管理，
+不再放在 Hope Light 工作區。
 
 | 設定檔 | 產生日 | 推定到期 | 建議刷新 |
 |---|---|---|---|
 | `hopelight` | 2026-08-31 | **2026-10-30** | 2026-10 中旬 |
-| `darrenfiy` | 2026-08-31 | **2026-10-30** | 2026-10 中旬 |
 | `moment` | 2026-09-03 | **2026-11-02** | 2026-10 下旬 |
 
 `moment` 的產生日以 2026-09-03 記錄。若實際在 Dashboard 產生的日期不同，請同步修正本表——
@@ -447,10 +445,8 @@ App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密
 ### 唯讀核對與權限盤點指令
 
 ```powershell
-npm run instagram:whoami                            # 沙盒帳號身分核對
 npm run instagram:whoami -- --profile hopelight     # 正式帳號 @hopelight.ig
 npm run instagram:whoami -- --profile moment        # 正式帳號 @hopelight.moment
-npm run instagram:capabilities                      # 逐項盤點實際擁有的權限
 npm run instagram:capabilities -- --profile hopelight
 npm run instagram:capabilities -- --profile moment
 npm run instagram:stats -- --profile hopelight     # 成效盤點（瀏覽／觸及／互動）
@@ -458,11 +454,14 @@ npm run instagram:stats -- --profile moment
 npm run instagram:stats -- --profile hopelight --tsv   # 機器可讀，供彙整報表
 ```
 
-三支工具都不發布、不修改，也不輸出權杖、留言內容或訊息內容。
+`whoami` 與 `stats` 全程唯讀；`capabilities` 預設也只送 GET。三支都不輸出權杖、
+留言內容或訊息內容。
 
 權限盤點的判定方式：每一項都設計成能分辨「被權限擋下」與「權限已通、被其他原因擋下」。
-例如發布權限的測法是送出無效素材網址建立媒體容器——若回報的是素材錯誤而非權限錯誤，
-即代表已通過權限檢查，且不會有任何內容被建立。無法分辨時一律回報「無法判定」，不猜測。
+發布權限沒有真正的純讀探測：舊工具會送出無效素材網址，但那仍是 POST，極端情況可能
+建立一個未發布的暫存容器。新工具預設把這項標成 `[—]` 未主動探測；確實需要重測時，
+才另加 `--probe-publish-permission --confirm-live-account @handle`。無法分辨時一律回報
+「無法判定」，不猜測。
 
 ### 留言 API 驗證（2026-09-04）
 
@@ -551,7 +550,8 @@ npm run instagram:stats -- --profile hopelight --tsv > stats.tsv
 
 輸出三段：逐篇成效（瀏覽／觸及／讚／留言／收藏／分享）、月彙總、合計。
 
-**刻意不讀留言內容與留言者身分**，只取 `comments_count` 這個數字。理由寫在腳本開頭：
+**刻意不讀留言內容與留言者身分**，只取 `comments_count` 這個數字。理由寫在 Manus
+canonical script 開頭：
 產出會進公司 repo 當基準紀錄，一旦帶進留言原文就是把顧客個資 commit 進 Git，
 而 Git 歷史很難事後清乾淨。要看留言內容請開 Instagram App。
 
@@ -567,37 +567,20 @@ npm run instagram:stats -- --profile hopelight --tsv > stats.tsv
 
 ### 發布工具
 
-```powershell
-# 圖片，預檢（不發布）
-npm run instagram:publish -- --image <公開HTTPS網址> --caption-file <檔案>
+`npm run instagram:publish` 已退役，執行時只會說明正確入口，不再接受 `--env-file`。
+原因不是 adapter 不能發，而是直接從客戶工作區呼叫它會繞過 Manus 的 job、payload binding、
+逐字核准與 durable receipt。
 
-# Reels，預檢
-npm run instagram:publish -- --video <公開HTTPS網址> --caption-file <檔案>
-
-# 實際發布
-npm run instagram:publish -- --image <網址> --caption-file <檔案> --publish
-
-# 發布到正式帳號需要兩個旗標
-npm run instagram:publish -- --profile hopelight --image <網址> --caption-file <檔案> --publish --confirm-production
-```
-
-其他參數：`--cover <網址>` 指定 Reels 封面；`--no-share-to-feed` 讓 Reels 不同時出現在動態。
-
-安全設計：
-
-1. **預設只做預檢與建立容器，不發布。** 要發布必須明確加 `--publish`。
-2. `production` 設定檔另需 `--confirm-production`。
-3. 發布前比對權杖實際打到的帳號與設定檔登記名稱，不符即中止。
-4. Caption 一律由檔案讀入，避免命令列跳脫竄改內容。
-5. 容器狀態輪詢到 `FINISHED` 才發布；`ERROR`、`EXPIRED` 或逾時一律中止。
+發布一律從 `Manus/tools/social-publishing/social.mjs` 走
+`new → prepare → approve → claim → publish → archive → clean`。圖片、Reels、自訂封面、
+正式帳號確認與短效素材交付都由那條流程處理。
 
 ### 素材必須是公開 HTTPS 網址
 
 Meta 不接受本機檔案上傳，它會自行前往指定網址抓取素材。圖片與影片都一樣。
 
-目前作法是把素材放進 `three-quarters.net`（GitHub Pages）的 `assets/images/`。
-這是可行的權宜方案，但素材會**永久公開**；短效 signed URL 尚未實作。
-**不要用這個方式發布 Tiffany 的素材**，她的產品影片不應永久掛在協作者的個人網站上。
+目前由 Manus 啟動本機 frozen-byte server 與 Cloudflare quick tunnel，Meta 回抓驗證通過後
+才送出，流程結束立即關閉。Tiffany 的素材不再永久掛在協作者的個人網站上。
 
 #### 已確認不可行：直接上傳檔案
 
@@ -617,9 +600,9 @@ Meta 忽略 `upload_type=resumable`，仍要求公開網址。官方文件說明
 
 #### 建議的素材供應方式
 
-優先採本機暫時服務加臨時隧道：發布時於本機起 HTTP 服務並開通道，
-把該網址交給 Meta 抓取，完成後立即關閉。素材不離開本機，網址發布後即失效。
-次選為 R2／S3 短效簽名網址。兩者都尚未實作。
+**已採本機暫時服務加臨時隧道。**發布時於本機起 HTTP 服務並開通道，
+把網址交給 Meta 抓取，完成後立即關閉。R2／S3 短效簽名網址保留為未來替代方案，
+目前不需要多養一個服務。
 
 ### 圖片與 Reels 的差異
 
@@ -653,8 +636,8 @@ Meta 忽略 `upload_type=resumable`，仍要求公開網址。官方文件說明
 2. ~~建立誤發防護~~ 已完成（`_USERNAME` 比對、`--confirm-production`、無預設設定檔）。
    **沒有真正的沙盒帳號**：`@darrenfiy` 一度被當成沙盒，它不是。
 3. ~~建立發布工具，含預檢閘門與正式帳號確認~~ 已完成，圖片與 Reels 皆支援。
-4. 素材以短效 signed HTTPS URL 提供給 Meta，完成後刪除暫存。**尚未實作**，
-   目前素材放在公開網站上且不會自動移除。
+4. ~~素材以短效 HTTPS URL 提供給 Meta，完成後刪除暫存~~ **已完成。** Manus 使用
+   quick tunnel 提供凍結位元組，發布前回抓驗證，完成後關閉；不再把素材長期放在公開網站。
 5. ~~尚未對 `@hopelight.ig` 或 `@hopelight.moment` 發布過任何內容~~
    **已過期。**兩個客戶帳號都已發布。截至 2026-09-04，經 `Manus` 發布引擎
    移交的 durable package 共 **9 份**（`@hopelight.moment` 6、`@hopelight.ig` 1、
@@ -662,8 +645,9 @@ Meta 忽略 `upload_type=resumable`，仍要求公開網址。官方文件說明
    `Three-Quarters-International/PUBLISHING/SOCIAL_MEDIA/PUBLICATIONS/`。
    另有 2 篇更早的發布沒有正式收據（引擎抽出之前）。
    帳號上的貼文總數不等於這個數字 —— 兩個帳號本來就有非經本工具發布的內容。
-6. 排定三支權杖的刷新（`hopelight`／`darrenfiy` 2026-10 中旬、`moment` 2026-10 下旬），
-   刷新後同步更新 `.env` 與本文件的到期日表。
+6. 排定兩支客戶權杖的刷新（`hopelight` 2026-10 中旬、`moment` 2026-10 下旬）。
+   使用 Manus `social.mjs refresh` 重新封存，並更新公司 channel 與 Vault registry；
+   `darrenfiy` 的期限由公司 repo 管理，不在此列。
 
 ### 自動回覆的實際規模
 

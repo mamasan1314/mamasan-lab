@@ -18,14 +18,6 @@ if (!fs.existsSync(adapterPath)) {
   );
 }
 const adapter = require(adapterPath);
-const DEFAULT_ENV_FILE = path.resolve(__dirname, '..', 'env');
-
-function loadApiConfig(options = {}) {
-  return adapter.loadApiConfig({ envFile: DEFAULT_ENV_FILE, ...options });
-}
-
 module.exports = {
   ...adapter,
-  DEFAULT_ENV_FILE,
-  loadApiConfig,
 };

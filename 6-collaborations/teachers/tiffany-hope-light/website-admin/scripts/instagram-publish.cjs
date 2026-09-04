@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 'use strict';
 
-// Compatibility entry point only.
-// The canonical Instagram publishing adapter lives in Manus. Keeping this shim preserves the
-// existing `npm run instagram:publish` command without leaving a second implementation here.
+// Compatibility module only. Tests may still import the canonical adapter through this path,
+// but direct publishing from the client workspace is retired: it bypasses the Manus job,
+// payload binding and approval receipt.
 
 const path = require('node:path');
 const fs = require('node:fs');
@@ -22,11 +22,10 @@ if (!fs.existsSync(adapterPath)) {
 }
 const adapter = require(adapterPath);
 
-function legacyArgs(args) {
-  if (args.includes('--env-file')) return args;
-  return ['--env-file', path.resolve(__dirname, '..', 'env'), ...args];
-}
-
 module.exports = adapter;
 
-if (require.main === module) adapter.runCli(legacyArgs(process.argv.slice(2)));
+if (require.main === module) {
+  console.error('此入口已退役：客戶工作區不得直接持有憑證或繞過核准封套發布。');
+  console.error('請從 Manus/tools/social-publishing 使用 social.mjs new → prepare → approve → claim → publish。');
+  process.exitCode = 1;
+}

@@ -330,10 +330,18 @@ App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密
 「目前沒有數據分析需求」。**該說法已過期，不是因為需求改變，而是因為權限本來就在。**
 
 2026-09-04 實測：`GET /{media-id}/insights?metric=views,reach,total_interactions,saved,shares`
-在 `@hopelight.ig` 與 `@hopelight.moment` 上皆正常回傳。原因就是下一節那條結論 ——
-Dashboard 產生的權杖不帶同意快照，拿到的是 App 當下的全部權限。
+在 `@hopelight.ig` 與 `@hopelight.moment` 上皆正常回傳。
 
 **沒有做過任何新的授權動作，也沒有要求 Tiffany 重新授權。**
+
+**為什麼可用，尚未定論。**本節初稿把原因歸給下一節那條結論（Dashboard 權杖不帶同意快照，
+反映 App 當下權限）。同日稍晚取得的 App 權限快照顯示
+`instagram_business_manage_insights` 的**呼叫數是 0**，而我們當天至少打了 460 次洞察 ——
+若該計數為真，洞察根本不歸這項權限管，很可能算在 `instagram_business_basic` 底下，
+那麼上面那個解釋就是錯的。兩種可能都還站得住（Dashboard 計數也可能有延遲）。
+
+實務上不影響使用，但**不要因為「它是 0」就把 `manage_insights` 關掉** ——
+關錯了 `instagram:stats` 會跟著壞。完整清單與分類見 [`APP_PERMISSIONS.md`](./APP_PERMISSIONS.md)。
 
 已知邊界（同日實測）：
 
@@ -470,9 +478,16 @@ npm run instagram:stats -- --profile hopelight --tsv   # 機器可讀，供彙�
 `@darrenfiy` 上我們自己剛送出的那兩則也一樣讀不到，所以這不是第三方隱私過濾，
 而是讀取能力整體不可用。
 
-推測原因是 App 仍在開發模式／未經 App Review —— 發布與洞察都是「關於本帳號自己」的資料，
-留言內容則是關於第三方的資料，Meta 對後者的門檻不同。**這是推測，不是量測**，
-要確認須有人到 App Dashboard 看發布狀態與 App Review 狀態。
+**原因已確認（2026-09-04 稍晚）**：App 權限清單顯示
+`instagram_business_manage_comments` 停在**「可供測試」＝ 標準存取（Standard Access）**，
+清單裡 29 項**全部**都是這個狀態，沒有任何一項取得進階存取。
+
+標準存取只能碰「在 App 裡有角色的人」的資料。那 447 則留言是素不相識的人寫的，
+他們沒有這個 App 的角色，於是逐筆被濾掉 —— 留下空頁加一個「還有下一頁」的游標。
+這也解釋了為什麼**發布、洞察、寫留言都能用**：那些都是「關於本帳號自己」的動作或資料。
+
+解封需要商業驗證 + App Review + App 上線，是一段流程不是一個開關。
+清單快照與逐項分類見 [`APP_PERMISSIONS.md`](./APP_PERMISSIONS.md)。
 
 #### 實務含意
 

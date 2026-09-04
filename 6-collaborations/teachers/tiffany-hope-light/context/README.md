@@ -4,6 +4,10 @@
 
 目前主要母資料：
 
+- [`2026-09-04-crm-website-handoff.md`](./2026-09-04-crm-website-handoff.md)：**網站與 CRM 的最新重入指引。**
+  CRM 看板已上線、換主機的步驟、hopebox.com.tw 的硬性限制（不允許刪除外掛）、
+  已確認的打包陷阱，以及下一步建議順序。決策本身請讀
+  [`../website-admin/DECISIONS.md`](../website-admin/DECISIONS.md)。
 - [`Hope_Light_品牌整合_對話壓縮資料.md`](./Hope_Light_品牌整合_對話壓縮資料.md)
 - [`2026-08-24-website-line-admin-handoff.md`](./2026-08-24-website-line-admin-handoff.md)：HopeBox 與 LINE 後台的今日工作紀錄、稽核結論、重入方式與下一步。
 - [`2026-08-30-meta-instagram-access-handoff.md`](./2026-08-30-meta-instagram-access-handoff.md)：Meta／Instagram 權限層次、Page 連結等待期、手動發布紀錄與下次 API 路線。

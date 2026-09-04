@@ -11,6 +11,8 @@
 | [`reports/2026-08-24-line-website-consistency-report.md`](./reports/2026-08-24-line-website-consistency-report.md) | 可直接提供 Tiffany 檢視的官網 × LINE 一致性、購買路徑與改善建議 |
 | [`context/2026-08-24-website-line-admin-handoff.md`](./context/2026-08-24-website-line-admin-handoff.md) | 2026-08-24 網站與 LINE 後台工作紀錄、重入方式、已知問題與下一步 |
 | [`context/2026-08-30-meta-instagram-access-handoff.md`](./context/2026-08-30-meta-instagram-access-handoff.md) | 2026-08-30 Meta／Instagram 權限、七天等待期、發布歸檔與 API 續作入口 |
+| [`context/2026-09-04-crm-website-handoff.md`](./context/2026-09-04-crm-website-handoff.md) | **網站與 CRM 的最新重入指引**：CRM 看板已上線、換主機步驟、主機限制與下一步 |
+| [`website-admin/DECISIONS.md`](./website-admin/DECISIONS.md) | **已定案、不需要重新討論的技術決策**（D-001～D-004）。換主機時這是唯一可靠來源 |
 | [`website-admin/README.md`](./website-admin/README.md) | HopeBox WordPress 後台的登入工作階段、安全界線與唯讀稽核 |
 | [`line-admin/README.md`](./line-admin/README.md) | LINE Official Account Manager 的本機登入工作階段、安全界線與唯讀稽核 |
 | [`reports`](./reports) | 可直接交付老師檢視的報告 |

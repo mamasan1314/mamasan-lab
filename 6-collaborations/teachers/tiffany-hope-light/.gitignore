@@ -20,3 +20,10 @@ node_modules/
 website-admin/audit-result*.json
 website-admin/booking-*-result-local.json
 website-admin/instagram-audit-result*.json
+
+# 顧客個資：只留本機，永遠不進 Git
+website-admin/crm/data/
+website-admin/crm/*.local.html
+
+# 外掛封裝檔是產物，用 pack.ps1 重新產生即可
+website-admin/wp-plugins/*.zip

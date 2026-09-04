@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm run crm:export)",
+      "Bash(npm run crm:build)",
+      "Bash(npm run crm:refresh)",
+      "Bash(npm run crm:plugin:check)",
+      "Bash(npm run crm:plugin:install)",
+      "Bash(npm --prefix 6-collaborations/teachers/tiffany-hope-light/website-admin run crm:export)",
+      "Bash(npm --prefix 6-collaborations/teachers/tiffany-hope-light/website-admin run crm:build)",
+      "Bash(npm --prefix 6-collaborations/teachers/tiffany-hope-light/website-admin run crm:refresh)",
+      "Bash(npm --prefix 6-collaborations/teachers/tiffany-hope-light/website-admin run crm:plugin:check)",
+      "Bash(npm --prefix 6-collaborations/teachers/tiffany-hope-light/website-admin run crm:plugin:install)"
+    ]
+  }
+}

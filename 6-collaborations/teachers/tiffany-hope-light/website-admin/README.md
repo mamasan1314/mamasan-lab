@@ -2,6 +2,13 @@
 
 這個資料夾讓新的 Codex 工作階段或另一台主機，不必重新探索 HopeBox 的登入與後台結構即可開始協作。工具本身不含帳號或密碼，也不會修改網站。
 
+## 開工前先讀：[DECISIONS.md](./DECISIONS.md)
+
+已定案、不需要重新討論的技術決策都寫在那裡。摘要：
+
+- **D-001**：網站內容以**手寫 HTML＋Git**維護，由 AI 助手直接改原始碼。老師不會自己進後台，所以不為了 Elementor 自助編輯而遷就版型。**但交易功能（購物車、結帳、金流、訂單）一律維持 WooCommerce，不要自己刻。**
+- **D-002**：CRM 先做**本機唯讀看板**，暫不導入 Airtable。顧客個資只留本機，不進 Git、不上雲。
+
 ## 已確認狀態
 
 最後完整驗證：2026-08-24（Asia/Taipei）
@@ -71,6 +78,68 @@ npm run audit:visible
 ```powershell
 npm run audit -- --credential "D:\private\hopebox.txt" --browser "C:\path\to\chrome.exe"
 ```
+
+## CRM 顧客看板
+
+唯讀匯出 WooCommerce 的顧客與訂單，產生一份本機 HTML 看板：
+
+```powershell
+npm run crm:refresh
+```
+
+然後打開 `crm/hopelight-crm.local.html`。
+
+- `npm run crm:export`：只重新抓資料（唯讀，不修改網站）。
+- `npm run crm:build`：只用現有資料重畫看板。
+- 顧客會依 Email／電話自動去重，並補上只存在於訂單裡的訪客結帳。
+- 產出的 `crm/data/` 與 `crm/*.local.html` 含個資，已被 `.gitignore` 排除，不要 `git add -f`。
+- 看板是唯讀快照。改訂單狀態、地址與付款請回 WooCommerce 後台。
+
+## CRM 後台外掛
+
+同一份看板的 WordPress 版本，掛在 wp-admin 選單，即時讀 WooCommerce，個資不離開網站。
+
+```powershell
+npm run crm:plugin:pack      # 改完 PHP 後重新打包
+npm run crm:plugin:check     # 預演：檢查登入、目前狀態、是否允許上傳外掛（不修改網站）
+npm run crm:plugin:install   # 實際上傳並啟用（會修改網站）
+```
+
+裝好之後在後台左側選單找「希望之光 CRM」，或直接開 `https://hopebox.com.tw/wp-admin/admin.php?page=hopelight-crm`。
+
+- 可見範圍：`manage_woocommerce` 權限，即 administrator 與 shop_manager。
+- 外掛唯讀，不會修改訂單；要改狀態請點訂單編號進 WooCommerce 訂單頁。
+
+需要下架時：
+
+```powershell
+npm run crm:plugin:remove:check   # 預演，列出會被刪除的項目
+npm run crm:plugin:remove         # 實際停用並刪除
+```
+
+### 打包必須用 pack.ps1，不要用 Compress-Archive
+
+`Compress-Archive` 在 Windows 上會把 zip 內的路徑分隔符寫成**反斜線**，但 ZIP 規格要求正斜線。PHP 解壓時會把 `hopelight-crm\hopelight-crm.php` 當成單一檔名，外掛就會變成 `hopelight-crm/hopelight-crm/hopelight-crm.php`，多包一層而無法啟用；重試還會留下 `hopelight-crm-1` 之類的重複副本。
+
+[wp-plugins/pack.ps1](./wp-plugins/pack.ps1) 用 `System.IO.Compression` 手動指定正斜線的 entry 名稱，避開這個問題。改完之後可以先驗證：
+
+```powershell
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+[System.IO.Compression.ZipFile]::OpenRead("$PWD\wp-plugins\hopelight-crm-board.zip").Entries.FullName
+# 應該顯示 hopelight-crm-board/hopelight-crm-board.php（正斜線、只有一層）
+```
+
+如果 zip 結構錯誤而仍上傳，PHP 會建立一個**檔名裡真的含反斜線**的檔案。WordPress 的外掛列表看得到那一列，但點啟用會回「外掛檔案不存在。」，而且這台主機也刪不掉——會變成清不乾淨的幽靈項目。
+
+`pack.ps1` 內容刻意全部使用 ASCII：Windows PowerShell 5.1 在沒有 BOM 時會以 ANSI 讀取 .ps1，中文字元會被解碼錯誤。
+
+### 其他已知陷阱
+
+- 外掛列表的 `tr` id 由外掛名稱產生，中文名稱會產生不可預期的 id，**不要用 `tr[data-slug]` 判斷狀態**；請改看 `a[href*="action=activate"]` 與 `action=deactivate` 連結。
+- **這台主機不允許刪除外掛。** 2026-09-04 實測：批次操作選單只有「啟用／停用／更新／自動更新」，沒有刪除；單列的「刪除」連結（含接受 JS 確認對話框）點下去也只是跳回外掛列表，檔案仍在。上傳與覆蓋安裝則正常。
+  - 因此 `crm:plugin:remove` 目前在這台主機上無效，留著是為了換主機或設定放寬時可用。
+  - 推論：主機（路徑為 `/srv/htdocs/`，屬託管型環境）過濾掉了刪除功能。要清掉殘留資料夾，得透過主機的檔案管理員或請主機商協助。
+  - **實務影響：安裝失敗會留下無法自行清除的殘留**，所以務必先用 `crm:plugin:check` 預演，並確認 zip 結構正確再上傳。
 
 ## 後續批次管理
 

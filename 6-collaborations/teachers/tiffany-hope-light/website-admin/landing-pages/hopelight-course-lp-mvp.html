@@ -1,0 +1,380 @@
+<title>希望之光課程頁</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@300;500;700&display=swap">
+<style>
+  :root{
+    --ground:#F1EFF3;
+    --surface:#FBFAFC;
+    --ink:#201C2E;
+    --muted:#6B6480;
+    --line:#DFDAE6;
+    --gold:#9E6A1C;
+    --gold-soft:#E8D9BE;
+    --glow:rgba(200,150,60,.20);
+    --shadow:0 1px 2px rgba(32,28,46,.06),0 8px 24px -18px rgba(32,28,46,.35);
+    --step--1:.8125rem;
+    --step-0:1rem;
+    --step-1:1.1875rem;
+    --step-3:2rem;
+    --step-4:2.75rem;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#141120;
+      --surface:#1C1829;
+      --ink:#EAE6F0;
+      --muted:#9A93AC;
+      --line:#2E2942;
+      --gold:#D9A24C;
+      --gold-soft:#5A451F;
+      --glow:rgba(217,162,76,.18);
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 28px -18px rgba(0,0,0,.9);
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#141120;
+    --surface:#1C1829;
+    --ink:#EAE6F0;
+    --muted:#9A93AC;
+    --line:#2E2942;
+    --gold:#D9A24C;
+    --gold-soft:#5A451F;
+    --glow:rgba(217,162,76,.18);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 28px -18px rgba(0,0,0,.9);
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+    font-weight:300;
+    font-size:var(--step-0);
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+
+  .draft{
+    position:sticky;top:0;z-index:40;
+    background:var(--ink);color:var(--ground);
+    font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.06em;
+    text-align:center;padding:.55rem 1rem;line-height:1.5;margin:0;
+  }
+
+  .shell{max-width:1180px;margin:0 auto;padding:0 1.5rem 5rem;position:relative}
+  main{max-width:44rem;margin:0 auto}
+
+  .rail{display:none}
+  @media (min-width:1080px){
+    .rail{
+      display:block;position:fixed;top:50%;transform:translateY(-50%);
+      left:max(1.5rem,calc(50vw - 590px));width:9.5rem;z-index:30;
+    }
+    .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.55rem}
+    .rail a{
+      display:flex;align-items:center;gap:.6rem;text-decoration:none;
+      font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.04em;
+      color:var(--muted);transition:color .25s ease;
+    }
+    .rail a::before{
+      content:"";width:1.1rem;height:1px;background:currentColor;flex:none;
+      transition:width .25s ease;
+    }
+    .rail a:hover,.rail a[aria-current="true"]{color:var(--gold)}
+    .rail a[aria-current="true"]::before{width:2rem}
+  }
+
+  .hero{position:relative;padding:5.5rem 0 4rem}
+  .hero::before{
+    content:"";position:absolute;inset:-6rem -40vw auto -40vw;height:34rem;z-index:-1;
+    background:radial-gradient(48% 42% at 50% 32%,var(--glow),transparent 70%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gold);margin:0 0 1.5rem;
+  }
+  h1{
+    font-family:"Noto Serif TC",serif;font-weight:500;
+    font-size:clamp(2rem,6vw,var(--step-4));line-height:1.35;letter-spacing:.02em;
+    text-wrap:balance;margin:0 0 1.5rem;
+  }
+  .lede{font-size:var(--step-1);color:var(--muted);margin:0 0 2rem;max-width:32rem}
+  .beats{
+    display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .75rem;
+    font-family:"Noto Serif TC",serif;font-size:var(--step-1);margin:0 0 2.5rem;padding:0;list-style:none;
+  }
+  .beats li{display:flex;align-items:center;gap:.75rem}
+  .beats li:not(:last-child)::after{content:"→";color:var(--gold);font-family:"Jost",sans-serif}
+  .actions{display:flex;flex-wrap:wrap;gap:.75rem}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;
+    padding:.85rem 1.6rem;border-radius:999px;font-size:var(--step-0);
+    border:1px solid var(--ink);transition:transform .2s ease;
+  }
+  .btn-primary{background:var(--ink);color:var(--ground)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:none}
+
+  section{padding:3.5rem 0;border-top:1px solid var(--line)}
+  .label{
+    font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 1.25rem;
+  }
+  h2{
+    font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-3);
+    line-height:1.45;margin:0 0 1.25rem;text-wrap:balance;
+  }
+  h3{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-1);margin:0 0 .5rem}
+  p{margin:0 0 1.1rem;max-width:34rem}
+  p:last-child{margin-bottom:0}
+
+  .tbd{
+    display:inline-block;font-family:"Jost",sans-serif;font-size:.6875rem;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+    border:1px dashed var(--gold);border-radius:999px;padding:.1rem .55rem;
+    vertical-align:.12em;margin-left:.4rem;white-space:nowrap;line-height:1.6;
+  }
+
+  .cards{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  @media (min-width:620px){.cards{grid-template-columns:1fr 1fr}}
+  .card{background:var(--surface);padding:1.5rem}
+  .card p{font-size:var(--step--1);color:var(--muted);margin:0}
+
+  .steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.75rem}
+  .steps li{display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start}
+  .steps .mark{
+    font-family:"Jost",sans-serif;font-size:var(--step--1);color:var(--gold);
+    border:1px solid var(--gold-soft);border-radius:999px;width:2.25rem;height:2.25rem;
+    display:grid;place-items:center;flex:none;
+  }
+  .steps p{font-size:var(--step--1);color:var(--muted)}
+
+  .day{display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start}
+  .day + .day{margin-top:2.25rem;padding-top:2.25rem;border-top:1px dotted var(--line)}
+  .disc{
+    width:2.25rem;height:2.25rem;border-radius:50%;flex:none;
+    border:1px solid var(--gold);
+    background:linear-gradient(to top,var(--gold) var(--fill),transparent var(--fill));
+  }
+  .day-title{font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.16em;color:var(--gold);margin:0 0 .35rem}
+  .day ul{margin:.75rem 0 0;padding-left:1.1rem;color:var(--muted);font-size:var(--step--1)}
+  .day li{margin-bottom:.35rem}
+
+  .gift{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:2rem;box-shadow:var(--shadow)}
+  .gift .price{font-family:"Jost",sans-serif;color:var(--gold);font-size:var(--step-1)}
+
+  .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:30rem;font-size:var(--step--1)}
+  th,td{padding:1rem 1.25rem;text-align:left;border-bottom:1px solid var(--line)}
+  tbody tr:last-child td{border-bottom:0}
+  th{font-family:"Jost",sans-serif;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-size:.6875rem}
+  td.num{text-align:right;font-family:"Jost",sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .plan-name{font-family:"Noto Serif TC",serif}
+
+  .contact-lines{list-style:none;margin:1.5rem 0 0;padding:0;display:flex;flex-direction:column;gap:.6rem;font-size:var(--step--1)}
+  .contact-lines span{font-family:"Jost",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:inline-block;min-width:5.5rem}
+
+  footer{border-top:1px solid var(--line);margin-top:3.5rem;padding-top:2rem;color:var(--muted);font-size:var(--step--1)}
+  .note{color:var(--muted);font-size:var(--step--1)}
+
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+    html{scroll-behavior:auto}
+  }
+</style>
+
+<p class="draft">內部草稿 v0.1 ｜ 版型示意，文案與價格未經老師確認前請勿對外發布</p>
+
+<div class="shell">
+  <nav class="rail" aria-label="章節導覽">
+    <ol>
+      <li><a href="#top">開場</a></li>
+      <li><a href="#origin">開課初心</a></li>
+      <li><a href="#forYou">適合誰</a></li>
+      <li><a href="#method">課程方法</a></li>
+      <li><a href="#foundation">兩日基礎</a></li>
+      <li><a href="#journey">三日課綱</a></li>
+      <li><a href="#companion">陪伴禮</a></li>
+      <li><a href="#plans">時間與方案</a></li>
+      <li><a href="#contact">LINE 諮詢</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header class="hero" id="top">
+      <p class="eyebrow">希望之光 Hope Light</p>
+      <h1>在兩天或三天裡，<br>把自己重新看清楚一次</h1>
+      <p class="lede">Tiffany／珈語．高階腦意識對話師、INCA 國際論碼諮商師、信息醫學療癒師</p>
+      <ul class="beats">
+        <li>看見自己</li>
+        <li>理解自己</li>
+        <li>陪伴自己</li>
+        <li>找回自己的節奏</li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://lin.ee/vG7eI1Dv">用 LINE 詢問課程</a>
+        <a class="btn btn-ghost" href="#plans">看方案與價格</a>
+      </div>
+    </header>
+
+    <section id="origin">
+      <p class="label">開課初心</p>
+      <h2>工具是入口，不是答案</h2>
+      <p>腦意識評量、創賦密碼、靈魂藍圖、掌運卡——這些都只是讓你把自己看得更清楚的入口。真正會改變的，是你開始理解自己現在正用什麼方式活著，然後決定要留下什麼、放下什麼。</p>
+      <p>這堂課想給的不是一套技巧，而是一段有人陪著你梳理的時間。<span class="tbd">待補 老師親筆版本</span></p>
+    </section>
+
+    <section id="forYou">
+      <p class="label">適合誰</p>
+      <h2>如果你正在其中一種狀態裡</h2>
+      <div class="cards">
+        <div class="card"><h3>知道卡住，但說不出卡在哪</h3><p>感覺日子還過得去，卻總有一件事一直繞不過去。</p></div>
+        <div class="card"><h3>做過檢測，想再往下走</h3><p>已經做過腦意識評量或諮詢，想要更完整的梳理與練習。</p></div>
+        <div class="card"><h3>想學會陪自己，不只被陪</h3><p>希望課後能自己使用工具，照顧自己的狀態。</p></div>
+        <div class="card"><h3>助人工作者</h3><p>想把對話與梳理的方法，放進自己既有的服務裡。</p></div>
+      </div>
+      <p class="note" style="margin-top:1.25rem">以上為草擬方向，實際對象定義待老師確認。<span class="tbd">待確認</span></p>
+    </section>
+
+    <section id="method">
+      <p class="label">課程方法</p>
+      <h2>四個步驟，一條路徑</h2>
+      <ol class="steps">
+        <li><span class="mark">01</span><div><h3>看見自己</h3><p>用腦意識評量與工具，把現在的狀態具體攤開來看，而不是靠感覺猜。</p></div></li>
+        <li><span class="mark">02</span><div><h3>理解自己</h3><p>理解這些狀態怎麼形成、在生活裡怎麼運作，找到自己的模式。</p></div></li>
+        <li><span class="mark">03</span><div><h3>陪伴自己</h3><p>學會在情緒來的時候留在自己旁邊，而不是急著解決或逃開。</p></div></li>
+        <li><span class="mark">04</span><div><h3>找回自己的節奏</h3><p>把課堂上的理解變成日常可執行的節奏與選擇。</p></div></li>
+      </ol>
+    </section>
+
+    <section id="foundation">
+      <p class="label">兩日基礎班</p>
+      <h2>先把地基打穩</h2>
+      <p>兩天的版本聚焦在「看見」與「理解」：認識腦意識的基本架構、完成個人評量與解讀、學會安全地進出自己的內在狀態。</p>
+      <p class="note">詳細課綱與時間安排待老師提供。<span class="tbd">待補課綱</span></p>
+    </section>
+
+    <section id="journey">
+      <p class="label">三日完整班</p>
+      <h2>DAY 1–3 課綱</h2>
+
+      <div class="day">
+        <span class="disc" style="--fill:33%" aria-hidden="true"></span>
+        <div>
+          <p class="day-title">DAY 1</p>
+          <h3>看見：現在的我是什麼樣子</h3>
+          <ul>
+            <li>腦意識基本架構與個人評量</li>
+            <li>解讀自己的評量結果</li>
+            <li>安全進出的設定與練習</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day">
+        <span class="disc" style="--fill:66%" aria-hidden="true"></span>
+        <div>
+          <p class="day-title">DAY 2</p>
+          <h3>理解：這些模式從哪裡來</h3>
+          <ul>
+            <li>創賦密碼與靈魂藍圖的對照閱讀</li>
+            <li>人生梳理：關係、工作、金錢的重複劇本</li>
+            <li>兩人一組的實作演練</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day">
+        <span class="disc" style="--fill:100%" aria-hidden="true"></span>
+        <div>
+          <p class="day-title">DAY 3</p>
+          <h3>整合：把方法帶回生活</h3>
+          <ul>
+            <li>掌運卡與頻率蠟燭的日常使用方式</li>
+            <li>個人整合與提問時間</li>
+            <li>課後 21 天的陪伴計畫說明</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:2rem">以上為依品牌核心草擬的結構，每一堂的實際內容與順序待老師確認。<span class="tbd">待確認</span></p>
+    </section>
+
+    <section id="companion">
+      <p class="label">陪伴禮</p>
+      <h2>21 天，把課帶回家</h2>
+      <div class="gift">
+        <p>三日完整班的課後陪伴：<strong>21 顆希望之光∞頻率蠟燭</strong>，10 款主題能量任選，每天一顆，陪你把課堂上的理解放回日常。另含 10 分鐘靈魂藍圖諮詢。</p>
+        <p class="price">單獨購買 NT$2,980　｜　蠟燭單顆 NT$139（不含運，可任選）</p>
+        <p class="note" style="margin-top:1rem">是否納入三日班贈禮、以及贈禮的顆數，待老師確認。<span class="tbd">待確認</span></p>
+      </div>
+      <p class="note" style="margin-top:1.25rem">蠟燭不是替你保證結果，而是陪你在一個小小的儀式裡，把願望、狀態與行動重新放回自己手上。</p>
+    </section>
+
+    <section id="plans">
+      <p class="label">時間與方案</p>
+      <h2>開課方案</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">方案</th><th scope="col">內容</th><th scope="col" style="text-align:right">費用</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="plan-name">腦意識評量</td><td>核心入口服務，單次檢測與解讀</td><td class="num">NT$2,980</td></tr>
+            <tr><td class="plan-name">兩日基礎班</td><td>看見與理解，含個人評量</td><td class="num">NT$19,800</td></tr>
+            <tr><td class="plan-name">三日完整班</td><td>加上整合、實作演練與 21 天陪伴</td><td class="num">NT$29,800</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:1.25rem">場次日期、上課城市、地點、人數上限、雙人同行優惠與報名截止日皆待確認。<span class="tbd">待確認</span></p>
+    </section>
+
+    <section id="contact">
+      <p class="label">報名與諮詢</p>
+      <h2>先聊聊，再決定要不要來</h2>
+      <p>不確定自己適合哪一種，可以先加 LINE 說說你現在的狀況，老師會回覆你適合的入口。</p>
+      <div class="actions" style="margin-top:1.5rem">
+        <a class="btn btn-primary" href="https://lin.ee/vG7eI1Dv">加入官方 LINE</a>
+      </div>
+      <ul class="contact-lines">
+        <li><span>LINE</span>@happy139</li>
+        <li><span>IG</span>.hopelight.ig ／ hopelight.moment</li>
+        <li><span>Web</span>hopebox.com.tw</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>希望之光 Hope Light ｜ 本頁為內部版型草稿，所有課綱、日期與贈禮內容以老師最終確認為準。</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var ids = links.map(function (a) { return a.getAttribute('href').slice(1); });
+    var seen = {};
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { seen[e.target.id] = e.isIntersecting; });
+      var current = null;
+      ids.forEach(function (id) { if (seen[id] && !current) { current = id; } });
+      links.forEach(function (a) {
+        a.setAttribute('aria-current', a.getAttribute('href') === '#' + current ? 'true' : 'false');
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) { observer.observe(el); }
+    });
+  })();
+</script>

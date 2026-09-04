@@ -308,20 +308,46 @@ App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密
 
 ### 權限現況與取捨
 
-**已授予（2026-08-31 實測確認，兩個帳號皆同）**
+**已授予**
 
-| 權限 | 用途 |
-|---|---|
-| `instagram_business_basic` | 讀取帳號身分與貼文清單 |
-| `instagram_business_content_publish` | 建立媒體容器與發布 |
-| `instagram_business_manage_comments` | 留言讀取與回覆，為自動回覆預備 |
-| `instagram_business_manage_messages` | 私訊讀取與回覆，為自動回覆預備 |
+| 權限 | 用途 | 實測確認 |
+|---|---|---|
+| `instagram_business_basic` | 讀取帳號身分與貼文清單 | 2026-08-31 |
+| `instagram_business_content_publish` | 建立媒體容器與發布 | 2026-08-31（權限）／2026-09-04（實際發布 9 篇） |
+| `instagram_business_manage_comments` | 留言**寫入**可用；**讀取被靜默拒絕** | 2026-09-04，見下方「留言 API 驗證」 |
+| `instagram_business_manage_messages` | 私訊 | **未經證實**。回傳空會話，無法分辨真的沒有還是被靜默拒絕 |
+| `instagram_business_manage_insights` | 貼文瀏覽、觸及、收藏、分享 | 2026-09-04，見下方更正 |
+
+三個帳號皆同。`moment` 的四項權限於 2026-09-04 補跑 `instagram:capabilities`，
+結果與另兩支一致，不再是推論。
+
+**`manage_comments` 那一列先前寫「留言讀取與回覆」是錯的**，且錯了很久沒被發現 ——
+原因見下方「留言 API 驗證」與「權限盤點曾經給出假陽性」兩節。
+
+#### 更正：insights 實際上是可用的（2026-09-04）
+
+本文件先前把 `instagram_business_manage_insights` 列在「未採用」，理由是
+「目前沒有數據分析需求」。**該說法已過期，不是因為需求改變，而是因為權限本來就在。**
+
+2026-09-04 實測：`GET /{media-id}/insights?metric=views,reach,total_interactions,saved,shares`
+在 `@hopelight.ig` 與 `@hopelight.moment` 上皆正常回傳。原因就是下一節那條結論 ——
+Dashboard 產生的權杖不帶同意快照，拿到的是 App 當下的全部權限。
+
+**沒有做過任何新的授權動作，也沒有要求 Tiffany 重新授權。**
+
+已知邊界（同日實測）：
+
+- `impressions` 對 FEED 已停用，Meta 回「does not support the impressions metric
+  for this media product type」。改用 `views`。
+- 帳號層級的 `follower_count` 時間序列讀不到；但 `GET /me?fields=followers_count`
+  可以，追蹤者數走這條。
+
+讀取工具見下方「成效盤點」。
 
 **未採用**
 
 | 未採用 | 理由 |
 |---|---|
-| `instagram_business_manage_insights` | 目前沒有數據分析需求 |
 | 應用程式檢閱（App Review） | 只在存取「不在 App 角色內」的帳號時才需要。三個帳號都以 Instagram tester 身分授權，不需審查。將來要服務多位老師且不逐一加 tester 時才評估，屆時另需商業驗證 |
 
 ### 重要更正：Dashboard 產生的權杖不帶同意快照
@@ -374,12 +400,23 @@ App ID 等同 OAuth 的 `client_id`，會出現在授權網址中，不是機密
 
 ### 待觀察
 
-`@hopelight.ig` 與 `@darrenfiy` 的類型是 `MEDIA_CREATOR` 而非 `BUSINESS`。發布 API 對創作者帳號的支援在歷史上曾有差異，
-第一次實際發布時若出現權限或帳號類型錯誤，先確認這一點，不要直接歸因於權杖。
-`@hopelight.moment` 是 `BUSINESS`，不受這一條影響，是三個帳號中未知數最少的。
+~~`@hopelight.ig` 與 `@darrenfiy` 的類型是 `MEDIA_CREATOR`，發布 API 對創作者帳號的支援可能有差異~~
+**已解除（2026-09-04）**：`@hopelight.ig` 以 `MEDIA_CREATOR` 身分成功發布 Reels 含自訂封面，
+帳號類型不構成發布障礙。
 
-`moment` 尚未跑過 `npm run instagram:capabilities`，其四項權限未經逐項實測。
-依「Dashboard 產生的權杖反映 App 當下權限」的結論，預期與另兩支相同，但這是推論，不是量測。
+~~`moment` 尚未跑過 `npm run instagram:capabilities`~~
+**已補測（2026-09-04）**：四項權限逐項確認，與另兩支一致。不再是推論。
+
+~~仍未驗證：留言與私訊的「回覆」~~
+**已於 2026-09-04 驗證，結果與預期相反**：留言的**寫入**可用（建立與回覆都成功），
+但**讀取被靜默拒絕**。詳見「留言 API 驗證」一節。
+
+由此產生的新未知，優先度高於原本那條：
+
+- **留言讀取何時能解封？**推測與 App Review／發布狀態有關，需人到 Dashboard 確認。
+- **刪除留言（`DELETE /{comment-id}`）未測。**讀不回來的情況下，
+  刪除的驗證只能靠 `comments_count` 的變化與人工在 App 目視。
+- **私訊仍完全未證實。**空會話無法解讀，不要當成「沒有訊息」。
 
 另外，官方文件指出：若 Instagram 帳號連到需要「粉絲專頁發布授權（PPA）」的粉專，
 完成 PPA 前無法以 API 發布。目前尚未連結 Page，暫時不受影響；
@@ -394,13 +431,98 @@ npm run instagram:whoami -- --profile moment        # 正式帳號 @hopelight.mo
 npm run instagram:capabilities                      # 逐項盤點實際擁有的權限
 npm run instagram:capabilities -- --profile hopelight
 npm run instagram:capabilities -- --profile moment
+npm run instagram:stats -- --profile hopelight     # 成效盤點（瀏覽／觸及／互動）
+npm run instagram:stats -- --profile moment
+npm run instagram:stats -- --profile hopelight --tsv   # 機器可讀，供彙整報表
 ```
 
-兩支工具都不發布、不修改，也不輸出權杖、留言內容或訊息內容。
+三支工具都不發布、不修改，也不輸出權杖、留言內容或訊息內容。
 
 權限盤點的判定方式：每一項都設計成能分辨「被權限擋下」與「權限已通、被其他原因擋下」。
 例如發布權限的測法是送出無效素材網址建立媒體容器——若回報的是素材錯誤而非權限錯誤，
 即代表已通過權限檢查，且不會有任何內容被建立。無法分辨時一律回報「無法判定」，不猜測。
+
+### 留言 API 驗證（2026-09-04）
+
+在 `@darrenfiy` 自有帳號上實測，貼文
+[/p/Dcx9D2XmLXt/](https://www.instagram.com/p/Dcx9D2XmLXt/)（測試前留言數 0）。
+**不在客戶帳號上做**，因為會產生真實的公開回覆。
+
+| 動作 | 端點 | 結果 |
+|---|---|---|
+| 建立留言 | `POST /{media-id}/comments` | **可用**，回傳 comment id |
+| 回覆留言 | `POST /{comment-id}/replies` | **可用**，回傳 reply id |
+| 讀回留言／回覆 | `GET /{comment-id}`、`/{comment-id}/replies` | **讀不到**，回傳 `{}` 或空陣列 |
+| 貼文留言計數 | `GET /{media-id}?fields=comments_count` | 由 0 變成 **2**，兩則都真的存在 |
+
+#### 讀取是被靜默拒絕的，不是「沒有資料」
+
+這一項在客戶帳號上另外對照過（唯讀，未取留言內容）：
+
+```text
+@hopelight.ig 的 /reel/DYE4ziTShP2/
+  comments_count      = 447
+  GET /{id}/comments  → data: []，但 paging 同時帶 cursors 與 next
+  跟著 next 再要一頁  → 仍然 data: []
+```
+
+**HTTP 200、沒有錯誤碼、沒有權限訊息，資料就是取不到，而且平台一直宣稱還有下一頁。**
+`@darrenfiy` 上我們自己剛送出的那兩則也一樣讀不到，所以這不是第三方隱私過濾，
+而是讀取能力整體不可用。
+
+推測原因是 App 仍在開發模式／未經 App Review —— 發布與洞察都是「關於本帳號自己」的資料，
+留言內容則是關於第三方的資料，Meta 對後者的門檻不同。**這是推測，不是量測**，
+要確認須有人到 App Dashboard 看發布狀態與 App Review 狀態。
+
+#### 實務含意
+
+**寫得進去、讀不出來，是一個危險的不對稱。**可以送出回覆，但無法確認送出了什麼、
+無法知道某則留言是不是已經回過、無法在送出後驗證結果。任何自動回覆在解除這一點之前
+都不該啟動 —— 不是因為做不到，是因為做了也看不見。
+
+`private/未讀取內容` 的界線不變：本次驗證全程未取任何 `text` 欄位。
+
+### 權限盤點曾經給出假陽性
+
+`instagram:capabilities` 舊版本把「呼叫成功、回傳空陣列」判成
+**「可讀取，最新一則貼文有 0 則留言」**。那正是上面這個靜默拒絕的樣子。
+
+諷刺的是本工具的設計原則就寫著「每一項都要能分辨『權限沒有』與『權限有但因其他原因失敗』」——
+但它少了第三種：**呼叫成功、也沒有錯誤、資料卻是空的**。空值沒有被當成需要解釋的東西。
+
+已修正（2026-09-04）：改用「已知有留言的貼文」當試紙，
+`comments_count > 0` 但邊回 0 筆時判為 `[空]` 靜默拒絕。私訊沒有等價試紙，
+因此一律回報 `[?]` 無法判定，不再宣稱可讀取。
+
+```text
+[空] 讀取留言   instagram_business_manage_comments
+     該貼文 comments_count=8，但 comments 邊讀到 0 筆。呼叫沒有報錯，資料卻取不到
+     —— 這是靜默拒絕，不是「沒有留言」。
+```
+
+### 成效盤點（`instagram:stats`）
+
+```powershell
+npm run instagram:stats -- --profile hopelight
+npm run instagram:stats -- --profile moment
+npm run instagram:stats -- --profile hopelight --tsv > stats.tsv
+```
+
+輸出三段：逐篇成效（瀏覽／觸及／讚／留言／收藏／分享）、月彙總、合計。
+
+**刻意不讀留言內容與留言者身分**，只取 `comments_count` 這個數字。理由寫在腳本開頭：
+產出會進公司 repo 當基準紀錄，一旦帶進留言原文就是把顧客個資 commit 進 Git，
+而 Git 歷史很難事後清乾淨。要看留言內容請開 Instagram App。
+
+兩個實作細節值得記住：
+
+- **分頁要走完。**`/me/media` 一頁 25 筆（本工具指定 50）。只讀第一頁在貼文數變多之後
+  會安靜地少算，而少算的數字看起來完全正常。發布引擎的對帳目前就有這個缺口。
+- **metric 用不到的就標 `?`，不填 0。**不同 `media_product_type` 支援的 metric 不同；
+  猜 0 會讓「沒有這個指標」和「這個指標是零」變得無法分辨。
+
+數字是查詢當下的快照，瀏覽與觸及會持續累加。跨日比較請以執行時間為準，
+基準紀錄見 `Three-Quarters-International/PUBLISHING/SOCIAL_MEDIA/ANALYTICS/`。
 
 ### 發布工具
 
@@ -492,7 +614,13 @@ Meta 忽略 `upload_type=resumable`，仍要求公開網址。官方文件說明
 3. ~~建立發布工具，含預檢閘門與正式帳號確認~~ 已完成，圖片與 Reels 皆支援。
 4. 素材以短效 signed HTTPS URL 提供給 Meta，完成後刪除暫存。**尚未實作**，
    目前素材放在公開網站上且不會自動移除。
-5. 尚未對 `@hopelight.ig` 或 `@hopelight.moment` 發布過任何內容；正式發布前須經 mamasan 確認。
+5. ~~尚未對 `@hopelight.ig` 或 `@hopelight.moment` 發布過任何內容~~
+   **已過期。**兩個客戶帳號都已發布。截至 2026-09-04，經 `Manus` 發布引擎
+   移交的 durable package 共 **9 份**（`@hopelight.moment` 6、`@hopelight.ig` 1、
+   `@darrenfiy` 2），逐篇由 Darren 核准，收據在
+   `Three-Quarters-International/PUBLISHING/SOCIAL_MEDIA/PUBLICATIONS/`。
+   另有 2 篇更早的發布沒有正式收據（引擎抽出之前）。
+   帳號上的貼文總數不等於這個數字 —— 兩個帳號本來就有非經本工具發布的內容。
 6. 排定三支權杖的刷新（`hopelight`／`darrenfiy` 2026-10 中旬、`moment` 2026-10 下旬），
    刷新後同步更新 `.env` 與本文件的到期日表。
 
@@ -506,7 +634,12 @@ Meta 忽略 `upload_type=resumable`，仍要求公開網址。官方文件說明
 | 公開 HTTPS 端點 | 未做。測試階段可用隧道工具，正式需 24 小時在線的伺服器 |
 | 開發模式能否收到 Webhook 事件 | **未知，需實測**。Dashboard 表示接收 Webhooks 需 App 為已發布狀態，但對測試人員帳號是否適用尚未驗證 |
 | 24 小時回覆窗 | Instagram 私訊限制，超過時限不能主動回覆，會影響自動回覆的設計 |
-| 回覆內容的責任歸屬 | 未定。AI 代 Tiffany 回覆客戶，錯誤回覆由誰負責、哪些問題不得自動回答，需與 mamasan 議定 |
+| 回覆內容的責任歸屬 | **方向已定，細節未定**（2026-09-04）。採「已核准句庫 + 分類」而非自由生成：AI 只能從人定稿的句子裡挑，不得自行造句。見 `Control-Room/PM/DECISIONS/2026-09-04-instagram-comment-replies.md` |
+| 回覆 API 是否可用 | **可用**（2026-09-04 於 `@darrenfiy` 實測，`POST /{comment-id}/replies` 成功） |
+| **讀取留言是否可用** | **不可用，靜默拒絕**（2026-09-04）。這是目前的真正擋路：讀不到留言就無法分類、無法去重、無法驗證送出結果 |
+
+**上表的順序其實反了。**原本以為缺的是 Webhook 與伺服器那些基礎建設；
+實際上第一道關卡是**連留言都讀不到**。在那之前，Webhook 有沒有都不重要。
 
 規模判斷：發布工具是單機 CLI；自動回覆是需要上線維運的服務。兩者不是同一個量級。
 

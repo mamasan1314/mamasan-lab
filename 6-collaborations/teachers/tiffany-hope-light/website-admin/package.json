@@ -25,10 +25,11 @@
     "crm:plugin:install": "node scripts/install-crm-plugin.cjs --apply",
     "crm:plugin:remove:check": "node scripts/remove-crm-plugin.cjs",
     "crm:plugin:remove": "node scripts/remove-crm-plugin.cjs --apply",
-    "check": "node --check lib/hopebox-session.cjs && node --check lib/instagram-session.cjs && node --check lib/meta-business-session.cjs && node --check scripts/audit-access.cjs && node --check scripts/inspect-instagram-access.cjs && node --check scripts/connect-meta-business.cjs && node --check scripts/audit-meta-instagram-access.cjs && node --check scripts/audit-meta-business-portfolio.cjs && node --check scripts/audit-meta-content-access.cjs && node --check scripts/manage-booking-slots.cjs && node --check lib/instagram-api.cjs && node --check scripts/instagram-whoami.cjs && node --check scripts/instagram-capabilities.cjs && node --check scripts/instagram-publish.cjs && node --check scripts/instagram-publish.test.cjs && node --check scripts/export-customers.cjs && node --check scripts/build-crm-dashboard.cjs && node --check scripts/install-crm-plugin.cjs",
+    "check": "node --check lib/hopebox-session.cjs && node --check lib/instagram-session.cjs && node --check lib/meta-business-session.cjs && node --check scripts/audit-access.cjs && node --check scripts/inspect-instagram-access.cjs && node --check scripts/connect-meta-business.cjs && node --check scripts/audit-meta-instagram-access.cjs && node --check scripts/audit-meta-business-portfolio.cjs && node --check scripts/audit-meta-content-access.cjs && node --check scripts/manage-booking-slots.cjs && node --check lib/instagram-api.cjs && node --check scripts/instagram-whoami.cjs && node --check scripts/instagram-capabilities.cjs && node --check scripts/instagram-publish.cjs && node --check scripts/instagram-stats.cjs && node --check scripts/instagram-publish.test.cjs && node --check scripts/export-customers.cjs && node --check scripts/build-crm-dashboard.cjs && node --check scripts/install-crm-plugin.cjs",
     "instagram:whoami": "node scripts/instagram-whoami.cjs",
     "instagram:capabilities": "node scripts/instagram-capabilities.cjs",
     "instagram:publish": "node scripts/instagram-publish.cjs",
+    "instagram:stats": "node scripts/instagram-stats.cjs",
     "test": "node --test scripts/instagram-publish.test.cjs"
   },
   "engines": {

@@ -29,6 +29,11 @@ function classify(error) {
 async function probe(label, scope, run) {
   try {
     const value = await run();
+    // 探測本身可以回報比「成功／失敗」更細的判定 —— 例如呼叫成功但回傳空的，
+    // 而我們有獨立證據知道它不該是空的。
+    if (value && typeof value === 'object' && value.verdict) {
+      return { label, scope, verdict: value.verdict, detail: value.detail };
+    }
     return { label, scope, verdict: 'granted', detail: value || '呼叫成功' };
   } catch (error) {
     const { verdict, detail } = classify(error);
@@ -52,8 +57,11 @@ async function main() {
   console.log(`貼文數      : ${identity.media_count ?? '未知'}`);
   console.log('');
 
-  const media = await graphGet('/me/media', { config, fields: 'id' }).catch(() => ({ data: [] }));
+  const media = await graphGet('/me/media', { config, fields: 'id,comments_count' })
+    .catch(() => ({ data: [] }));
   const firstMediaId = (media.data || [])[0]?.id;
+  // 找一則「已知有留言」的貼文當試紙。沒有這個對照，空陣列無法解讀。
+  const withComments = (media.data || []).find((entry) => (entry.comments_count ?? 0) > 0);
 
   const results = [];
 
@@ -92,22 +100,51 @@ async function main() {
     }),
   );
 
+  // 空陣列不等於可讀取。2026-09-04 實測：一則 comments_count=447 的貼文，
+  // comments 邊回 HTTP 200、data 為空、卻附帶 next 游標；跟著游標走仍然是空的。
+  // 舊版本把這種回應判成「可讀取，0 則留言」——那是假陽性。
+  // 因此改用「已知有留言的貼文」當試紙：計數與內容對不起來時，明說對不起來。
   results.push(
     await probe('讀取留言', 'instagram_business_manage_comments', async () => {
       if (!firstMediaId) throw Object.assign(new Error('帳號沒有貼文可供測試'), { apiCode: 0 });
-      const page = await graphGet(`/${firstMediaId}/comments`, { config, fields: 'id' });
-      return `可讀取，最新一則貼文有 ${(page.data || []).length} 則留言`;
+      if (!withComments) {
+        return {
+          verdict: 'other',
+          detail: '帳號目前沒有任何有留言的貼文，無法分辨「可讀取但是零」與「靜默回空」。無法判定。',
+        };
+      }
+      const page = await graphGet(`/${withComments.id}/comments`, { config, fields: 'id' });
+      const read = (page.data || []).length;
+      if (read === 0) {
+        return {
+          verdict: 'silent',
+          detail:
+            `該貼文 comments_count=${withComments.comments_count}，但 comments 邊讀到 0 筆。` +
+            '呼叫沒有報錯，資料卻取不到 —— 這是靜默拒絕，不是「沒有留言」。',
+        };
+      }
+      return `可讀取，試紙貼文讀到 ${read} 筆（該貼文 comments_count=${withComments.comments_count}）`;
     }),
   );
 
+  // 私訊沒有等價的試紙：沒有一個獨立來源能告訴我們「應該有幾個會話」。
+  // 空陣列因此本質上無法解讀，一律回報無法判定，不宣稱可讀取。
   results.push(
     await probe('讀取私訊會話', 'instagram_business_manage_messages', async () => {
       const page = await graphGet('/me/conversations', { config, fields: 'id' });
-      return `可讀取，${(page.data || []).length} 個會話（未讀取任何訊息內容）`;
+      const count = (page.data || []).length;
+      if (count === 0) {
+        return {
+          verdict: 'other',
+          detail:
+            '回傳 0 個會話。沒有獨立證據可以分辨「真的沒有會話」與「靜默回空」（留言那項已證實後者會發生）。無法判定。',
+        };
+      }
+      return `可讀取，${count} 個會話（未讀取任何訊息內容）`;
     }),
   );
 
-  const symbol = { granted: '[有]', denied: '[無]', other: '[?]', token: '[!]' };
+  const symbol = { granted: '[有]', denied: '[無]', other: '[?]', token: '[!]', silent: '[空]' };
   console.log('權限盤點');
   console.log('--------------------------------------------------------------');
   for (const r of results) {
@@ -116,6 +153,7 @@ async function main() {
   }
   console.log('');
   console.log('[有] 已授予　[無] 未授予　[?] 無法判定，需人工確認　[!] 權杖問題');
+  console.log('[空] 呼叫成功但回傳空的，且有獨立證據顯示不該是空的 —— 靜默拒絕，比「未授予」更難發現');
 }
 
 main().catch((error) => {

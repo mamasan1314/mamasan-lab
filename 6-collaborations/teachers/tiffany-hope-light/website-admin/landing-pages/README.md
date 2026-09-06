@@ -9,7 +9,7 @@
 | 檔案 | 主題 | Artifact | 最後發布 | 狀態 |
 |---|---|---|---|---|
 | [`hopelight-course-lp-mvp.html`](./hopelight-course-lp-mvp.html) | 兩日／三日課程 | <https://claude.ai/code/artifact/0c5f6de3-919a-41cb-8bad-fbf93c4de1f6> | 2026-09-04 | 草稿 v0.1，六處 `待確認` 卡在等老師 |
-| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | 2026-09-05 | 草稿 v0.1，下單流程順序 `待確認` |
+| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | 2026-09-05（v0.1） | 檔案已是 v0.2，**尚未重新發布**；下單流程順序 `待確認` |
 
 兩張都帶著頂端的「內部草稿」橫幅，未經老師確認前不對外發布。
 
@@ -23,6 +23,34 @@
 
 不要因為「發不出去」就開一張新的然後把新連結傳出去。同一份稿在外面有兩個連結，
 比舊連結更難收拾。
+
+## 分享中的 Artifact 會被釘在某一個版本
+
+2026-09-06 讀取蠟燭那張 Artifact，分享還開著時，系統回的狀態是
+「shared with anyone with the link（viewers currently see this version, but will not
+see future publishes until the share pin is moved）」。
+
+意思是：**分享一旦開啟，這條連結就對外釘在當下那個版本**。之後重新發布只會產生
+新版本，老師打開同一條連結看到的仍是舊版，而且她不會收到任何提示。
+
+同日把分享關掉後再讀，狀態變成 `private`，那句話消失——**關閉分享會一併解除釘選**。
+
+所以改稿的安全順序是：
+
+1. 改檔案
+2. （若分享是開的）先關閉分享
+3. 用上表的 URL 重新發布，**不要另開新的**
+4. 重新開啟分享，此時才會釘在新版本上
+
+先發布再開分享，比發布後才想辦法移動釘選乾淨。順序反了，老師看到的就是舊版。
+
+## 版本紀錄
+
+- **v0.2**（2026-09-06，依 Tiffany 意見）：字色加深（`--ink` `#201C2E`→`#15111F`、
+  `--muted` `#6B6480`→`#4B4560`、`--gold` `#9E6A1C`→`#8A5A12`），內文字重
+  300→400，標題改用 Noto Serif TC 700；行高 1.9→1.72，區塊間距與各處 gap 全面收緊，
+  標題級距略縮。文案未改。深色模式同步往「更亮」的方向加大對比。
+- **v0.1**（2026-09-05）：首版。
 
 ## 事實從哪裡來
 

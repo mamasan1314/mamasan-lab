@@ -1,34 +1,34 @@
 <title>21顆頻率蠟燭限定組</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@300;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Noto+Sans+TC:wght@400;500&family=Noto+Serif+TC:wght@500;700&display=swap">
 <style>
   :root{
     --ground:#F1EFF3;
     --surface:#FBFAFC;
-    --ink:#201C2E;
-    --muted:#6B6480;
-    --line:#DFDAE6;
-    --gold:#9E6A1C;
-    --gold-soft:#E8D9BE;
+    --ink:#15111F;
+    --muted:#4B4560;
+    --line:#D6D0DF;
+    --gold:#8A5A12;
+    --gold-soft:#E0CDA9;
     --glow:rgba(200,150,60,.20);
     --shadow:0 1px 2px rgba(32,28,46,.06),0 8px 24px -18px rgba(32,28,46,.35);
     --step--1:.8125rem;
     --step-0:1rem;
     --step-1:1.1875rem;
-    --step-2:1.5rem;
-    --step-3:2rem;
-    --step-4:2.75rem;
+    --step-2:1.375rem;
+    --step-3:1.75rem;
+    --step-4:2.5rem;
     color-scheme:light;
   }
   @media (prefers-color-scheme:dark){
     :root:not([data-theme="light"]){
       --ground:#141120;
       --surface:#1C1829;
-      --ink:#EAE6F0;
-      --muted:#9A93AC;
-      --line:#2E2942;
-      --gold:#D9A24C;
+      --ink:#F3F0F8;
+      --muted:#B5AECA;
+      --line:#332E48;
+      --gold:#E4B064;
       --gold-soft:#5A451F;
       --glow:rgba(217,162,76,.18);
       --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 28px -18px rgba(0,0,0,.9);
@@ -38,10 +38,10 @@
   :root[data-theme="dark"]{
     --ground:#141120;
     --surface:#1C1829;
-    --ink:#EAE6F0;
-    --muted:#9A93AC;
-    --line:#2E2942;
-    --gold:#D9A24C;
+    --ink:#F3F0F8;
+    --muted:#B5AECA;
+    --line:#332E48;
+    --gold:#E4B064;
     --gold-soft:#5A451F;
     --glow:rgba(217,162,76,.18);
     --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 28px -18px rgba(0,0,0,.9);
@@ -53,9 +53,9 @@
     background:var(--ground);
     color:var(--ink);
     font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
-    font-weight:300;
+    font-weight:400;
     font-size:var(--step-0);
-    line-height:1.9;
+    line-height:1.72;
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit}
@@ -65,10 +65,10 @@
     position:sticky;top:0;z-index:40;
     background:var(--ink);color:var(--ground);
     font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.06em;
-    text-align:center;padding:.55rem 1rem;line-height:1.5;margin:0;
+    text-align:center;padding:.45rem 1rem;line-height:1.5;margin:0;
   }
 
-  .shell{max-width:1180px;margin:0 auto;padding:0 1.5rem 5rem;position:relative}
+  .shell{max-width:1180px;margin:0 auto;padding:0 1.5rem 3.25rem;position:relative}
   main{max-width:44rem;margin:0 auto}
 
   .rail{display:none}
@@ -77,7 +77,7 @@
       display:block;position:fixed;top:50%;transform:translateY(-50%);
       left:max(1.5rem,calc(50vw - 590px));width:9.5rem;z-index:30;
     }
-    .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.55rem}
+    .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.45rem}
     .rail a{
       display:flex;align-items:center;gap:.6rem;text-decoration:none;
       font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.04em;
@@ -91,32 +91,32 @@
     .rail a[aria-current="true"]::before{width:2rem}
   }
 
-  .hero{position:relative;padding:5.5rem 0 4rem}
+  .hero{position:relative;padding:3.75rem 0 2.5rem}
   .hero::before{
-    content:"";position:absolute;inset:-6rem -40vw auto -40vw;height:34rem;z-index:-1;
+    content:"";position:absolute;inset:-5rem -40vw auto -40vw;height:28rem;z-index:-1;
     background:radial-gradient(48% 42% at 50% 32%,var(--glow),transparent 70%);
     pointer-events:none;
   }
   .eyebrow{
-    font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.22em;
-    text-transform:uppercase;color:var(--gold);margin:0 0 1.5rem;
+    font-family:"Jost",sans-serif;font-weight:500;font-size:var(--step--1);letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gold);margin:0 0 1rem;
   }
   h1{
-    font-family:"Noto Serif TC",serif;font-weight:500;
-    font-size:clamp(2rem,6vw,var(--step-4));line-height:1.35;letter-spacing:.02em;
-    text-wrap:balance;margin:0 0 1.5rem;
+    font-family:"Noto Serif TC",serif;font-weight:700;
+    font-size:clamp(1.875rem,5.4vw,var(--step-4));line-height:1.28;letter-spacing:.01em;
+    text-wrap:balance;margin:0 0 1rem;
   }
-  .lede{font-size:var(--step-1);color:var(--muted);margin:0 0 2rem;max-width:32rem}
+  .lede{font-size:var(--step-1);line-height:1.68;color:var(--muted);margin:0 0 1.4rem;max-width:34rem}
   .hero-price{
     display:flex;flex-wrap:wrap;align-items:baseline;gap:.35rem .9rem;
-    margin:0 0 2.25rem;font-family:"Jost",sans-serif;
+    margin:0 0 1.6rem;font-family:"Jost",sans-serif;
   }
   .hero-price .amt{font-size:var(--step-3);color:var(--gold);letter-spacing:.02em}
   .hero-price .cond{font-family:"Noto Sans TC",sans-serif;font-size:var(--step--1);color:var(--muted)}
   .actions{display:flex;flex-wrap:wrap;gap:.75rem}
   .btn{
     display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;
-    padding:.85rem 1.6rem;border-radius:999px;font-size:var(--step-0);
+    padding:.75rem 1.5rem;border-radius:999px;font-size:var(--step-0);
     border:1px solid var(--ink);transition:transform .2s ease;
   }
   .btn-primary{background:var(--ink);color:var(--ground)}
@@ -124,19 +124,19 @@
   .btn:hover{transform:translateY(-2px)}
   .btn:active{transform:none}
 
-  section{padding:3.5rem 0;border-top:1px solid var(--line)}
+  section{padding:2.4rem 0;border-top:1px solid var(--line)}
   .label{
-    font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.18em;
-    text-transform:uppercase;color:var(--muted);margin:0 0 1.25rem;
+    font-family:"Jost",sans-serif;font-weight:500;font-size:var(--step--1);letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;
   }
   h2{
-    font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-3);
-    line-height:1.45;margin:0 0 1.25rem;text-wrap:balance;
+    font-family:"Noto Serif TC",serif;font-weight:700;font-size:var(--step-3);
+    line-height:1.4;margin:0 0 .9rem;text-wrap:balance;
   }
-  h3{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-1);margin:0 0 .5rem}
-  p{margin:0 0 1.1rem;max-width:34rem}
+  h3{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-1);line-height:1.5;margin:0 0 .3rem}
+  p{margin:0 0 .8rem;max-width:36rem}
   p:last-child{margin-bottom:0}
-  .lift{font-family:"Noto Serif TC",serif;font-size:var(--step-2);line-height:1.7;color:var(--ink);max-width:30rem}
+  .lift{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-2);line-height:1.6;color:var(--ink);max-width:32rem}
 
   .tbd{
     display:inline-block;font-family:"Jost",sans-serif;font-size:.6875rem;
@@ -146,71 +146,71 @@
   }
 
   /* 10 款頻率 */
-  .groups{display:grid;gap:1.75rem}
-  @media (min-width:620px){.groups{grid-template-columns:1fr 1fr;gap:2rem 2.5rem}}
+  .groups{display:grid;gap:1.35rem}
+  @media (min-width:620px){.groups{grid-template-columns:1fr 1fr;gap:1.5rem 2.25rem}}
   .group-name{
-    font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.16em;
-    text-transform:uppercase;color:var(--gold);margin:0 0 .9rem;
-    padding-bottom:.5rem;border-bottom:1px solid var(--gold-soft);
+    font-family:"Jost",sans-serif;font-weight:500;font-size:var(--step--1);letter-spacing:.16em;
+    text-transform:uppercase;color:var(--gold);margin:0 0 .65rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--gold-soft);
   }
-  .group ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.85rem}
-  .group .nm{font-family:"Noto Serif TC",serif;font-size:var(--step-1);display:block;line-height:1.5}
-  .group .dsc{font-size:var(--step--1);color:var(--muted);display:block;line-height:1.7}
+  .group ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
+  .group .nm{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-1);display:block;line-height:1.45}
+  .group .dsc{font-size:var(--step--1);color:var(--muted);display:block;line-height:1.6}
 
   .pick{
-    margin-top:2.5rem;background:var(--surface);border:1px solid var(--line);
-    border-radius:4px;padding:1.75rem;box-shadow:var(--shadow);
+    margin-top:1.75rem;background:var(--surface);border:1px solid var(--line);
+    border-radius:4px;padding:1.35rem 1.5rem;box-shadow:var(--shadow);
   }
-  .pick p{margin-bottom:.75rem}
+  .pick p{margin-bottom:.55rem}
   .pick p:last-child{margin-bottom:0}
 
-  .steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.75rem}
-  .steps li{display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start}
+  .steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.15rem}
+  .steps li{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start}
   .steps .mark{
     font-family:"Jost",sans-serif;font-size:var(--step--1);color:var(--gold);
-    border:1px solid var(--gold-soft);border-radius:999px;width:2.25rem;height:2.25rem;
+    border:1px solid var(--gold-soft);border-radius:999px;width:2rem;height:2rem;
     display:grid;place-items:center;flex:none;
   }
-  .steps p{font-size:var(--step--1);color:var(--muted)}
+  .steps p{font-size:var(--step--1);line-height:1.7;color:var(--muted)}
 
-  .ritual{display:flex;flex-direction:column;gap:.4rem;margin:0 0 2rem;padding:0;list-style:none}
-  .ritual li{font-family:"Noto Serif TC",serif;font-size:var(--step-1);color:var(--ink)}
+  .ritual{display:flex;flex-direction:column;gap:.2rem;margin:0 0 1.4rem;padding:0;list-style:none}
+  .ritual li{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-1);color:var(--ink)}
   .away{
-    margin:0 0 1.75rem;padding:1.25rem 1.5rem;border-left:2px solid var(--gold-soft);
-    color:var(--muted);font-size:var(--step--1);display:flex;flex-direction:column;gap:.4rem;
+    margin:0 0 1.25rem;padding:.9rem 1.25rem;border-left:2px solid var(--gold-soft);
+    color:var(--muted);font-size:var(--step--1);display:flex;flex-direction:column;gap:.2rem;
   }
 
-  .check{list-style:none;margin:0;padding:0;display:grid;gap:.65rem}
-  @media (min-width:620px){.check{grid-template-columns:1fr 1fr;gap:.65rem 2rem}}
-  .check li{display:flex;align-items:flex-start;gap:.75rem;font-size:var(--step--1);line-height:1.8}
+  .check{list-style:none;margin:0;padding:0;display:grid;gap:.4rem}
+  @media (min-width:620px){.check{grid-template-columns:1fr 1fr;gap:.4rem 1.75rem}}
+  .check li{display:flex;align-items:flex-start;gap:.65rem;font-size:var(--step--1);line-height:1.65}
   .check .box{
     width:.95rem;height:.95rem;border:1px solid var(--gold);border-radius:2px;
-    flex:none;margin-top:.5rem;
+    flex:none;margin-top:.42rem;
   }
 
-  .includes{list-style:none;margin:0 0 1.5rem;padding:0;display:flex;flex-direction:column;gap:1.1rem}
-  .includes li{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start}
+  .includes{list-style:none;margin:0 0 1rem;padding:0;display:flex;flex-direction:column;gap:.85rem}
+  .includes li{display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:start}
   .includes .ico{font-size:var(--step-1);line-height:1.5;flex:none}
   .includes .txt strong{font-weight:500;font-family:"Noto Serif TC",serif;font-size:var(--step-1)}
-  .includes .txt p{font-size:var(--step--1);color:var(--muted);margin:.15rem 0 0}
+  .includes .txt p{font-size:var(--step--1);line-height:1.7;color:var(--muted);margin:.1rem 0 0}
 
   .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
   table{border-collapse:collapse;width:100%;min-width:30rem;font-size:var(--step--1)}
-  th,td{padding:1rem 1.25rem;text-align:left;border-bottom:1px solid var(--line)}
+  th,td{padding:.7rem 1rem;text-align:left;border-bottom:1px solid var(--line)}
   tbody tr:last-child td{border-bottom:0}
   th{font-family:"Jost",sans-serif;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-size:.6875rem}
   td.num{text-align:right;font-family:"Jost",sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .plan-name{font-family:"Noto Serif TC",serif}
+  .plan-name{font-family:"Noto Serif TC",serif;font-weight:500}
   tr.hilite td{background:var(--gold-soft)}
 
-  .contact-lines{list-style:none;margin:1.5rem 0 0;padding:0;display:flex;flex-direction:column;gap:.6rem;font-size:var(--step--1)}
+  .contact-lines{list-style:none;margin:1.1rem 0 0;padding:0;display:flex;flex-direction:column;gap:.4rem;font-size:var(--step--1)}
   .contact-lines span{font-family:"Jost",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:inline-block;min-width:5.5rem}
 
-  footer{border-top:1px solid var(--line);margin-top:3.5rem;padding-top:2rem;color:var(--muted);font-size:var(--step--1)}
-  .note{color:var(--muted);font-size:var(--step--1)}
+  footer{border-top:1px solid var(--line);margin-top:2.4rem;padding-top:1.5rem;color:var(--muted);font-size:var(--step--1)}
+  .note{color:var(--muted);font-size:var(--step--1);line-height:1.7}
   .safe{
-    margin-top:1.5rem;padding:1.25rem 1.5rem;background:var(--surface);
-    border:1px solid var(--line);border-radius:4px;font-size:var(--step--1);color:var(--muted);
+    margin-top:1rem;padding:1rem 1.25rem;background:var(--surface);
+    border:1px solid var(--line);border-radius:4px;font-size:var(--step--1);line-height:1.7;color:var(--muted);
   }
 
   html{scroll-behavior:smooth}
@@ -220,7 +220,7 @@
   }
 </style>
 
-<p class="draft">內部草稿 v0.1 ｜ 版型與文案示意，未經老師確認前請勿對外發布</p>
+<p class="draft">內部草稿 v0.2 ｜ 已加深字色、收緊排版；下單與諮詢流程仍待確認</p>
 
 <div class="shell">
   <nav class="rail" aria-label="章節導覽">
@@ -265,7 +265,7 @@
       <h2>你不需要每天都一樣</h2>
       <p>今天的你，可能需要的是財富；明天的你，可能需要貴人；某一天，你可能需要清晰專注；也可能只是想讓自己安靜下來，好好休息。</p>
 
-      <div class="groups" style="margin-top:2.25rem">
+      <div class="groups" style="margin-top:1.5rem">
         <div class="group">
           <p class="group-name">財富與事業</p>
           <ul>
@@ -311,12 +311,12 @@
       <h2>「現在的我，到底最需要從哪裡開始？」</h2>
       <p>10 款可以自由組合，但真的要選的時候，很多人會卡在這一題。</p>
       <p>所以這一組附的不只是蠟燭。<strong>你可以先跟老師做 10 分鐘的靈魂藍圖諮詢，聊完再決定 21 顆怎麼配。</strong></p>
-      <ol class="steps" style="margin-top:2rem">
+      <ol class="steps" style="margin-top:1.4rem">
         <li><span class="mark">01</span><div><h3>先聊 10 分鐘</h3><p>透過靈魂藍圖，看見你目前可以優先關注的方向。</p></div></li>
         <li><span class="mark">02</span><div><h3>再決定怎麼配</h3><p>依照聊出來的方向選 21 顆，也可以請老師直接給你建議。</p></div></li>
         <li><span class="mark">03</span><div><h3>帶回生活裡點</h3><p>每天選一顆此刻最需要的，把注意力慢慢帶回自己身上。</p></div></li>
       </ol>
-      <p class="note" style="margin-top:1.75rem">已經很清楚自己要什麼，也可以直接選好 21 顆，諮詢留著之後再約。</p>
+      <p class="note" style="margin-top:1.2rem">已經很清楚自己要什麼，也可以直接選好 21 顆，諮詢留著之後再約。</p>
     </section>
 
     <section id="ritual">
@@ -334,14 +334,14 @@
         <span>「為什麼又遇到這些事？」</span>
       </div>
       <p class="lift">慢慢帶回：<br>「我現在真正需要的是什麼？」</p>
-      <p style="margin-top:1.75rem">希望之光不是替你完成願望，而是透過燭光、香氣與儀式感，陪你留一點時間給自己。每一次點燃，都是一次回到自己的練習。</p>
+      <p style="margin-top:1.2rem">希望之光不是替你完成願望，而是透過燭光、香氣與儀式感，陪你留一點時間給自己。每一次點燃，都是一次回到自己的練習。</p>
     </section>
 
     <section id="foryou">
       <p class="label">適合誰</p>
       <h2>這一組適合現在的你嗎</h2>
       <p>如果你最近——</p>
-      <ul class="check" style="margin-top:1.5rem">
+      <ul class="check" style="margin-top:1rem">
         <li><span class="box" aria-hidden="true"></span>覺得人生卡卡的</li>
         <li><span class="box" aria-hidden="true"></span>工作／事業沒有方向</li>
         <li><span class="box" aria-hidden="true"></span>想讓財富狀態重新流動</li>
@@ -353,7 +353,7 @@
         <li><span class="box" aria-hidden="true"></span>想開始一個照顧自己的習慣</li>
         <li><span class="box" aria-hidden="true"></span>想給自己一段安靜的時間</li>
       </ul>
-      <p class="lift" style="margin-top:2.25rem">那麼，也許你需要的，不是更多答案。<br>而是給自己一段時間，重新回到自己。</p>
+      <p class="lift" style="margin-top:1.5rem">那麼，也許你需要的，不是更多答案。<br>而是給自己一段時間，重新回到自己。</p>
     </section>
 
     <section id="includes">
@@ -410,7 +410,7 @@
           </tbody>
         </table>
       </div>
-      <p style="margin-top:1.5rem">同樣是 21 顆，限定組只多 <strong>61 元</strong>，多的是運費、一個玻璃燭台，以及老師的 10 分鐘靈魂藍圖諮詢。</p>
+      <p style="margin-top:1.1rem">同樣是 21 顆，限定組只多 <strong>61 元</strong>，多的是運費、一個玻璃燭台，以及老師的 10 分鐘靈魂藍圖諮詢。</p>
       <p class="note">限量製作，售完即止。這不是每天都有的商品。</p>
     </section>
 
@@ -422,8 +422,8 @@
         <li><span class="mark">02</span><div><h3>完成訂購</h3><p>確認限定組內容與寄送資訊。</p></div></li>
         <li><span class="mark">03</span><div><h3>選你的 21 顆</h3><p>直接報上款式與數量；不確定的話，先約 10 分鐘靈魂藍圖諮詢，聊完再選。</p></div></li>
       </ol>
-      <p class="note" style="margin-top:1.75rem">實際的下單、選款與諮詢預約流程順序待確認，以老師與小幫手的實際作業為準。<span class="tbd">待確認</span></p>
-      <div class="actions" style="margin-top:1.75rem">
+      <p class="note" style="margin-top:1.2rem">實際的下單、選款與諮詢預約流程順序待確認，以老師與小幫手的實際作業為準。<span class="tbd">待確認</span></p>
+      <div class="actions" style="margin-top:1.25rem">
         <a class="btn btn-primary" href="https://lin.ee/vG7eI1Dv">加入官方 LINE 詢問</a>
       </div>
       <ul class="contact-lines">
@@ -435,7 +435,7 @@
 
     <footer>
       <p class="safe">蠟燭不是替你保證結果，而是陪你在一個小小的儀式裡，把願望、狀態與行動重新放回自己手上。</p>
-      <p style="margin-top:1.5rem">希望之光 Hope Light ｜ 本頁為內部版型草稿，所有款式、價格、贈品與流程以老師最終確認為準。</p>
+      <p style="margin-top:1.1rem">希望之光 Hope Light ｜ 本頁為內部版型草稿，所有款式、價格、贈品與流程以老師最終確認為準。</p>
     </footer>
   </main>
 </div>

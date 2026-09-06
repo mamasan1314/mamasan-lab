@@ -13,4 +13,4 @@
 
 - Telegram 若把無音軌 MP4 顯示成 GIF，可用 `send as a file` 傳送。
 - 正式上 IG Reels 前，可再做有音樂、旁白或更短節奏版本。
-- 若來源圖片出現錯價，正式輸出一律以 [`../product-facts.md`](../product-facts.md) 為準。
+- 若來源圖片出現錯價，正式輸出一律以 [`../product-facts.md`](../../product-facts.md) 為準。

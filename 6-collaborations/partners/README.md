@@ -12,4 +12,6 @@
 
 | 夥伴 | 協作主題 | 位置 |
 |---|---|---|
-| Darren | AI Builder、AI 協作與數位產品建造 | [`darren-ai-builder`](./darren-ai-builder) |
+| Darren | AI Builder 教學、以及對 mamasan 的數位製作分包 | [`darren`](./darren) |
+
+每位夥伴底下再依**關係種類**分資料夾，不把教學關係與商業案件混在同一層。

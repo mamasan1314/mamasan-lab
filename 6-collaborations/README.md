@@ -9,6 +9,7 @@
 - 單次交付案放在 `YYYY-MM-project-name/`，保留 README、正式交付物、腳本與決策紀錄。
 - 未確認的價格、成本、庫存、合規宣稱與合作條件一律標示「待確認」。
 - 老師案件放在 `teachers/`；共同建造、教學與能力養成關係放在 `partners/`，不把夥伴誤列成客戶。
+- 同一位夥伴若同時有教學關係與商業分包，在該夥伴底下再依關係種類分資料夾，不混在同一層。
 - 收錄合作關係不代表品牌、內容、著作權或 repo 所有權移轉；每個人的作品與最後決定仍歸本人。
 
 ## 目前收錄
@@ -16,5 +17,5 @@
 | 合作對象 | 品牌／主題 | 位置 |
 |---|---|---|
 | Tiffany／珈語 | Hope Light／希望之光品牌整合 | [`teachers/tiffany-hope-light`](./teachers/tiffany-hope-light) |
-| Darren | AI Builder n=1 前導協作（提案中） | [`partners/darren-ai-builder`](./partners/darren-ai-builder) |
+| Darren | AI Builder n=1 前導協作（提案中）＋ 數位製作分包 | [`partners/darren`](./partners/darren) |
 

@@ -22,7 +22,7 @@ WordPress dashboard, Elementor, or WooCommerce:
 When a request creates or revises material that may be delivered to Tiffany or
 another teacher through mamasan:
 
-1. Read `6-collaborations/partners/darren-ai-builder/translation-qc-workflow.md`
+1. Read `6-collaborations/partners/darren/subcontracting/translation-qc-workflow.md`
    and the project README before producing a delivery candidate.
 2. Treat Darren as a subcontractor to mamasan. Deliver drafts, change ledgers,
    added-content lists, risks, and decisions to mamasan first; do not frame a

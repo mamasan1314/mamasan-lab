@@ -3,6 +3,11 @@
 Status: relationship recorded; first teacher draft delivered 2026-08-26 but not accepted; workflow under revision
 Started: 2026-08-20
 
+> **這個資料夾只放教學關係。** Darren 對 mamasan 的商業製作分包
+> （服務地圖、價格、QC／QA 流程、各案報價）在
+> [`../subcontracting/`](../subcontracting)。老師端的案件不是 AI Builder 的教學對象，
+> 兩條線不混在同一層。
+
 ## 這段關係是什麼
 
 mamasan 是最早在 Darren 協助下建立自己 repo 的創作者。這次協作不是由 Darren 接手經營 `mamasan-lab`，而是把已經發生的經驗整理成一次可檢查的 AI Builder 前導實驗：
@@ -24,11 +29,9 @@ mamasan 是最早在 Darren 協助下建立自己 repo 的創作者。這次協�
 
 | 文件 | 用途 |
 |---|---|
-| [`profile.md`](./profile.md) | Darren 目前已被作品證明的能力、可承接範圍與缺口 |
-| [`service-map.md`](./service-map.md) | Darren 對 A 的分包服務、價格假設與責任邊界 |
-| [`subcontract-service-menu.md`](./subcontract-service-menu.md) | Darren 給 A 的分包價格參考；不是老師端報價單 |
-| [`translation-qc-workflow.md`](./translation-qc-workflow.md) | Darren → mamasan → 老師的翻譯、QC／QA、驗收與報價流向 |
+| [`../profile.md`](../profile.md) | Darren 目前已被作品證明的能力、可承接範圍與缺口 |
 | [`2026-08-ai-builder-pilot`](./2026-08-ai-builder-pilot) | mamasan 作為第一位候選學員的 n=1 前導實驗 |
+| [`../subcontracting/`](../subcontracting) | **商業分包**：服務地圖、價格、QC／QA 流程與各案報價。與本資料夾是兩條不同的關係 |
 | [Clarity／清晰度](https://github.com/darrenfiy/Three-Realms-Academy/tree/main/PROGRAMS/clarity) | 從 mamasan／Tiffany 合作壓力長出的通用定位工具與對話 agent；正典在 Academy |
 
 AI Builder 的課程正典仍在 Three Realms Academy：
@@ -59,7 +62,7 @@ AI Builder 的學習關係與商業案件分開處理。當 A 對接她身邊的
 
 2026-08-26，這條合作關係長出第一份實際製作：一套課程教材的體系整理。mamasan 將問題單與 PPT 草稿交給 Tiffany 後，Tiffany 明確表示不滿意，認為成果大量改動了她原本的文案。因此本案目前是**已製作、已交付、未被老師接受**，不是成功案例。
 
-這次失敗暴露的不是「能不能做出簡報」，而是合作鏈少了一道必要角色：mamasan 必須在 Darren 與 Tiffany 之間擔任翻譯者與交付前 QC／QA。完整更正見 [`translation-qc-workflow.md`](./translation-qc-workflow.md)；案件回顧見 [`../../teachers/tiffany-hope-light/2026-08-掌運卡/working/2026-08-26-post-delivery-review.md`](../../teachers/tiffany-hope-light/2026-08-掌運卡/working/2026-08-26-post-delivery-review.md)。
+這次失敗暴露的不是「能不能做出簡報」，而是合作鏈少了一道必要角色：mamasan 必須在 Darren 與 Tiffany 之間擔任翻譯者與交付前 QC／QA。完整更正見 [`translation-qc-workflow.md`](../subcontracting/translation-qc-workflow.md)；案件回顧見 [`../../teachers/tiffany-hope-light/2026-08-掌運卡/working/2026-08-26-post-delivery-review.md`](../../../teachers/tiffany-hope-light/2026-08-掌運卡/working/2026-08-26-post-delivery-review.md)。
 
 更正後的三條原則：
 

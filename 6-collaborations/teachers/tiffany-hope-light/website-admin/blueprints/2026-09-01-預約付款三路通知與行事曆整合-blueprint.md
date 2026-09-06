@@ -611,7 +611,7 @@ Google refresh token 如需存資料庫，必須加密；加密 key 放在 hosti
 - [HopeBox 網站管理說明](../README.md)
 - [Hope Light LINE 後台管理說明](../../line-admin/README.md)
 - [Tiffany／Hope Light 專案說明](../../README.md)
-- [Darren × mamasan 翻譯、QC／QA 與分包工作流](../../../../partners/darren-ai-builder/translation-qc-workflow.md)
+- [Darren × mamasan 翻譯、QC／QA 與分包工作流](../../../../partners/darren/subcontracting/translation-qc-workflow.md)
 
 官方資料：
 

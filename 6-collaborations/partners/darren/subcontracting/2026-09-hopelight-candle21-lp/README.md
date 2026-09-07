@@ -1,7 +1,7 @@
 # 2026-09｜希望之光 21 顆頻率蠟燭 LP
 
 老師／品牌：Tiffany／希望之光 Hope Light
-狀態：**報價中**。LP v0.2 已完成，卡在兩項產品確認與 LINE 寫入授權。
+狀態：**報價中**。LP v0.3 已完成，卡在兩項產品確認與 LINE 寫入授權。
 
 ## 文件
 
@@ -13,8 +13,8 @@
 
 | 項目 | 狀態 |
 |---|---|
-| LP 檔案 | v0.2 完成 — [`hopelight-candle21-lp.html`](../../../../teachers/tiffany-hope-light/website-admin/landing-pages/hopelight-candle21-lp.html) |
-| Artifact 預覽 | v0.2 已發布（2026-09-06） |
+| LP 檔案 | v0.3 完成 — [`hopelight-candle21-lp.html`](../../../../teachers/tiffany-hope-light/website-admin/landing-pages/hopelight-candle21-lp.html) |
+| Artifact 預覽 | 仍是舊版；v0.3 尚未重新發布 |
 | 真正的線上頁面 | **不存在**，尚未做到 hopebox.com.tw |
 | LINE 後台 | **完全未動**，三項動線都還沒建 |
 | 產品待確認 | 配置已結案；玻璃燭台、全台含運仍開著 |

@@ -213,7 +213,7 @@ $contactFont = New-Font $fontNames 31 ([System.Drawing.FontStyle]::Regular)
 $slides = @(
     @{ File = "11.jpg"; Title = "希望之光∞頻率蠟燭"; Subtitle = '10款主題能量｜NT$139／顆' },
     @{ File = "01.jpg"; Title = "貴人常臨蠟燭"; Subtitle = "吸引貴人相助，廣結良緣" },
-    @{ File = "02.jpg"; Title = "清晰專注蠟燭"; Subtitle = "穩定思緒流動，開啟專注狀態" },
+    @{ File = "02.jpg"; Title = "學/事業進步蠟燭"; Subtitle = "照顧學習節奏，聚焦工作與事業行動" },
     @{ File = "03.jpg"; Title = "感情升溫蠟燭"; Subtitle = "守護關係，提升溫度" },
     @{ File = "04.jpg"; Title = "吸引桃花蠟燭"; Subtitle = "吸引良緣，拓展人際" },
     @{ File = "05.jpg"; Title = "吸引顧客蠟燭"; Subtitle = "業績發展，營運順暢" },

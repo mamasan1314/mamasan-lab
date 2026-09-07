@@ -9,7 +9,7 @@
 | 檔案 | 主題 | Artifact | 最後發布 | 狀態 |
 |---|---|---|---|---|
 | [`hopelight-course-lp-mvp.html`](./hopelight-course-lp-mvp.html) | 兩日／三日課程 | <https://claude.ai/code/artifact/0c5f6de3-919a-41cb-8bad-fbf93c4de1f6> | 2026-09-04 | 草稿 v0.1，六處 `待確認` 卡在等老師 |
-| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | 2026-09-05（v0.1） | 檔案已是 v0.2，**尚未重新發布**；下單流程順序 `待確認` |
+| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | 2026-09-05（v0.1） | 檔案已是 v0.3，**尚未重新發布**；下單流程順序 `待確認` |
 
 兩張都帶著頂端的「內部草稿」橫幅，未經老師確認前不對外發布。
 
@@ -46,6 +46,8 @@ see future publishes until the share pin is moved）」。
 
 ## 版本紀錄
 
+- **v0.3**（2026-09-07，依最新實品標籤與 Darren 指示）：產品款名「清晰專注」更新為
+  「學/事業進步」，同步調整描述與選款範例。尚未重新發布。
 - **v0.2**（2026-09-06，依 Tiffany 意見）：字色加深（`--ink` `#201C2E`→`#15111F`、
   `--muted` `#6B6480`→`#4B4560`、`--gold` `#9E6A1C`→`#8A5A12`），內文字重
   300→400，標題改用 Noto Serif TC 700；行高 1.9→1.72，區塊間距與各處 gap 全面收緊，

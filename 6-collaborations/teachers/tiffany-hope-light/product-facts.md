@@ -110,7 +110,14 @@ IG: .hopelight.ig / hopelight.moment
 另外，老師對 LP 的回覆是「文字顏色深一點、排版密一點」——她在校視覺，
 不是在驗算運費。在視覺意見裡讀出對成本結構的同意，是過度解讀。
 
-在這兩項回覆之前，21 顆組的對外文案不要上線。
+**2026-09-08 處理方式更新**：這兩項不再作為上線閘門。依 `website-admin/DECISIONS.md`
+的 D-006，售價、含運與贈品改為做成後台自助欄位，以目前 LP 的值（NT$2,980、全台含運、
+玻璃燭台 1 個）出廠，老師之後隨時可自行調整，不需要事前答覆。
+
+但兩件事仍然成立：**上述數字不得對外描述成「老師已確認」**；以及上面的成本推算要主動
+讓她知道一次，讓她清楚有這個欄位可以調。詳見
+[`website-admin/projects/2026-09-candle21-commerce/DECISION-REGISTER.md`](./website-admin/projects/2026-09-candle21-commerce/DECISION-REGISTER.md)
+的 `C21-A01`～`C21-A03`。
 
 ## 文案界線
 

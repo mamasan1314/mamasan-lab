@@ -11,6 +11,12 @@
 1. 已經知道怎麼選的人可直接在 WooCommerce 選滿 21 顆並結帳。
 2. 不確定的人先到 LINE 預約 10 分鐘諮詢，諮詢後再回 WooCommerce 完成選款與結帳。
 3. WooCommerce 保持交易與訂單正式主檔；既有 CRM 看板只讀取並呈現訂單摘要。
+4. **售價、庫存、含運、贈品與十款款名全部做成 Tiffany 可自助修改的後台欄位**，
+   改一次就全站同步，往後不需要為了調價或調庫存再走一次確認流程。
+
+第 4 點是本案的最高驗收重點。Tiffany 在意的是 UI 好不好用，不是我們後面怎麼做；
+把營運參數變成她按得動的欄位，等於一次解決之後所有的來回。詳見
+Blueprint 第 2 節與驗收條件 10.1。
 
 ## 文件入口
 
@@ -18,7 +24,7 @@
 |---|---|---|
 | [`../../blueprints/2026-09-08-蠟燭21-WooCommerce-LINE-CRM-blueprint.md`](../../blueprints/2026-09-08-蠟燭21-WooCommerce-LINE-CRM-blueprint.md) | 系統邊界、資料模型、顧客旅程與驗收條件 | 草稿 |
 | [`../../plans/2026-09-08-蠟燭21-commerce-deployment-plan.md`](../../plans/2026-09-08-蠟燭21-commerce-deployment-plan.md) | 分階段施工、部署、驗證與回復 | 草稿；不可直接當上線授權 |
-| [`DECISION-REGISTER.md`](./DECISION-REGISTER.md) | 本案已採預設與待 mamasan／Tiffany 決定事項 | 待 QC |
+| [`DECISION-REGISTER.md`](./DECISION-REGISTER.md) | 本案已採預設、後台可自助欄位與仍需決定事項 | 待 QC |
 | [`../../wp-plugins/hopelight-candle21-commerce/README.md`](../../wp-plugins/hopelight-candle21-commerce/README.md) | 未來外掛原始碼邊界 | 只有 scaffold，尚無可安裝外掛 |
 | [`../../landing-pages/hopelight-candle21-lp.html`](../../landing-pages/hopelight-candle21-lp.html) | 現有 LP | v0.3；尚未上正式站 |
 | [`../../DECISIONS.md`](../../DECISIONS.md) | HopeBox 長期技術決策 | D-001～D-005 |
@@ -26,7 +32,7 @@
 ## 現況一句話
 
 既有 WooCommerce 與唯讀 CRM 看板可以沿用；本案真正要新做的是「21 顆選款資料模型、
-結帳驗證、LINE 雙入口、訂單欄位呈現與端對端驗收」。
+結帳驗證、後台自助設定頁與短碼化 LP、LINE 雙入口、訂單欄位呈現與端對端驗收」。
 
 ## 不在這一階段
 

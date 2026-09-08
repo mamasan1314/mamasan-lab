@@ -9,8 +9,11 @@
 - **D-001**：網站內容以**手寫 HTML＋Git**維護，由 AI 助手直接改原始碼。老師不會自己進後台，所以不為了 Elementor 自助編輯而遷就版型。**但交易功能（購物車、結帳、金流、訂單）一律維持 WooCommerce，不要自己刻。**
 - **D-002**：CRM 先做**本機唯讀看板**，暫不導入 Airtable。顧客個資只留本機，不進 Git、不上雲。
 - **D-003**：WordPress 後台 CRM 看板已上線，沿用 WooCommerce 權限並保持唯讀。
+- **D-004**：網站維護指令進入專案白名單；刪除類指令仍需人工核准，修改網站的腳本預設為預演模式。
 - **D-005**：跨 LP、WooCommerce、LINE、CRM 的工程以 `projects/` 作入口，Blueprint、
   部署計畫、程式碼與決策都留在 Git；秘密與顧客個資除外。
+- **D-006**：**會變的營運參數（售價、庫存、運費、贈品、款名）做成老師可自助修改的後台
+  欄位，前台一律讀取、不得抄寫。** 內容排版仍照 D-001 手寫 HTML。
 
 ## 已確認狀態
 
@@ -103,6 +106,10 @@ npm run crm:refresh
 跨 LP、WooCommerce、LINE、CRM 或預約的工作由 [`projects/`](./projects/) 提供單一入口。
 第一個專案是 [`projects/2026-09-candle21-commerce/`](./projects/2026-09-candle21-commerce/)；
 其 Blueprint 與部署計畫都只是草稿，不等於正式站寫入授權。
+
+該案的最高驗收重點是 **Tiffany 能不能自己在 wp-admin 改價格、庫存與贈品，且前台全部
+跟著變**（D-006）。驗收方式是由 mamasan 模擬老師、不看文件實測三件事，任何一件需要
+開口問就算不通過。
 
 ## CRM 後台外掛
 

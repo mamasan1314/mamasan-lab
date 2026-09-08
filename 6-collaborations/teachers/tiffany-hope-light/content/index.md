@@ -1,6 +1,6 @@
 # Hope Light Content Index
 
-最後整理日期：2026-08-31
+最後整理日期：2026-09-08
 
 這份索引用來快速確認目前 Tiffany／Hope Light 已經產出的內容、素材狀態與下一步。
 
@@ -30,6 +30,12 @@
 | @hopelight.ig｜2026-08-30 手動發布 Reel 001 | published / api-verified | [`reels/hopelight-ig-reel-2026-08-30-001/source/hopelight-ig-reel-2026-08-30-001.mp4`](./reels/hopelight-ig-reel-2026-08-30-001/source/hopelight-ig-reel-2026-08-30-001.mp4) | [`reels/hopelight-ig-reel-2026-08-30-001`](./reels/hopelight-ig-reel-2026-08-30-001) |
 
 備註：蠟燭介紹影片目前是無音樂、無旁白版。
+
+## LINE 貼文
+
+| 主題 | 狀態 | 圖片 | 專案 |
+|---|---|---|---|
+| 21 顆頻率蠟燭限量預告 | mamasan QC 足夠；未記錄發布 | [`hope-light-candle21-line-teaser-v1.png`](./line-posts/hope-light-candle21-teaser/hope-light-candle21-line-teaser-v1.png) | [`line-posts/hope-light-candle21-teaser`](./line-posts/hope-light-candle21-teaser) |
 
 2026-08-30 短片由 Tiffany 自行發布，2026-08-31 已用 Instagram Graph API 唯讀核實並補齊紀錄：
 公開網址 https://www.instagram.com/reel/Dcquxa8KVBX/ ，media ID `18108277667141280`，

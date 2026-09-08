@@ -8,6 +8,7 @@
 |---|---|
 | [`index.md`](./index.md) | 目前已產出的內容總表與狀態 |
 | [`ig-posts`](./ig-posts) | IG 單篇貼文、Caption、封面文字、圖片素材 |
+| [`line-posts`](./line-posts) | LINE 群組／官方帳號貼文與配圖專案 |
 | [`reels`](./reels) | Reels 影片專案、腳本、來源照片與輸出檔 |
 
 ## 整理規則

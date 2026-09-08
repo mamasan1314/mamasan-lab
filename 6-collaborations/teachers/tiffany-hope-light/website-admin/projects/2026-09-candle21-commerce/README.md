@@ -22,7 +22,7 @@ Blueprint 第 2 節與驗收條件 10.1。
 
 本次施工入口：[第一輪施工交接與驗證邊界](IMPLEMENTATION-2026-09-08.md) · [可操作預覽](preview/index.html)。
 
-線上入口：[階段驗收頁](https://hope-light-candle21-review.marianalin.chatgpt.site)（目前僅網站擁有者可見）。[發布紀錄與分享限制](REVIEW-SITE.md)。
+線上入口：[階段驗收頁](https://hope-light-candle21-review.marianalin.chatgpt.site)（已依 Darren 明確授權公開，無須登入）。[發布與分享紀錄](REVIEW-SITE.md)。
 
 **本次已依 Darren 指示暫時收工，先供 mamasan 檢視目前項目。** 工程尚未部署到 HopeBox；另已發布假資料驗收頁，不必一次驗收所有最終規格。後續自製程式以 repo 維護與回復，WordPress.com 權限不再是施工前提；顧客與訂單不放 Git。
 

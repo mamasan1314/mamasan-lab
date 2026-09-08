@@ -1,6 +1,6 @@
 # 21 顆頻率蠟燭｜WooCommerce × LINE × CRM
 
-狀態：**工程規劃草稿；未修改 HopeBox、WooCommerce 或 LINE。**  
+狀態：**已製作本機工程候選與假資料預覽；未部署或修改 HopeBox／LINE，待 mamasan QC／QA。**
 建立日期：2026-09-08（Asia/Taipei）  
 交付鏈：Darren 製作 → mamasan QC／QA → Tiffany 決定營運內容與是否上線
 
@@ -20,19 +20,25 @@ Blueprint 第 2 節與驗收條件 10.1。
 
 ## 文件入口
 
+本次施工入口：[第一輪施工交接與驗證邊界](IMPLEMENTATION-2026-09-08.md) · [可操作預覽](preview/index.html)。
+
+線上入口：[階段驗收頁](https://hope-light-candle21-review.marianalin.chatgpt.site)（目前僅網站擁有者可見）。[發布紀錄與分享限制](REVIEW-SITE.md)。
+
+**本次已依 Darren 指示暫時收工，先供 mamasan 檢視目前項目。** 工程尚未部署到 HopeBox；另已發布假資料驗收頁，不必一次驗收所有最終規格。後續自製程式以 repo 維護與回復，WordPress.com 權限不再是施工前提；顧客與訂單不放 Git。
+
 | 文件／原始碼 | 用途 | 狀態 |
 |---|---|---|
 | [`../../blueprints/2026-09-08-蠟燭21-WooCommerce-LINE-CRM-blueprint.md`](../../blueprints/2026-09-08-蠟燭21-WooCommerce-LINE-CRM-blueprint.md) | 系統邊界、資料模型、顧客旅程與驗收條件 | 草稿 |
 | [`../../plans/2026-09-08-蠟燭21-commerce-deployment-plan.md`](../../plans/2026-09-08-蠟燭21-commerce-deployment-plan.md) | 分階段施工、部署、驗證與回復 | 草稿；不可直接當上線授權 |
 | [`DECISION-REGISTER.md`](./DECISION-REGISTER.md) | 本案已採預設、後台可自助欄位與仍需決定事項 | 待 QC |
-| [`../../wp-plugins/hopelight-candle21-commerce/README.md`](../../wp-plugins/hopelight-candle21-commerce/README.md) | 未來外掛原始碼邊界 | 只有 scaffold，尚無可安裝外掛 |
+| [`../../wp-plugins/hopelight-candle21-commerce/README.md`](../../wp-plugins/hopelight-candle21-commerce/README.md) | commerce 外掛、設定介面與測試指令 | 0.1.0 本機候選，未部署 |
 | [`../../landing-pages/hopelight-candle21-lp.html`](../../landing-pages/hopelight-candle21-lp.html) | 現有 LP | v0.3；尚未上正式站 |
 | [`../../DECISIONS.md`](../../DECISIONS.md) | HopeBox 長期技術決策 | D-001～D-006 |
 
 ## 現況一句話
 
-既有 WooCommerce 與唯讀 CRM 看板可以沿用；本案真正要新做的是「21 顆選款資料模型、
-結帳驗證、後台自助設定頁與短碼化 LP、LINE 雙入口、訂單欄位呈現與端對端驗收」。
+已製作選款、結帳驗證、後台設定、短碼化 LP、快照與 CRM 讀取。35 項假資料測試與 Chromium
+介面檢查通過；WordPress 整合、付款／庫存端到端、快取、LINE 與真人自助 UI 驗收仍待完成。
 
 ## 不在這一階段
 
@@ -41,4 +47,3 @@ Blueprint 第 2 節與驗收條件 10.1。
 - 不做 Google Calendar API 與付款完成三路通知。
 - 不導入 Airtable；D-002／D-003 仍有效。
 - 不自行重寫購物車、金流、訂單或退款系統。
-

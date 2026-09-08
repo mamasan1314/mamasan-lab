@@ -1,0 +1,395 @@
+<?php
+/** Template Name: 21 顆頻率蠟燭 */
+if (!defined('ABSPATH')) { exit; }
+if (!defined('DONOTCACHEPAGE')) { define('DONOTCACHEPAGE', true); }
+nocache_headers();
+function hl_c21_lp_field($field) {
+    if (shortcode_exists('hopelight_c21')) { return do_shortcode('[hopelight_c21 field="' . $field . '"]'); }
+    return $field === 'cta' ? '<a class="btn btn-primary" href="https://lin.ee/vG7eI1Dv">LINE 傳「蠟燭」聯絡我們</a>' : '';
+}
+?><!doctype html><html <?php language_attributes(); ?>><head><meta charset="<?php bloginfo('charset'); ?>"><meta name="viewport" content="width=device-width, initial-scale=1"><title><?php echo esc_html(get_the_title()); ?></title><?php wp_head(); ?></head><body <?php body_class('candle21-lp'); ?>><?php wp_body_open(); ?>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Noto+Sans+TC:wght@400;500&family=Noto+Serif+TC:wght@500;700&display=swap">
+<style>
+  :root{
+    --ground:#F1EFF3;
+    --surface:#FBFAFC;
+    --ink:#15111F;
+    --muted:#4B4560;
+    --line:#D6D0DF;
+    --gold:#8A5A12;
+    --gold-soft:#E0CDA9;
+    --glow:rgba(200,150,60,.20);
+    --shadow:0 1px 2px rgba(32,28,46,.06),0 8px 24px -18px rgba(32,28,46,.35);
+    --step--1:.8125rem;
+    --step-0:1rem;
+    --step-1:1.1875rem;
+    --step-2:1.375rem;
+    --step-3:1.75rem;
+    --step-4:2.5rem;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#141120;
+      --surface:#1C1829;
+      --ink:#F3F0F8;
+      --muted:#B5AECA;
+      --line:#332E48;
+      --gold:#E4B064;
+      --gold-soft:#5A451F;
+      --glow:rgba(217,162,76,.18);
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 28px -18px rgba(0,0,0,.9);
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#141120;
+    --surface:#1C1829;
+    --ink:#F3F0F8;
+    --muted:#B5AECA;
+    --line:#332E48;
+    --gold:#E4B064;
+    --gold-soft:#5A451F;
+    --glow:rgba(217,162,76,.18);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 28px -18px rgba(0,0,0,.9);
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+    font-weight:400;
+    font-size:var(--step-0);
+    line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+
+  .draft{
+    position:sticky;top:0;z-index:40;
+    background:var(--ink);color:var(--ground);
+    font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.06em;
+    text-align:center;padding:.45rem 1rem;line-height:1.5;margin:0;
+  }
+
+  .shell{max-width:1180px;margin:0 auto;padding:0 1.5rem 3.25rem;position:relative}
+  main{max-width:44rem;margin:0 auto}
+
+  .rail{display:none}
+  @media (min-width:1080px){
+    .rail{
+      display:block;position:fixed;top:50%;transform:translateY(-50%);
+      left:max(1.5rem,calc(50vw - 590px));width:9.5rem;z-index:30;
+    }
+    .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.45rem}
+    .rail a{
+      display:flex;align-items:center;gap:.6rem;text-decoration:none;
+      font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.04em;
+      color:var(--muted);transition:color .25s ease;
+    }
+    .rail a::before{
+      content:"";width:1.1rem;height:1px;background:currentColor;flex:none;
+      transition:width .25s ease;
+    }
+    .rail a:hover,.rail a[aria-current="true"]{color:var(--gold)}
+    .rail a[aria-current="true"]::before{width:2rem}
+  }
+
+  .hero{position:relative;padding:3.75rem 0 2.5rem}
+  .hero::before{
+    content:"";position:absolute;inset:-5rem 0 auto 0;height:28rem;z-index:-1;
+    background:radial-gradient(48% 42% at 50% 32%,var(--glow),transparent 70%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:"Jost",sans-serif;font-weight:500;font-size:var(--step--1);letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gold);margin:0 0 1rem;
+  }
+  h1{
+    font-family:"Noto Serif TC",serif;font-weight:700;
+    font-size:clamp(1.875rem,5.4vw,var(--step-4));line-height:1.28;letter-spacing:.01em;
+    text-wrap:balance;margin:0 0 1rem;
+  }
+  .lede{font-size:var(--step-1);line-height:1.68;color:var(--muted);margin:0 0 1.4rem;max-width:34rem}
+  .hero-price{
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:.35rem .9rem;
+    margin:0 0 1.6rem;font-family:"Jost",sans-serif;
+  }
+  .hero-price .amt{font-size:var(--step-3);color:var(--gold);letter-spacing:.02em}
+  .hero-price .cond{font-family:"Noto Sans TC",sans-serif;font-size:var(--step--1);color:var(--muted)}
+  .actions{display:flex;flex-wrap:wrap;gap:.75rem}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;
+    padding:.75rem 1.5rem;border-radius:999px;font-size:var(--step-0);
+    border:1px solid var(--ink);transition:transform .2s ease;
+  }
+  .btn-primary{background:var(--ink);color:var(--ground)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:none}
+
+  section{padding:2.4rem 0;border-top:1px solid var(--line)}
+  .label{
+    font-family:"Jost",sans-serif;font-weight:500;font-size:var(--step--1);letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;
+  }
+  h2{
+    font-family:"Noto Serif TC",serif;font-weight:700;font-size:var(--step-3);
+    line-height:1.4;margin:0 0 .9rem;text-wrap:balance;
+  }
+  h3{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-1);line-height:1.5;margin:0 0 .3rem}
+  p{margin:0 0 .8rem;max-width:36rem}
+  p:last-child{margin-bottom:0}
+  .lift{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-2);line-height:1.6;color:var(--ink);max-width:32rem}
+
+  .tbd{
+    display:inline-block;font-family:"Jost",sans-serif;font-size:.6875rem;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+    border:1px dashed var(--gold);border-radius:999px;padding:.1rem .55rem;
+    vertical-align:.12em;margin-left:.4rem;white-space:nowrap;line-height:1.6;
+  }
+
+  /* 10 款頻率 */
+  .groups{display:grid;gap:1.35rem}
+  @media (min-width:620px){.groups{grid-template-columns:1fr 1fr;gap:1.5rem 2.25rem}}
+  .group-name{
+    font-family:"Jost",sans-serif;font-weight:500;font-size:var(--step--1);letter-spacing:.16em;
+    text-transform:uppercase;color:var(--gold);margin:0 0 .65rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--gold-soft);
+  }
+  .group ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
+  .group .nm{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-1);display:block;line-height:1.45}
+  .group .dsc{font-size:var(--step--1);color:var(--muted);display:block;line-height:1.6}
+
+  .pick{
+    margin-top:1.75rem;background:var(--surface);border:1px solid var(--line);
+    border-radius:4px;padding:1.35rem 1.5rem;box-shadow:var(--shadow);
+  }
+  .pick p{margin-bottom:.55rem}
+  .pick p:last-child{margin-bottom:0}
+
+  .steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.15rem}
+  .steps li{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start}
+  .steps .mark{
+    font-family:"Jost",sans-serif;font-size:var(--step--1);color:var(--gold);
+    border:1px solid var(--gold-soft);border-radius:999px;width:2rem;height:2rem;
+    display:grid;place-items:center;flex:none;
+  }
+  .steps p{font-size:var(--step--1);line-height:1.7;color:var(--muted)}
+
+  .ritual{display:flex;flex-direction:column;gap:.2rem;margin:0 0 1.4rem;padding:0;list-style:none}
+  .ritual li{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-1);color:var(--ink)}
+  .away{
+    margin:0 0 1.25rem;padding:.9rem 1.25rem;border-left:2px solid var(--gold-soft);
+    color:var(--muted);font-size:var(--step--1);display:flex;flex-direction:column;gap:.2rem;
+  }
+
+  .check{list-style:none;margin:0;padding:0;display:grid;gap:.4rem}
+  @media (min-width:620px){.check{grid-template-columns:1fr 1fr;gap:.4rem 1.75rem}}
+  .check li{display:flex;align-items:flex-start;gap:.65rem;font-size:var(--step--1);line-height:1.65}
+  .check .box{
+    width:.95rem;height:.95rem;border:1px solid var(--gold);border-radius:2px;
+    flex:none;margin-top:.42rem;
+  }
+
+  .includes{list-style:none;margin:0 0 1rem;padding:0;display:flex;flex-direction:column;gap:.85rem}
+  .includes li{display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:start}
+  .includes .ico{font-size:var(--step-1);line-height:1.5;flex:none}
+  .includes .txt strong{font-weight:500;font-family:"Noto Serif TC",serif;font-size:var(--step-1)}
+  .includes .txt p{font-size:var(--step--1);line-height:1.7;color:var(--muted);margin:.1rem 0 0}
+
+  .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:30rem;font-size:var(--step--1)}
+  th,td{padding:.7rem 1rem;text-align:left;border-bottom:1px solid var(--line)}
+  tbody tr:last-child td{border-bottom:0}
+  th{font-family:"Jost",sans-serif;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-size:.6875rem}
+  td.num{text-align:right;font-family:"Jost",sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .plan-name{font-family:"Noto Serif TC",serif;font-weight:500}
+  tr.hilite td{background:var(--gold-soft)}
+
+  .contact-lines{list-style:none;margin:1.1rem 0 0;padding:0;display:flex;flex-direction:column;gap:.4rem;font-size:var(--step--1)}
+  .contact-lines span{font-family:"Jost",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:inline-block;min-width:5.5rem}
+
+  footer{border-top:1px solid var(--line);margin-top:2.4rem;padding-top:1.5rem;color:var(--muted);font-size:var(--step--1)}
+  .note{color:var(--muted);font-size:var(--step--1);line-height:1.7}
+  .safe{
+    margin-top:1rem;padding:1rem 1.25rem;background:var(--surface);
+    border:1px solid var(--line);border-radius:4px;font-size:var(--step--1);line-height:1.7;color:var(--muted);
+  }
+
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+    html{scroll-behavior:auto}
+  }
+</style>
+
+
+
+<div class="shell">
+  <nav class="rail" aria-label="章節導覽">
+    <ol>
+      <li><a href="#top">開場</a></li>
+      <li><a href="#batch">這一批</a></li>
+      <li><a href="#frequencies">10款任選</a></li>
+      <li><a href="#consult">先聊再選</a></li>
+      <li><a href="#ritual">點燃之後</a></li>
+      <li><a href="#foryou">適合你嗎</a></li>
+      <li><a href="#includes">收到什麼</a></li>
+      <li><a href="#price">價格</a></li>
+      <li><a href="#order">怎麼買</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header class="hero" id="top">
+      <p class="eyebrow">希望之光 Hope Light</p>
+      <h1>給自己 21 次，<br>重新回到自己的時間</h1>
+      <p class="lede">10 款頻率蠟燭，任選 21 顆。不知道怎麼選，可以先透過 LINE 詢問。</p>
+      <div class="hero-price">
+        <span class="amt"><?php echo hl_c21_lp_field('price'); ?></span>
+        <span class="cond"><?php echo hl_c21_lp_field('stock'); ?></span>
+      </div>
+      <div class="actions">
+        <?php echo hl_c21_lp_field('cta'); ?>
+        <a class="btn btn-ghost" href="#frequencies">看 10 款頻率</a>
+      </div>
+    </header>
+
+    <section id="batch">
+      <p class="label">為什麼是這一批</p>
+      <h2>希望之光，不是每天都製作</h2>
+      <p>老師在製作頻率蠟燭時，會特別挑選適合製作的日子與時間。不是想做，就每天都有。</p>
+      <p>八月底到九月初剛好遇到一段適合的時機，這一批希望之光才在這個時候完成。</p>
+      <p class="lift">這一批，是特別製作的一批。<br><?php echo hl_c21_lp_field('stock'); ?><br>下一次什麼時候再製作，沒有固定日期。</p>
+    </section>
+
+    <section id="frequencies">
+      <p class="label">10 款頻率</p>
+      <h2>你不需要每天都一樣</h2>
+      <p>今天的你，可能需要的是財富；明天的你，可能需要貴人；某一天，你可能想讓學習或事業往前推進；也可能只是想讓自己安靜下來，好好休息。</p>
+
+      <div class="groups"><?php echo hl_c21_lp_field('names'); ?></div>
+
+
+      <div class="pick">
+        <h3>21 顆怎麼配，你自己決定</h3>
+        <p>這一組是 <strong>10 款任選 21 顆</strong>。不是我們配好給你，是你依照自己現在的狀態選。</p>
+        <p>同一款可以多拿幾顆，依照自己現在的狀態，自由組合。</p>
+        <p class="note">也不必按照固定順序使用。每天問自己一句「今天的我，需要什麼？」，再選一顆屬於今天的希望之光。</p>
+      </div>
+    </section>
+
+    <section id="consult"><p class="label">先聊再選</p><h2>不確定怎麼選，先聊聊也可以</h2><p>在 LINE 傳送「蠟燭」，由小幫手安排。聊完後，再回商品頁選滿 21 顆結帳。</p><?php echo hl_c21_lp_field('consultation'); ?><?php echo hl_c21_lp_field('cta'); ?></section>
+
+    <section id="ritual">
+      <p class="label">點燃之後</p>
+      <h2>點燃的，不只是蠟燭</h2>
+      <ul class="ritual">
+        <li>點燃蠟燭。</li>
+        <li>聞見香氣。</li>
+        <li>看著燭光。</li>
+      </ul>
+      <p>讓自己暫時離開外面的喧鬧，把注意力從——</p>
+      <div class="away">
+        <span>「別人怎麼看我？」</span>
+        <span>「事情什麼時候才會變好？」</span>
+        <span>「為什麼又遇到這些事？」</span>
+      </div>
+      <p class="lift">慢慢帶回：<br>「我現在真正需要的是什麼？」</p>
+      <p style="margin-top:1.2rem">希望之光不是替你完成願望，而是透過燭光、香氣與儀式感，陪你留一點時間給自己。每一次點燃，都是一次回到自己的練習。</p>
+    </section>
+
+    <section id="foryou">
+      <p class="label">適合誰</p>
+      <h2>這一組適合現在的你嗎</h2>
+      <p>如果你最近——</p>
+      <ul class="check" style="margin-top:1rem">
+        <li><span class="box" aria-hidden="true"></span>覺得人生卡卡的</li>
+        <li><span class="box" aria-hidden="true"></span>工作／事業沒有方向</li>
+        <li><span class="box" aria-hidden="true"></span>想讓財富狀態重新流動</li>
+        <li><span class="box" aria-hidden="true"></span>希望遇見支持自己的人</li>
+        <li><span class="box" aria-hidden="true"></span>人際關係讓你很疲憊</li>
+        <li><span class="box" aria-hidden="true"></span>想整理自己的情緒與生活空間</li>
+        <li><span class="box" aria-hidden="true"></span>最近需要重新找回專注力</li>
+        <li><span class="box" aria-hidden="true"></span>晚上想讓自己真正放鬆</li>
+        <li><span class="box" aria-hidden="true"></span>想開始一個照顧自己的習慣</li>
+        <li><span class="box" aria-hidden="true"></span>想給自己一段安靜的時間</li>
+      </ul>
+      <p class="lift" style="margin-top:1.5rem">那麼，也許你需要的，不是更多答案。<br>而是給自己一段時間，重新回到自己。</p>
+    </section>
+
+    <section id="includes">
+      <p class="label">這一次你會收到什麼</p>
+      <h2>限定組內容</h2>
+      <?php echo hl_c21_lp_field('bundle'); ?><?php echo hl_c21_lp_field('shipping'); ?><?php echo hl_c21_lp_field('consultation'); ?>
+    </section>
+
+    <section id="price">
+      <p class="label">價格</p>
+      <h2>選擇適合自己的方式</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">方案</th><th scope="col">內容</th><th scope="col" style="text-align:right">費用</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="plan-name">單顆</td>
+              <td>10 款可任選，運費依結帳顯示</td>
+              <td class="num"><?php echo hl_c21_lp_field('single_price'); ?></td>
+            </tr>
+            <tr>
+              <td class="plan-name">單顆買滿 21 顆</td>
+              <td>以目前單顆售價計算，運費依結帳顯示</td>
+              <td class="num"><?php echo hl_c21_lp_field('single_total'); ?></td>
+            </tr>
+            <tr class="hilite">
+              <td class="plan-name">21 顆限定組</td>
+              <td><?php echo hl_c21_lp_field('bundle'); ?><?php echo hl_c21_lp_field('shipping'); ?><?php echo hl_c21_lp_field('consultation'); ?></td>
+              <td class="num"><?php echo hl_c21_lp_field('price'); ?></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:1.1rem">限定組與單顆買滿 21 顆的目前價差：<strong><?php echo hl_c21_lp_field('difference'); ?></strong>。組合內容以上方顯示為準。</p>
+      <p class="note"><?php echo hl_c21_lp_field('stock'); ?></p>
+    </section>
+
+    <section id="order"><p class="label">怎麼買</p><h2>選好 21 顆，再安心結帳</h2><ol class="steps"><li><span class="mark">01</span><div><h3>直接選款，或先到 LINE 聊聊</h3><p>已經知道想要什麼，就直接訂購；不確定時，在 LINE 傳「蠟燭」。</p></div></li><li><span class="mark">02</span><div><h3>在商品頁選滿 21 顆</h3><p>十款任選，同款可重複。選滿後加入購物車。</p></div></li><li><span class="mark">03</span><div><h3>確認內容與寄送資訊後付款</h3><p>付款方式與運費以 WooCommerce 結帳頁顯示為準。</p></div></li></ol><div class="actions"><?php echo hl_c21_lp_field('cta'); ?></div></section>
+
+    <footer>
+      <p class="safe">蠟燭不是替你保證結果，而是陪你在一個小小的儀式裡，把願望、狀態與行動重新放回自己手上。</p>
+      <p style="margin-top:1.1rem">希望之光 Hope Light</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var ids = links.map(function (a) { return a.getAttribute('href').slice(1); });
+    var seen = {};
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { seen[e.target.id] = e.isIntersecting; });
+      var current = null;
+      ids.forEach(function (id) { if (seen[id] && !current) { current = id; } });
+      links.forEach(function (a) {
+        a.setAttribute('aria-current', a.getAttribute('href') === '#' + current ? 'true' : 'false');
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) { observer.observe(el); }
+    });
+  })();
+</script>
+
+<?php wp_footer(); ?></body></html>

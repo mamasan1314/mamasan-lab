@@ -1,6 +1,10 @@
 # hopelight-candle21-commerce
 
-狀態：**source scaffold only；目前沒有可安裝 PHP 外掛，也沒有修改正式站。**
+狀態：**0.1.0 本機工程候選；已有 PHP、介面、測試與 ZIP，尚未部署。**
+
+本次實作與限制詳見[施工交接](../../projects/2026-09-candle21-commerce/IMPLEMENTATION-2026-09-08.md)，可操作的[假資料預覽](../../projects/2026-09-candle21-commerce/preview/index.html)不會寫入正式站。
+
+以下原 scaffold 規格作為開發邊界保留，不代表每項驗收已完成。
 
 未來此處只放「21 顆限定組」需要的 WooCommerce glue code：十款數量欄位、合計 21 的
 伺服器驗證、cart／order item meta、source／consult path 與 feature flag。
@@ -23,6 +27,22 @@
 不在此實作購物車、金流、訂單、退款、LINE Bot、預約或新的 CRM 資料庫；這些分別沿用
 WooCommerce、LINE OA、既有預約流程與 `hopelight-crm-board`。
 
-開始寫 PHP 前必須先通過部署計畫 Phase 0，確認 WordPress／WooCommerce／PHP／HPOS、
-付款 gateway、備份、同 slug 更新能力與主機檔案復原入口。
+本次依使用者指示先收在本機候選，交 mamasan 檢視。後續自製程式以 repo 保留前版，準備 wp-admin 可操作的回復程序；WordPress.com 權限不再是施工前提。傳統購物車／結帳已唯讀確認；本版不支援 Cart／Checkout Blocks，限定組 Store API 會明確拒絕。
 
+短碼：`[hopelight_c21 field="price"]`，field 支援 `price`、`single_price`、`single_total`、`difference`、`stock`、`names`、`bundle`、`shipping`、`consultation`、`cta`。
+
+在 website-admin 執行：
+
+```powershell
+php tests/candle21/run.php
+node scripts/build-candle21-template.cjs
+php tests/candle21/preview.php
+node tests/candle21/browser.cjs
+powershell -NoProfile -ExecutionPolicy Bypass -File wp-plugins/pack.ps1 -PluginName hopelight-candle21-commerce
+```
+
+若 PHP 不在 PATH，本次可用 `$env:TEMP/hopebox-c21-php/php.exe`；換主機需提供 PHP。測試不含真實顧客資料。LP 子主題在 `wp-themes/hopebox-candle21-child/`；切換前需驗證現有 Hello Elementor 設定及全站。
+
+本版 `tw_bundle_only` 需分開結帳；尚未完成混購只免限定組的運費拆包。主機／CDN purge、Woo 庫存併發與付款取消退款仍待真實整合測試。
+
+緊急停用先關選購開關；若停用整個外掛，必須先把目標商品改為草稿，因 PHP 防護也會停止。設定會保留前一版 option，但不提供一鍵重新公開舊促銷承諾。

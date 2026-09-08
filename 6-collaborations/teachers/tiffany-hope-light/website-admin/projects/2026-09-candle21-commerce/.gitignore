@@ -1,0 +1,2 @@
+# Rebuildable local review package; source and synthetic previews remain in Git.
+*.zip

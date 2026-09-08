@@ -3,7 +3,7 @@
  * Plugin Name: 希望之光 CRM 看板
  * Plugin URI:  https://hopebox.com.tw/
  * Description: 在 WordPress 後台顯示 WooCommerce 顧客與訂單的整合看板。唯讀，不修改任何訂單資料。
- * Version:     0.1.0
+ * Version:     0.2.0
  * Author:      mamasan-lab
  * Requires PHP: 7.4
  * Requires at least: 5.8
@@ -14,7 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'HOPELIGHT_CRM_VERSION', '0.1.0' );
+require_once __DIR__ . '/candle21.php';
+define( 'HOPELIGHT_CRM_VERSION', '0.2.0' );
 define( 'HOPELIGHT_CRM_CAPABILITY', 'manage_woocommerce' );
 define( 'HOPELIGHT_CRM_ORDER_LIMIT', 1000 );
 
@@ -91,6 +92,7 @@ function hopelight_crm_collect_orders() {
 				'name'     => $item->get_name(),
 				'quantity' => (int) $item->get_quantity(),
 				'total'    => (float) $item->get_total(),
+				'candle21' => hopelight_crm_c21_item( $item ),
 			);
 		}
 
@@ -111,6 +113,7 @@ function hopelight_crm_collect_orders() {
 			'phone'    => $order->get_billing_phone(),
 			'items'    => $items,
 			'edit_url' => $order->get_edit_order_url(),
+			'candle21_source' => hopelight_crm_c21_source( $order ),
 		);
 	}
 
@@ -397,7 +400,7 @@ function hopelight_crm_render_page() {
 							<td class="hl-mono"><a class="hl-link" href="<?php echo esc_url( $order['edit_url'] ); ?>">#<?php echo esc_html( $order['number'] ); ?></a></td>
 							<td><?php echo esc_html( $order['date'] ); ?></td>
 							<td class="hl-strong"><?php echo esc_html( $order['name'] ); ?></td>
-							<td class="hl-items"><?php echo esc_html( implode( '、', wp_list_pluck( $order['items'], 'name' ) ) ); ?></td>
+							<td class="hl-items"><?php echo esc_html( implode( '、', wp_list_pluck( $order['items'], 'name' ) ) ); hopelight_crm_c21_render( $order ); ?></td>
 							<td class="num"><?php echo esc_html( hopelight_crm_money( $order['total'] ) ); ?></td>
 							<td><?php echo esc_html( $order['payment'] ); ?></td>
 							<td><span class="hl-pill st-<?php echo esc_attr( $order['status'] ); ?>"><?php echo esc_html( hopelight_crm_status_label( $order['status'] ) ); ?></span></td>
@@ -500,7 +503,7 @@ function hopelight_crm_render_page() {
 							<td class="hl-mono"><a class="hl-link" href="<?php echo esc_url( $order['edit_url'] ); ?>">#<?php echo esc_html( $order['number'] ); ?></a></td>
 							<td><?php echo esc_html( $order['date'] ); ?></td>
 							<td class="hl-strong"><?php echo esc_html( $order['name'] ); ?></td>
-							<td class="hl-items"><?php echo esc_html( implode( '、', $item_text ) ); ?></td>
+							<td class="hl-items"><?php echo esc_html( implode( '、', $item_text ) ); hopelight_crm_c21_render( $order ); ?></td>
 							<td class="num"><?php echo esc_html( hopelight_crm_money( $order['total'] ) ); ?></td>
 							<td><?php echo esc_html( $order['payment'] ); ?></td>
 							<td><span class="hl-pill st-<?php echo esc_attr( $order['status'] ); ?>"><?php echo esc_html( hopelight_crm_status_label( $order['status'] ) ); ?></span></td>

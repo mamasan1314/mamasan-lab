@@ -4,6 +4,13 @@
   "private": true,
   "description": "Reusable HopeBox WordPress access and management helpers",
   "scripts": {
+    "hopebox:login": "node scripts/connect-hopebox.cjs",
+    "candle21:audit": "node scripts/audit-candle21.cjs",
+    "candle21:test": "php tests/candle21/run.php",
+    "candle21:template": "node scripts/build-candle21-template.cjs",
+    "candle21:preview": "php tests/candle21/preview.php",
+    "candle21:browser": "node tests/candle21/browser.cjs",
+    "candle21:pack": "powershell -NoProfile -ExecutionPolicy Bypass -File wp-plugins/pack.ps1 -PluginName hopelight-candle21-commerce",
     "audit": "node scripts/audit-access.cjs",
     "audit:visible": "node scripts/audit-access.cjs --visible",
     "instagram:audit": "node scripts/inspect-instagram-access.cjs",

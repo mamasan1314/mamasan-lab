@@ -27,7 +27,7 @@ Blueprint 第 2 節與驗收條件 10.1。
 | [`DECISION-REGISTER.md`](./DECISION-REGISTER.md) | 本案已採預設、後台可自助欄位與仍需決定事項 | 待 QC |
 | [`../../wp-plugins/hopelight-candle21-commerce/README.md`](../../wp-plugins/hopelight-candle21-commerce/README.md) | 未來外掛原始碼邊界 | 只有 scaffold，尚無可安裝外掛 |
 | [`../../landing-pages/hopelight-candle21-lp.html`](../../landing-pages/hopelight-candle21-lp.html) | 現有 LP | v0.3；尚未上正式站 |
-| [`../../DECISIONS.md`](../../DECISIONS.md) | HopeBox 長期技術決策 | D-001～D-005 |
+| [`../../DECISIONS.md`](../../DECISIONS.md) | HopeBox 長期技術決策 | D-001～D-006 |
 
 ## 現況一句話
 

@@ -20,6 +20,8 @@ Blueprint 第 2 節與驗收條件 10.1。
 
 ## 文件入口
 
+接手先讀：[工作日誌索引](worklogs/WORKLOG.md) · [2026-09-08 收工紀錄與建議下一步](worklogs/WORKLOG-2026-09-08.md)。目前依 Darren 指示暫停施工。
+
 本次施工入口：[第一輪施工交接與驗證邊界](IMPLEMENTATION-2026-09-08.md) · [可操作預覽](preview/index.html)。
 
 線上入口：[階段驗收頁](https://hope-light-candle21-review.marianalin.chatgpt.site)（已依 Darren 明確授權公開，無須登入）。[發布與分享紀錄](REVIEW-SITE.md)。

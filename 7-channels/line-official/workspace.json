@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "note": "這台機器上，共用的 line-oa 工具在哪裡。不含任何 credential。",
+  "lineOaToolRoot": "../../../Manus/tools/line-oa",
+  "lineOaToolRootNote": "相對於 7-channels/line-official/。可用環境變數 LINE_OA_TOOL_ROOT 覆寫。位置寫在設定檔而不是程式碼裡算 ../..，是為了讓它可以被 grep 到、被覆寫、被明確地報錯。",
+  "secretsIncluded": false
+}

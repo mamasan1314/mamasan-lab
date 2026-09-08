@@ -1,0 +1,14 @@
+{
+  "accountId": "@290ykfry",
+  "label": "希望之光 Hope Light LINE 官方帳號",
+  "accountIdKind": "line_assigned_basic_id",
+  "publicId": "@happy139",
+  "publicIdStatus": "confirmed",
+  "publicIdNote": "@290ykfry 是系統配發的 Basic ID，@happy139 是自訂的 Premium ID，兩者為同一帳號。對外一律用 @happy139。",
+  "managerUrl": "https://manager.line.biz/account/@290ykfry",
+  "addFriendUrl": "https://lin.ee/vG7eI1Dv",
+  "ownership": "客戶資產（Tiffany 持有），公司代管操作",
+  "profileDirSegments": ["mamasan-lab", "hope-light-line-oa-browser-profile"],
+  "profileDirNote": "沿用 2026-08-24 建立的既有工作階段目錄，不可改名 —— 改名等於要求重新做一次手機驗證。",
+  "secretsIncluded": false
+}

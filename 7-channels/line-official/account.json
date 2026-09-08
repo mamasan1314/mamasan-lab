@@ -1,0 +1,10 @@
+{
+  "accountId": "@941hfdmj",
+  "label": "宇宙媽媽賞 LINE 官方帳號",
+  "accountIdKind": "line_assigned_basic_id",
+  "publicIdStatus": "unconfirmed",
+  "publicIdNote": "@941hfdmj 是 LINE 系統配發的 Basic ID。對外要公開的 ID 可能另有自訂的 Premium ID，尚未確認；確認前不要把這個字串放到官網或任何對外素材上。",
+  "managerUrl": "https://manager.line.biz/account/@941hfdmj",
+  "profileDirSegments": ["line-oa", "mamasan-line-oa-browser-profile"],
+  "secretsIncluded": false
+}

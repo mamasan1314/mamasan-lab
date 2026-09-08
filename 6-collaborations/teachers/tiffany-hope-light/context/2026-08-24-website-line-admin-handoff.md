@@ -1,5 +1,13 @@
 # 2026-08-24 HopeBox × LINE 後台工作交接
 
+> **`2026-09-09` 更正**：本文第 5 節的 LINE 指令已過時。登入流程與唯讀稽核的實作
+> 在 `2026-09-09` 抽到 **`Manus/tools/line-oa`**（第二個 LINE 帳號出現，通用能力
+> 只維護一份）。`line-admin/lib/line-oa-session.cjs` 保留為相容入口，API 與本機
+> 工作階段目錄都沒變；但 **`npm ci` 現在要在 `Manus/tools/line-oa` 跑，不是在
+> `line-admin/`** —— 後者的 `package-lock.json` 已移除，在那裡跑 `npm ci` 會失敗。
+> 現況見 [`../line-admin/README.md`](../line-admin/README.md)。
+> 本文其餘部分是 `2026-08-24` 當天的事實紀錄，不改寫。
+
 這份文件供未來 Codex 工作階段或協作者快速接回今天的網站與 LINE 官方帳號管理脈絡。它只記錄可安全留在 repository 的事實、工具與下一步，不包含帳號密碼、Cookie、客戶資料、聊天室內容、付款資料、Channel Secret 或 Access Token。
 
 ## 今日目標與結果
@@ -40,11 +48,14 @@
 - repository 採用的標準加好友網址：`https://lin.ee/vG7eI1Dv`
 - 管理說明：[`../line-admin/README.md`](../line-admin/README.md)
 - 共用登入入口：`line-admin/lib/line-oa-session.cjs`
-- 第一次或工作階段失效時：
+  （`2026-09-09` 起這是**相容入口**；實作在 `Manus/tools/line-oa`）
+- 第一次或工作階段失效時（**指令已更新，見文件開頭的更正**）：
 
   ```powershell
-  cd 6-collaborations/teachers/tiffany-hope-light/line-admin
+  cd Manus/tools/line-oa
   npm ci
+
+  cd 6-collaborations/teachers/tiffany-hope-light/line-admin
   npm run login
   npm run audit
   ```

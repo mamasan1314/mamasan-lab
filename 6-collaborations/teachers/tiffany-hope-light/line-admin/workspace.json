@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "note": "這台機器上，共用的 line-oa 工具在哪裡。不含任何 credential。",
+  "lineOaToolRoot": "../../../../../Manus/tools/line-oa",
+  "lineOaToolRootNote": "相對於 line-admin/。可用環境變數 LINE_OA_TOOL_ROOT 覆寫。",
+  "secretsIncluded": false
+}

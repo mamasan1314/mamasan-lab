@@ -24,13 +24,15 @@
 
 需求：Node.js 20 以上，以及 Chrome、Edge 或 Chromium 其中一個。
 
-1. 安裝固定版本依賴：
+1. 安裝固定版本依賴。**依賴裝在共用工具那裡，不在這個資料夾**，而且只需要做一次
+   （之後新增別的 LINE 帳號都共用同一份）：
 
    ```powershell
+   cd ../../../../../Manus/tools/line-oa
    npm ci
    ```
 
-2. 開啟專用瀏覽器並建立登入工作階段：
+2. 回到這個資料夾，開啟專用瀏覽器並建立登入工作階段：
 
    ```powershell
    npm run login
@@ -61,6 +63,19 @@ npm run audit:visible
 - 可用 `LINE_OA_BROWSER_PATH` 指定 Chrome、Edge 或 Chromium 執行檔。
 
 登入工作階段不放在 repository 或 OneDrive。新主機需要重新登入；LINE 要求再次驗證或 Cookie 過期時，重新執行 `npm run login`。
+
+## 通用能力在哪裡
+
+`2026-09-09` 起，登入流程與唯讀稽核的實作抽到 **`Manus/tools/line-oa`**，
+這個資料夾只保存「哪一個帳號」（`account.json`）與工具位置（`workspace.json`）。
+
+理由是第二個 LINE 帳號出現了（宇宙媽媽賞自己的官方帳號，在
+`mamasan-lab/7-channels/line-official/`）。照抄一份就會變成兩份實作 ——
+與 Instagram adapter 曾經分裂在兩個 repo 是同一個病，`2026-09-04` 決策的
+invariant 也寫死了「通用能力只維護一份，放在 Manus」。
+
+`lib/line-oa-session.cjs` 保留為**相容入口**，API 不變、行為不變；
+本機工作階段目錄也刻意沿用原路徑，既有登入不會失效。
 
 ## 管理界線
 

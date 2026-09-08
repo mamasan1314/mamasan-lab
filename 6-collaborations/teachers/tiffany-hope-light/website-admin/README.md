@@ -8,6 +8,9 @@
 
 - **D-001**：網站內容以**手寫 HTML＋Git**維護，由 AI 助手直接改原始碼。老師不會自己進後台，所以不為了 Elementor 自助編輯而遷就版型。**但交易功能（購物車、結帳、金流、訂單）一律維持 WooCommerce，不要自己刻。**
 - **D-002**：CRM 先做**本機唯讀看板**，暫不導入 Airtable。顧客個資只留本機，不進 Git、不上雲。
+- **D-003**：WordPress 後台 CRM 看板已上線，沿用 WooCommerce 權限並保持唯讀。
+- **D-005**：跨 LP、WooCommerce、LINE、CRM 的工程以 `projects/` 作入口，Blueprint、
+  部署計畫、程式碼與決策都留在 Git；秘密與顧客個資除外。
 
 ## 已確認狀態
 
@@ -95,6 +98,12 @@ npm run crm:refresh
 - 產出的 `crm/data/` 與 `crm/*.local.html` 含個資，已被 `.gitignore` 排除，不要 `git add -f`。
 - 看板是唯讀快照。改訂單狀態、地址與付款請回 WooCommerce 後台。
 
+## 工程專案入口
+
+跨 LP、WooCommerce、LINE、CRM 或預約的工作由 [`projects/`](./projects/) 提供單一入口。
+第一個專案是 [`projects/2026-09-candle21-commerce/`](./projects/2026-09-candle21-commerce/)；
+其 Blueprint 與部署計畫都只是草稿，不等於正式站寫入授權。
+
 ## CRM 後台外掛
 
 同一份看板的 WordPress 版本，掛在 wp-admin 選單，即時讀 WooCommerce，個資不離開網站。
@@ -136,9 +145,11 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 ### 其他已知陷阱
 
 - 外掛列表的 `tr` id 由外掛名稱產生，中文名稱會產生不可預期的 id，**不要用 `tr[data-slug]` 判斷狀態**；請改看 `a[href*="action=activate"]` 與 `action=deactivate` 連結。
-- **這台主機不允許刪除外掛。** 2026-09-04 實測：批次操作選單只有「啟用／停用／更新／自動更新」，沒有刪除；單列的「刪除」連結（含接受 JS 確認對話框）點下去也只是跳回外掛列表，檔案仍在。上傳與覆蓋安裝則正常。
+- **這台主機當時無法從 wp-admin 刪除外掛。** 2026-09-04 實測：批次操作選單只有「啟用／停用／更新／自動更新」，沒有刪除；單列的「刪除」連結（含接受 JS 確認對話框）點下去也只是跳回外掛列表，檔案仍在。
   - 因此 `crm:plugin:remove` 目前在這台主機上無效，留著是為了換主機或設定放寬時可用。
-  - 推論：主機（路徑為 `/srv/htdocs/`，屬託管型環境）過濾掉了刪除功能。要清掉殘留資料夾，得透過主機的檔案管理員或請主機商協助。
+  - **已觀察事實**：wp-admin 刪除 UI／動作無法移除檔案。**推論**：主機（路徑為 `/srv/htdocs/`，屬託管型環境）的權限或平台政策過濾了刪除功能。要清掉殘留資料夾，需取得主機檔案管理、SFTP／SSH 或主機商協助。
+  - 同批文件對「同 slug 覆蓋安裝」留下互相衝突的結論：本 README 舊版曾寫正常，D-003 與重入指引寫會被擋。新的外掛施工一律把覆蓋能力視為**待重新預演確認**，不能引用任一舊句當保證。
+  - 本紀錄由 Git commit `16f878a`（2026-09-04）加入；Git author／committer 為 `darrenfiy`，commit message 標示 `Co-Authored-By: Claude Opus 5`。
   - **實務影響：安裝失敗會留下無法自行清除的殘留**，所以務必先用 `crm:plugin:check` 預演，並確認 zip 結構正確再上傳。
 
 ## 後續批次管理

@@ -8,6 +8,7 @@
 | 文件 | 用途 |
 |---|---|
 | [`上線工作與分包報價.md`](./上線工作與分包報價.md) | 完整工作清單、LINE 後台缺口、市場行情與分包報價 |
+| [`HopeBox commerce 工程入口`](../../../../teachers/tiffany-hope-light/website-admin/projects/2026-09-candle21-commerce/README.md) | WooCommerce × LINE × CRM 藍圖、決策與部署計畫 |
 
 ## 一眼看懂
 

@@ -158,3 +158,29 @@ CRM 看板做成 WordPress 外掛 `hopelight-crm`，掛在 wp-admin 選單。**�
 - 白名單只列**具名的指令**，不是 `npm run *`。新增腳本要另外加規則，這是刻意的摩擦。
 - 刪除類指令（`crm:plugin:remove`）**沒有**放進白名單，仍需人工核准。
 - 所有會修改網站的腳本都預設是預演模式，必須明確加 `--apply`。
+
+---
+
+## D-005｜跨元件工程以 repository 作為正式工程記憶
+
+- 決定日期：2026-09-08（Asia/Taipei）
+- 決定者：Darren
+- 狀態：**已定案**
+
+### 決定內容
+
+涉及 LP、WooCommerce、LINE、CRM 或預約等多個元件的工作，在 `projects/` 建立專案入口；
+設計放 `blueprints/`、部署與回復放 `plans/`、程式碼放原有元件資料夾。聊天或 AI 記憶不
+作為唯一決策來源。
+
+長期已定案規則留在本檔；專案內尚待確認的選項留在該專案的 `DECISION-REGISTER.md`，
+不得把建議預設寫成 Tiffany 或 mamasan 已核准。
+
+### 安全界線
+
+repository 只保存非敏感工程資料。密碼、Cookie、Token、Channel Secret、真實訂單匯出、
+聊天內容與可識別顧客個資不得進 Git。
+
+### 第一個採用專案
+
+- [`projects/2026-09-candle21-commerce/`](./projects/2026-09-candle21-commerce/)

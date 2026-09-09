@@ -1,5 +1,13 @@
 # Repository instructions
 
+## Cross-agent startup
+
+`AGENTS.md` and `CLAUDE.md` are a paired entry point. Read `CLAUDE.md` once at
+the start of a repository session before acting; Claude is instructed there to
+read this file in return. Do not duplicate shared rules between the two files:
+this file owns repository rules, while `CLAUDE.md` is the Claude loader and may
+hold only Claude-specific entry notes.
+
 ## HopeBox / Tiffany website work
 
 When a request mentions Tiffany, Hope Light, HopeBox, `hopebox.com.tw`, its

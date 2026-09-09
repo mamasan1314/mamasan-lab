@@ -1,6 +1,6 @@
 # Hope Light Content Index
 
-最後整理日期：2026-09-08
+最後整理日期：2026-09-09
 
 這份索引用來快速確認目前 Tiffany／Hope Light 已經產出的內容、素材狀態與下一步。
 
@@ -36,6 +36,12 @@
 | 主題 | 狀態 | 圖片 | 專案 |
 |---|---|---|---|
 | 21 顆頻率蠟燭限量預告 | mamasan QC 足夠；未記錄發布 | [`hope-light-candle21-line-teaser-v1.png`](./line-posts/hope-light-candle21-teaser/hope-light-candle21-line-teaser-v1.png) | [`line-posts/hope-light-candle21-teaser`](./line-posts/hope-light-candle21-teaser) |
+
+## 活動海報
+
+| 主題 | 狀態 | 圖片 | 專案 |
+|---|---|---|---|
+| 看懂 2027 的人生節奏｜土城希望之光小聚 | 待 mamasan QC／QA | [`life-rhythm-2027-poster-v1-mamasan-qc.png`](./event-posters/2026-10-life-rhythm-2027/outputs/life-rhythm-2027-poster-v1-mamasan-qc.png) | [`event-posters/2026-10-life-rhythm-2027`](./event-posters/2026-10-life-rhythm-2027) |
 
 2026-08-30 短片由 Tiffany 自行發布，2026-08-31 已用 Instagram Graph API 唯讀核實並補齊紀錄：
 公開網址 https://www.instagram.com/reel/Dcquxa8KVBX/ ，media ID `18108277667141280`，

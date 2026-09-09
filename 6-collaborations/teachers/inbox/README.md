@@ -18,8 +18,9 @@
    - 暫時無法判定歸屬 → 移至 `6-collaborations/teachers/_unassigned/YYYY-MM-DD/`，
      不留在 inbox
 5. **驗證**：確認目的地檔案存在、可開啟、檔案大小合理；重要素材可再比對 SHA-256。
-6. **記錄**：在下方「收件紀錄」留下原檔名、日期、歸檔位置與狀態。紀錄只寫路徑與
-   摘要，不寫敏感內容。
+6. **記錄**：在下方「收件紀錄」以**同一批素材一列**留下日期、專案、數量、歸檔位置
+   與狀態；逐檔名對照、雜湊與處理細節放在目的專案 README。紀錄只寫路徑與摘要，
+   不寫敏感內容。
 7. **清空**：只有在第 5 步通過後才刪除 inbox 原檔。完成時再次確認 inbox 除 README
    外為空。
 
@@ -31,9 +32,11 @@
 - inbox 素材與歸檔素材都不等於已核准對外發布；老師／mamasan 完成 QC／QA 後才能作為
   正式交付物。
 - 本 README 是 SOP 與收件台帳，永遠保留，不列入「清空」範圍。
+- 主台帳只保留最近 20 批；超過後按年份移至 `logs/YYYY.md`，避免 README 無限增長。
 
 ## 收件紀錄
 
-| inbox 原檔 | 收件日期 | 所屬合作案 | 歸檔位置／狀態 |
-|---|---|---|---|
-| `photo_6118331069963637764_y.jpg` | 2026-09-07 | Tiffany／希望之光 21 顆頻率蠟燭 LP | `../tiffany-hope-light/references/hope-light-candles-real-products-2026-09-07.jpg`；已驗證歸檔，inbox 原檔於 2026-09-08 清除 |
+| 收件日期 | 專案／批次 | 數量 | 歸檔位置 | 狀態 |
+|---|---|---:|---|---|
+| 2026-09-09 | Tiffany／2027 人生節奏小聚海報修訂 | 3 | [`../tiffany-hope-light/content/event-posters/2026-10-life-rhythm-2027`](../tiffany-hope-light/content/event-posters/2026-10-life-rhythm-2027) | 已驗證歸檔並清空；逐檔對照見專案 README |
+| 2026-09-07 | Tiffany／希望之光 21 顆頻率蠟燭 LP | 1 | [`../tiffany-hope-light/references/hope-light-candles-real-products-2026-09-07.jpg`](../tiffany-hope-light/references/hope-light-candles-real-products-2026-09-07.jpg) | 已驗證歸檔；inbox 原檔於 2026-09-08 清除 |

@@ -3,7 +3,8 @@
 > **已作廢，2026-09-03。保留為當時的歷史紀錄，不要當成現況。**
 >
 > **不要用這份決定下一步。**現況與下一步在
-> `Control-Room/worklogs/social-publishing/WORKLOG.md`。
+> `Control-Room/worklogs/ai-brand-operations/WORKLOG.md`
+> （`worklogs/social-publishing/` 已於 `2026-09-10` 併入該線，不再新增）。
 >
 > 主要失效點：本文件把「臨時素材隧道」列為下次工作階段的第一件事。
 > 那件事在 `2026-09-01` 就已完成，實作在

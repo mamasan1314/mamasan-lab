@@ -12,7 +12,8 @@
 - [`2026-08-24-website-line-admin-handoff.md`](./2026-08-24-website-line-admin-handoff.md)：HopeBox 與 LINE 後台的今日工作紀錄、稽核結論、重入方式與下一步。
 - [`2026-08-30-meta-instagram-access-handoff.md`](./2026-08-30-meta-instagram-access-handoff.md)：Meta／Instagram 權限層次、Page 連結等待期、手動發布紀錄與下次 API 路線。
 - [`2026-08-31-next-session-entry.md`](./2026-08-31-next-session-entry.md)：**已作廢（2026-09-03）**，保留為歷史紀錄。
-  現況與下一步改讀 `Control-Room/worklogs/social-publishing/WORKLOG.md`。
+  現況與下一步改讀 `Control-Room/worklogs/ai-brand-operations/WORKLOG.md`
+  （`worklogs/social-publishing/` 已於 `2026-09-10` 併入該線，不再新增）。
   指定的第一項工作是臨時素材隧道；另含目前狀態速查、已確認不可行的路線，
   以及比技術更要緊的非技術待辦。
 

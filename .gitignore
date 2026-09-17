@@ -52,3 +52,9 @@ node_modules/
 *.log
 .DS_Store
 Thumbs.db
+
+# 老師合作案收件匣：只放行 README。
+# 這裡是投遞區不是保存區，單支影片就 60-90 MB，而 GitHub 單檔 100 MB 直接拒絕。
+# 一次 git add -A 就足以把它掃進索引；push 被擋時檔案已經在本機歷史裡，要清掉得改寫歷史。
+6-collaborations/teachers/inbox/*
+!6-collaborations/teachers/inbox/README.md

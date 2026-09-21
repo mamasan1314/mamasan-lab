@@ -5,7 +5,7 @@
 - 建立：2026-09-21
 - 狀態：**示範稿 v0.6 已製作；正式方案、範圍與報價待確認**
 - 改寫層級：**L2**（依 Tiffany 的草圖與口述需求重建可操作流程）
-- 示範稿：[`../../../teachers/tiffany-hope-light/2026-09-customer-record-search/`](../../../teachers/tiffany-hope-light/2026-09-customer-record-search/)
+- 示範稿：[`../../../../teachers/tiffany-hope-light/2026-09-customer-record-search/`](../../../../teachers/tiffany-hope-light/2026-09-customer-record-search/)
 
 ## 文件分工
 
@@ -15,6 +15,15 @@
 | [`quotation.md`](./quotation.md) | mamasan；文字難度可供 Tiffany 閱讀 | 用白話比較本機版與雲端版、價格及付款方式 |
 
 詳細技術內容只放在 `spec.md`，不再塞進報價單。
+
+## 程式碼正本
+
+本資料夾仍是 Darren → mamasan 分包關係、規格與報價正本；老師端需求與 HTML 示範稿仍在
+[`../../../../teachers/tiffany-hope-light/2026-09-customer-record-search/`](../../../../teachers/tiffany-hope-light/2026-09-customer-record-search/)。
+
+若正式方案獲確認，production code 由 Darren 的 private `darrenfiy-studio` 之
+`PRODUCTS/hopelight-case-record-system/` 建立，或在需要獨立部署／權限／原始碼交付時拆成專屬
+private repo。本資料夾不再複製一份活程式碼，只記交接 commit／release 與驗收狀態。
 
 ## 目前建議
 

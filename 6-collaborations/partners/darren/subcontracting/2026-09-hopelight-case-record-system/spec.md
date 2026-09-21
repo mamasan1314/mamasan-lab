@@ -197,5 +197,5 @@
 ## 10. 需求追溯
 
 - 原始來源：Tiffany 的手繪 UI 草圖與 2026-09-21 口述補充。
-- 示範稿與完整變更帳本：[`../../../teachers/tiffany-hope-light/2026-09-customer-record-search/README.md`](../../../teachers/tiffany-hope-light/2026-09-customer-record-search/README.md)
+- 示範稿與完整變更帳本：[`../../../../teachers/tiffany-hope-light/2026-09-customer-record-search/README.md`](../../../../teachers/tiffany-hope-light/2026-09-customer-record-search/README.md)
 - 本規格整理了示範稿 v0.6；由製作端新增或推論的內容，仍以該變更帳本為準。

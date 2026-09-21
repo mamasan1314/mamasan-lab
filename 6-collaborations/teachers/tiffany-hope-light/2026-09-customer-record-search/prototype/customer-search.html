@@ -3,15 +3,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  --paper:#F1F1F5; --card:#FFFFFF; --inset:#F8F8FB;
-  --ink:#1B1927; --ink-2:#4B4859; --muted:#7A7789;
-  --line:#E3E2EB; --line-2:#CCCAD8;
-  --accent:#A96A10; --accent-ink:#7B4C05; --accent-soft:#F7ECD8;
-  --teal:#1F6E68; --teal-soft:#DCEFEC;
-  --blue:#3B51A2; --blue-soft:#E1E6F8;
-  --plum:#8A3F86; --plum-soft:#F6E4F4;
+  /* 取自 hopelight-candle21-lp.html（Tiffany 2026-09-06 認可的字色加深版） */
+  --paper:#F1EFF3; --card:#FBFAFC; --inset:#F0EDF3;
+  --ink:#15111F; --ink-2:#3A3450; --muted:#4B4560;
+  --line:#D6D0DF; --line-2:#C3BBD0;
+  --accent:#8A5A12; --accent-ink:#6B4409; --accent-soft:#E0CDA9; --accent-wash:#EFE6D5;
+  --teal:#1F6E68; --teal-soft:#DDEBE8;
+  --blue:#3F4A8C; --blue-soft:#E2E5F2;
+  --plum:#8A3F86; --plum-soft:#F2E3F0;
   --danger:#A63636;
-  --shadow:0 1px 2px rgba(27,25,39,.05), 0 8px 24px -14px rgba(27,25,39,.25);
+  --shadow:0 1px 2px rgba(32,28,46,.06), 0 8px 24px -18px rgba(32,28,46,.35);
   --r:10px;
   --mono:"IBM Plex Mono","Noto Sans TC",ui-monospace,monospace;
   --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
@@ -19,27 +20,27 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --paper:#131220; --card:#1C1B2B; --inset:#232236;
-    --ink:#EEEDF5; --ink-2:#C5C2D4; --muted:#918EA6;
-    --line:#302E45; --line-2:#474459;
-    --accent:#E0A64A; --accent-ink:#F2C87F; --accent-soft:#392D16;
+    --paper:#141120; --card:#1C1829; --inset:#241F33;
+    --ink:#F3F0F8; --ink-2:#D6D1E4; --muted:#B5AECA;
+    --line:#332E48; --line-2:#453E5C;
+    --accent:#E4B064; --accent-ink:#F2D4A0; --accent-soft:#5A451F; --accent-wash:#2E2415;
     --teal:#5DC1B2; --teal-soft:#10312E;
-    --blue:#93A5E9; --blue-soft:#191F42;
+    --blue:#9AA8E4; --blue-soft:#1B2044;
     --plum:#D48FCE; --plum-soft:#32162F;
     --danger:#E4867F;
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -16px rgba(0,0,0,.8);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 28px -18px rgba(0,0,0,.9);
   }
 }
 :root[data-theme="dark"]{
-  --paper:#131220; --card:#1C1B2B; --inset:#232236;
-  --ink:#EEEDF5; --ink-2:#C5C2D4; --muted:#918EA6;
-  --line:#302E45; --line-2:#474459;
-  --accent:#E0A64A; --accent-ink:#F2C87F; --accent-soft:#392D16;
+  --paper:#141120; --card:#1C1829; --inset:#241F33;
+  --ink:#F3F0F8; --ink-2:#D6D1E4; --muted:#B5AECA;
+  --line:#332E48; --line-2:#453E5C;
+  --accent:#E4B064; --accent-ink:#F2D4A0; --accent-soft:#5A451F; --accent-wash:#2E2415;
   --teal:#5DC1B2; --teal-soft:#10312E;
-  --blue:#93A5E9; --blue-soft:#191F42;
+  --blue:#9AA8E4; --blue-soft:#1B2044;
   --plum:#D48FCE; --plum-soft:#32162F;
   --danger:#E4867F;
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -16px rgba(0,0,0,.8);
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 28px -18px rgba(0,0,0,.9);
 }
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -90,24 +91,52 @@ button,input,select,textarea{font:inherit;color:inherit}
 .chip.t-c[aria-pressed="true"]{background:var(--plum-soft);border-color:var(--plum);color:var(--plum)}
 
 /* ---------- layout ---------- */
-.main{display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:18px;padding-block:18px 0;align-items:start}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
-.phead{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line)}
-.phead h2{margin:0;font-size:12px;letter-spacing:.16em;color:var(--muted);font-weight:500}
+.listhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-block:18px 9px}
+.listhead h2{margin:0;font-size:12px;letter-spacing:.16em;color:var(--muted);font-weight:500}
 .count{font-family:var(--mono);font-size:11.5px;color:var(--accent-ink);background:var(--accent-soft);padding:1px 7px;border-radius:999px}
 
-/* result list */
-.results{max-height:min(62vh,640px);overflow:auto}
-.hit{display:grid;grid-template-columns:38px 1fr;gap:10px;padding:10px 14px;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);cursor:pointer;align-items:center}
+/* 首頁：當日壽星 */
+.bdaybox{border:1px solid var(--line);background:var(--card);border-radius:var(--r);padding:12px 14px;margin-top:18px;box-shadow:var(--shadow)}
+.bdaybox.on{border-color:var(--accent);background:var(--accent-wash)}
+.bdayhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bdayhead h2{margin:0;font-size:12px;letter-spacing:.16em;color:var(--muted);font-weight:500}
+.bdaybox.on .bdayhead h2{color:var(--accent-ink)}
+.bdaydate,.bdayvia{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.bdaynone{font-size:12.5px;color:var(--muted)}
+.bdaylist{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:7px}
+.bdaylist li{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.bdayname{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--accent-ink);background:transparent;border:0;border-bottom:1px solid var(--accent);padding:0 1px 1px;cursor:pointer}
+.bdayname:hover{color:var(--ink)}
+.bdayage{font-size:12px;color:var(--muted)}
+.c-line{font-size:11px;color:var(--muted)}
+
+/* 首頁：個案清單 */
+:root{--hitcols:42px minmax(108px,1.25fr) minmax(104px,.85fr) minmax(92px,.75fr) minmax(136px,1.05fr) minmax(112px,1.15fr)}
+.results{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.cols{display:grid;grid-template-columns:var(--hitcols);gap:12px;padding:10px 14px;font-size:11px;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--line);background:var(--inset)}
+.hit{display:grid;grid-template-columns:var(--hitcols);gap:12px;padding:9px 14px;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);cursor:pointer;align-items:center;font:inherit;color:inherit}
 .hit:last-child{border-bottom:0}
 .hit:hover{background:var(--inset)}
-.hit[aria-current="true"]{background:var(--accent-soft)}
-.hit[aria-current="true"] .hit-name{color:var(--accent-ink)}
-.thumb{width:38px;height:38px;border-radius:8px;object-fit:cover;background:var(--inset);border:1px solid var(--line)}
-.thumb-ph{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--muted)}
-.hit-name{font-weight:500}
-.hit-meta{font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
-.empty{padding:26px 16px;text-align:center;color:var(--muted);font-size:13px}
+.thumb{width:42px;height:42px;border-radius:8px;object-fit:cover;background:var(--inset);border:1px solid var(--line)}
+.thumb-ph{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;color:var(--muted)}
+.c-name{display:flex;flex-direction:column;min-width:0}
+.c-name b{font-weight:500;font-size:14.5px;overflow-wrap:anywhere}
+.c-name span{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.03em}
+.c-num{font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--ink-2);min-width:0;overflow-wrap:anywhere}
+.c-last{display:flex;flex-direction:column;min-width:0}
+.c-last>span{font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums}
+.c-tags{display:flex;flex-wrap:wrap;gap:4px;min-width:0}
+.c-tags .tag{font-size:11px;padding:1px 8px}
+.empty{padding:34px 16px;text-align:center;color:var(--muted);font-size:13px}
+
+/* 個案頁：頂端返回列 */
+.casebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.casebar .cname{font-family:var(--serif);font-size:17px;font-weight:700}
+.casebar .ccode{font-family:var(--mono);font-size:11.5px;color:var(--accent-ink);background:var(--accent-soft);padding:2px 7px;border-radius:5px}
+.casebar .nav{display:flex;gap:6px;margin-left:auto}
+.casebar .nav .pos{font-family:var(--mono);font-size:11.5px;color:var(--muted);align-self:center;margin-right:4px}
+#caseView{padding-block:18px 0}
 
 /* record sheet */
 .sheet{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:0;overflow:hidden}
@@ -152,7 +181,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* duplicate warning */
 .dup{border-radius:8px;padding:11px 12px;display:grid;gap:8px;font-size:12.5px;border:1px solid var(--line-2);background:var(--inset)}
 .dup.strong{border-color:var(--danger);background:color-mix(in srgb,var(--danger) 9%,transparent)}
-.dup.soft{border-color:var(--accent);background:var(--accent-soft)}
+.dup.soft{border-color:var(--accent);background:var(--accent-wash)}
 .dup b{font-size:13px}
 .dup.strong b{color:var(--danger)}
 .dup.soft b{color:var(--accent-ink)}
@@ -168,10 +197,10 @@ table.v th{font-size:11px;letter-spacing:.1em;color:var(--muted);font-weight:500
 table.v th.c,table.v td.c{text-align:center;width:52px}
 table.v td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
 table.v tr:last-child td{border-bottom:0}
-table.v tr.sel td{background:var(--accent-soft)}
+table.v tr.sel td{background:var(--accent-wash)}
 table.v tbody tr{cursor:pointer}
 table.v tbody tr:hover td{background:var(--inset)}
-table.v tr.sel:hover td{background:var(--accent-soft)}
+table.v tr.sel:hover td{background:var(--accent-wash)}
 .vdate{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
 .vseq{font-family:var(--mono);font-size:11px;color:var(--muted);margin-right:7px}
 .tick{appearance:none;width:17px;height:17px;border:1.5px solid var(--line-2);border-radius:4px;cursor:pointer;display:inline-grid;place-content:center;vertical-align:middle}
@@ -215,9 +244,12 @@ table.v tr.sel:hover td{background:var(--accent-soft)}
 .demobar .dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
 .foot{color:var(--muted);font-size:12px;padding-block:22px 0;border-top:1px solid var(--line);margin-top:22px;display:grid;gap:4px}
 
-@media (max-width:900px){
-  .main{grid-template-columns:1fr}
-  .results{max-height:300px}
+@media (max-width:860px){
+  .cols{display:none}
+  .hit{grid-template-columns:42px 1fr;gap:4px 12px;padding:11px 14px}
+  .hit>:not(.thumb){grid-column:2}
+  .hit>.thumb{grid-row:1/span 4}
+  .c-tags{margin-top:2px}
   .sheet{grid-template-columns:1fr}
   .cell{border-right:0}
   .cell:nth-child(3){border-bottom:1px solid var(--line)}
@@ -241,6 +273,7 @@ table.v tr.sel:hover td{background:var(--accent-soft)}
       <span class="spacer"></span>
       <span class="mode" id="mode">示範資料</span>
     </div>
+    <div id="homeControls">
     <div class="searchbar">
       <div class="field"><label for="qName">姓　名</label><input class="inp" id="qName" placeholder="輸入部分姓名即可" autocomplete="off"></div>
       <div class="field"><label for="qPhone">電　話</label><input class="inp" id="qPhone" placeholder="0912 或末三碼" inputmode="numeric" autocomplete="off"></div>
@@ -253,20 +286,24 @@ table.v tr.sel:hover td{background:var(--accent-soft)}
       <span class="savestate" id="saveState"></span>
     </div>
     <div class="adv" id="advPanel" hidden></div>
+    </div>
+    <div class="casebar" id="caseBar" hidden></div>
   </div>
 </header>
 
 <div class="wrap">
-  <div class="main">
-    <section class="panel">
-      <div class="phead"><h2>搜尋結果</h2><span class="count" id="resCount">0</span><span class="spacer"></span><span class="hint" id="resHint" style="font-size:11px;color:var(--muted)"></span></div>
-      <div class="results" id="results"></div>
-    </section>
-    <section class="panel sheet" id="sheet"></section>
-  </div>
+  <section id="homeView">
+    <div id="bday"></div>
+    <div class="listhead">
+      <h2>個 案 清 單</h2><span class="count" id="resCount">0</span>
+      <span class="hint" id="resHint" style="font-size:11px;color:var(--muted)"></span>
+    </div>
+    <div class="results" id="results"></div>
+  </section>
+  <section id="caseView" hidden><div class="panel sheet" id="sheet"></div></section>
   <div class="demobar"><span class="dot"></span><span id="demoNote">畫面中的姓名、電話與紀錄皆為虛構示範資料，不是真實個案。</span></div>
   <div class="foot">
-    <div>版本 v0.1 示範稿　·　製作：Darren → mamasan（尚未經 QC／QA，非老師正式版）</div>
+    <div>版本 <span id="ver"></span> 示範稿　·　製作：Darren → mamasan（尚未經 QC／QA，非老師正式版）</div>
     <div>拍照功能需要瀏覽器授權攝影機；若此環境不允許，可改用「從檔案選擇」。</div>
   </div>
 </div>
@@ -282,6 +319,8 @@ var REASON_MIGRATE = {"親密關係":"感情","工作與事業":"事業","生涯
   "情緒壓力":"多元","睡眠困擾":"多元","身體狀況":"多元","靈性探索":"多元","朋友介紹體驗":"多元"};
 function migrate(list){
   (list||[]).forEach(function(c){
+    /* 示範鷹架：讓「今日壽星」不論哪天開啟都看得到。正式版移除此旗標與這三行。 */
+    if(c.demoBirthdayToday && (c.birthday||"").length>=4) c.birthday=c.birthday.slice(0,4)+"-"+mmdd(new Date());
     var out=[];
     (c.reasons||[]).forEach(function(r){
       var m=REASON_MIGRATE[r]||r;
@@ -295,34 +334,34 @@ var TYPES = [{k:"initial",label:"初評",cls:"t-i"},{k:"follow",label:"複評",c
 
 /* fictional demo records — NOT real clients */
 var SEED = [
- {id:"c1",code:"HL-2026-0118",name:"林佩瑜",phone:"0912-345-678",birthday:"1985-03-12",gender:"女",occupation:"國小教師",religion:"民間信仰",reasons:["感情","事業"],reasonNote:"關係界線與工作壓力",firstVisit:"2026-03-08",photo:"",
+ {id:"c1",code:"139-00003",name:"林佩瑜",phone:"0912-345-678",lineId:"peiyu0312",birthday:"1985-03-12",gender:"女",occupation:"國小教師",religion:"民間信仰",reasons:["感情","事業"],reasonNote:"關係界線與工作壓力",firstVisit:"2026-03-08",photo:"",
   direction:"長期把「被需要」當成自己的價值來源，腦意識在關係欄位的反應遠高於自我欄位。\n\n大方向：先把界線練起來，再談事業擴張。\n1. 陪她分辨「我想做」與「我不好意思拒絕」。\n2. 睡前 10 分鐘安然入夜，建立回到自己的節奏。\n3. 第三次之後再導入創賦密碼，避免一次給太多。",
   visits:[
    {id:"v1",date:"2026-03-08",initial:true,follow:false,course:false,item:"腦意識評量",fee:"2980",note:"初評。談到帶班壓力就掉眼淚，數值在關係欄位偏高。先不解讀太深，讓她把話說完。"},
    {id:"v2",date:"2026-05-17",initial:false,follow:true,course:false,item:"複評＋頻率蠟燭",fee:"3119",note:"複評。睡眠有改善，說可以在晚上十一點前放下手機了。帶了安然入夜回去。"},
    {id:"v3",date:"2026-08-30",initial:false,follow:true,course:false,item:"靈魂藍圖諮詢",fee:"1980",note:"開始談轉換跑道。提醒她這次先不要做決定，觀察三個月。"}]},
- {id:"c2",code:"HL-2026-0126",name:"陳彥廷",phone:"0921-556-042",birthday:"1978-11-02",gender:"男",occupation:"物流業主管",religion:"無",reasons:["多元"],reasonNote:"睡眠、肩頸與腸胃",firstVisit:"2026-04-21",photo:"",
+ {id:"c2",code:"139-00004",name:"陳彥廷",phone:"0921-556-042",lineId:"",birthday:"1978-11-02",gender:"男",occupation:"物流業主管",religion:"無",reasons:["多元"],reasonNote:"睡眠、肩頸與腸胃",firstVisit:"2026-04-21",photo:"",
   direction:"身體訊號先於情緒訊號：肩頸與腸胃的反覆，對應到不敢停下來。\n\n大方向：用身體當入口，不要一開始就談心理。\n先做兩次複評觀察穩定度，再決定是否進兩天課程。",
   visits:[
    {id:"v1",date:"2026-04-21",initial:true,follow:false,course:false,item:"腦意識評量",fee:"2980",note:"初評。太太陪同前來。自述睡不滿五小時已經兩年。"},
    {id:"v2",date:"2026-07-06",initial:false,follow:true,course:false,item:"複評",fee:"1500",note:"複評。開始願意在週日不看工作群組。腸胃症狀次數下降。"}]},
- {id:"c3",code:"HL-2026-0131",name:"黃思穎",phone:"0975-118-390",birthday:"1996-07-25",gender:"女",occupation:"平面設計接案",religion:"基督教",reasons:["事業","金錢"],reasonNote:"接案定價與生涯方向；朋友介紹前來",firstVisit:"2026-06-02",photo:"",
+ {id:"c3",code:"139-00005",name:"黃思穎",phone:"0975-118-390",lineId:"ssuying.design",birthday:"1996-07-25",gender:"女",occupation:"平面設計接案",religion:"基督教",reasons:["事業","金錢"],reasonNote:"接案定價與生涯方向；朋友介紹前來",firstVisit:"2026-06-02",photo:"",
   direction:"自我價值與收費能力綁在一起，報價時會自動打折。\n\n大方向：先處理「值得」這件事，再談接案策略。已完成兩天課程，後續以季度複評追蹤。",
   visits:[
    {id:"v1",date:"2026-06-02",initial:true,follow:false,course:false,item:"腦意識評量",fee:"2980",note:"初評。由 c1 個案介紹前來。對數值很好奇，問題很多，解讀時放慢速度。"},
    {id:"v2",date:"2026-07-19",initial:false,follow:false,course:true,item:"兩天課程",fee:"19800",note:"兩天課程第一天。分組練習時很快進入狀況，第二天主動分享。"},
    {id:"v3",date:"2026-09-12",initial:false,follow:true,course:false,item:"複評＋掌運卡",fee:"1980",note:"複評。這個月第一次照原價報價成功，沒有自己先打折。記下這個時間點。"}]},
- {id:"c4",code:"HL-2026-0142",name:"吳雅琳",phone:"0933-207-815",birthday:"1990-12-30",gender:"女",occupation:"護理師",religion:"佛教",reasons:["親子","多元"],reasonNote:"孩子的狀況，中段才談到自己",firstVisit:"2026-09-06",photo:"",
+ {id:"c4",code:"139-00006",name:"吳雅琳",phone:"0933-207-815",lineId:"yalin1230",birthday:"1990-12-30",gender:"女",occupation:"護理師",religion:"佛教",reasons:["親子","多元"],reasonNote:"孩子的狀況，中段才談到自己",firstVisit:"2026-09-06",photo:"",
   direction:"新個案，只做過一次評量。\n\n大方向待觀察：先確認她要處理的是自己，還是孩子。",
   visits:[
    {id:"v1",date:"2026-09-06",initial:true,follow:false,course:false,item:"腦意識評量",fee:"2980",note:"初評。主要想問孩子的狀況，中段才開始談自己。下次從這裡接。"}]},
- {id:"c5",code:"HL-2025-0097",name:"張美玲",phone:"0918-664-271",birthday:"1968-05-08",gender:"女",occupation:"早餐店經營",religion:"道教",reasons:["金錢","多元"],reasonNote:"店務交棒與靈性探索",firstVisit:"2025-11-15",photo:"",
+ {id:"c5",code:"139-00002",name:"張美玲",phone:"0918-664-271",lineId:"",birthday:"1968-05-08",gender:"女",occupation:"早餐店經營",religion:"道教",reasons:["金錢","多元"],reasonNote:"店務交棒與靈性探索",firstVisit:"2025-11-15",photo:"",
   direction:"舊個案，回訪穩定。談話重點已從店務轉到自己的下一段人生。\n\n大方向：可以開始談三天課程，但要等她自己提。",
   visits:[
    {id:"v1",date:"2025-11-15",initial:true,follow:false,course:false,item:"腦意識評量",fee:"2980",note:"初評。店裡人手問題講了很久。"},
    {id:"v2",date:"2026-02-28",initial:false,follow:true,course:false,item:"複評",fee:"1500",note:"複評。把早班交給媳婦之後整個人鬆下來。"},
    {id:"v3",date:"2026-06-20",initial:false,follow:true,course:false,item:"複評＋頻率蠟燭",fee:"2119",note:"複評。買了貴人常臨與財富豐盛。問到三天課程的內容。"}]},
- {id:"c6",code:"HL-2025-0083",name:"何淑芬",phone:"0955-430-118",birthday:"1973-09-19",gender:"女",occupation:"保險業務",religion:"民間信仰",reasons:["親子","感情"],reasonNote:"與女兒的關係，以及再婚與否",firstVisit:"2025-08-09",photo:"",
+ {id:"c6",code:"139-00001",name:"何淑芬",phone:"0955-430-118",lineId:"shufen_ho",birthday:"1973-09-19",demoBirthdayToday:true,gender:"女",occupation:"保險業務",religion:"民間信仰",reasons:["親子","感情"],reasonNote:"與女兒的關係，以及再婚與否",firstVisit:"2025-08-09",photo:"",
   direction:"評量後拿到的東西她收下了，但還沒準備好行動。\n\n大方向：不催。等她自己回來，回來時從女兒那條線接。",
   visits:[
    {id:"v1",date:"2025-08-09",initial:true,follow:false,course:false,item:"腦意識評量",fee:"2980",note:"初評。談女兒談了大半場，自己的部分只講了結論。"},
@@ -337,10 +376,12 @@ var state = {
   q: {name:"", phone:"", birthday:""},
   adv: {from:"", to:"", reasons:[], types:[], stale:0},
   advOpen: false,
+  view: "home",
   live: false
 };
 var db = null;
-var LS = "hopelight-cases-v1";
+var LS = "hopelight-cases-v2";
+var VERSION = "v0.6";
 
 /* ---------- utils ---------- */
 function el(id){return document.getElementById(id);}
@@ -350,6 +391,17 @@ function lastVisitDate(c){var d="";(c.visits||[]).forEach(function(v){if(v.date>
 function age(b){if(!b)return"";var t=new Date(),d=new Date(b);if(isNaN(d))return"";var a=t.getFullYear()-d.getFullYear();var m=t.getMonth()-d.getMonth();if(m<0||(m===0&&t.getDate()<d.getDate()))a--;return a>=0&&a<130?a:"";}
 function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
 function uid(p){return p+Math.random().toString(36).slice(2,9);}
+function mmdd(d){ return String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function bdayKey(c){ return (c.birthday||"").slice(5); }
+/* 客戶編號：139-00001 起跳，取現有最大號 +1 */
+function nextCode(){
+  var max=0;
+  state.clients.forEach(function(c){
+    var m=/^139-(\d+)$/.exec(c.code||"");
+    if(m){ var n=parseInt(m[1],10); if(n>max)max=n; }
+  });
+  return "139-"+String(max+1).padStart(5,"0");
+}
 function monthsSince(dateStr){
   if(!dateStr)return Infinity;
   var d=new Date(dateStr); if(isNaN(d))return Infinity;
@@ -470,6 +522,8 @@ function renderAdv(){
      '</div></div>'+
    '</div>'+
    '<div class="adv-block"><span>來的理由</span><div class="chips">'+
+     '<button class="chip" type="button" data-allreasons="1" aria-pressed="'+(a.reasons.length===REASONS.length)+'">'+
+       (a.reasons.length===REASONS.length?"全部取消":"全選")+'</button>'+
      REASONS.map(function(r){return '<button class="chip" type="button" data-reason="'+esc(r)+'" aria-pressed="'+(a.reasons.indexOf(r)>=0)+'">'+esc(r)+'</button>';}).join("")+
    '</div></div>';
 }
@@ -480,19 +534,61 @@ function renderResults(){
   el("resCount").textContent=list.length;
   var q=state.q;
   var filtered=q.name||q.phone||q.birthday||activeFilterCount();
-  el("resHint").textContent=filtered?"依條件篩選":"全部個案　共 "+state.clients.length+" 位";
+  el("resHint").textContent=filtered?"依條件篩選　·　點一位開啟完整紀錄":"全部個案 "+state.clients.length+" 位　·　點一位開啟完整紀錄";
   var box=el("results");
   if(!list.length){ box.innerHTML='<p class="empty">沒有符合條件的個案。<br>試著只留一個關鍵字，或清除進階條件。</p>'; return; }
-  box.innerHTML=list.map(function(c){
-    var lv=lastVisitDate(c);
-    return '<button class="hit" type="button" data-id="'+c.id+'" aria-current="'+(c.id===state.selectedId)+'">'+
-      (c.photo?'<img class="thumb" src="'+esc(c.photo)+'" alt="">':'<span class="thumb thumb-ph" aria-hidden="true">'+esc(c.name.slice(0,1))+'</span>')+
-      '<span><span class="hit-name">'+esc(c.name)+'</span>'+
-      '<span class="hit-meta"><span>'+esc(c.code)+'</span><span>'+esc(c.phone)+'</span></span>'+
-      '<span class="hit-meta"><span>最近 '+esc(lv||"—")+'</span><span>共 '+(c.visits||[]).length+' 次</span>'+
-        '<span class="'+sinceClass(lv)+'">'+esc(sinceLabel(lv))+'</span></span>'+
-      '</span></button>';
-  }).join("");
+  box.innerHTML=
+    '<div class="cols"><span></span><span>姓名／編號</span><span>電話／LINE</span><span>生日</span><span>最近來訪</span><span>來的理由</span></div>'+
+    list.map(function(c){
+      var lv=lastVisitDate(c);
+      return '<button class="hit" type="button" data-id="'+c.id+'">'+
+        (c.photo?'<img class="thumb" src="'+esc(c.photo)+'" alt="">':'<span class="thumb thumb-ph" aria-hidden="true">'+esc((c.name||"？").slice(0,1))+'</span>')+
+        '<span class="c-name"><b>'+esc(c.name)+'</b><span>'+esc(c.code)+'</span></span>'+
+        '<span class="c-num">'+esc(c.phone||"—")+(c.lineId?'<br><span class="c-line">LINE '+esc(c.lineId)+'</span>':'')+'</span>'+
+        '<span class="c-num">'+esc(c.birthday||"—")+'</span>'+
+        '<span class="c-last"><span>'+esc(lv||"—")+'　共 '+(c.visits||[]).length+' 次</span>'+
+          '<span class="'+sinceClass(lv)+'">'+esc(sinceLabel(lv))+'</span></span>'+
+        '<span class="c-tags">'+((c.reasons||[]).length?c.reasons.map(function(r){return '<span class="tag tag-r">'+esc(r)+'</span>';}).join(""):'<span class="tag">未填</span>')+'</span>'+
+      '</button>';
+    }).join("");
+}
+
+/* ---------- 兩個畫面的切換 ---------- */
+function renderView(){
+  var isCase = state.view==="case" && currentClient();
+  el("homeControls").hidden=isCase;
+  el("homeView").hidden=isCase;
+  el("caseBar").hidden=!isCase;
+  el("caseView").hidden=!isCase;
+  if(!isCase){ el("caseBar").innerHTML=""; return; }
+  var c=currentClient(), list=results(), pos=-1;
+  list.forEach(function(x,i){ if(x.id===c.id)pos=i; });
+  el("caseBar").innerHTML=
+    '<button class="btn btn-sm" type="button" id="btnBack">← 回搜尋</button>'+
+    '<span class="cname">'+esc(c.name)+'</span><span class="ccode">'+esc(c.code)+'</span>'+
+    '<span class="nav">'+
+      (pos>=0?'<span class="pos">第 '+(pos+1)+' ／ '+list.length+' 位</span>':'')+
+      '<button class="btn btn-sm" type="button" id="btnPrev"'+(pos<=0?' disabled':'')+'>上一位</button>'+
+      '<button class="btn btn-sm" type="button" id="btnNext"'+(pos<0||pos>=list.length-1?' disabled':'')+'>下一位</button>'+
+    '</span>';
+}
+function go(view,id){
+  var target = (view==="case"&&id) ? "#/case/"+id : "#/";
+  if(location.hash===target){ applyRoute(); return; }
+  try{ location.hash=target; }
+  catch(e){ state.view=view; if(id)state.selectedId=id; renderAll(); }
+}
+function applyRoute(){
+  var h=(location.hash||"").replace(/^#\/?/,"");
+  if(h.indexOf("case/")===0){
+    var id=h.slice(5);
+    var found=null;
+    state.clients.forEach(function(c){ if(c.id===id)found=c; });
+    if(found){ state.selectedId=id; state.view="case"; }
+    else state.view="home";
+  } else state.view="home";
+  renderAll();
+  window.scrollTo(0,0);
 }
 
 /* ---------- render: record sheet ---------- */
@@ -507,6 +603,7 @@ function renderSheet(){
   var facts=[["生　日","birthday","date",true,""],
              ["性　別","gender","text",false,"女／男／其他"],
              ["電　話","phone","tel",true,""],
+             ["LINE ID","lineId","text",false,"未填"],
              ["職　業","occupation","text",false,"未填"],
              ["宗教信仰","religion","text",false,"未填"],
              ["首次來訪","firstVisit","date",true,""]];
@@ -579,6 +676,35 @@ function renderSheet(){
       :'<p class="empty">左下先新增一次來訪，這裡就能寫當次備註。</p>')+
   '</div>';
 }
+/* 當日壽星：她每天要照這張名單傳訊息 */
+function renderBirthdays(){
+  var box=el("bday"); if(!box)return;
+  var now=new Date(), today=mmdd(now), mon=today.slice(0,2);
+  var hoy=[], soon=[];
+  state.clients.forEach(function(c){
+    var k=bdayKey(c); if(!k)return;
+    if(k===today)hoy.push(c);
+    else if(k.slice(0,2)===mon)soon.push(c);
+  });
+  soon.sort(function(a,b){ return bdayKey(a)<bdayKey(b)?-1:1; });
+  if(hoy.length){
+    box.className="bdaybox on";
+    box.innerHTML='<div class="bdayhead"><h2>今 日 壽 星</h2><span class="count">'+hoy.length+'</span>'+
+      '<span class="bdaydate">'+esc(now.getFullYear()+"-"+today)+'</span></div>'+
+      '<ul class="bdaylist">'+hoy.map(function(c){
+        return '<li><button class="bdayname" type="button" data-open="'+c.id+'">'+esc(c.name)+'</button>'+
+          '<span class="bdayage">'+(age(c.birthday)!==""?age(c.birthday)+" 歲":"")+'</span>'+
+          '<span class="bdayvia">'+(c.lineId?'LINE '+esc(c.lineId):'')+(c.lineId&&c.phone?'　·　':'')+esc(c.phone||"")+'</span></li>';
+      }).join("")+'</ul>';
+  } else {
+    box.className="bdaybox";
+    box.innerHTML='<div class="bdayhead"><h2>今 日 壽 星</h2>'+
+      '<span class="bdaynone">今天沒有壽星</span>'+
+      (soon.length?'<span class="bdayvia">本月其他壽星：'+soon.map(function(c){
+        return esc(c.name)+'（'+esc(bdayKey(c).replace("-","/"))+'）';
+      }).join("、")+'</span>':'')+'</div>';
+  }
+}
 function renderMode(){
   var m=el("mode");
   m.textContent = state.live ? "雲端儲存・已連線" : "示範資料・存於本機";
@@ -587,7 +713,7 @@ function renderMode(){
     ? "資料存在這個 Artifact 的資料庫，換裝置開同一個連結會看到同樣的紀錄。目前內容仍為虛構示範資料。"
     : "畫面中的姓名、電話與紀錄皆為虛構示範資料，不是真實個案；修改只留在這台電腦的瀏覽器裡。";
 }
-function renderAll(){ renderAdv(); renderResults(); renderSheet(); renderMode(); }
+function renderAll(){ renderAdv(); renderBirthdays(); renderResults(); renderSheet(); renderView(); renderMode(); el("ver").textContent=VERSION; }
 
 /* ---------- events ---------- */
 ["qName","qPhone","qBirth"].forEach(function(id){
@@ -606,7 +732,9 @@ el("btnAdv").addEventListener("click",function(){ state.advOpen=!state.advOpen; 
 
 el("advPanel").addEventListener("click",function(e){
   var b=e.target.closest("button"); if(!b)return;
-  if(b.dataset.reason!=null){
+  if(b.dataset.allreasons){
+    state.adv.reasons = (state.adv.reasons.length===REASONS.length) ? [] : REASONS.slice();
+  } else if(b.dataset.reason!=null){
     var i=state.adv.reasons.indexOf(b.dataset.reason);
     if(i>=0)state.adv.reasons.splice(i,1); else state.adv.reasons.push(b.dataset.reason);
   } else if(b.dataset.type){
@@ -627,10 +755,24 @@ el("advPanel").addEventListener("change",function(e){
   if(e.target.id==="aTo")state.adv.to=e.target.value;
   renderAdv();renderResults();
 });
+el("bday").addEventListener("click",function(e){
+  var b=e.target.closest("[data-open]"); if(!b)return;
+  go("case",b.dataset.open);
+});
 el("results").addEventListener("click",function(e){
   var b=e.target.closest(".hit"); if(!b)return;
-  state.selectedId=b.dataset.id; renderResults(); renderSheet();
+  go("case",b.dataset.id);
 });
+el("caseBar").addEventListener("click",function(e){
+  if(e.target.closest("#btnBack")){ go("home"); return; }
+  var step=e.target.closest("#btnPrev")?-1:e.target.closest("#btnNext")?1:0;
+  if(!step)return;
+  var list=results(), pos=-1;
+  list.forEach(function(x,i){ if(x.id===state.selectedId)pos=i; });
+  var t=list[pos+step];
+  if(t)go("case",t.id);
+});
+window.addEventListener("hashchange",applyRoute);
 
 /* sheet interactions (delegated) */
 var noteTimer=null;
@@ -660,7 +802,7 @@ el("sheet").addEventListener("click",function(e){
     state.selectedId=state.clients.length?state.clients[0].id:null;
     removeClient(gone);
     flag("已刪除");
-    renderResults(); renderSheet();
+    go("home");
     return;
   }
   if(e.target.closest("#btnShoot")){ openCamera(); return; }
@@ -804,16 +946,18 @@ function crop(src,w,h){
 }
 
 /* ---------- duplicate detection ---------- */
-function findDupes(name,phone,birthday,excludeId){
-  var out=[], nm=(name||"").trim(), ph=digits(phone), bd=(birthday||"").trim();
+function findDupes(name,phone,birthday,lineId,excludeId){
+  var out=[], nm=(name||"").trim(), ph=digits(phone), bd=(birthday||"").trim(),
+      li=(lineId||"").trim().toLowerCase();
   state.clients.forEach(function(c){
     if(c.id===excludeId)return;
     var why=[];
     if(nm&&c.name===nm)why.push("同姓名");
     if(ph&&digits(c.phone)===ph)why.push("同電話");
+    if(li&&(c.lineId||"").toLowerCase()===li)why.push("同 LINE ID");
     if(bd&&c.birthday===bd)why.push("同生日");
     if(!why.length)return;
-    out.push({c:c,why:why,strong:why.indexOf("同電話")>=0||why.indexOf("同生日")>=0});
+    out.push({c:c,why:why,strong:why.indexOf("同電話")>=0||why.indexOf("同生日")>=0||why.indexOf("同 LINE ID")>=0});
   });
   return out;
 }
@@ -826,6 +970,7 @@ el("btnNew").addEventListener("click",function(){
       '<div class="grid2">'+
         '<div class="field"><label for="nName">姓名</label><input class="inp" id="nName" autocomplete="off"></div>'+
         '<div class="field"><label for="nPhone">電話</label><input class="inp" id="nPhone" inputmode="tel" autocomplete="off"></div>'+
+        '<div class="field"><label for="nLine">LINE ID</label><input class="inp" id="nLine" autocomplete="off"></div>'+
         '<div class="field"><label for="nBirth">生日</label><input class="inp" id="nBirth" type="date"></div>'+
         '<div class="field"><label for="nGender">性別</label><input class="inp" id="nGender" placeholder="女／男／其他"></div>'+
         '<div class="field"><label for="nOcc">職業</label><input class="inp" id="nOcc" autocomplete="off"></div>'+
@@ -844,12 +989,12 @@ el("btnNew").addEventListener("click",function(){
 
   function renderDup(){
     var box=el("dupWarn"), save=el("nSave");
-    var d=findDupes(el("nName").value,el("nPhone").value,el("nBirth").value);
+    var d=findDupes(el("nName").value,el("nPhone").value,el("nBirth").value,el("nLine").value);
     if(!d.length){ box.innerHTML=""; save.textContent="建立並開啟"; return d; }
     var strong=false; d.forEach(function(x){ if(x.strong)strong=true; });
     box.innerHTML='<div class="dup '+(strong?"strong":"soft")+'">'+
       '<b>'+(strong?"這一位可能已經建過檔了":"有同名的個案，先確認一下")+'</b>'+
-      '<span>'+(strong?"電話或生日和既有個案一樣，通常就是同一個人。建議直接開啟舊檔接著寫，不要另開一筆。"
+      '<span>'+(strong?"電話、LINE ID 或生日和既有個案一樣，通常就是同一個人。建議直接開啟舊檔接著寫，不要另開一筆。"
                       :"姓名一樣，但電話與生日不同，很可能是不同人。確認後再建立。")+'</span>'+
       '<ul>'+d.map(function(x){
         return '<li><span class="who">'+esc(x.c.name)+'</span>'+
@@ -859,13 +1004,12 @@ el("btnNew").addEventListener("click",function(){
     save.textContent=strong?"確認是不同人，仍要建立":"確認過了，建立";
     return d;
   }
-  ["nName","nPhone","nBirth"].forEach(function(id){
+  ["nName","nPhone","nBirth","nLine"].forEach(function(id){
     el(id).addEventListener("input",function(){ dupAck=false; renderDup(); });
   });
   el("dupWarn").addEventListener("click",function(e){
     var b=e.target.closest("button[data-open]"); if(!b)return;
-    state.selectedId=b.dataset.open;
-    closeModal(); renderResults(); renderSheet();
+    closeModal(); go("case",b.dataset.open);
   });
   el("nReasons").addEventListener("click",function(e){
     var b=e.target.closest("button[data-r]"); if(!b)return;
@@ -884,17 +1028,14 @@ el("btnNew").addEventListener("click",function(){
       flag("請先看上方的重複提醒");
       return;
     }
-    var y=new Date().getFullYear();
-    var n=state.clients.filter(function(c){return (c.code||"").indexOf("HL-"+y)===0;}).length+1;
-    var c={id:uid("c"),code:"HL-"+y+"-"+String(n).padStart(4,"0"),name:name,
-      phone:el("nPhone").value.trim(),birthday:el("nBirth").value,gender:el("nGender").value.trim(),
+    var c={id:uid("c"),code:nextCode(),name:name,
+      phone:el("nPhone").value.trim(),lineId:el("nLine").value.trim(),birthday:el("nBirth").value,gender:el("nGender").value.trim(),
       occupation:el("nOcc").value.trim(),religion:el("nRel").value.trim(),
       reasons:picked.slice(),reasonNote:el("nNote").value.trim(),
       firstVisit:el("nFirst").value||today(),photo:"",direction:"",
       visits:[{id:uid("v"),date:el("nFirst").value||today(),initial:true,follow:false,course:false,item:"腦意識評量",fee:"2980",note:""}]};
     state.clients.push(c);
-    state.selectedId=c.id;
-    persist(c); closeModal(); renderResults(); renderSheet();
+    persist(c); closeModal(); go("case",c.id);
   });
   el("nName").focus();
 });
@@ -904,7 +1045,7 @@ migrate(state.clients);
 var local=loadLocal();
 if(local)state.clients=migrate(local);
 if(!currentClient()&&state.clients.length)state.selectedId=state.clients[0].id;
-renderAll();
+applyRoute();
 
 (function connect(){
   if(!window.claude||typeof window.claude.use!=="function")return;

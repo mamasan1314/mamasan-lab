@@ -132,7 +132,11 @@ dl.facts dd.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
 .reasons{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
 .tag{font-size:11.5px;border:1px solid var(--line-2);border-radius:999px;padding:2px 9px;color:var(--ink-2)}
 .tag-r{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
-.reasonnote{font-size:12px;color:var(--muted);margin-top:7px;overflow-wrap:anywhere}
+.reasons{align-items:center}
+.rlabel{font-size:11px;letter-spacing:.1em;color:var(--muted);margin-right:2px}
+.chip-sm{padding:3px 9px;font-size:12px}
+.reasoninp{margin-top:8px;font-size:12.5px;padding:6px 9px;background:var(--inset)}
+.reasoninp:focus{background:var(--card)}
 .since{font-family:var(--mono)}
 .since.warn{color:var(--accent-ink)}
 .since.cold{color:var(--danger)}
@@ -457,7 +461,7 @@ function renderAdv(){
        TYPES.map(function(t){return '<button class="chip '+t.cls+'" type="button" data-type="'+t.k+'" aria-pressed="'+(a.types.indexOf(t.k)>=0)+'">'+t.label+'</button>';}).join("")+
      '</div></div>'+
    '</div>'+
-   '<div class="adv-block"><span>測腦波的理由</span><div class="chips">'+
+   '<div class="adv-block"><span>來的理由</span><div class="chips">'+
      REASONS.map(function(r){return '<button class="chip" type="button" data-reason="'+esc(r)+'" aria-pressed="'+(a.reasons.indexOf(r)>=0)+'">'+esc(r)+'</button>';}).join("")+
    '</div></div>';
 }
@@ -513,10 +517,12 @@ function renderSheet(){
       '<div>'+
         '<div class="namerow"><h1>'+esc(c.name)+'</h1><span class="code">'+esc(c.code)+'</span></div>'+
         '<dl class="facts">'+facts.map(function(f){return '<dt>'+f[0]+'</dt><dd'+(f[2]?' class="num"':'')+'>'+f[1]+'</dd>';}).join("")+'</dl>'+
-        '<div class="reasons"><span class="tag" style="border:0;padding-left:0;color:var(--muted)">測腦波理由</span>'+
-          ((c.reasons||[]).length?c.reasons.map(function(r){return '<span class="tag tag-r">'+esc(r)+'</span>';}).join(""):'<span class="tag">未填</span>')+
+        '<div class="reasons"><span class="rlabel">來的理由</span>'+
+          REASONS.map(function(r){
+            return '<button class="chip chip-sm" type="button" data-creason="'+esc(r)+'" aria-pressed="'+((c.reasons||[]).indexOf(r)>=0)+'">'+esc(r)+'</button>';
+          }).join("")+
         '</div>'+
-        (c.reasonNote?'<div class="reasonnote">細節：'+esc(c.reasonNote)+'</div>':'')+
+        '<input class="inp reasoninp" id="cReasonNote" placeholder="理由細節（選填），照她自己的話寫" value="'+esc(c.reasonNote||"")+'">'+
       '</div>'+
     '</div>'+
   '</div>'+
@@ -617,6 +623,16 @@ el("sheet").addEventListener("click",function(e){
     (c.visits||[]).forEach(function(v){ if(v.id===tick.dataset.vid) v[tick.dataset.k]=tick.checked; });
     persist(c); return;
   }
+  var rchip=e.target.closest("[data-creason]");
+  if(rchip){
+    var r=rchip.dataset.creason;
+    c.reasons=c.reasons||[];
+    var i=c.reasons.indexOf(r);
+    if(i>=0)c.reasons.splice(i,1); else c.reasons.push(r);
+    rchip.setAttribute("aria-pressed",String(i<0));
+    persist(c); renderResults();
+    return;
+  }
   if(e.target.closest("#btnShoot")){ openCamera(); return; }
   if(e.target.closest("#btnAddVisit")){
     var d=el("newVisitDate").value||today();
@@ -643,6 +659,7 @@ el("sheet").addEventListener("input",function(e){
   var c=currentClient(); if(!c)return;
   var t=e.target;
   if(t.id==="taDirection"){ c.direction=t.value; }
+  else if(t.id==="cReasonNote"){ c.reasonNote=t.value; }
   else if(t.id==="taNote"||t.id==="vItem"||t.id==="vFee"){
     var vid=state.selectedVisit[c.id];
     (c.visits||[]).forEach(function(v){

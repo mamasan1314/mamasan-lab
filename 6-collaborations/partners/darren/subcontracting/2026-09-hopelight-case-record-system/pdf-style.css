@@ -1,0 +1,124 @@
+@page {
+  size: A4;
+  margin: 16mm 14mm 17mm;
+}
+
+:root {
+  --ink: #211b2b;
+  --muted: #686074;
+  --line: #d9d2df;
+  --soft: #f5f2f7;
+  --accent: #8a5a12;
+}
+
+html {
+  font-size: 11pt;
+}
+
+body {
+  max-width: none;
+  margin: 0;
+  color: var(--ink);
+  font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  line-height: 1.62;
+}
+
+h1, h2, h3 {
+  color: var(--ink);
+  line-height: 1.3;
+  break-after: avoid;
+}
+
+h1 {
+  margin: 0 0 1.1rem;
+  padding-bottom: .55rem;
+  border-bottom: 3px solid var(--accent);
+  font-size: 21pt;
+}
+
+h1:not(:first-of-type) {
+  break-before: page;
+}
+
+h2 {
+  margin: 1.45rem 0 .6rem;
+  padding-left: .55rem;
+  border-left: 4px solid var(--accent);
+  font-size: 15pt;
+}
+
+h3 {
+  margin: 1.15rem 0 .45rem;
+  font-size: 12pt;
+}
+
+p, ul, ol {
+  margin-top: .35rem;
+  margin-bottom: .65rem;
+}
+
+blockquote {
+  margin: .8rem 0 1rem;
+  padding: .65rem .85rem;
+  border-left: 4px solid #bea16e;
+  background: var(--soft);
+  color: #4d4558;
+}
+
+blockquote p {
+  margin: .15rem 0;
+}
+
+table {
+  width: 100%;
+  margin: .65rem 0 1rem;
+  border-collapse: collapse;
+  font-size: 9.4pt;
+}
+
+thead {
+  display: table-header-group;
+}
+
+tr {
+  break-inside: avoid;
+}
+
+th, td {
+  padding: .43rem .5rem;
+  border: 1px solid var(--line);
+  vertical-align: top;
+}
+
+th {
+  background: #eee8f0;
+  font-weight: 700;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background: #faf8fb;
+}
+
+code {
+  padding: .08rem .25rem;
+  border-radius: 3px;
+  background: var(--soft);
+  font-family: Consolas, monospace;
+  font-size: .92em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+strong {
+  font-weight: 700;
+}
+
+@media print {
+  a[href]::after {
+    content: "";
+  }
+}

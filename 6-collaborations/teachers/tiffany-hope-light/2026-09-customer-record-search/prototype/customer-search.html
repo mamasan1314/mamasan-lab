@@ -90,24 +90,37 @@ button,input,select,textarea{font:inherit;color:inherit}
 .chip.t-c[aria-pressed="true"]{background:var(--plum-soft);border-color:var(--plum);color:var(--plum)}
 
 /* ---------- layout ---------- */
-.main{display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:18px;padding-block:18px 0;align-items:start}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
-.phead{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line)}
-.phead h2{margin:0;font-size:12px;letter-spacing:.16em;color:var(--muted);font-weight:500}
+.listhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-block:18px 9px}
+.listhead h2{margin:0;font-size:12px;letter-spacing:.16em;color:var(--muted);font-weight:500}
 .count{font-family:var(--mono);font-size:11.5px;color:var(--accent-ink);background:var(--accent-soft);padding:1px 7px;border-radius:999px}
 
-/* result list */
-.results{max-height:min(62vh,640px);overflow:auto}
-.hit{display:grid;grid-template-columns:38px 1fr;gap:10px;padding:10px 14px;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);cursor:pointer;align-items:center}
+/* 首頁：個案清單 */
+:root{--hitcols:42px minmax(108px,1.25fr) minmax(104px,.85fr) minmax(92px,.75fr) minmax(136px,1.05fr) minmax(112px,1.15fr)}
+.results{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.cols{display:grid;grid-template-columns:var(--hitcols);gap:12px;padding:10px 14px;font-size:11px;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--line);background:var(--inset)}
+.hit{display:grid;grid-template-columns:var(--hitcols);gap:12px;padding:9px 14px;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);cursor:pointer;align-items:center;font:inherit;color:inherit}
 .hit:last-child{border-bottom:0}
 .hit:hover{background:var(--inset)}
-.hit[aria-current="true"]{background:var(--accent-soft)}
-.hit[aria-current="true"] .hit-name{color:var(--accent-ink)}
-.thumb{width:38px;height:38px;border-radius:8px;object-fit:cover;background:var(--inset);border:1px solid var(--line)}
-.thumb-ph{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--muted)}
-.hit-name{font-weight:500}
-.hit-meta{font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
-.empty{padding:26px 16px;text-align:center;color:var(--muted);font-size:13px}
+.thumb{width:42px;height:42px;border-radius:8px;object-fit:cover;background:var(--inset);border:1px solid var(--line)}
+.thumb-ph{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;color:var(--muted)}
+.c-name{display:flex;flex-direction:column;min-width:0}
+.c-name b{font-weight:500;font-size:14.5px;overflow-wrap:anywhere}
+.c-name span{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.03em}
+.c-num{font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--ink-2);min-width:0;overflow-wrap:anywhere}
+.c-last{display:flex;flex-direction:column;min-width:0}
+.c-last>span{font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums}
+.c-tags{display:flex;flex-wrap:wrap;gap:4px;min-width:0}
+.c-tags .tag{font-size:11px;padding:1px 8px}
+.empty{padding:34px 16px;text-align:center;color:var(--muted);font-size:13px}
+
+/* 個案頁：頂端返回列 */
+.casebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.casebar .cname{font-family:var(--serif);font-size:17px;font-weight:700}
+.casebar .ccode{font-family:var(--mono);font-size:11.5px;color:var(--accent-ink);background:var(--accent-soft);padding:2px 7px;border-radius:5px}
+.casebar .nav{display:flex;gap:6px;margin-left:auto}
+.casebar .nav .pos{font-family:var(--mono);font-size:11.5px;color:var(--muted);align-self:center;margin-right:4px}
+#caseView{padding-block:18px 0}
 
 /* record sheet */
 .sheet{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:0;overflow:hidden}
@@ -215,9 +228,12 @@ table.v tr.sel:hover td{background:var(--accent-soft)}
 .demobar .dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
 .foot{color:var(--muted);font-size:12px;padding-block:22px 0;border-top:1px solid var(--line);margin-top:22px;display:grid;gap:4px}
 
-@media (max-width:900px){
-  .main{grid-template-columns:1fr}
-  .results{max-height:300px}
+@media (max-width:860px){
+  .cols{display:none}
+  .hit{grid-template-columns:42px 1fr;gap:4px 12px;padding:11px 14px}
+  .hit>:not(.thumb){grid-column:2}
+  .hit>.thumb{grid-row:1/span 4}
+  .c-tags{margin-top:2px}
   .sheet{grid-template-columns:1fr}
   .cell{border-right:0}
   .cell:nth-child(3){border-bottom:1px solid var(--line)}
@@ -241,6 +257,7 @@ table.v tr.sel:hover td{background:var(--accent-soft)}
       <span class="spacer"></span>
       <span class="mode" id="mode">示範資料</span>
     </div>
+    <div id="homeControls">
     <div class="searchbar">
       <div class="field"><label for="qName">姓　名</label><input class="inp" id="qName" placeholder="輸入部分姓名即可" autocomplete="off"></div>
       <div class="field"><label for="qPhone">電　話</label><input class="inp" id="qPhone" placeholder="0912 或末三碼" inputmode="numeric" autocomplete="off"></div>
@@ -253,20 +270,23 @@ table.v tr.sel:hover td{background:var(--accent-soft)}
       <span class="savestate" id="saveState"></span>
     </div>
     <div class="adv" id="advPanel" hidden></div>
+    </div>
+    <div class="casebar" id="caseBar" hidden></div>
   </div>
 </header>
 
 <div class="wrap">
-  <div class="main">
-    <section class="panel">
-      <div class="phead"><h2>搜尋結果</h2><span class="count" id="resCount">0</span><span class="spacer"></span><span class="hint" id="resHint" style="font-size:11px;color:var(--muted)"></span></div>
-      <div class="results" id="results"></div>
-    </section>
-    <section class="panel sheet" id="sheet"></section>
-  </div>
+  <section id="homeView">
+    <div class="listhead">
+      <h2>個 案 清 單</h2><span class="count" id="resCount">0</span>
+      <span class="hint" id="resHint" style="font-size:11px;color:var(--muted)"></span>
+    </div>
+    <div class="results" id="results"></div>
+  </section>
+  <section id="caseView" hidden><div class="panel sheet" id="sheet"></div></section>
   <div class="demobar"><span class="dot"></span><span id="demoNote">畫面中的姓名、電話與紀錄皆為虛構示範資料，不是真實個案。</span></div>
   <div class="foot">
-    <div>版本 v0.1 示範稿　·　製作：Darren → mamasan（尚未經 QC／QA，非老師正式版）</div>
+    <div>版本 <span id="ver"></span> 示範稿　·　製作：Darren → mamasan（尚未經 QC／QA，非老師正式版）</div>
     <div>拍照功能需要瀏覽器授權攝影機；若此環境不允許，可改用「從檔案選擇」。</div>
   </div>
 </div>
@@ -337,10 +357,12 @@ var state = {
   q: {name:"", phone:"", birthday:""},
   adv: {from:"", to:"", reasons:[], types:[], stale:0},
   advOpen: false,
+  view: "home",
   live: false
 };
 var db = null;
 var LS = "hopelight-cases-v1";
+var VERSION = "v0.5";
 
 /* ---------- utils ---------- */
 function el(id){return document.getElementById(id);}
@@ -480,19 +502,61 @@ function renderResults(){
   el("resCount").textContent=list.length;
   var q=state.q;
   var filtered=q.name||q.phone||q.birthday||activeFilterCount();
-  el("resHint").textContent=filtered?"依條件篩選":"全部個案　共 "+state.clients.length+" 位";
+  el("resHint").textContent=filtered?"依條件篩選　·　點一位開啟完整紀錄":"全部個案 "+state.clients.length+" 位　·　點一位開啟完整紀錄";
   var box=el("results");
   if(!list.length){ box.innerHTML='<p class="empty">沒有符合條件的個案。<br>試著只留一個關鍵字，或清除進階條件。</p>'; return; }
-  box.innerHTML=list.map(function(c){
-    var lv=lastVisitDate(c);
-    return '<button class="hit" type="button" data-id="'+c.id+'" aria-current="'+(c.id===state.selectedId)+'">'+
-      (c.photo?'<img class="thumb" src="'+esc(c.photo)+'" alt="">':'<span class="thumb thumb-ph" aria-hidden="true">'+esc(c.name.slice(0,1))+'</span>')+
-      '<span><span class="hit-name">'+esc(c.name)+'</span>'+
-      '<span class="hit-meta"><span>'+esc(c.code)+'</span><span>'+esc(c.phone)+'</span></span>'+
-      '<span class="hit-meta"><span>最近 '+esc(lv||"—")+'</span><span>共 '+(c.visits||[]).length+' 次</span>'+
-        '<span class="'+sinceClass(lv)+'">'+esc(sinceLabel(lv))+'</span></span>'+
-      '</span></button>';
-  }).join("");
+  box.innerHTML=
+    '<div class="cols"><span></span><span>姓名／編號</span><span>電話</span><span>生日</span><span>最近來訪</span><span>來的理由</span></div>'+
+    list.map(function(c){
+      var lv=lastVisitDate(c);
+      return '<button class="hit" type="button" data-id="'+c.id+'">'+
+        (c.photo?'<img class="thumb" src="'+esc(c.photo)+'" alt="">':'<span class="thumb thumb-ph" aria-hidden="true">'+esc((c.name||"？").slice(0,1))+'</span>')+
+        '<span class="c-name"><b>'+esc(c.name)+'</b><span>'+esc(c.code)+'</span></span>'+
+        '<span class="c-num">'+esc(c.phone||"—")+'</span>'+
+        '<span class="c-num">'+esc(c.birthday||"—")+'</span>'+
+        '<span class="c-last"><span>'+esc(lv||"—")+'　共 '+(c.visits||[]).length+' 次</span>'+
+          '<span class="'+sinceClass(lv)+'">'+esc(sinceLabel(lv))+'</span></span>'+
+        '<span class="c-tags">'+((c.reasons||[]).length?c.reasons.map(function(r){return '<span class="tag tag-r">'+esc(r)+'</span>';}).join(""):'<span class="tag">未填</span>')+'</span>'+
+      '</button>';
+    }).join("");
+}
+
+/* ---------- 兩個畫面的切換 ---------- */
+function renderView(){
+  var isCase = state.view==="case" && currentClient();
+  el("homeControls").hidden=isCase;
+  el("homeView").hidden=isCase;
+  el("caseBar").hidden=!isCase;
+  el("caseView").hidden=!isCase;
+  if(!isCase){ el("caseBar").innerHTML=""; return; }
+  var c=currentClient(), list=results(), pos=-1;
+  list.forEach(function(x,i){ if(x.id===c.id)pos=i; });
+  el("caseBar").innerHTML=
+    '<button class="btn btn-sm" type="button" id="btnBack">← 回搜尋</button>'+
+    '<span class="cname">'+esc(c.name)+'</span><span class="ccode">'+esc(c.code)+'</span>'+
+    '<span class="nav">'+
+      (pos>=0?'<span class="pos">第 '+(pos+1)+' ／ '+list.length+' 位</span>':'')+
+      '<button class="btn btn-sm" type="button" id="btnPrev"'+(pos<=0?' disabled':'')+'>上一位</button>'+
+      '<button class="btn btn-sm" type="button" id="btnNext"'+(pos<0||pos>=list.length-1?' disabled':'')+'>下一位</button>'+
+    '</span>';
+}
+function go(view,id){
+  var target = (view==="case"&&id) ? "#/case/"+id : "#/";
+  if(location.hash===target){ applyRoute(); return; }
+  try{ location.hash=target; }
+  catch(e){ state.view=view; if(id)state.selectedId=id; renderAll(); }
+}
+function applyRoute(){
+  var h=(location.hash||"").replace(/^#\/?/,"");
+  if(h.indexOf("case/")===0){
+    var id=h.slice(5);
+    var found=null;
+    state.clients.forEach(function(c){ if(c.id===id)found=c; });
+    if(found){ state.selectedId=id; state.view="case"; }
+    else state.view="home";
+  } else state.view="home";
+  renderAll();
+  window.scrollTo(0,0);
 }
 
 /* ---------- render: record sheet ---------- */
@@ -587,7 +651,7 @@ function renderMode(){
     ? "資料存在這個 Artifact 的資料庫，換裝置開同一個連結會看到同樣的紀錄。目前內容仍為虛構示範資料。"
     : "畫面中的姓名、電話與紀錄皆為虛構示範資料，不是真實個案；修改只留在這台電腦的瀏覽器裡。";
 }
-function renderAll(){ renderAdv(); renderResults(); renderSheet(); renderMode(); }
+function renderAll(){ renderAdv(); renderResults(); renderSheet(); renderView(); renderMode(); el("ver").textContent=VERSION; }
 
 /* ---------- events ---------- */
 ["qName","qPhone","qBirth"].forEach(function(id){
@@ -629,8 +693,18 @@ el("advPanel").addEventListener("change",function(e){
 });
 el("results").addEventListener("click",function(e){
   var b=e.target.closest(".hit"); if(!b)return;
-  state.selectedId=b.dataset.id; renderResults(); renderSheet();
+  go("case",b.dataset.id);
 });
+el("caseBar").addEventListener("click",function(e){
+  if(e.target.closest("#btnBack")){ go("home"); return; }
+  var step=e.target.closest("#btnPrev")?-1:e.target.closest("#btnNext")?1:0;
+  if(!step)return;
+  var list=results(), pos=-1;
+  list.forEach(function(x,i){ if(x.id===state.selectedId)pos=i; });
+  var t=list[pos+step];
+  if(t)go("case",t.id);
+});
+window.addEventListener("hashchange",applyRoute);
 
 /* sheet interactions (delegated) */
 var noteTimer=null;
@@ -660,7 +734,7 @@ el("sheet").addEventListener("click",function(e){
     state.selectedId=state.clients.length?state.clients[0].id:null;
     removeClient(gone);
     flag("已刪除");
-    renderResults(); renderSheet();
+    go("home");
     return;
   }
   if(e.target.closest("#btnShoot")){ openCamera(); return; }
@@ -864,8 +938,7 @@ el("btnNew").addEventListener("click",function(){
   });
   el("dupWarn").addEventListener("click",function(e){
     var b=e.target.closest("button[data-open]"); if(!b)return;
-    state.selectedId=b.dataset.open;
-    closeModal(); renderResults(); renderSheet();
+    closeModal(); go("case",b.dataset.open);
   });
   el("nReasons").addEventListener("click",function(e){
     var b=e.target.closest("button[data-r]"); if(!b)return;
@@ -893,8 +966,7 @@ el("btnNew").addEventListener("click",function(){
       firstVisit:el("nFirst").value||today(),photo:"",direction:"",
       visits:[{id:uid("v"),date:el("nFirst").value||today(),initial:true,follow:false,course:false,item:"腦意識評量",fee:"2980",note:""}]};
     state.clients.push(c);
-    state.selectedId=c.id;
-    persist(c); closeModal(); renderResults(); renderSheet();
+    persist(c); closeModal(); go("case",c.id);
   });
   el("nName").focus();
 });
@@ -904,7 +976,7 @@ migrate(state.clients);
 var local=loadLocal();
 if(local)state.clients=migrate(local);
 if(!currentClient()&&state.clients.length)state.selectedId=state.clients[0].id;
-renderAll();
+applyRoute();
 
 (function connect(){
   if(!window.claude||typeof window.claude.use!=="function")return;

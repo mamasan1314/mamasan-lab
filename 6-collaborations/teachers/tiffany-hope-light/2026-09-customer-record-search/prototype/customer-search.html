@@ -123,17 +123,25 @@ button,input,select,textarea{font:inherit;color:inherit}
 .photo{width:104px;aspect-ratio:3/4;max-width:100%;border-radius:8px;object-fit:cover;background:var(--inset);border:1px solid var(--line-2);display:block}
 .photo-ph{display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;color:var(--muted);padding:6px}
 .code{font-family:var(--mono);font-size:12.5px;color:var(--accent-ink);background:var(--accent-soft);border-radius:5px;padding:2px 6px;display:inline-block;letter-spacing:.04em}
-.namerow{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-.namerow h1{margin:0;font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:.02em}
-dl.facts{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin:0;font-size:13px}
-dl.facts dt{color:var(--muted);font-size:12px;white-space:nowrap}
-dl.facts dd{margin:0;min-width:0;overflow-wrap:anywhere}
-dl.facts dd.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.namerow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+/* 可直接改的欄位：平常像紀錄，滑過才露出邊框 */
+.edit{border:1px solid transparent;background:transparent;border-radius:6px;padding:2px 6px}
+.edit:hover{border-color:var(--line-2)}
+.edit:focus{border-color:var(--accent);background:var(--card);outline:none}
+.nameinp{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:.02em;width:min(100%,9em);margin-left:-6px}
+.codeinp{font-family:var(--mono);font-size:12.5px;color:var(--accent-ink);background:var(--accent-soft);width:16ch;letter-spacing:.04em}
+.codeinp:hover,.codeinp:focus{background:var(--accent-soft)}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;align-items:center;font-size:13px}
+.facts>label{color:var(--muted);font-size:12px;white-space:nowrap}
+.facts .factinp{width:100%;min-width:0;font-size:13px}
+.facts .factinp.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.facts .ro{color:var(--ink-2);font-family:var(--mono);font-variant-numeric:tabular-nums;padding-left:7px}
+.cellfoot{margin-top:auto;padding-top:12px;display:flex}
 .reasons{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
 .tag{font-size:11.5px;border:1px solid var(--line-2);border-radius:999px;padding:2px 9px;color:var(--ink-2)}
 .tag-r{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
 .reasons{align-items:center}
-.rlabel{font-size:11px;letter-spacing:.1em;color:var(--muted);margin-right:2px}
+.rlabel{font-size:11px;letter-spacing:.1em;color:var(--muted);flex-basis:100%;margin-bottom:-2px}
 .chip-sm{padding:3px 9px;font-size:12px}
 .reasoninp{margin-top:8px;font-size:12.5px;padding:6px 9px;background:var(--inset)}
 .reasoninp:focus{background:var(--card)}
@@ -496,13 +504,12 @@ function renderSheet(){
   var svId=state.selectedVisit[c.id];
   var sv=null; vs.forEach(function(v){ if(v.id===svId) sv=v; });
 
-  var facts=[["生　日",esc(c.birthday)+(age(c.birthday)!==""?"　（"+age(c.birthday)+" 歲）":""),true],
-             ["性　別",esc(c.gender),false],
-             ["電　話",esc(c.phone),true],
-             ["職　業",esc(c.occupation),false],
-             ["宗教信仰",esc(c.religion||"—"),false],
-             ["首次來訪",esc(c.firstVisit),true],
-             ["累計次數",(c.visits||[]).length+" 次",true]];
+  var facts=[["生　日","birthday","date",true,""],
+             ["性　別","gender","text",false,"女／男／其他"],
+             ["電　話","phone","tel",true,""],
+             ["職　業","occupation","text",false,"未填"],
+             ["宗教信仰","religion","text",false,"未填"],
+             ["首次來訪","firstVisit","date",true,""]];
 
   box.innerHTML=
   /* 左上 */
@@ -515,8 +522,18 @@ function renderSheet(){
         '<button class="btn btn-sm" type="button" id="btnShoot">'+(c.photo?"重新拍照":"開啟相機拍照")+'</button>'+
       '</div>'+
       '<div>'+
-        '<div class="namerow"><h1>'+esc(c.name)+'</h1><span class="code">'+esc(c.code)+'</span></div>'+
-        '<dl class="facts">'+facts.map(function(f){return '<dt>'+f[0]+'</dt><dd'+(f[2]?' class="num"':'')+'>'+f[1]+'</dd>';}).join("")+'</dl>'+
+        '<div class="namerow">'+
+          '<input class="edit nameinp" id="fName" value="'+esc(c.name)+'" aria-label="姓名">'+
+          '<input class="edit codeinp" id="fCode" value="'+esc(c.code)+'" aria-label="客戶編號">'+
+        '</div>'+
+        '<div class="facts">'+
+          facts.map(function(f){
+            return '<label for="f_'+f[1]+'">'+f[0]+'</label>'+
+              '<input class="edit factinp'+(f[3]?' num':'')+'" id="f_'+f[1]+'" data-f="'+f[1]+'" type="'+f[2]+'" value="'+esc(c[f[1]]||"")+'"'+(f[4]?' placeholder="'+f[4]+'"':'')+'>';
+          }).join("")+
+          '<label>年　齡</label><span class="ro">'+(age(c.birthday)!==""?age(c.birthday)+" 歲":"—")+'</span>'+
+          '<label>累計次數</label><span class="ro">'+(c.visits||[]).length+' 次</span>'+
+        '</div>'+
         '<div class="reasons"><span class="rlabel">來的理由</span>'+
           REASONS.map(function(r){
             return '<button class="chip chip-sm" type="button" data-creason="'+esc(r)+'" aria-pressed="'+((c.reasons||[]).indexOf(r)>=0)+'">'+esc(r)+'</button>';
@@ -525,6 +542,7 @@ function renderSheet(){
         '<input class="inp reasoninp" id="cReasonNote" placeholder="理由細節（選填），照她自己的話寫" value="'+esc(c.reasonNote||"")+'">'+
       '</div>'+
     '</div>'+
+    '<div class="cellfoot"><button class="btn btn-ghost btn-sm" type="button" id="btnDelClient" style="color:var(--danger);margin-left:auto">刪除這位客戶</button></div>'+
   '</div>'+
   /* 右上 */
   '<div class="cell">'+
@@ -633,6 +651,18 @@ el("sheet").addEventListener("click",function(e){
     persist(c); renderResults();
     return;
   }
+  if(e.target.closest("#btnDelClient")){
+    var vn=(c.visits||[]).length;
+    if(!confirm("刪除「"+c.name+"」的整份紀錄？\n包含 "+vn+" 次來訪與所有備註、照片，此動作無法復原。"))return;
+    var gone=c.id;
+    state.clients=state.clients.filter(function(x){return x.id!==gone;});
+    delete state.selectedVisit[gone];
+    state.selectedId=state.clients.length?state.clients[0].id:null;
+    removeClient(gone);
+    flag("已刪除");
+    renderResults(); renderSheet();
+    return;
+  }
   if(e.target.closest("#btnShoot")){ openCamera(); return; }
   if(e.target.closest("#btnAddVisit")){
     var d=el("newVisitDate").value||today();
@@ -658,8 +688,12 @@ el("sheet").addEventListener("click",function(e){
 el("sheet").addEventListener("input",function(e){
   var c=currentClient(); if(!c)return;
   var t=e.target;
+  var identity=false;
   if(t.id==="taDirection"){ c.direction=t.value; }
   else if(t.id==="cReasonNote"){ c.reasonNote=t.value; }
+  else if(t.id==="fName"){ c.name=t.value; identity=true; }
+  else if(t.id==="fCode"){ c.code=t.value; identity=true; }
+  else if(t.dataset.f){ c[t.dataset.f]=t.value; identity=true; }
   else if(t.id==="taNote"||t.id==="vItem"||t.id==="vFee"){
     var vid=state.selectedVisit[c.id];
     (c.visits||[]).forEach(function(v){
@@ -671,7 +705,7 @@ el("sheet").addEventListener("input",function(e){
   } else return;
   flag("編輯中…");
   clearTimeout(noteTimer);
-  noteTimer=setTimeout(function(){ persist(c); },700);
+  noteTimer=setTimeout(function(){ persist(c); if(identity)renderResults(); },700);
 });
 
 /* ---------- modal helper ---------- */

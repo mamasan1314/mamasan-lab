@@ -88,7 +88,7 @@ npm run audit:visible
 
 這是第一版工具的能力範圍，不是永久禁止自動化。讀取指定對話、產生回覆草稿、
 人工核准發送與窄幅自動回覆是否逐級開放，留在
-[`CR-PROP-2026-005`](../../../Control-Room/PM/PROPOSALS/line-conversation-automation/README.md)
+[`CR-PROP-2026-005`](../../../Control-Room/PM/PROPOSALS/26005-line-conversation-automation/README.md)
 討論；提案被接受以前，不把聊天室能力混進 `audit`。
 
 | 能力 | 目前狀態 |
@@ -107,4 +107,4 @@ npm run audit:visible
 - 公司端帳號登記：`Three-Quarters-International/PUBLISHING/SOCIAL_MEDIA/ASSET_PROFILES/mamasan/channels/line.json`
 - 官網：`mamasan.three-quarters.net`（LINE 連結待對外 ID 確認後補上）
 - 治理：`Control-Room/PM/DECISIONS/2026-09-08-mamasan-brand-site-home.md`
-- 權限提案：`Control-Room/PM/PROPOSALS/line-conversation-automation/`
+- 權限提案：`Control-Room/PM/PROPOSALS/26005-line-conversation-automation/`

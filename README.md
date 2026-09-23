@@ -25,7 +25,7 @@
 | [`/6-collaborations`](./6-collaborations) | 🤝 老師、品牌與創作者合作案件 |
 
 > 跨 repo 的社群發布 UI、worker、權杖 Vault 與責任邊界，統一見
-> [Control-Room 提案](../Control-Room/PM/PROPOSALS/social-publishing-control-plane/README.md)。
+> [Control-Room 提案](../Control-Room/PM/PROPOSALS/26001-social-publishing-control-plane/README.md)。
 > 新系統完成端到端驗證前，本 repo 保留現狀，不先搬移或重整既有發布工具。
 
 ---

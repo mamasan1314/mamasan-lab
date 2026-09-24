@@ -9,7 +9,7 @@
 | 檔案 | 主題 | Artifact | 最後發布 | 狀態 |
 |---|---|---|---|---|
 | [`hopelight-course-lp-mvp.html`](./hopelight-course-lp-mvp.html) | 兩日／三日課程 | <https://claude.ai/code/artifact/0c5f6de3-919a-41cb-8bad-fbf93c4de1f6> | 2026-09-04 | 草稿 v0.1，六處 `待確認` 卡在等老師 |
-| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | 2026-09-24（v0.5） | 已重新發布到同一 URL；**分享釘選仍在舊版**，待 Darren 看過後移動。下單流程順序 `待確認` |
+| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | 2026-09-24（v0.6） | **定稿**，已拿掉草稿橫幅。上線位置為官網 `/candles`（外掛 `hopelight-candles-lp`，見下方〈上官網〉）；Artifact 只作審稿 |
 
 兩張都帶著頂端的「內部草稿」橫幅，未經老師確認前不對外發布。
 
@@ -44,8 +44,27 @@ see future publishes until the share pin is moved）」。
 
 先發布再開分享，比發布後才想辦法移動釘選乾淨。順序反了，老師看到的就是舊版。
 
+## 上官網：`https://hopebox.com.tw/candles`
+
+頁面以外掛 [`../wp-plugins/hopelight-candles-lp/`](../wp-plugins/hopelight-candles-lp/) 上線：外掛只接手 `/candles`
+這一個網址，輸出本資料夾的 HTML 與 `assets/candle21/`，不經過 Elementor 版型、不動其他頁面。
+正本仍是本資料夾；外掛裡的 `page.html` 與 `assets/` 是建置產物，已被 Git 忽略。
+
+```powershell
+# 在 website-admin/
+npm run candles-lp:pack     # 從本資料夾複製頁面與圖片進外掛，打包成 zip
+npm run candles-lp:check    # 預演：確認能上傳外掛、目前狀態；不改網站
+npm run candles-lp:install  # 上傳並啟用，最後以未登入方式驗收 /candles 與分享預覽圖
+```
+
+改版：改本資料夾的 HTML 或圖片 → `candles-lp:pack` → `candles-lp:install`（覆蓋安裝）。
+撤下：wp-admin → 外掛，停用「希望之光 21 顆頻率蠟燭頁」，`/candles` 回到 404。
+
+已知缺口：頁面不經過 WordPress 的 `wp_head`／`wp_footer`，所以 **Jetpack 統計看不到這一頁**的瀏覽數。
+
 ## 版本紀錄
 
+- **v0.6**（2026-09-24，定稿）：mamasan 定案（Darren 轉述）——下單方式只寫「加 LINE，私訊『蠟燭』」，拿掉三步驟與 `待確認`；運費列改為「每筆訂單；訂單含 21 顆限定組即免運」NT$60。拿掉置頂草稿橫幅與頁尾草稿字樣，頁尾加「回到官網」。新增分享預覽圖 `og-candles.jpg`（1200×630，從實拍裁切，只給官網版的 `og:image` 用）。
 - **v0.5**（2026-09-24，mamasan 想加圖片，Darren 請 Claude 提設計）：加入圖片，並修手機版價格表。
   圖片檔在 [`assets/candle21/`](./assets/candle21/)，重新發布時要用 Artifact 的 `files` 一起帶上。
   - **原則：實拍當證據，AI 圖只當氣氛。**依 `references/README.md` 與 `content/index.md`，

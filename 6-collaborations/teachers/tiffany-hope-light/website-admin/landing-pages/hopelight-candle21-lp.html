@@ -63,13 +63,6 @@
   a{color:inherit}
   :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
 
-  .draft{
-    position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
-    background:var(--ink);color:var(--ground);
-    font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.06em;
-    text-align:center;padding:.45rem 1rem;line-height:1.5;margin:0;
-  }
-
   .shell{max-width:1180px;margin:0 auto;padding:0 1.5rem 3.25rem;position:relative}
   main{max-width:44rem;margin:0 auto}
 
@@ -158,13 +151,6 @@
   p{margin:0 0 .8rem;max-width:36rem}
   p:last-child{margin-bottom:0}
   .lift{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-2);line-height:1.6;color:var(--ink);max-width:32rem}
-
-  .tbd{
-    display:inline-block;font-family:"Jost",sans-serif;font-size:.6875rem;
-    letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
-    border:1px dashed var(--gold);border-radius:999px;padding:.1rem .55rem;
-    vertical-align:.12em;margin-left:.4rem;white-space:nowrap;line-height:1.6;
-  }
 
   /* 10 款頻率 */
   .groups{display:grid;gap:1.35rem}
@@ -262,8 +248,6 @@
     html{scroll-behavior:auto}
   }
 </style>
-
-<p class="draft">內部草稿 v0.5 ｜ 加入實品圖片、修正手機版價格表；下單與諮詢流程仍待確認</p>
 
 <div class="shell">
   <nav class="rail" aria-label="章節導覽">
@@ -478,7 +462,7 @@
             </tr>
             <tr>
               <td class="plan-name">運費</td>
-              <td>單顆購買另計</td>
+              <td>每筆訂單；訂單含 21 顆限定組即免運</td>
               <td class="num">NT$60</td>
             </tr>
             <tr class="hilite">
@@ -494,13 +478,8 @@
 
     <section id="order">
       <p class="label">怎麼買</p>
-      <h2>先私訊，再一起把 21 顆配出來</h2>
-      <ol class="steps">
-        <li><span class="mark">01</span><div><h3>加 LINE，私訊「蠟燭」</h3><p>小幫手會回覆你這一批的狀況與付款方式。</p></div></li>
-        <li><span class="mark">02</span><div><h3>完成訂購</h3><p>確認限定組內容與寄送資訊。</p></div></li>
-        <li><span class="mark">03</span><div><h3>選你的 21 顆</h3><p>直接報上款式與數量；不確定的話，先約 10 分鐘靈魂藍圖諮詢，聊完再選。</p></div></li>
-      </ol>
-      <p class="note" style="margin-top:1.2rem">實際的下單、選款與諮詢預約流程順序待確認，以老師與小幫手的實際作業為準。<span class="tbd">待確認</span></p>
+      <h2>加 LINE，私訊「蠟燭」</h2>
+      <p>小幫手會回覆你這一批的狀況與付款方式。</p>
       <div class="actions" style="margin-top:1.25rem">
         <a class="btn btn-primary" href="https://lin.ee/vG7eI1Dv">加入官方 LINE 詢問</a>
       </div>
@@ -513,7 +492,7 @@
 
     <footer>
       <p class="safe">蠟燭不是替你保證結果，而是陪你在一個小小的儀式裡，把願望、狀態與行動重新放回自己手上。</p>
-      <p style="margin-top:1.1rem">希望之光 Hope Light ｜ 本頁為內部版型草稿，所有款式、價格、贈品與流程以老師最終確認為準。</p>
+      <p style="margin-top:1.1rem">希望之光 Hope Light ｜ <a href="https://hopebox.com.tw/">回到官網</a></p>
     </footer>
   </main>
 </div>

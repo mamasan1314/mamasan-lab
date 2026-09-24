@@ -266,10 +266,15 @@ async function openHopeBoxAdmin(options = {}) {
     });
     await waitForEntryPage(page);
 
+    // 帳密只送一次。被拒後重送，在網站防護看來像猜密碼：2026-09-24 就因此被
+    // `Sign-in blocked` 擋下。被拒就停下來回報，改由人用 `npm run hopebox:login` 登入。
+    let credentialSubmitted = false;
     for (let attempt = 0; attempt < 5; attempt += 1) {
       if (await isAdmin(page)) break;
 
       if ((await page.locator('#user_login').count()) > 0) {
+        if (credentialSubmitted) break;
+        credentialSubmitted = true;
         const challengeIncluded = await submitLogin(
           page,
           credentials.user,
@@ -297,7 +302,8 @@ async function openHopeBoxAdmin(options = {}) {
         credentials.password,
       );
       throw new Error(
-        `WordPress login did not reach the dashboard (${currentPath}). ${message}`,
+        `WordPress login did not reach the dashboard (${currentPath}). ${message} ` +
+          '帳密只送了一次，沒有重試。請先執行 `npm run hopebox:login` 由人手動登入，再重跑本指令。',
       );
     }
 

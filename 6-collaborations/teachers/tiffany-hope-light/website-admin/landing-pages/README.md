@@ -46,6 +46,10 @@ see future publishes until the share pin is moved）」。
 
 ## 上官網：`https://hopebox.com.tw/candles`
 
+**2026-09-24 已上線**（v0.6，外掛 `hopelight-candles-lp` 0.1.0，Darren 放行後安裝）。安裝腳本驗收：未登入開 `/candles`
+回 200 且有頁面內容、分享預覽圖 200、首頁 200 無致命錯誤；另從外部確認 `/candles`（無斜線）也回 200、
+頁面上 12 張圖全部 200、沒有殘留草稿字樣。
+
 頁面以外掛 [`../wp-plugins/hopelight-candles-lp/`](../wp-plugins/hopelight-candles-lp/) 上線：外掛只接手 `/candles`
 這一個網址，輸出本資料夾的 HTML 與 `assets/candle21/`，不經過 Elementor 版型、不動其他頁面。
 正本仍是本資料夾；外掛裡的 `page.html` 與 `assets/` 是建置產物，已被 Git 忽略。

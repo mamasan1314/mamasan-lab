@@ -20,7 +20,7 @@
 |---|---|
 | LP 檔案 | v0.5 完成（2026-09-24，含實品圖片）— [`hopelight-candle21-lp.html`](../../../../teachers/tiffany-hope-light/website-admin/landing-pages/hopelight-candle21-lp.html) |
 | Artifact 預覽 | v0.5 已發布；分享釘選是否已移到新版，以 Darren 操作為準 |
-| 真正的線上頁面 | **不存在**，尚未做到 hopebox.com.tw |
+| 真正的線上頁面 | **2026-09-24 已上線**：<https://hopebox.com.tw/candles>（v0.6） |
 | LINE 後台 | **完全未動**，三項動線都還沒建 |
 | 產品待確認 | 配置已結案；玻璃燭台 2026-09-24 已從 LP 拿掉（不再是問題）；**運費 NT$60、限定組全台含運**仍待老師確認 |
 | 建議分包價 | **NT$40,000**（LP 上線 28,000 ＋ LINE 動線 12,000） |

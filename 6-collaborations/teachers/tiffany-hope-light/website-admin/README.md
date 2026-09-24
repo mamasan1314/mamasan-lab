@@ -17,7 +17,14 @@
 
 ## 已確認狀態
 
-最後完整驗證：2026-08-24（Asia/Taipei）
+最後完整驗證：2026-09-24（Asia/Taipei）—— `npm run audit` 以 `cached-session` 通過，頁面、商品、外掛、外觀、
+使用者與設定選單都在，`希望之光 CRM` 仍在後台。
+
+**2026-09-24 登入被擋的經過與處理：**公司這台的快取工作階段已過期，工具改用帳密自動登入，
+網站回 `Sign-in blocked. If this looks wrong, contact support.`。Darren 手動登入成功，所以帳號沒問題。
+改用 `npm run hopebox:login`（開可見視窗、由人手動登入、工具只存工作階段）後，audit 恢復正常。
+**快取過期時先跑 `hopebox:login`，不要直接跑會自動送帳密的指令**：`lib/hopebox-session.cjs`
+被拒後會在同一次執行裡重送最多 5 次，在網站防護看來像猜密碼，很可能就是被擋的原因。
 
 - 公開網站：`https://hopebox.com.tw/`
 - 平台：WordPress、Elementor、WooCommerce

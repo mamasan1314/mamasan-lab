@@ -74,7 +74,7 @@ see future publishes until the share pin is moved）」。
 
 > **2026-09-24 作廢：**蠟燭採人工回應、不做 WooCommerce 與後台自助欄位（`../DECISIONS.md` D-007），
 > 所以靜態 HTML 就是完成品。上線方向改為把這一頁放到官網 `https://hopebox.com.tw/candles`；
-> 2026-09-24 以交接帳號登入官網時被擋（`Sign-in blocked`），寫入權限待確認。以下原文保留作歷史。
+> 寫入權限 2026-09-24 已確認（管理員級選單含外掛；經過見 `../README.md`「已確認狀態」）。以下原文保留作歷史。
 
 依 D-006，21 顆組的售價、庫存、含運與贈品要做成 Tiffany 可自助修改的後台欄位，
 前台讀取而非抄寫。靜態 HTML 做不到這件事，所以

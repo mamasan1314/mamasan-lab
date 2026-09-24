@@ -9,7 +9,7 @@
 | 檔案 | 主題 | Artifact | 最後發布 | 狀態 |
 |---|---|---|---|---|
 | [`hopelight-course-lp-mvp.html`](./hopelight-course-lp-mvp.html) | 兩日／三日課程 | <https://claude.ai/code/artifact/0c5f6de3-919a-41cb-8bad-fbf93c4de1f6> | 2026-09-04 | 草稿 v0.1，六處 `待確認` 卡在等老師 |
-| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | 2026-09-05（v0.1） | 檔案已是 v0.3，**尚未重新發布**；下單流程順序 `待確認` |
+| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | 2026-09-24（v0.4） | 已重新發布到同一 URL；**分享釘選仍在舊版**，待 Darren 看過後移動。下單流程順序 `待確認` |
 
 兩張都帶著頂端的「內部草稿」橫幅，未經老師確認前不對外發布。
 
@@ -46,6 +46,11 @@ see future publishes until the share pin is moved）」。
 
 ## 版本紀錄
 
+- **v0.4**（2026-09-24，依 Darren 指示）：限定組內容移除玻璃燭台；價格表拿掉拆解寫法
+  （「單顆買滿 21 顆 NT$2,919」一列與「只多 61 元」一段），只留單顆 NT$139、運費 NT$60
+  （寫成「單顆購買另計」）、21 顆限定組 NT$2,980；標題「但這一組划算」改為「也可以選整組」。
+  v0.3 的款名更新隨本版首次發布。已重新發布到同一 URL，但分享仍釘在先前版本，
+  要由 Darren 在分享選單移動。
 - **v0.3**（2026-09-07，依最新實品標籤與 Darren 指示）：產品款名「清晰專注」更新為
   「學/事業進步」，同步調整描述與選款範例。尚未重新發布。
 - **v0.2**（2026-09-06，依 Tiffany 意見）：字色加深（`--ink` `#201C2E`→`#15111F`、
@@ -61,6 +66,10 @@ see future publishes until the share pin is moved）」。
 [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) 會在部署計畫 Phase 4
 改成子佈景主題頁面範本，頁面上寫死的八處商業數字（2,980 兩處、139 兩處、2,919、
 「61 元」差額、玻璃燭台、全台含運）全部換成短碼。
+
+**2026-09-24 更正：**LP v0.4 已拿掉 2,919、「61 元」差額與玻璃燭台，並新增運費 NT$60。
+WordPress 候選（`wp-themes/hopebox-candle21-child/`、`wp-plugins/hopelight-candle21-commerce/`）
+與階段驗收頁**尚未同步**，仍是舊的燭台與拆價寫法；恢復施工時要先對齊 v0.4。
 
 移入之後，**Artifact 連結降為視覺定稿審閱用，不會跟著後台變動**。價格一律以網站為準；
 不要從 Artifact 讀價格，那份會停在移入當下的數字。

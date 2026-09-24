@@ -1,5 +1,9 @@
 # 21 顆頻率蠟燭｜WooCommerce × LINE × CRM
 
+> **2026-09-24：本案不採用，不部署。**老師早已決定蠟燭採人工回應，並把蠟燭全權交給 mamasan。
+> 見 [`../../DECISIONS.md`](../../DECISIONS.md) 的 D-007。以下內容保留為歷史，不是待辦。
+> 蠟燭 LP 的現況在 [`../../landing-pages/README.md`](../../landing-pages/README.md)。
+
 狀態：**已製作本機工程候選與假資料預覽；未部署或修改 HopeBox／LINE，待 mamasan QC／QA。**
 建立日期：2026-09-08（Asia/Taipei）  
 交付鏈：Darren 製作 → mamasan QC／QA → Tiffany 決定營運內容與是否上線

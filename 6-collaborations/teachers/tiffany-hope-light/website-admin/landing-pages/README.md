@@ -72,6 +72,10 @@ see future publishes until the share pin is moved）」。
 
 ## 蠟燭 LP 即將移入 WordPress（2026-09-08）
 
+> **2026-09-24 作廢：**蠟燭採人工回應、不做 WooCommerce 與後台自助欄位（`../DECISIONS.md` D-007），
+> 所以靜態 HTML 就是完成品。上線方向改為把這一頁放到官網 `https://hopebox.com.tw/candles`；
+> 2026-09-24 以交接帳號登入官網時被擋（`Sign-in blocked`），寫入權限待確認。以下原文保留作歷史。
+
 依 D-006，21 顆組的售價、庫存、含運與贈品要做成 Tiffany 可自助修改的後台欄位，
 前台讀取而非抄寫。靜態 HTML 做不到這件事，所以
 [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) 會在部署計畫 Phase 4

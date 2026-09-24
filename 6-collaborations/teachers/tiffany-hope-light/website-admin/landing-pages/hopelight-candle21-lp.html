@@ -50,6 +50,8 @@
 
   *{box-sizing:border-box}
   body{
+    overflow-x:hidden;
+    overflow-x:clip;
     background:var(--ground);
     color:var(--ink);
     font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
@@ -62,7 +64,7 @@
   :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
 
   .draft{
-    position:sticky;top:0;z-index:40;
+    position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
     background:var(--ink);color:var(--ground);
     font-family:"Jost",sans-serif;font-size:var(--step--1);letter-spacing:.06em;
     text-align:center;padding:.45rem 1rem;line-height:1.5;margin:0;
@@ -124,6 +126,25 @@
   .btn:hover{transform:translateY(-2px)}
   .btn:active{transform:none}
 
+  /* 實品圖 */
+  .tray{margin:1.9rem 0 0;max-width:30rem}
+  .tray-grid{
+    display:grid;grid-template-columns:repeat(7,1fr);gap:clamp(.3rem,1.6vw,.55rem);
+    padding:clamp(.7rem,3vw,1.05rem);background:var(--surface);
+    border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);
+  }
+  .tray-grid img{
+    display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%;
+    box-shadow:0 1px 2px rgba(20,16,30,.28);
+  }
+  figcaption{font-size:var(--step--1);line-height:1.6;color:var(--muted);margin-top:.55rem}
+  .batch-grid{display:grid;gap:1.4rem;align-items:start}
+  @media (min-width:700px){.batch-grid{grid-template-columns:1fr 15rem;gap:2rem}}
+  .photo{margin:0;max-width:20rem}
+  .photo img,.mood img{display:block;width:100%;height:auto;border-radius:4px;box-shadow:var(--shadow)}
+  .mood{margin:0 0 1.5rem}
+  .mood img{aspect-ratio:960/660;object-fit:cover}
+
   section{padding:2.4rem 0;border-top:1px solid var(--line)}
   .label{
     font-family:"Jost",sans-serif;font-weight:500;font-size:var(--step--1);letter-spacing:.18em;
@@ -153,7 +174,12 @@
     text-transform:uppercase;color:var(--gold);margin:0 0 .65rem;
     padding-bottom:.35rem;border-bottom:1px solid var(--gold-soft);
   }
-  .group ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
+  .group ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.75rem}
+  .group li{display:grid;grid-template-columns:3rem 1fr;gap:.85rem;align-items:center}
+  .group .sw{
+    display:block;width:3rem;height:3rem;object-fit:cover;border-radius:50%;
+    box-shadow:0 0 0 1px var(--line);
+  }
   .group .nm{font-family:"Noto Serif TC",serif;font-weight:500;font-size:var(--step-1);display:block;line-height:1.45}
   .group .dsc{font-size:var(--step--1);color:var(--muted);display:block;line-height:1.6}
 
@@ -202,6 +228,23 @@
   td.num{text-align:right;font-family:"Jost",sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}
   .plan-name{font-family:"Noto Serif TC",serif;font-weight:500}
   tr.hilite td{background:var(--gold-soft)}
+  /* 手機：每一列改成「方案＋價格」一行、內容一行，價格不再被擠出畫面 */
+  @media (max-width:559px){
+    table{min-width:0}
+    thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    table,tbody{display:block}
+    tr{
+      display:grid;grid-template-columns:1fr auto;gap:.2rem 1rem;align-items:baseline;
+      padding:.85rem 1rem;border-bottom:1px solid var(--line);
+    }
+    tbody tr:last-child{border-bottom:0}
+    td{display:block;padding:0;border:0}
+    td.plan-name{grid-column:1;grid-row:1}
+    td.num{grid-column:2;grid-row:1;font-size:var(--step-0)}
+    td:nth-child(2){grid-column:1 / -1;grid-row:2;color:var(--muted)}
+    tr.hilite{background:var(--gold-soft)}
+    tr.hilite td{background:none}
+  }
 
   .contact-lines{list-style:none;margin:1.1rem 0 0;padding:0;display:flex;flex-direction:column;gap:.4rem;font-size:var(--step--1)}
   .contact-lines span{font-family:"Jost",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:inline-block;min-width:5.5rem}
@@ -220,7 +263,7 @@
   }
 </style>
 
-<p class="draft">內部草稿 v0.4 ｜ 已調整限定組內容與價格呈現；下單與諮詢流程仍待確認</p>
+<p class="draft">內部草稿 v0.5 ｜ 加入實品圖片、修正手機版價格表；下單與諮詢流程仍待確認</p>
 
 <div class="shell">
   <nav class="rail" aria-label="章節導覽">
@@ -250,14 +293,49 @@
         <a class="btn btn-primary" href="https://lin.ee/vG7eI1Dv">用 LINE 詢問這一批</a>
         <a class="btn btn-ghost" href="#frequencies">看 10 款頻率</a>
       </div>
+      <figure class="tray">
+        <div class="tray-grid" role="img" aria-label="一組 21 顆頻率蠟燭的配法示意">
+          <img src="assets/candle21/swatch-study.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-sleep.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-wealth.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-benefactor.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-study.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-luck.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-sleep.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-wealth.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-customers.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-cleanse.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-study.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-protect.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-sleep.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-benefactor.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-luck.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-wealth.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-romance.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-customers.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-cleanse.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-warmth.jpg" width="176" height="176" alt="">
+          <img src="assets/candle21/swatch-protect.jpg" width="176" height="176" alt="">
+        </div>
+        <figcaption>示意：用這一批的實品照片，排出一種 21 顆的配法。同款可以重複，怎麼配由你決定。</figcaption>
+      </figure>
     </header>
 
     <section id="batch">
       <p class="label">為什麼是這一批</p>
       <h2>希望之光，不是每天都製作</h2>
-      <p>老師在製作頻率蠟燭時，會特別挑選適合製作的日子與時間。不是想做，就每天都有。</p>
-      <p>八月底到九月初剛好遇到一段適合的時機，這一批希望之光才在這個時候完成。</p>
-      <p class="lift">這一批，是特別製作的一批。<br>數量有限，售完即止。<br>下一次什麼時候再製作，沒有固定日期。</p>
+      <div class="batch-grid">
+        <div>
+          <p>老師在製作頻率蠟燭時，會特別挑選適合製作的日子與時間。不是想做，就每天都有。</p>
+          <p>八月底到九月初剛好遇到一段適合的時機，這一批希望之光才在這個時候完成。</p>
+          <p class="lift">這一批，是特別製作的一批。<br>數量有限，售完即止。<br>下一次什麼時候再製作，沒有固定日期。</p>
+        </div>
+        <figure class="photo">
+          <img src="assets/candle21/batch-real.jpg" width="720" height="960" loading="lazy"
+               alt="這一批的 10 款頻率蠟燭實品，每一顆獨立包裝並貼上款名">
+          <figcaption>這一批的實品。每一顆獨立包裝、貼上款名。</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section id="frequencies">
@@ -269,34 +347,35 @@
         <div class="group">
           <p class="group-name">財富與事業</p>
           <ul>
-            <li><span class="nm">財富豐盛</span><span class="dsc">顯化意圖、豐盛意識與行動提醒</span></li>
-            <li><span class="nm">吸引顧客</span><span class="dsc">服務曝光、客源連結與經營意圖</span></li>
-            <li><span class="nm">好運爆棚</span><span class="dsc">開啟美好、迎接好事發生</span></li>
+            <li><img class="sw" src="assets/candle21/swatch-wealth.jpg" width="176" height="176" alt="" loading="lazy"><div><span class="nm">財富豐盛</span><span class="dsc">顯化意圖、豐盛意識與行動提醒</span></div></li>
+            <li><img class="sw" src="assets/candle21/swatch-customers.jpg" width="176" height="176" alt="" loading="lazy"><div><span class="nm">吸引顧客</span><span class="dsc">服務曝光、客源連結與經營意圖</span></div></li>
+            <li><img class="sw" src="assets/candle21/swatch-luck.jpg" width="176" height="176" alt="" loading="lazy"><div><span class="nm">好運爆棚</span><span class="dsc">開啟美好、迎接好事發生</span></div></li>
           </ul>
         </div>
         <div class="group">
           <p class="group-name">關係與人際</p>
           <ul>
-            <li><span class="nm">貴人常臨</span><span class="dsc">貴人相助、良緣與合作機會</span></li>
-            <li><span class="nm">吸引桃花</span><span class="dsc">良緣、人際與關係開放度</span></li>
-            <li><span class="nm">感情升溫</span><span class="dsc">關係溫度、理解與互動回暖</span></li>
+            <li><img class="sw" src="assets/candle21/swatch-benefactor.jpg" width="176" height="176" alt="" loading="lazy"><div><span class="nm">貴人常臨</span><span class="dsc">貴人相助、良緣與合作機會</span></div></li>
+            <li><img class="sw" src="assets/candle21/swatch-romance.jpg" width="176" height="176" alt="" loading="lazy"><div><span class="nm">吸引桃花</span><span class="dsc">良緣、人際與關係開放度</span></div></li>
+            <li><img class="sw" src="assets/candle21/swatch-warmth.jpg" width="176" height="176" alt="" loading="lazy"><div><span class="nm">感情升溫</span><span class="dsc">關係溫度、理解與互動回暖</span></div></li>
           </ul>
         </div>
         <div class="group">
           <p class="group-name">空間與保護</p>
           <ul>
-            <li><span class="nm">淨化除穢</span><span class="dsc">整理場域、清理雜訊與穩定空間</span></li>
-            <li><span class="nm">小人退散</span><span class="dsc">界線、降低干擾與內在穩定</span></li>
+            <li><img class="sw" src="assets/candle21/swatch-cleanse.jpg" width="176" height="176" alt="" loading="lazy"><div><span class="nm">淨化除穢</span><span class="dsc">整理場域、清理雜訊與穩定空間</span></div></li>
+            <li><img class="sw" src="assets/candle21/swatch-protect.jpg" width="176" height="176" alt="" loading="lazy"><div><span class="nm">小人退散</span><span class="dsc">界線、降低干擾與內在穩定</span></div></li>
           </ul>
         </div>
         <div class="group">
           <p class="group-name">自我狀態</p>
           <ul>
-            <li><span class="nm">學/事業進步</span><span class="dsc">學習節奏、工作聚焦與事業行動提醒</span></li>
-            <li><span class="nm">安然入夜</span><span class="dsc">回到溫柔、安靜與放鬆的節奏</span></li>
+            <li><img class="sw" src="assets/candle21/swatch-study.jpg" width="176" height="176" alt="" loading="lazy"><div><span class="nm">學/事業進步</span><span class="dsc">學習節奏、工作聚焦與事業行動提醒</span></div></li>
+            <li><img class="sw" src="assets/candle21/swatch-sleep.jpg" width="176" height="176" alt="" loading="lazy"><div><span class="nm">安然入夜</span><span class="dsc">回到溫柔、安靜與放鬆的節奏</span></div></li>
           </ul>
         </div>
       </div>
+      <p class="note" style="margin-top:1rem">款名旁的圓形小圖，取自這一批的實品照片。</p>
 
       <div class="pick">
         <h3>21 顆怎麼配，你自己決定</h3>
@@ -322,6 +401,11 @@
     <section id="ritual">
       <p class="label">點燃之後</p>
       <h2>點燃的，不只是蠟燭</h2>
+      <figure class="mood">
+        <img src="assets/candle21/mood-lit.jpg" width="960" height="660" loading="lazy"
+             alt="點燃的頻率蠟燭放在木片底座上，周圍有晶石與乾燥花草">
+        <figcaption>情境示意</figcaption>
+      </figure>
       <ul class="ritual">
         <li>點燃蠟燭。</li>
         <li>聞見香氣。</li>

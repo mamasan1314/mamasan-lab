@@ -9,7 +9,7 @@
 | 檔案 | 主題 | Artifact | 最後發布 | 狀態 |
 |---|---|---|---|---|
 | [`hopelight-course-lp-mvp.html`](./hopelight-course-lp-mvp.html) | 兩日／三日課程 | <https://claude.ai/code/artifact/0c5f6de3-919a-41cb-8bad-fbf93c4de1f6> | 2026-09-04 | 草稿 v0.1，六處 `待確認` 卡在等老師 |
-| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | 2026-09-24（v0.4） | 已重新發布到同一 URL；**分享釘選仍在舊版**，待 Darren 看過後移動。下單流程順序 `待確認` |
+| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | 2026-09-24（v0.5） | 已重新發布到同一 URL；**分享釘選仍在舊版**，待 Darren 看過後移動。下單流程順序 `待確認` |
 
 兩張都帶著頂端的「內部草稿」橫幅，未經老師確認前不對外發布。
 
@@ -46,6 +46,16 @@ see future publishes until the share pin is moved）」。
 
 ## 版本紀錄
 
+- **v0.5**（2026-09-24，mamasan 想加圖片，Darren 請 Claude 提設計）：加入圖片，並修手機版價格表。
+  圖片檔在 [`assets/candle21/`](./assets/candle21/)，重新發布時要用 Artifact 的 `files` 一起帶上。
+  - **原則：實拍當證據，AI 圖只當氣氛。**依 `references/README.md` 與 `content/index.md`，
+    銷售頁優先用實拍；`content/reels/candle-intro-139/source/01–10` 是 AI 氣氛圖，且 02／08 烘著舊款名。
+  - `swatch-*.jpg`（10 張）：從實拍 `references/hope-light-candles-real-products-2026-09-07.jpg`
+    依包裝上的款名逐顆裁切，用在開場的「21 顆配法示意」與 10 款清單的款名旁。
+  - `batch-real.jpg`：同一張實拍縮圖，放在「這一批」。
+  - `mood-lit.jpg`：唯一一張 AI 圖（`candle-intro-139/source/05.jpg` 裁掉烘字），放在「點燃之後」，標「情境示意」。
+  - 手機版（寬度 < 560px）價格表改成每列「方案＋價格」一行、內容一行，價格不再被推出畫面；
+    另修開場光暈造成的橫向捲動，以及置頂橫幅的安全區域。
 - **v0.4**（2026-09-24，依 Darren 指示）：限定組內容移除玻璃燭台；價格表拿掉拆解寫法
   （「單顆買滿 21 顆 NT$2,919」一列與「只多 61 元」一段），只留單顆 NT$139、運費 NT$60
   （寫成「單顆購買另計」）、21 顆限定組 NT$2,980；標題「但這一組划算」改為「也可以選整組」。

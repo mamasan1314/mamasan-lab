@@ -69,12 +69,14 @@ HopeBox 既有的 WordPress CRM 是 WooCommerce 顧客與訂單看板，與本�
 
 ### 正式版施作路線（建議，Darren 定案前可改）
 
-- **程式放哪**：依 2026-09-22 決策的拆 repo 條件，本案一開工就會有資料庫 migration 與 Windows 版本發行，因此建議**直接開專屬 private repo** `hopelight-case-record-system`（名稱沿用 Studio 產品索引已預定的），不先在 Studio `PRODUCTS/` 孵化再拆。Studio 只留供應端索引，本資料夾只記交接 commit／release 與驗收。
+- **程式放哪**：Darren 的 private `darrenfiy-studio` 的 `PRODUCTS/hopelight-case-record-system/`，不另開 repo（2026-09-26 Darren 決定）。本資料夾只記交接 commit／release 與驗收。
 - **技術**：Electron＋SQLite。v0.7 畫面是 HTML／JS，可以直接沿用；Electron 自帶 Chromium，不受 Tiffany 電腦的瀏覽器版本影響；鏡頭、列印與存成 PDF 是現成能力；建置只需要 Node，全部邏輯同一種語言。代價是安裝後約 200～300 MB，單機使用不構成問題。
 - **考慮過、不選**：
   - Tauri：程式小、啟動快；但建置要加 Rust 與 MSVC Build Tools，資料層會變成兩種語言，一人維護的面變寬。
   - 本機網頁伺服器＋瀏覽器：最輕；但視窗與程式生命週期不像 App（關掉分頁不等於關程式），啟動密碼也難做得乾淨。
   - 沿用示範稿的 Artifact 雲端資料庫：不符本機版「資料只在指定電腦」的範圍，雲端另案報價。
+  - 單一 HTML 檔＋Edge 開啟（像 Access 的 `.accdb` 由已受信任的程式打開）：完全不會碰到程式碼簽章；但報價寫的是「Windows 可執行版本」，資料也會落在瀏覽器管的權限底下。Darren 2026-09-26 選 exe。若 Tiffany 電腦的智慧型應用程式控制開著，這仍是買簽章之外的另一條路。
+  - 一開工就開專屬 private repo `hopelight-case-record-system`：2026-09-26 上午的建議，依據是 Studio 拆 repo 條件裡「migration、版本發行」的字面。這兩件事在同一個 repo 裡都能處理，真正需要拆的是有別人要進來看程式碼、要交付原始碼，或做雲端版。Darren 不想多管一個 repo，改放 Studio。
 - **資料位置**：資料庫與照片放在 `%APPDATA%\HopeLight\`，不隨程式檔移動；照片改存成檔案並產生縮圖，不再以 data URL 塞進紀錄。
 - **分期**（開工前確認完成後起算）：
   1. 第 1 週：repo、App 外殼、資料庫 schema v1 與升級機制、v0.7 畫面接上資料庫、照片改存檔案。

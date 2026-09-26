@@ -9,7 +9,7 @@
 | 檔案 | 主題 | Artifact | 最後發布 | 狀態 |
 |---|---|---|---|---|
 | [`hopelight-course-lp-mvp.html`](./hopelight-course-lp-mvp.html) | 兩日／三日課程 | <https://claude.ai/code/artifact/0c5f6de3-919a-41cb-8bad-fbf93c4de1f6> | 2026-09-04 | 草稿 v0.1，六處 `待確認` 卡在等老師 |
-| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | 2026-09-24（v0.6） | **定稿**，已拿掉草稿橫幅。上線位置為官網 `/candles`（外掛 `hopelight-candles-lp`，見下方〈上官網〉）；Artifact 只作審稿 |
+| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | Artifact：2026-09-24（v0.6）<br>官網：2026-09-26（v0.7） | **定稿**，已拿掉草稿橫幅。上線位置為官網 `/candles`（外掛 `hopelight-candles-lp`，見下方〈上官網〉）；Artifact 只作審稿，**停在 v0.6 未跟上**，要看現況以官網為準 |
 
 兩張都帶著頂端的「內部草稿」橫幅，未經老師確認前不對外發布。
 
@@ -50,6 +50,8 @@ see future publishes until the share pin is moved）」。
 回 200 且有頁面內容、分享預覽圖 200、首頁 200 無致命錯誤；另從外部確認 `/candles`（無斜線）也回 200、
 頁面上 12 張圖全部 200、沒有殘留草稿字樣。
 
+**2026-09-26 改版為 v0.7**（外掛 0.1.1，覆蓋安裝；驗收見版本紀錄 v0.7）。
+
 頁面以外掛 [`../wp-plugins/hopelight-candles-lp/`](../wp-plugins/hopelight-candles-lp/) 上線：外掛只接手 `/candles`
 這一個網址，輸出本資料夾的 HTML 與 `assets/candle21/`，不經過 Elementor 版型、不動其他頁面。
 正本仍是本資料夾；外掛裡的 `page.html` 與 `assets/` 是建置產物，已被 Git 忽略。
@@ -68,6 +70,28 @@ npm run candles-lp:install  # 上傳並啟用，最後以未登入方式驗收 /
 
 ## 版本紀錄
 
+- **v0.7**（2026-09-26，官網已更新；Artifact 未重新發布）：「這一批」的圖由實拍換成情境示意圖。
+  - Darren 要換這一格的圖，交來一張候選圖。比對後它是**現有實拍的 AI 重繪版**：蠟燭位置與包裝袋皺褶
+    和 `batch-real.jpg` 對得上，背景換成古書、鼠尾草、水晶、四葉草吊飾，標籤字也變形了（例如
+    「學/事業進步 魔法蠟燭」成了「學業進步 魔泛蠟燭」一類，斜線與「事」字消失）。放在圖說
+    「這一批的實品」底下會名實不符，水晶與吊飾也可能被讀成組合內容。
+  - 提給 Darren 四條路：保留實拍、新圖另加一格（Claude 建議）；直接換並把圖說改成情境示意；
+    照原圖說直接換；先不換、等真的新拍。**Darren 選：這一格改成情境示意圖**，並說那張重繪版
+    mamasan 也不夠滿意，請 Claude 挑一張好看的或修那張。
+  - 沒修重繪版：變形的是十張標籤上的字，手上沒有能重生成標籤的工具，只能遮或補字，會更像假的。
+    改用 IG Launch 002 的 `product-aligned` 底圖（無烘字，約 21 顆排成一批，`content/index.md`
+    指定蠟燭優先用這一版）：`content/ig-posts/assets/hope-light-moment-launch-002-two-accounts-product-aligned-base.png`
+    （SHA-256 `7b6a6567…865979c`）縮成 960×960 → `assets/candle21/batch-mood.jpg`（`8b8d2bc4…60fa6ff4`），
+    圖說「情境示意」。
+  - **v0.5 的「實拍當證據，AI 圖只當氣氛」在這一格不再成立**：頁面上整批的實拍已撤下，實拍只剩
+    款名旁的 `swatch-*.jpg`（從實拍逐顆裁切）與分享預覽圖 `og-candles.jpg`。若之後有真的新拍，
+    這一格應該優先換回實拍。
+  - `batch-real.jpg` 已從 `assets/` 移除（頁面不再引用；原圖仍在 `../../references/`）。
+    重繪版候選圖歸檔在 [`candidates/`](./candidates/)（`candle21-batch-ai-restyle-2026-09-26.jpg`，
+    `4ce62eec…a348c327`），不在 `assets/`，不會被打包上線。
+  - 外掛版本 0.1.0 → 0.1.1，`candles-lp:check` 預演通過後 `candles-lp:install` 覆蓋安裝（沿用登入快取，未送帳密）。
+    驗收：未登入 `/candles` 與 `/candles/` 都回新版、頁面引用的 13 張圖（含分享預覽圖）全部 200、線上 `batch-mood.jpg`
+    與本機逐位元組相同；舊 `batch-real.jpg` 繞過快取後為 404（未繞過時仍有快取副本回 200，頁面已不引用）。
 - **v0.6**（2026-09-24，定稿）：mamasan 定案（Darren 轉述）——下單方式只寫「加 LINE，私訊『蠟燭』」，拿掉三步驟與 `待確認`；運費列改為「每筆訂單；訂單含 21 顆限定組即免運」NT$60。拿掉置頂草稿橫幅與頁尾草稿字樣，頁尾加「回到官網」。新增分享預覽圖 `og-candles.jpg`（1200×630，從實拍裁切，只給官網版的 `og:image` 用）。
 - **v0.5**（2026-09-24，mamasan 想加圖片，Darren 請 Claude 提設計）：加入圖片，並修手機版價格表。
   圖片檔在 [`assets/candle21/`](./assets/candle21/)，重新發布時要用 Artifact 的 `files` 一起帶上。
@@ -75,7 +99,7 @@ npm run candles-lp:install  # 上傳並啟用，最後以未登入方式驗收 /
     銷售頁優先用實拍；`content/reels/candle-intro-139/source/01–10` 是 AI 氣氛圖，且 02／08 烘著舊款名。
   - `swatch-*.jpg`（10 張）：從實拍 `references/hope-light-candles-real-products-2026-09-07.jpg`
     依包裝上的款名逐顆裁切，用在開場的「21 顆配法示意」與 10 款清單的款名旁。
-  - `batch-real.jpg`：同一張實拍縮圖，放在「這一批」。
+  - `batch-real.jpg`：同一張實拍縮圖，放在「這一批」。（v0.7 撤下，換成情境示意圖 `batch-mood.jpg`）
   - `mood-lit.jpg`：唯一一張 AI 圖（`candle-intro-139/source/05.jpg` 裁掉烘字），放在「點燃之後」，標「情境示意」。
   - **mamasan 視覺 QC：滿意**（2026-09-24，Darren 轉述）。這是 QC，不是老師對商業條件的確認。
   - 手機版（寬度 < 560px）價格表改成每列「方案＋價格」一行、內容一行，價格不再被推出畫面；

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: 希望之光 21 顆頻率蠟燭頁
  * Description: 在 /candles 提供 21 顆頻率蠟燭限定組的獨立頁面。頁面與圖片都在外掛內；停用外掛即撤下頁面。
- * Version: 0.1.0
+ * Version: 0.1.1
  * Author: Darren
  * Requires PHP: 7.4
  */

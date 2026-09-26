@@ -3,7 +3,7 @@
 > **內部專案入口。** Darren 為 mamasan 的分包製作端；是否交給 Tiffany、老師端售價、收款與驗收，仍由 mamasan 決定。
 
 - 建立：2026-09-21
-- 狀態：**2026-09-26 Darren 回報 Tiffany 已確認報價 `HL-CRS-20260922-01`；示範稿 v0.7 待 Tiffany 確認；正式版在開工前確認階段，3～4 週工期尚未起算**
+- 狀態：**2026-09-26 Darren 回報 Tiffany 已確認報價 `HL-CRS-20260922-01`；示範稿 v0.8 待 Tiffany 確認；正式版第 1 週已先行開工；3～4 週工期仍待開工前確認完成才起算**
 - 前一狀態（2026-09-22）：示範稿 v0.6 已製作；Darren 回報已將報價資料轉交 mamasan；當時尚未記錄 mamasan 轉交 Tiffany 或 Tiffany 接受。
 - 改寫層級：**L2**（依 Tiffany 的草圖與口述需求重建可操作流程）
 - 示範稿：[`../../../../teachers/tiffany-hope-light/2026-09-customer-record-search/`](../../../../teachers/tiffany-hope-light/2026-09-customer-record-search/)
@@ -38,7 +38,7 @@ private repo。本資料夾不再複製一份活程式碼，只記交接 commit�
 
 2026-09-26，Darren 回報 **Tiffany 已確認本報價**。付款與收款明細不寫在這裡：本 repo 是 public，財務紀錄以 Darren 的 private `darrenfiy-studio` 案件帳為正本。mamasan 把 PDF 轉交 Tiffany 的時間與通道仍未核對。依報價，工期要等下方「開工前確認」完成才起算。
 
-同日 Darren 依 Tiffany 的使用方式調整一項畫面：來訪紀錄與當次備註合成同一列，打開個案就看到每次備註。已做成示範稿 v0.7（同一個線上示範網址），待 Tiffany 確認；細節見老師端 README 的 v0.7 變更。
+同日 Darren 依 Tiffany 的使用方式調整一項畫面：來訪紀錄與當次備註合成同一列，打開個案就看到每次備註。已做成示範稿 v0.7（同一個線上示範網址），待 Tiffany 確認；細節見老師端 README 的 v0.7 變更。同日稍晚再依 Darren 指示做 v0.8：色系改用 `hopebox.com.tw` 官網實際色碼、大方向格線移到字的下方、照片改為只上傳（Tiffany 電腦沒有鏡頭）。
 
 HopeBox 既有的 WordPress CRM 是 WooCommerce 顧客與訂單看板，與本案的個案紀錄用途不同。第一版不把兩者合併；若未來需要，可再用顧客編號或匯入方式銜接。
 
@@ -54,15 +54,15 @@ HopeBox 既有的 WordPress CRM 是 WooCommerce 顧客與訂單看板，與本�
 
 工期（3～4 週）從下表全部有答案後起算。老師端的項目一律經 mamasan 問，不由 Darren 直接找 Tiffany。
 
-2026-09-26：Tiffany 在澳洲打不開線上示範（出現 Claude「App unavailable in region」），改用 [v0.7 截圖](../../../../teachers/tiffany-hope-light/2026-09-customer-record-search/screenshots/) 給她確認。同日 Darren 先行開工第 1 週（App 外殼、資料庫、畫面接上資料庫、照片存檔）。下表的項目日後改動都小，先開工**不改變工期起算點**。
+2026-09-26：Tiffany 在澳洲打不開線上示範（出現 Claude「App unavailable in region」），改用 [截圖](../../../../teachers/tiffany-hope-light/2026-09-customer-record-search/screenshots/) 給她確認。同日 Darren 先行開工第 1 週（App 外殼、資料庫、畫面接上資料庫、照片存檔）。下表的項目日後改動都小，先開工**不改變工期起算點**。
 
 | 項目 | 誰回答 | 狀態 |
 |---|---|---|
-| v0.7 畫面：來訪與當次備註同列 | Tiffany | 示範稿已更新，待確認 |
+| 畫面：v0.7 來訪與當次備註同列；v0.8 官網色系、大方向格線、照片改上傳 | Tiffany | 示範稿與截圖已更新（v0.8），待確認 |
 | 客戶編號 `139-00001` 起跳、五位數 | Tiffany | 待確認 |
 | 久未回訪級距 3／6／12 個月 | Tiffany | 待確認 |
 | 金額欄保留與否 | Tiffany | 待確認 |
-| 指定電腦：Windows 版本、有無鏡頭、是否固定同一台 | Tiffany | 待確認 |
+| 指定電腦：Windows 版本、有無鏡頭、是否固定同一台 | Tiffany | **沒有鏡頭**（Darren 2026-09-26 轉述），照片改為只上傳；Windows 版本與是否固定同一台待確認 |
 | 備份位置：外接硬碟或她自己的 OneDrive | Tiffany | 待確認 |
 | 選配：手機拍照 NT$5,500／舊資料匯入 NT$3,500／自動更新 NT$7,000 | Tiffany | 待確認；沒選就不做 |
 | Windows「智慧型應用程式控制」是否開啟（Windows 安全性 → 應用程式與瀏覽器控制） | Tiffany | 待確認；開啟時未簽章程式會被擋，見下方「已知會碰到」 |
@@ -72,7 +72,7 @@ HopeBox 既有的 WordPress CRM 是 WooCommerce 顧客與訂單看板，與本�
 ### 正式版施作路線（建議，Darren 定案前可改）
 
 - **程式放哪**：Darren 的 private `darrenfiy-studio` 的 `PRODUCTS/hopelight-case-record-system/`，不另開 repo（2026-09-26 Darren 決定）。本資料夾只記交接 commit／release 與驗收。
-- **技術**：Electron＋SQLite。v0.7 畫面是 HTML／JS，可以直接沿用；Electron 自帶 Chromium，不受 Tiffany 電腦的瀏覽器版本影響；鏡頭、列印與存成 PDF 是現成能力；建置只需要 Node，全部邏輯同一種語言。代價是安裝後約 200～300 MB，單機使用不構成問題。
+- **技術**：Electron＋SQLite。v0.7 畫面是 HTML／JS，可以直接沿用；Electron 自帶 Chromium，不受 Tiffany 電腦的瀏覽器版本影響；列印與存成 PDF 是現成能力；建置只需要 Node，全部邏輯同一種語言。代價是安裝後約 200～300 MB，單機使用不構成問題。
 - **考慮過、不選**：
   - Tauri：程式小、啟動快；但建置要加 Rust 與 MSVC Build Tools，資料層會變成兩種語言，一人維護的面變寬。
   - 本機網頁伺服器＋瀏覽器：最輕；但視窗與程式生命週期不像 App（關掉分頁不等於關程式），啟動密碼也難做得乾淨。

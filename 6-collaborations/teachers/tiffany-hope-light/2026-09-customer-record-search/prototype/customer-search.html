@@ -3,16 +3,17 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  /* 取自 hopelight-candle21-lp.html（Tiffany 2026-09-06 認可的字色加深版） */
-  --paper:#F1EFF3; --card:#FBFAFC; --inset:#F0EDF3;
-  --ink:#15111F; --ink-2:#3A3450; --muted:#4B4560;
-  --line:#D6D0DF; --line-2:#C3BBD0;
-  --accent:#8A5A12; --accent-ink:#6B4409; --accent-soft:#E0CDA9; --accent-wash:#EFE6D5;
+  /* 取自 hopebox.com.tw 官網（2026-09-26 讀取）：蜜桃底 #F8ECE6、奶油卡 #FFF8F4、深紅棕字 #4B1D0D、
+     銅棕按鈕 #A7624D、玫瑰細框 #D8AFA0、頁尾字 #72574E／#5A210F。其餘深淺為依此推出的中間色 */
+  --paper:#F8ECE6; --card:#FFF8F4; --inset:#F7EAE3;
+  --ink:#4B1D0D; --ink-2:#5E3A2E; --muted:#72574E;
+  --line:#EBD8CF; --line-2:#D8AFA0;
+  --accent:#A7624D; --accent-ink:#5A210F; --accent-soft:#F0D5C8; --accent-wash:#F8E4DA;
   --teal:#1F6E68; --teal-soft:#DDEBE8;
   --blue:#3F4A8C; --blue-soft:#E2E5F2;
   --plum:#8A3F86; --plum-soft:#F2E3F0;
   --danger:#A63636;
-  --shadow:0 1px 2px rgba(32,28,46,.06), 0 8px 24px -18px rgba(32,28,46,.35);
+  --shadow:0 1px 2px rgba(75,29,13,.06), 0 8px 24px -18px rgba(75,29,13,.32);
   --r:10px;
   --mono:"IBM Plex Mono","Noto Sans TC",ui-monospace,monospace;
   --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
@@ -20,10 +21,10 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --paper:#141120; --card:#1C1829; --inset:#241F33;
-    --ink:#F3F0F8; --ink-2:#D6D1E4; --muted:#B5AECA;
-    --line:#332E48; --line-2:#453E5C;
-    --accent:#E4B064; --accent-ink:#F2D4A0; --accent-soft:#5A451F; --accent-wash:#2E2415;
+    --paper:#1C1310; --card:#261A16; --inset:#2F211C;
+    --ink:#F7EAE4; --ink-2:#E6D0C6; --muted:#C7ABA0;
+    --line:#3F2D27; --line-2:#56403A;
+    --accent:#E3A78F; --accent-ink:#F4D2C4; --accent-soft:#5B3527; --accent-wash:#35221B;
     --teal:#5DC1B2; --teal-soft:#10312E;
     --blue:#9AA8E4; --blue-soft:#1B2044;
     --plum:#D48FCE; --plum-soft:#32162F;
@@ -32,10 +33,10 @@
   }
 }
 :root[data-theme="dark"]{
-  --paper:#141120; --card:#1C1829; --inset:#241F33;
-  --ink:#F3F0F8; --ink-2:#D6D1E4; --muted:#B5AECA;
-  --line:#332E48; --line-2:#453E5C;
-  --accent:#E4B064; --accent-ink:#F2D4A0; --accent-soft:#5A451F; --accent-wash:#2E2415;
+  --paper:#1C1310; --card:#261A16; --inset:#2F211C;
+  --ink:#F7EAE4; --ink-2:#E6D0C6; --muted:#C7ABA0;
+  --line:#3F2D27; --line-2:#56403A;
+  --accent:#E3A78F; --accent-ink:#F4D2C4; --accent-soft:#5B3527; --accent-wash:#35221B;
   --teal:#5DC1B2; --teal-soft:#10312E;
   --blue:#9AA8E4; --blue-soft:#1B2044;
   --plum:#D48FCE; --plum-soft:#32162F;
@@ -70,7 +71,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .btn{border:1px solid var(--line-2);background:var(--card);border-radius:var(--r);padding:9px 14px;cursor:pointer;white-space:nowrap;transition:background .12s,border-color .12s}
 .btn:hover{border-color:var(--accent)}
 .btn-primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:500}
-:root[data-theme="dark"] .btn-primary,:root:not([data-theme="light"]) .btn-primary{color:#20180A}
+:root[data-theme="dark"] .btn-primary,:root:not([data-theme="light"]) .btn-primary{color:#2A140C}
 @media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .btn-primary{color:#fff}}
 .btn-primary:hover{filter:brightness(1.06)}
 .btn-ghost{border-color:transparent;background:transparent;color:var(--ink-2);padding:6px 8px}
@@ -223,8 +224,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* writing areas */
 .ta{width:100%;flex:1 1 auto;background:var(--inset);border:1px solid var(--line);border-radius:8px;padding:11px 12px;resize:vertical;line-height:1.75;min-height:150px}
 .ta:focus{border-color:var(--accent);background:var(--card)}
-.ta.lined{background-image:repeating-linear-gradient(var(--inset) 0 26px,var(--line) 26px 27px);background-attachment:local;line-height:27px;padding-top:12px}
-.ta.lined:focus{background-image:repeating-linear-gradient(var(--card) 0 26px,var(--line) 26px 27px)}
+/* 格線要落在字的下方：線在每格的第 26px，整張往下移 11px，讓線落在行框底部上方約 2px，不從字中間穿過 */
+.ta.lined{background-image:repeating-linear-gradient(var(--inset) 0 26px,var(--line-2) 26px 27px);background-attachment:local;background-position:0 11px;line-height:27px;padding-top:12px}
+.ta.lined:focus{background-image:repeating-linear-gradient(var(--card) 0 26px,var(--line-2) 26px 27px)}
 .savestate{font-size:11px;color:var(--muted);font-family:var(--mono);margin-left:auto}
 
 /* modal */
@@ -235,8 +237,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .modal-b{padding:16px;display:grid;gap:12px}
 .modal-f{display:flex;gap:8px;justify-content:flex-end;padding:12px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-#camStage{background:#0E0D16;border-radius:10px;aspect-ratio:3/4;max-width:100%;width:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
-#camStage video,#camStage img{width:100%;height:100%;object-fit:cover;display:block}
+#photoStage{background:var(--inset);border:1.5px dashed var(--line-2);border-radius:10px;aspect-ratio:3/4;width:min(100%,300px);margin:0 auto;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
+#photoStage.over{border-color:var(--accent);background:var(--accent-wash)}
+#photoStage img{width:100%;height:100%;object-fit:cover;display:block}
 .camnote{font-size:12.5px;color:var(--muted);text-align:center;padding:18px}
 .camnote b{color:var(--ink-2);display:block;margin-bottom:6px;font-size:13px}
 .filelabel{display:inline-block;border:1px solid var(--line-2);border-radius:var(--r);padding:9px 14px;cursor:pointer;background:var(--card)}
@@ -311,7 +314,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   <div class="demobar"><span class="dot"></span><span id="demoNote">畫面中的姓名、電話與紀錄皆為虛構示範資料，不是真實個案。</span></div>
   <div class="foot">
     <div>版本 <span id="ver"></span> 示範稿　·　製作：Darren → mamasan（尚未經 QC／QA，非老師正式版）</div>
-    <div>拍照功能需要瀏覽器授權攝影機；若此環境不允許，可改用「從檔案選擇」。</div>
+    <div>照片用上傳的：先把照片存到電腦，再按「上傳照片」選檔案或拖進來。</div>
   </div>
 </div>
 
@@ -387,7 +390,7 @@ var state = {
 };
 var db = null;
 var LS = "hopelight-cases-v2";
-var VERSION = "v0.7";
+var VERSION = "v0.8";
 
 /* ---------- utils ---------- */
 function el(id){return document.getElementById(id);}
@@ -636,7 +639,7 @@ function renderSheet(){
       '<div class="photobox">'+
         (c.photo?'<img class="photo" src="'+esc(c.photo)+'" alt="'+esc(c.name)+'的照片">'
                 :'<span class="photo photo-ph">尚未<br>拍照</span>')+
-        '<button class="btn btn-sm" type="button" id="btnShoot">'+(c.photo?"重新拍照":"開啟相機拍照")+'</button>'+
+        '<button class="btn btn-sm" type="button" id="btnPhoto">'+(c.photo?"更換照片":"上傳照片")+'</button>'+
       '</div>'+
       '<div>'+
         '<div class="namerow">'+
@@ -824,7 +827,7 @@ el("sheet").addEventListener("click",function(e){
     go("home");
     return;
   }
-  if(e.target.closest("#btnShoot")){ openCamera(); return; }
+  if(e.target.closest("#btnPhoto")){ openPhoto(); return; }
   if(e.target.closest("#btnAddVisit")){
     var d=el("newVisitDate").value||today();
     var nv={id:uid("v"),date:d,initial:!(c.visits||[]).length,follow:!!(c.visits||[]).length,course:false,item:"",fee:"",note:""};
@@ -868,81 +871,54 @@ function closeModal(){
   document.removeEventListener("keydown",escClose);
   if(lastFocus&&lastFocus.focus)lastFocus.focus();
 }
-function escClose(e){ if(e.key==="Escape"){ stopStream(); closeModal(); } }
+function escClose(e){ if(e.key==="Escape"){ closeModal(); } }
 function openModal(html){
   lastFocus=document.activeElement;
   el("modalRoot").innerHTML='<div class="scrim" id="scrim"><div class="modal" role="dialog" aria-modal="true">'+html+'</div></div>';
   document.addEventListener("keydown",escClose);
-  el("scrim").addEventListener("mousedown",function(e){ if(e.target.id==="scrim"){ stopStream(); closeModal(); } });
+  el("scrim").addEventListener("mousedown",function(e){ if(e.target.id==="scrim"){ closeModal(); } });
 }
 
-/* ---------- camera ---------- */
-var stream=null, shot="";
-function stopStream(){ if(stream){ stream.getTracks().forEach(function(t){t.stop();}); stream=null; } }
-function camFallback(msg){
-  var s=el("camStage"); if(!s)return;
-  s.innerHTML='<div class="camnote"><b>這個環境無法開啟相機</b>'+esc(msg)+'<br>可以改用下方「從檔案選擇」，直接放入已拍好的照片。</div>';
-  var cap=el("btnCapture"); if(cap)cap.disabled=true;
-}
-function openCamera(){
+/* ---------- photo upload ---------- */
+/* Tiffany 的電腦沒有鏡頭（2026-09-26），照片一律用上傳：先存到電腦，再選檔或拖進來 */
+var shot="";
+function openPhoto(){
   shot="";
   openModal(
-    '<div class="modal-h"><h3>拍攝個案照片</h3><span class="spacer" style="flex:1"></span><button class="btn btn-ghost btn-sm" type="button" id="btnCamClose">關閉</button></div>'+
+    '<div class="modal-h"><h3>上傳個案照片</h3><span class="spacer" style="flex:1"></span><button class="btn btn-ghost btn-sm" type="button" id="btnPhotoClose">關閉</button></div>'+
     '<div class="modal-b">'+
-      '<div id="camStage"><div class="camnote">正在開啟攝影機…</div></div>'+
-      '<p style="margin:0;font-size:12px;color:var(--muted)">照片會裁成 3:4 直式，縮到適合存檔的尺寸後存進這位個案的欄位。</p>'+
+      '<div id="photoStage"><div class="camnote"><b>把照片拖到這裡</b>或按下方「選擇照片」。<br>手機拍的照片，先傳到這台電腦再選。</div></div>'+
+      '<p style="margin:0;font-size:12px;color:var(--muted)">照片會從中間裁成 3:4 直式，存進這位個案的欄位。</p>'+
     '</div>'+
     '<div class="modal-f">'+
-      '<label class="filelabel">從檔案選擇<input type="file" accept="image/*" id="camFile"></label>'+
+      '<label class="filelabel">選擇照片<input type="file" accept="image/*" id="photoFile"></label>'+
       '<span style="flex:1"></span>'+
-      '<button class="btn" type="button" id="btnRetake" hidden>重拍</button>'+
-      '<button class="btn btn-primary" type="button" id="btnCapture">拍照</button>'+
-      '<button class="btn btn-primary" type="button" id="btnUse" hidden>使用這張</button>'+
+      '<button class="btn btn-primary" type="button" id="btnUse" disabled>使用這張</button>'+
     '</div>'
   );
-  el("btnCamClose").addEventListener("click",function(){ stopStream(); closeModal(); });
-  el("camFile").addEventListener("change",function(e){
-    var f=e.target.files&&e.target.files[0]; if(!f)return;
-    var img=new Image();
-    img.onload=function(){ shot=crop(img); showShot(); URL.revokeObjectURL(img.src); };
-    img.onerror=function(){ alert("這個檔案讀不出來，換一張試試。"); };
-    img.src=URL.createObjectURL(f);
-  });
-  el("btnCapture").addEventListener("click",function(){
-    var v=el("camVideo"); if(!v)return;
-    shot=crop(v,v.videoWidth,v.videoHeight); showShot();
-  });
-  el("btnRetake").addEventListener("click",function(){ shot=""; startStream(); });
+  el("btnPhotoClose").addEventListener("click",closeModal);
+  el("photoFile").addEventListener("change",function(e){ loadPhoto(e.target.files&&e.target.files[0]); });
+  var stage=el("photoStage");
+  stage.addEventListener("dragover",function(e){ e.preventDefault(); stage.classList.add("over"); });
+  stage.addEventListener("dragleave",function(){ stage.classList.remove("over"); });
+  stage.addEventListener("drop",function(e){ e.preventDefault(); stage.classList.remove("over"); loadPhoto(e.dataTransfer.files&&e.dataTransfer.files[0]); });
   el("btnUse").addEventListener("click",function(){
     var c=currentClient();
     if(c&&shot){ c.photo=shot; persist(c); }
-    stopStream(); closeModal(); renderResults(); renderSheet();
+    closeModal(); renderResults(); renderSheet(); fitNotes();
   });
-  startStream();
 }
-function startStream(){
-  var stage=el("camStage"); if(!stage)return;
-  el("btnUse").hidden=true; el("btnRetake").hidden=true; el("btnCapture").hidden=false; el("btnCapture").disabled=false;
-  stage.innerHTML='<div class="camnote">正在開啟攝影機…</div>';
-  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
-    camFallback("這個瀏覽器或內嵌視窗沒有提供攝影機介面。"); return;
-  }
-  navigator.mediaDevices.getUserMedia({video:{width:{ideal:1280},height:{ideal:960},facingMode:"user"},audio:false})
-   .then(function(s){
-      stream=s;
-      stage.innerHTML='<video id="camVideo" playsinline autoplay muted></video>';
-      var v=el("camVideo"); v.srcObject=s; v.play().catch(function(){});
-   })
-   .catch(function(err){
-      var n=err&&err.name;
-      camFallback(n==="NotAllowedError"?"瀏覽器拒絕了攝影機權限。":n==="NotFoundError"?"找不到可用的攝影機。":"原因："+esc(n||"未知"));
-   });
+function loadPhoto(f){
+  if(!f)return;
+  var img=new Image();
+  img.onload=function(){ shot=crop(img); URL.revokeObjectURL(img.src); showShot(); };
+  img.onerror=function(){ URL.revokeObjectURL(img.src); flag("這張照片讀不出來。iPhone 的 HEIC 格式請先轉成 JPG 再選。"); };
+  img.src=URL.createObjectURL(f);
 }
 function showShot(){
-  stopStream();
-  var stage=el("camStage"); if(!stage)return;
-  stage.innerHTML='<img src="'+shot+'" alt="拍攝預覽">';
-  el("btnCapture").hidden=true; el("btnRetake").hidden=false; el("btnUse").hidden=false;
+  var stage=el("photoStage"); if(!stage)return;
+  stage.innerHTML='<img src="'+shot+'" alt="照片預覽">';
+  el("btnUse").disabled=false;
 }
 function crop(src,w,h){
   w=w||src.naturalWidth||src.width; h=h||src.naturalHeight||src.height;

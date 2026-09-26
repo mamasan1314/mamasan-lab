@@ -54,6 +54,8 @@ HopeBox 既有的 WordPress CRM 是 WooCommerce 顧客與訂單看板，與本�
 
 工期（3～4 週）從下表全部有答案後起算。老師端的項目一律經 mamasan 問，不由 Darren 直接找 Tiffany。
 
+2026-09-26：Tiffany 在澳洲打不開線上示範（出現 Claude「App unavailable in region」），改用 [v0.7 截圖](../../../../teachers/tiffany-hope-light/2026-09-customer-record-search/screenshots/) 給她確認。同日 Darren 先行開工第 1 週（App 外殼、資料庫、畫面接上資料庫、照片存檔）。下表的項目日後改動都小，先開工**不改變工期起算點**。
+
 | 項目 | 誰回答 | 狀態 |
 |---|---|---|
 | v0.7 畫面：來訪與當次備註同列 | Tiffany | 示範稿已更新，待確認 |

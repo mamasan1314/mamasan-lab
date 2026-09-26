@@ -2,7 +2,7 @@
 /**
  * Plugin Name: 希望之光 21 顆頻率蠟燭頁
  * Description: 在 /candles 提供 21 顆頻率蠟燭限定組的獨立頁面。頁面與圖片都在外掛內；停用外掛即撤下頁面。
- * Version: 0.1.1
+ * Version: 0.1.2
  * Author: Darren
  * Requires PHP: 7.4
  */
@@ -42,7 +42,7 @@ function hopelight_candles_lp_render()
     $title = '21 顆頻率蠟燭限定組｜希望之光 Hope Light';
     $description = '10 款頻率蠟燭任選 21 顆，附 10 分鐘靈魂藍圖諮詢，全台含運 NT$2,980。限量製作，售完即止。';
     $url = home_url('/candles/');
-    $image = $assets . 'og-candles.jpg';
+    $image = $assets . 'og-candles-mood.jpg';
 
     status_header(200);
     header('Content-Type: text/html; charset=utf-8');

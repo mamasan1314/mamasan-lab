@@ -17,13 +17,13 @@ const missing = referenced.filter((name) => !fs.existsSync(path.join(SOURCE_ASSE
 if (missing.length) {
   throw new Error(`頁面引用了不存在的圖片：${missing.join(', ')}`);
 }
-if (!fs.existsSync(path.join(SOURCE_ASSETS, 'og-candles.jpg'))) {
-  throw new Error('缺少分享預覽圖 og-candles.jpg');
+if (!fs.existsSync(path.join(SOURCE_ASSETS, 'og-candles-mood.jpg'))) {
+  throw new Error('缺少分享預覽圖 og-candles-mood.jpg');
 }
 
 fs.rmSync(path.join(PLUGIN_DIR, 'assets'), { recursive: true, force: true });
 fs.mkdirSync(TARGET_ASSETS, { recursive: true });
-const copied = [...referenced, 'og-candles.jpg'];
+const copied = [...referenced, 'og-candles-mood.jpg'];
 for (const name of new Set(copied)) {
   fs.copyFileSync(path.join(SOURCE_ASSETS, name), path.join(TARGET_ASSETS, name));
 }

@@ -50,7 +50,7 @@ see future publishes until the share pin is moved）」。
 回 200 且有頁面內容、分享預覽圖 200、首頁 200 無致命錯誤；另從外部確認 `/candles`（無斜線）也回 200、
 頁面上 12 張圖全部 200、沒有殘留草稿字樣。
 
-**2026-09-26 改版為 v0.7**（外掛 0.1.1，覆蓋安裝；驗收見版本紀錄 v0.7）。
+**2026-09-26 改版為 v0.7**（外掛 0.1.1，同日再換分享預覽圖為 0.1.2，皆覆蓋安裝；驗收見版本紀錄 v0.7）。
 
 頁面以外掛 [`../wp-plugins/hopelight-candles-lp/`](../wp-plugins/hopelight-candles-lp/) 上線：外掛只接手 `/candles`
 這一個網址，輸出本資料夾的 HTML 與 `assets/candle21/`，不經過 Elementor 版型、不動其他頁面。
@@ -83,19 +83,26 @@ npm run candles-lp:install  # 上傳並啟用，最後以未登入方式驗收 /
     指定蠟燭優先用這一版）：`content/ig-posts/assets/hope-light-moment-launch-002-two-accounts-product-aligned-base.png`
     （SHA-256 `7b6a6567…865979c`）縮成 960×960 → `assets/candle21/batch-mood.jpg`（`8b8d2bc4…60fa6ff4`），
     圖說「情境示意」。
-  - **v0.5 的「實拍當證據，AI 圖只當氣氛」在這一格不再成立**：頁面上整批的實拍已撤下，實拍只剩
-    款名旁的 `swatch-*.jpg`（從實拍逐顆裁切）與分享預覽圖 `og-candles.jpg`。若之後有真的新拍，
-    這一格應該優先換回實拍。
+  - **v0.5 的「實拍當證據，AI 圖只當氣氛」已不是這一頁的原則**：Darren 轉述 mamasan 偏好美化過的畫面
+    （「mamasan 就是喜歡美肌」）。整批實拍與實拍裁切的分享預覽圖都已撤下，實拍只剩款名旁的
+    `swatch-*.jpg`（從實拍逐顆裁切）。之後有新拍照片，換不換回由 mamasan 看畫面決定，不預設實拍優先；
+    要擋的只剩會誤導的內容（錯字、組合裡沒有的東西被讀成內容物），並用「情境示意」標明。
   - `batch-real.jpg` 已從 `assets/` 移除（頁面不再引用；原圖仍在 `../../references/`）。
     重繪版候選圖歸檔在 [`candidates/`](./candidates/)（`candle21-batch-ai-restyle-2026-09-26.jpg`，
     `4ce62eec…a348c327`），不在 `assets/`，不會被打包上線。
   - 外掛版本 0.1.0 → 0.1.1，`candles-lp:check` 預演通過後 `candles-lp:install` 覆蓋安裝（沿用登入快取，未送帳密）。
     驗收：未登入 `/candles` 與 `/candles/` 都回新版、頁面引用的 13 張圖（含分享預覽圖）全部 200、線上 `batch-mood.jpg`
     與本機逐位元組相同；舊 `batch-real.jpg` 繞過快取後為 404（未繞過時仍有快取副本回 200，頁面已不引用）。
-- **v0.6**（2026-09-24，定稿）：mamasan 定案（Darren 轉述）——下單方式只寫「加 LINE，私訊『蠟燭』」，拿掉三步驟與 `待確認`；運費列改為「每筆訂單；訂單含 21 顆限定組即免運」NT$60。拿掉置頂草稿橫幅與頁尾草稿字樣，頁尾加「回到官網」。新增分享預覽圖 `og-candles.jpg`（1200×630，從實拍裁切，只給官網版的 `og:image` 用）。
+  - **同日再換分享預覽圖**（外掛 0.1.2）：Darren 在 Telegram 貼連結時預覽仍是實拍，那是另一個檔案、本次原未更動。
+    改用同一張 Launch 002 底圖裁成 1200×630 → `assets/candle21/og-candles-mood.jpg`（`3fe53d43…6e63d207d`），
+    舊 `og-candles.jpg` 移除。**刻意換檔名不沿用舊名**：平台與官網前面的快取層都以圖片網址為鍵（上面舊
+    `batch-real.jpg` 就被快取層多回了一陣子 200），同名換內容可能繼續拿到舊圖。驗收：`og:image` 指向新檔、回 200、
+    與本機逐位元組相同。已貼出的連結要各平台重抓：Telegram 把網址傳給 `@WebpageBot`；Facebook 用 Sharing Debugger
+    的「Scrape Again」；LINE 的快取多久自動更新未查證。
+- **v0.6**（2026-09-24，定稿）：mamasan 定案（Darren 轉述）——下單方式只寫「加 LINE，私訊『蠟燭』」，拿掉三步驟與 `待確認`；運費列改為「每筆訂單；訂單含 21 顆限定組即免運」NT$60。拿掉置頂草稿橫幅與頁尾草稿字樣，頁尾加「回到官網」。新增分享預覽圖 `og-candles.jpg`（1200×630，從實拍裁切，只給官網版的 `og:image` 用；v0.7 換成情境圖 `og-candles-mood.jpg`）。
 - **v0.5**（2026-09-24，mamasan 想加圖片，Darren 請 Claude 提設計）：加入圖片，並修手機版價格表。
   圖片檔在 [`assets/candle21/`](./assets/candle21/)，重新發布時要用 Artifact 的 `files` 一起帶上。
-  - **原則：實拍當證據，AI 圖只當氣氛。**依 `references/README.md` 與 `content/index.md`，
+  - **原則：實拍當證據，AI 圖只當氣氛。**（v0.7 起不再適用：mamasan 偏好美化畫面，見 v0.7）依 `references/README.md` 與 `content/index.md`，
     銷售頁優先用實拍；`content/reels/candle-intro-139/source/01–10` 是 AI 氣氛圖，且 02／08 烘著舊款名。
   - `swatch-*.jpg`（10 張）：從實拍 `references/hope-light-candles-real-products-2026-09-07.jpg`
     依包裝上的款名逐顆裁切，用在開場的「21 顆配法示意」與 10 款清單的款名旁。

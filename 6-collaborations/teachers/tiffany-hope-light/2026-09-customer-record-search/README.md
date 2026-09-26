@@ -76,7 +76,13 @@
 
 資料結構不變（仍是每次來訪一筆 `date／initial／follow／course／item／fee／note`），本機儲存鍵與線上 Artifact 資料庫沿用，既有示範資料不會消失。
 
-已看過：桌機寬度個案頁截圖一次（Edge headless），三筆來訪各一列、備註對齊大方向欄、刪除鈕平時隱藏。手機寬度與「按兩次刪除」未另行實測。
+已看過：桌機寬度個案頁截圖一次（Edge headless），三筆來訪各一列、備註對齊大方向欄、刪除鈕平時隱藏。「按兩次刪除」未另行實測。
+
+同日補修與截圖：
+
+- 直接用瀏覽器開檔時，首頁「進階搜尋」下方會多一個空白框：`.adv{display:grid}` 蓋過了 `hidden` 屬性（v0.2 起就有）。Artifact 外層剛好補了 `[hidden]` 規則，所以線上看不出來。已在頁面自己的 CSS 補上，線上版同步重發（服務端 Version 8）。
+- Tiffany 在澳洲開 Artifact 連結時出現「App unavailable in region」。澳洲在 Claude 支援名單內，所以是她的連線從不支援的地區出去（常見是港陸門號漫遊），原因未查證。改用截圖給她看：[`screenshots/`](./screenshots/) 有 v0.7 的桌機首頁、桌機個案頁、手機寬度個案頁三張，均為虛構示範資料。手機寬度用 390px iframe 截取，版面沒有溢出。
+- 正式版是本機 Windows 程式，不經過 Claude，不受地區限制。
 
 ## 變更帳本
 

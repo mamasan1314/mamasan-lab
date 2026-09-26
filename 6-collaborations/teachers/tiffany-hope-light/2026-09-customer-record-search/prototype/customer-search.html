@@ -43,6 +43,8 @@
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 28px -18px rgba(0,0,0,.9);
 }
 *{box-sizing:border-box}
+/* hidden 要贏過 .adv、.casebar 這類有 display 的 class；Artifact 外層有補這條，直接開檔時沒有 */
+[hidden]{display:none!important}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
 button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}

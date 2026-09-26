@@ -4,7 +4,8 @@
 
 - 改寫層級：**L2**（原專案依 Tiffany 草圖與口述需求重建介面；本次只調整價格與商務敘述，不改本機版功能範圍）。
 - 來源版本：[`quotation-v3-2026-09-21.md`](./quotation-v3-2026-09-21.md)、[`spec.md`](./spec.md) 原 v2，以及 Darren 於 2026-09-22 轉述的新資訊。
-- 目前狀態：**正式報價 PDF 已製作；Darren 回報已將報價資料傳給 mamasan；尚未記錄 mamasan 轉交 Tiffany 或 Tiffany 接受，正式版尚未開工。**
+- 目前狀態：**2026-09-26 Darren 回報 Tiffany 已確認本報價；付款明細不放本公開 repo；mamasan 轉交 PDF 的紀錄仍未核對；正式版在開工前確認階段。** 現況以 [`README.md`](./README.md) 為準。
+- 前一狀態（2026-09-22）：正式報價 PDF 已製作；Darren 回報已將報價資料傳給 mamasan；當時尚未記錄 mamasan 轉交 Tiffany 或 Tiffany 接受。
 
 2026-09-22 交接註記：Darren 本人回報已傳給 mamasan；實際通道、時間與附件版本尚未獨立核對。此註記不勾選 mamasan 對外轉交或 Tiffany 接受。
 

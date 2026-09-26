@@ -26,7 +26,7 @@ mamasan 承接老師端案件後，可以向 Darren 採購製作模組。這一�
 | 案件 | 老師／品牌 | 狀態 |
 |---|---|---|
 | [`2026-09-hopelight-candle21-lp`](./2026-09-hopelight-candle21-lp) | Tiffany／希望之光 | 報價中；LP v0.2 已完成，等兩項產品確認與 LINE 寫入授權 |
-| [`2026-09-hopelight-case-record-system`](./2026-09-hopelight-case-record-system) | Tiffany／希望之光 | 示範稿 v0.6 已製作；技術規格與白話報價均為草案 |
+| [`2026-09-hopelight-case-record-system`](./2026-09-hopelight-case-record-system) | Tiffany／希望之光 | 報價 NT$20,000 本機版，Tiffany 已確認（2026-09-26 Darren 回報）；示範稿 v0.7 待確認，正式版開工前確認中 |
 
 已發生但尚未整理成案件資料夾的：
 

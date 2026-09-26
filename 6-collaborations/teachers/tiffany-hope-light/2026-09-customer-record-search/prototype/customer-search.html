@@ -141,8 +141,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* record sheet */
 .sheet{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:0;overflow:hidden}
 .cell{padding:16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0;display:flex;flex-direction:column}
-.cell:nth-child(2),.cell:nth-child(4){border-right:0}
-.cell:nth-child(3),.cell:nth-child(4){border-bottom:0}
+.cell:nth-child(2){border-right:0}
+.cell.wide{grid-column:1/-1;border-right:0;border-bottom:0}
 .cell-h{display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .cell-h h3{margin:0;font-size:12px;letter-spacing:.16em;color:var(--muted);font-weight:500}
 .cell-h .hint{font-size:11px;color:var(--muted);opacity:.85}
@@ -190,19 +190,25 @@ button,input,select,textarea{font:inherit;color:inherit}
 .dup .who{font-weight:500}
 .dup .why{font-family:var(--mono);font-size:11px;color:var(--muted)}
 
-/* visits */
-.visits{overflow-x:auto}
-table.v{width:100%;border-collapse:collapse;font-size:13px;min-width:330px}
-table.v th{font-size:11px;letter-spacing:.1em;color:var(--muted);font-weight:500;text-align:left;padding:0 6px 7px;border-bottom:1px solid var(--line)}
-table.v th.c,table.v td.c{text-align:center;width:52px}
-table.v td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
-table.v tr:last-child td{border-bottom:0}
-table.v tr.sel td{background:var(--accent-wash)}
-table.v tbody tr{cursor:pointer}
-table.v tbody tr:hover td{background:var(--inset)}
-table.v tr.sel:hover td{background:var(--accent-wash)}
-.vdate{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* 來訪紀錄＋當次備註：一次來訪一列，底線從日期一路走到備註 */
+.vrow{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);column-gap:32px;row-gap:2px;align-items:start;padding-block:6px;border-bottom:1px solid var(--line)}
+.vhead{padding-block:0 7px;font-size:11px;letter-spacing:.1em;color:var(--muted)}
+.vhead .h-item,.vhead .h-note{padding-left:7px}
+.vhead .hc{text-align:center}
+.vleft{display:grid;grid-template-columns:132px repeat(3,48px) minmax(0,1fr) 84px;column-gap:6px;align-items:start}
+.vright{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:6px;align-items:start}
+.vbox{min-height:32px;display:flex;align-items:center}
+.vbox.c{justify-content:center}
+.vempty{padding:14px 0;color:var(--muted);font-size:13px;border-bottom:1px solid var(--line)}
+.vdate{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px}
 .vseq{font-family:var(--mono);font-size:11px;color:var(--muted);margin-right:7px}
+.edit.vin{width:100%;min-width:0;font-size:13px;line-height:22px;padding:4px 6px}
+.edit.vin.fee{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.edit.vnote{display:block;width:100%;min-width:0;min-height:32px;font-size:13.5px;line-height:22px;padding:4px 6px;resize:none;overflow:hidden;field-sizing:content}
+.vdel{color:var(--danger);opacity:0;transition:opacity .12s}
+.vrow:hover .vdel,.vrow:focus-within .vdel,.vdel[data-armed]{opacity:1}
+@media (hover:none){.vdel{opacity:1}}
+.btn[data-armed]{background:var(--danger);border-color:var(--danger);color:var(--card);opacity:1}
 .tick{appearance:none;width:17px;height:17px;border:1.5px solid var(--line-2);border-radius:4px;cursor:pointer;display:inline-grid;place-content:center;vertical-align:middle}
 .tick::after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translateY(-1px);opacity:0}
 .tick:checked::after{opacity:1}
@@ -210,7 +216,6 @@ table.v tr.sel:hover td{background:var(--accent-wash)}
 .tick.f:checked{background:var(--blue);border-color:var(--blue)}
 .tick.c:checked{background:var(--plum);border-color:var(--plum)}
 :root[data-theme="dark"] .tick::after,:root:not([data-theme="light"]) .tick::after{border-color:#14131F}
-.notedot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
 .addvisit{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
 
 /* writing areas */
@@ -219,10 +224,6 @@ table.v tr.sel:hover td{background:var(--accent-wash)}
 .ta.lined{background-image:repeating-linear-gradient(var(--inset) 0 26px,var(--line) 26px 27px);background-attachment:local;line-height:27px;padding-top:12px}
 .ta.lined:focus{background-image:repeating-linear-gradient(var(--card) 0 26px,var(--line) 26px 27px)}
 .savestate{font-size:11px;color:var(--muted);font-family:var(--mono);margin-left:auto}
-.noteline{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.noteline .inp{flex:1 1 120px}
-.noteline .inp.fee{flex:0 0 118px}
-.selvisit{font-family:var(--mono);font-size:12px;color:var(--accent-ink);background:var(--accent-soft);padding:2px 8px;border-radius:5px}
 
 /* modal */
 .scrim{position:fixed;inset:0;background:rgba(18,16,28,.55);backdrop-filter:blur(3px);z-index:80;display:flex;align-items:center;justify-content:center;padding:16px}
@@ -252,7 +253,8 @@ table.v tr.sel:hover td{background:var(--accent-wash)}
   .c-tags{margin-top:2px}
   .sheet{grid-template-columns:1fr}
   .cell{border-right:0}
-  .cell:nth-child(3){border-bottom:1px solid var(--line)}
+  .vrow{grid-template-columns:1fr}
+  .vhead .vright{display:none}
 }
 @media (max-width:620px){
   .searchbar{grid-template-columns:1fr 1fr}
@@ -261,6 +263,9 @@ table.v tr.sel:hover td{background:var(--accent-wash)}
   .grid2{grid-template-columns:1fr}
   .idcard{grid-template-columns:88px 1fr}
   .photo{width:88px}
+  .vleft{grid-template-columns:minmax(0,1fr) repeat(3,40px);grid-template-areas:"date ini fol cou" "item item fee fee"}
+  .a-date{grid-area:date}.a-ini{grid-area:ini}.a-fol{grid-area:fol}.a-cou{grid-area:cou}.a-item{grid-area:item}.a-fee{grid-area:fee}
+  .vhead .a-item,.vhead .a-fee{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -303,7 +308,7 @@ table.v tr.sel:hover td{background:var(--accent-wash)}
   <section id="caseView" hidden><div class="panel sheet" id="sheet"></div></section>
   <div class="demobar"><span class="dot"></span><span id="demoNote">畫面中的姓名、電話與紀錄皆為虛構示範資料，不是真實個案。</span></div>
   <div class="foot">
-    <div>版本 <span id="ver"></span> 示範稿　·　製作：Darren → mamasan（尚未經 Tiffany 確認，非正式版）</div>
+    <div>版本 <span id="ver"></span> 示範稿　·　製作：Darren → mamasan（尚未經 QC／QA，非老師正式版）</div>
     <div>拍照功能需要瀏覽器授權攝影機；若此環境不允許，可改用「從檔案選擇」。</div>
   </div>
 </div>
@@ -372,7 +377,6 @@ var SEED = [
 var state = {
   clients: JSON.parse(JSON.stringify(SEED)),
   selectedId: "c1",
-  selectedVisit: {},
   q: {name:"", phone:"", birthday:""},
   adv: {from:"", to:"", reasons:[], types:[], stale:0},
   advOpen: false,
@@ -381,7 +385,7 @@ var state = {
 };
 var db = null;
 var LS = "hopelight-cases-v2";
-var VERSION = "v0.6";
+var VERSION = "v0.7";
 
 /* ---------- utils ---------- */
 function el(id){return document.getElementById(id);}
@@ -425,6 +429,23 @@ function sinceClass(dateStr){
 }
 function isEditing(){var a=document.activeElement;return !!a&&(a.tagName==="TEXTAREA"||(a.tagName==="INPUT"&&a.closest("#sheet")));}
 function currentClient(){for(var i=0;i<state.clients.length;i++){if(state.clients[i].id===state.selectedId)return state.clients[i];}return null;}
+/* 當次備註跟著字數往下撐開；支援 field-sizing 的瀏覽器由 CSS 處理，這裡是其他瀏覽器的備援 */
+var FIT_BY_CSS = !!(window.CSS&&CSS.supports&&CSS.supports("field-sizing","content"));
+function fitNote(ta){
+  if(FIT_BY_CSS||!ta.offsetParent)return;
+  ta.style.height="auto";
+  ta.style.height=(ta.scrollHeight+2)+"px";
+}
+function fitNotes(){ Array.prototype.forEach.call(document.querySelectorAll("#sheet .vnote"),fitNote); }
+/* 刪除要按兩次。Artifact 裡 confirm() 不會跳出視窗（直接回 false），所以確認做在按鈕本身 */
+function armed(btn,label){
+  if(btn.dataset.armed)return true;
+  btn.dataset.armed="1"; btn.dataset.orig=btn.textContent; btn.textContent=label;
+  setTimeout(function(){
+    if(btn.isConnected&&btn.dataset.armed){ delete btn.dataset.armed; btn.textContent=btn.dataset.orig; }
+  },4000);
+  return false;
+}
 
 /* ---------- persistence ---------- */
 var queue = Promise.resolve();
@@ -596,9 +617,6 @@ function renderSheet(){
   var c=currentClient(), box=el("sheet");
   if(!c){ box.innerHTML='<div class="cell" style="grid-column:1/-1"><p class="empty">左側選一位個案，這裡會展開她的紀錄表。</p></div>'; return; }
   var vs=(c.visits||[]).slice().sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:0;});
-  if(!state.selectedVisit[c.id]&&vs.length) state.selectedVisit[c.id]=vs[0].id;
-  var svId=state.selectedVisit[c.id];
-  var sv=null; vs.forEach(function(v){ if(v.id===svId) sv=v; });
 
   var facts=[["生　日","birthday","date",true,""],
              ["性　別","gender","text",false,"女／男／其他"],
@@ -646,34 +664,31 @@ function renderSheet(){
     '<div class="cell-h"><h3>大 方 向</h3><span class="hint">右上・老師手寫欄</span></div>'+
     '<textarea class="ta lined" id="taDirection" rows="7" placeholder="這位個案整體要往哪裡走、下一階段的判斷與提醒。">'+esc(c.direction||"")+'</textarea>'+
   '</div>'+
-  /* 左下 */
-  '<div class="cell">'+
-    '<div class="cell-h"><h3>來 訪 紀 錄</h3><span class="hint">左下・點一列看當次備註</span></div>'+
-    '<div class="visits"><table class="v"><thead><tr>'+
-      '<th>日　期</th><th class="c">初評</th><th class="c">複評</th><th class="c">課程</th><th class="c">備註</th>'+
-    '</tr></thead><tbody>'+
-      (vs.length?vs.map(function(v,i){
-        return '<tr data-vid="'+v.id+'" class="'+(v.id===svId?"sel":"")+'">'+
-          '<td class="vdate"><span class="vseq">'+String(vs.length-i).padStart(2,"0")+'</span>'+esc(v.date)+'</td>'+
-          TYPES.map(function(t){return '<td class="c"><input class="tick '+t.k.charAt(0)+'" type="checkbox" data-vid="'+v.id+'" data-k="'+t.k+'" '+(v[t.k]?"checked":"")+' aria-label="'+esc(v.date)+' '+t.label+'"></td>';}).join("")+
-          '<td class="c">'+(v.note?'<span class="notedot" title="有備註"></span>':'')+'</td>'+
-        '</tr>';
-      }).join(""):'<tr><td colspan="5" style="color:var(--muted);padding:14px 6px">尚無來訪紀錄。</td></tr>')+
-    '</tbody></table></div>'+
+  /* 下半：來訪紀錄與當次備註合成一列一列，打開就看得到每一次的備註 */
+  '<div class="cell wide">'+
+    '<div class="cell-h"><h3>來 訪 紀 錄</h3><span class="hint">下半・每次來訪一列，當次備註寫在同一列，字多會自動往下撐開</span></div>'+
+    '<div class="vrow vhead" aria-hidden="true">'+
+      '<div class="vleft"><span class="a-date">日　期</span>'+
+        '<span class="hc a-ini">初評</span><span class="hc a-fol">複評</span><span class="hc a-cou">課程</span>'+
+        '<span class="h-item a-item">項目</span><span class="h-item a-fee">金額</span></div>'+
+      '<div class="vright"><span class="h-note">當次備註</span></div>'+
+    '</div>'+
+    (vs.length?vs.map(function(v,i){
+      return '<div class="vrow" data-vid="'+v.id+'">'+
+        '<div class="vleft">'+
+          '<span class="vbox vdate a-date"><span class="vseq">'+String(vs.length-i).padStart(2,"0")+'</span>'+esc(v.date)+'</span>'+
+          TYPES.map(function(t,j){return '<span class="vbox c '+["a-ini","a-fol","a-cou"][j]+'"><input class="tick '+t.k.charAt(0)+'" type="checkbox" data-vid="'+v.id+'" data-k="'+t.k+'" '+(v[t.k]?"checked":"")+' aria-label="'+esc(v.date)+' '+t.label+'"></span>';}).join("")+
+          '<input class="edit vin a-item" data-vid="'+v.id+'" data-vk="item" placeholder="項目" value="'+esc(v.item||"")+'" aria-label="'+esc(v.date)+' 項目">'+
+          '<input class="edit vin fee a-fee" data-vid="'+v.id+'" data-vk="fee" placeholder="金額" inputmode="numeric" value="'+esc(v.fee||"")+'" aria-label="'+esc(v.date)+' 金額">'+
+        '</div>'+
+        '<div class="vright">'+
+          '<textarea class="edit vnote" rows="1" data-vid="'+v.id+'" data-vk="note" placeholder="當次備註：談了什麼、下次從哪裡接" aria-label="'+esc(v.date)+' 當次備註">'+esc(v.note||"")+'</textarea>'+
+          '<span class="vbox"><button class="btn btn-ghost btn-sm vdel" type="button" data-delvisit="'+v.id+'">刪除</button></span>'+
+        '</div>'+
+      '</div>';
+    }).join(""):'<p class="vempty">尚無來訪紀錄。在下方選日期，新增第一次來訪。</p>')+
     '<div class="addvisit"><input class="inp" type="date" id="newVisitDate" value="'+today()+'" style="width:auto" aria-label="新增來訪日期">'+
       '<button class="btn btn-sm" type="button" id="btnAddVisit">＋ 新增一次來訪</button></div>'+
-  '</div>'+
-  /* 右下 */
-  '<div class="cell">'+
-    '<div class="cell-h"><h3>當 次 備 註</h3>'+(sv?'<span class="selvisit">'+esc(sv.date)+'</span>':'')+'<span class="hint" style="margin-left:auto">右下</span></div>'+
-    (sv?
-      '<div class="noteline">'+
-        '<input class="inp" id="vItem" placeholder="本次項目，例如 腦意識評量" value="'+esc(sv.item||"")+'">'+
-        '<input class="inp fee" id="vFee" placeholder="金額" inputmode="numeric" value="'+esc(sv.fee||"")+'">'+
-      '</div>'+
-      '<textarea class="ta" id="taNote" rows="6" placeholder="這次談了什麼、狀態如何、下次從哪裡接。">'+esc(sv.note||"")+'</textarea>'+
-      '<div style="margin-top:10px;display:flex"><button class="btn btn-ghost btn-sm" type="button" id="btnDelVisit" style="color:var(--danger);margin-left:auto">刪除這次紀錄</button></div>'
-      :'<p class="empty">左下先新增一次來訪，這裡就能寫當次備註。</p>')+
   '</div>';
 }
 /* 當日壽星：她每天要照這張名單傳訊息 */
@@ -713,7 +728,7 @@ function renderMode(){
     ? "資料存在這個 Artifact 的資料庫，換裝置開同一個連結會看到同樣的紀錄。目前內容仍為虛構示範資料。"
     : "畫面中的姓名、電話與紀錄皆為虛構示範資料，不是真實個案；修改只留在這台電腦的瀏覽器裡。";
 }
-function renderAll(){ renderAdv(); renderBirthdays(); renderResults(); renderSheet(); renderView(); renderMode(); el("ver").textContent=VERSION; }
+function renderAll(){ renderAdv(); renderBirthdays(); renderResults(); renderSheet(); renderView(); renderMode(); fitNotes(); el("ver").textContent=VERSION; }
 
 /* ---------- events ---------- */
 ["qName","qPhone","qBirth"].forEach(function(id){
@@ -773,6 +788,8 @@ el("caseBar").addEventListener("click",function(e){
   if(t)go("case",t.id);
 });
 window.addEventListener("hashchange",applyRoute);
+window.addEventListener("resize",fitNotes);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitNotes);
 
 /* sheet interactions (delegated) */
 var noteTimer=null;
@@ -793,12 +810,12 @@ el("sheet").addEventListener("click",function(e){
     persist(c); renderResults();
     return;
   }
-  if(e.target.closest("#btnDelClient")){
+  var delClient=e.target.closest("#btnDelClient");
+  if(delClient){
     var vn=(c.visits||[]).length;
-    if(!confirm("刪除「"+c.name+"」的整份紀錄？\n包含 "+vn+" 次來訪與所有備註、照片，此動作無法復原。"))return;
+    if(!armed(delClient,"再按一次：刪除「"+c.name+"」與 "+vn+" 次來訪，無法復原"))return;
     var gone=c.id;
     state.clients=state.clients.filter(function(x){return x.id!==gone;});
-    delete state.selectedVisit[gone];
     state.selectedId=state.clients.length?state.clients[0].id:null;
     removeClient(gone);
     flag("已刪除");
@@ -810,22 +827,18 @@ el("sheet").addEventListener("click",function(e){
     var d=el("newVisitDate").value||today();
     var nv={id:uid("v"),date:d,initial:!(c.visits||[]).length,follow:!!(c.visits||[]).length,course:false,item:"",fee:"",note:""};
     c.visits=(c.visits||[]).concat([nv]);
-    state.selectedVisit[c.id]=nv.id;
-    persist(c); renderResults(); renderSheet();
-    var ta=el("taNote"); if(ta)ta.focus();
+    persist(c); renderResults(); renderSheet(); fitNotes();
+    var ta=document.querySelector('#sheet .vnote[data-vid="'+nv.id+'"]'); if(ta)ta.focus();
     return;
   }
-  if(e.target.closest("#btnDelVisit")){
-    var vid=state.selectedVisit[c.id];
-    if(!vid)return;
-    if(!confirm("刪除這一次來訪紀錄？此動作無法復原。"))return;
+  var delVisit=e.target.closest("[data-delvisit]");
+  if(delVisit){
+    if(!armed(delVisit,"再按一次刪除"))return;
+    var vid=delVisit.dataset.delvisit;
     c.visits=(c.visits||[]).filter(function(v){return v.id!==vid;});
-    state.selectedVisit[c.id]=null;
-    persist(c); renderResults(); renderSheet();
+    persist(c); renderResults(); renderSheet(); fitNotes();
     return;
   }
-  var row=e.target.closest("tbody tr[data-vid]");
-  if(row){ state.selectedVisit[c.id]=row.dataset.vid; renderSheet(); }
 });
 el("sheet").addEventListener("input",function(e){
   var c=currentClient(); if(!c)return;
@@ -836,14 +849,9 @@ el("sheet").addEventListener("input",function(e){
   else if(t.id==="fName"){ c.name=t.value; identity=true; }
   else if(t.id==="fCode"){ c.code=t.value; identity=true; }
   else if(t.dataset.f){ c[t.dataset.f]=t.value; identity=true; }
-  else if(t.id==="taNote"||t.id==="vItem"||t.id==="vFee"){
-    var vid=state.selectedVisit[c.id];
-    (c.visits||[]).forEach(function(v){
-      if(v.id!==vid)return;
-      if(t.id==="taNote")v.note=t.value;
-      if(t.id==="vItem")v.item=t.value;
-      if(t.id==="vFee")v.fee=t.value;
-    });
+  else if(t.dataset.vk){
+    (c.visits||[]).forEach(function(v){ if(v.id===t.dataset.vid) v[t.dataset.vk]=t.value; });
+    if(t.tagName==="TEXTAREA")fitNote(t);
   } else return;
   flag("編輯中…");
   clearTimeout(noteTimer);

@@ -76,4 +76,4 @@
 3. 確認本次只做本機版；任何選配或雲端需求另行書面確認。
 4. 由 mamasan 確認老師端付款、收據與稅務處理方式，以及原始碼交付條款。
 
-製作與驗收細項見 [`spec.md`](./spec.md)。示範稿已製作；Darren 回報已將報價資料轉交 mamasan，尚未記錄 mamasan 轉交 Tiffany 或 Tiffany 接受，正式版尚未開工或交付。
+製作與驗收細項見 [`spec.md`](./spec.md)。2026-09-26 Darren 回報 Tiffany 已確認本報價；正式版在開工前確認階段，尚未交付。現況以 [`README.md`](./README.md) 為準。

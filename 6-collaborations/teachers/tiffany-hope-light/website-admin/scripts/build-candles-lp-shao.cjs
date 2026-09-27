@@ -47,6 +47,13 @@ const REPLACEMENTS = [
   // 品牌標示：媽媽燒是賣方，希望之光是產品
   ['<p class="eyebrow">希望之光 Hope Light</p>', '<p class="eyebrow">媽媽燒 × 希望之光 Hope Light</p>', 1],
 
+  // 「老師」在希望之光官網是 Tiffany 本人；在媽媽燒頁面上客人會以為是 mamasan，所以寫明是誰（Darren 2026-09-27）。
+  // 第一次出現寫全名，之後寫「Tiffany 老師」。10 分鐘靈魂藍圖諮詢仍由 Tiffany 進行。
+  ['可以先跟老師聊 10 分鐘，再決定。', '可以先跟希望之光的老師 Tiffany 聊 10 分鐘，再決定。', 1],
+  ['<p>老師在製作頻率蠟燭時，', '<p>Tiffany 老師在製作頻率蠟燭時，', 1],
+  ['你可以先跟老師做 10 分鐘的靈魂藍圖諮詢', '你可以先跟 Tiffany 老師做 10 分鐘的靈魂藍圖諮詢', 1],
+  ['也可以請老師直接給你建議', '也可以請 Tiffany 老師直接給你建議', 1],
+
   // 導流入口：mamasan 的官方 LINE（2026-09-27 確認沒有自訂 ID，@941hfdmj 就是對外 ID）
   ['https://lin.ee/vG7eI1Dv', LINE_ADD_FRIEND, 2],
   ['<p>小幫手會回覆你這一批的狀況與付款方式。</p>', '<p>私訊之後，會回覆你這一批的狀況與付款方式。</p>', 1],
@@ -64,7 +71,8 @@ const REPLACEMENTS = [
   ],
   [
     '<p style="margin-top:1.1rem">希望之光 Hope Light ｜ <a href="https://hopebox.com.tw/">回到官網</a></p>',
-    '<p style="margin-top:1.1rem">蠟燭由希望之光 Hope Light 製作與出貨。</p>\n'
+    // 出貨：Tiffany 人在澳洲，目前由 mamasan 出貨（Darren 2026-09-27）。改回由希望之光出貨時，這一行要跟著改。
+    '<p style="margin-top:1.1rem">蠟燭由希望之光 Hope Light 製作，媽媽燒出貨；10 分鐘靈魂藍圖諮詢由 Tiffany 老師進行。</p>\n'
       + '      <p>媽媽燒・宇宙媽媽賞 ｜ <a href="../../">回到宇宙媽媽賞</a></p>',
     1,
   ],

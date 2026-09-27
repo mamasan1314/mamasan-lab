@@ -25,7 +25,9 @@ npm run candles-lp:shao                                # 媽媽燒，寫進 mama
 ```
 
 `candles-lp:shao` 只換通路相關的部分：詢問按鈕改成 mamasan 的 LINE `@941hfdmj`（她分潤，客人不能導到希望之光的 LINE）、
-品牌標示、聯絡方式、頁尾、配色。每個替換點都要求在正本裡剛好出現預期的次數，換完後若還留有 `lin.ee/vG7eI1Dv`、
+品牌標示、聯絡方式、頁尾、配色，以及把「老師」寫明為「希望之光的老師 Tiffany」（媽媽燒頁面上客人會以為是 mamasan）。
+頁尾寫「蠟燭由希望之光 Hope Light 製作，媽媽燒出貨；10 分鐘靈魂藍圖諮詢由 Tiffany 老師進行」——
+Tiffany 人在澳洲，**目前由 mamasan 出貨**（2026-09-27）；改回時要改建置規則裡那一行。每個替換點都要求在正本裡剛好出現預期的次數，換完後若還留有 `lin.ee/vG7eI1Dv`、
 `happy139`、`hopebox.com.tw` 或希望之光的 IG 就停下。**改到開場品牌列、下單段落、聯絡方式或頁尾時，
 記得同步改 `scripts/build-candles-lp-shao.cjs` 的替換規則**，否則它會拒絕產生。
 

@@ -9,7 +9,7 @@
 | 檔案 | 主題 | Artifact | 最後發布 | 狀態 |
 |---|---|---|---|---|
 | [`hopelight-course-lp-mvp.html`](./hopelight-course-lp-mvp.html) | 兩日／三日課程 | <https://claude.ai/code/artifact/0c5f6de3-919a-41cb-8bad-fbf93c4de1f6> | 2026-09-04 | 草稿 v0.1，六處 `待確認` 卡在等老師 |
-| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | Artifact：2026-09-24（v0.6）<br>官網：2026-09-26（v0.7） | 官網是 **v0.7 定稿**。**本檔已是 v0.8 草稿（開場動畫），尚未上官網**，等 mamasan 看過；在那之前不要跑 `candles-lp:pack`／`install`，否則草稿會直接上線。上線位置為官網 `/candles`（外掛 `hopelight-candles-lp`，見下方〈上官網〉）；Artifact 只作審稿，**停在 v0.6 未跟上** |
+| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | Artifact：2026-09-24（v0.6）<br>官網：2026-09-27（v0.8） | 官網與本檔都是 **v0.8**（開場動畫，2026-09-27 上線，外掛 0.1.3）。上線位置為官網 `/candles`（外掛 `hopelight-candles-lp`，見下方〈上官網〉）；Artifact 只作審稿，**停在 v0.6 未跟上** |
 
 兩張都帶著頂端的「內部草稿」橫幅，未經老師確認前不對外發布。
 
@@ -70,7 +70,7 @@ npm run candles-lp:install  # 上傳並啟用，最後以未登入方式驗收 /
 
 ## 版本紀錄
 
-- **v0.8**（2026-09-27，**草稿，未上官網**）：開場改成燭光動畫，價格移到第二屏。
+- **v0.8**（2026-09-27，官網已更新；Artifact 未重新發布）：開場改成燭光動畫，價格移到第二屏。
   - mamasan 不希望一打開就看到價錢（Darren 轉述）。Darren 請 Gemini 做了一支 10 秒動畫，問適不適合放首頁。
   - 比對後這支影片是 `mood-lit.jpg` 的動態版：Gemini 把「點燃之後」那張靜態圖（`candle-intro-139/source/05.jpg`，
     吸引顧客那張）做成影片，右下角的蓮花圖示原圖就有，不是 Gemini 浮水印。
@@ -88,7 +88,13 @@ npm run candles-lp:install  # 上傳並啟用，最後以未登入方式驗收 /
   - 手機（390px 寬）的畫面：影片是橫的，直立手機只看得到中間那一段，蠟燭剛好填滿寬度；解析度夠用但偏柔。
     要更銳利，得請 Gemini 直接出一支**直式**的。
   - 驗證：headless Edge 截圖 390×844（用 iframe 模擬，因為 headless 視窗有最小寬度）與 1440×900；第一屏沒有價格，
-    頁面引用的 14 個檔案都在 `assets/candle21/`。**未上官網、未發布 Artifact、未經 mamasan 看過。**
+    頁面引用的 14 個檔案都在 `assets/candle21/`。
+  - **同日上官網**：Darren 要直接給 mamasan 看線上版（「畢竟是她的要求」），所以不等她先看草稿。外掛 0.1.2 → 0.1.3，
+    `candles-lp:check` 預演通過後 `candles-lp:install` 覆蓋安裝（沿用登入快取，未送帳密）。
+    安裝腳本的驗收標記「給自己 21 次」新舊版都有，不足以證明換版，所以另外驗：線上 HTML 有 `class="cover"`；
+    頁面引用的 15 個檔案（含分享預覽圖）全部 200、與本機逐位元組相同；`cover-candle.mp4` 回 `video/mp4` 且支援
+    分段讀取（206，iPhone 播影片需要）；舊 `mood-lit.jpg` 回 404；`/candles`（無斜線）200。另以 390px 寬截圖線上版，
+    第一屏沒有價格。**mamasan 還沒看過線上版；沒有在實機手機上看過。**
 - **v0.7**（2026-09-26，官網已更新；Artifact 未重新發布）：「這一批」的圖由實拍換成情境示意圖。
   - Darren 要換這一格的圖，交來一張候選圖。比對後它是**現有實拍的 AI 重繪版**：蠟燭位置與包裝袋皺褶
     和 `batch-real.jpg` 對得上，背景換成古書、鼠尾草、水晶、四葉草吊飾，標籤字也變形了（例如

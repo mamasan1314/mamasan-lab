@@ -114,6 +114,19 @@
     content:"";width:1px;height:1.6rem;background:currentColor;
     animation:cover-drip 2.4s ease-in-out infinite;transform-origin:top;
   }
+  .cover-sound{
+    position:absolute;z-index:2;right:1rem;bottom:1.6rem;
+    width:2.75rem;height:2.75rem;border-radius:50%;display:grid;place-items:center;
+    border:1px solid rgba(241,230,210,.45);background:rgba(20,13,6,.45);color:#F1E6D2;
+    cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+    transition:background .2s ease,border-color .2s ease;
+  }
+  .cover-sound:hover{background:rgba(20,13,6,.65);border-color:rgba(241,230,210,.8)}
+  .cover-sound:focus-visible{outline-color:#E8C78A}
+  .cover-sound .on{display:none}
+  .cover-sound[aria-pressed="true"] .on{display:inline}
+  .cover-sound[aria-pressed="true"] .off{display:none}
+  @media (min-width:700px){.cover-sound{right:1.5rem;bottom:2.2rem}}
   @keyframes cover-drip{0%{transform:scaleY(0);opacity:0}40%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
 
   .hero{position:relative;padding:2.75rem 0 2.5rem;border-top:0}
@@ -282,8 +295,16 @@
 <header class="cover" id="top">
   <video muted playsinline preload="auto" aria-hidden="true"
          poster="assets/candle21/cover-candle-poster.jpg">
-    <source src="assets/candle21/cover-candle.mp4" type="video/mp4">
+    <source src="assets/candle21/cover-candle-sound.mp4" type="video/mp4">
   </video>
+  <button class="cover-sound" type="button" aria-pressed="false" aria-label="開啟聲音">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor"
+         stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor" stroke="none"/>
+      <g class="off"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g>
+      <g class="on"><path d="M15.5 9.2a4 4 0 0 1 0 5.6"/><path d="M18.2 6.6a7.6 7.6 0 0 1 0 10.8"/></g>
+    </svg>
+  </button>
   <div class="cover-text">
     <p class="eyebrow">希望之光 Hope Light</p>
     <h1>給自己 21 次，<br>重新回到自己的時間</h1>
@@ -543,11 +564,38 @@
     var video = document.querySelector('.cover video');
     if (!video) return;
     var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!still) {
-      video.muted = true;
+    function play() {
       var playing = video.play();
       if (playing && playing.catch) { playing.catch(function () {}); }
     }
+    if (!still) {
+      video.muted = true;
+      play();
+    }
+
+    // 預設靜音（瀏覽器只允許靜音自動播放）。按喇叭開聲音時從頭播一次，完整聽到 10 秒；
+    // 播完自動回到靜音圖示，再按一次就再聽一次。
+    var sound = document.querySelector('.cover-sound');
+    if (!sound) return;
+    function show(on) {
+      sound.setAttribute('aria-pressed', on ? 'true' : 'false');
+      sound.setAttribute('aria-label', on ? '關閉聲音' : '開啟聲音');
+    }
+    sound.addEventListener('click', function () {
+      if (video.muted) {
+        if (video.ended || video.currentTime > 1) { video.currentTime = 0; }
+        video.muted = false;
+        show(true);
+        play();
+      } else {
+        video.muted = true;
+        show(false);
+      }
+    });
+    video.addEventListener('ended', function () {
+      video.muted = true;
+      show(false);
+    });
   })();
 
   (function () {

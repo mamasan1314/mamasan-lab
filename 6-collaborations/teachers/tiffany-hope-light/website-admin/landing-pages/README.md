@@ -9,7 +9,7 @@
 | 檔案 | 主題 | Artifact | 最後發布 | 狀態 |
 |---|---|---|---|---|
 | [`hopelight-course-lp-mvp.html`](./hopelight-course-lp-mvp.html) | 兩日／三日課程 | <https://claude.ai/code/artifact/0c5f6de3-919a-41cb-8bad-fbf93c4de1f6> | 2026-09-04 | 草稿 v0.1，六處 `待確認` 卡在等老師 |
-| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | Artifact：2026-09-24（v0.6）<br>官網：2026-09-27（v0.9.1） | 官網與本檔都是 **v0.9.1**（開場動畫＋喇叭按鈕＋手機不再能往右滑，2026-09-27 上線，外掛 0.1.5）。上線位置為官網 `/candles`（外掛 `hopelight-candles-lp`，見下方〈上官網〉）；Artifact 只作審稿，**停在 v0.6 未跟上** |
+| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | Artifact：2026-09-24（v0.6）<br>官網：2026-09-27（v0.9.2） | 官網與本檔都是 **v0.9.2**（開場動畫＋喇叭按鈕＋手機不再能往右滑＋價格只在最後，2026-09-27 上線，外掛 0.1.6）。上線位置為官網 `/candles`（外掛 `hopelight-candles-lp`，見下方〈上官網〉）；Artifact 只作審稿，**停在 v0.6 未跟上** |
 
 兩張都帶著頂端的「內部草稿」橫幅，未經老師確認前不對外發布。
 
@@ -70,6 +70,12 @@ npm run candles-lp:install  # 上傳並啟用，最後以未登入方式驗收 /
 
 ## 版本紀錄
 
+- **v0.9.2**（2026-09-27，官網已更新，外掛 0.1.6）：NT$2,980 只出現在最後的價格表。
+  - mamasan 要價格只出現在最尾端，讓看的人先被吸引、最後才看到價錢（Darren 轉述）。
+  - 拿掉第二屏說明下方的 `NT$2,980`；同一行的「全台含運 ｜ 限量製作，售完即止」保留（沒有數字，且是吸引點）。
+  - **分享預覽的說明文字也拿掉價格**（外掛 `og:description`）：連結貼到 LINE／Facebook 時，這行字比開場還早被看到。
+    這一項 mamasan 沒有明講，是依她的意圖一併處理；要放回只改外掛一行。已經貼出去的連結，各平台的預覽快取可能還會顯示舊文字一陣子。
+  - 驗證：線上整頁 `2,980` 只剩價格表一處（第 549 行／共 648 行）；`og:description` 無價格。
 - **v0.9.1**（2026-09-27，官網已更新，外掛 0.1.5）：手機上頁面不再能往右滑出空白。
   - Darren 用手機看：預設寬度正常，但手指一滑就能往右滑出一片空白。
   - 原因是開場文字後面那層金色光暈（`.hero::before`）左右各延伸 `40vw`，在 390px 寬的手機上每邊超出 156px，

@@ -43,9 +43,9 @@ Messaging API、自動回應訊息、AI 聊天機器人（β）、圖文選單�
 mamasan 決定經營自己的 LINE 私域，Darren 決定接 Messaging API。API 本身免費；推播與群發計入方案則數
 （輕用量 NT$0／月、200 則），回覆、歡迎訊息、1:1 聊天、自動回應不計。
 
-- **Provider 未定（`2026-09-27` 重議中），啟用前必須先定**：一經指定永遠不能改。起草時建議獨立的「宇宙媽媽賞」；
-  Darren 傾向「四分之三」（三方私域都屬四分之三管轄）。共用 provider 等於合池，需 mamasan 本人明示同意。
-  選項與取捨在公司端 `line.json` 的 `messagingApi.providerOptions`。
+- **Provider 是「四分之三國際有限公司」**（`2026-09-27` 定案，mamasan 本人同意）。一經指定永遠不能改；
+  同一個 provider 底下同一個人的 ID 相同，四分之三與佛佐日後的 LINE 也掛這裡。她獨立時帳號與好友仍是她的，
+  但串接留在四分之三。決策：`Control-Room/PM/DECISIONS/2026-09-27-mamasan-line-provider-three-quarters.md`。
 - 權杖住公司 Vault `vault:line/mamasan/941hfdmj/live_client`，由 Darren 執行
   `Three-Quarters-International/SECURITY/scripts/seal-line-channel.mjs` 封存。這裡不放任何權杖。
 - Webhook 不開。權杖能做的事（群發、圖文選單、統計）仍逐項授權；**1:1 對話依下面〈現行能力界線〉不變。**

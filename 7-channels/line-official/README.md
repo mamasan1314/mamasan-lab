@@ -9,14 +9,11 @@
 
 - 管理後台：`https://manager.line.biz/account/@941hfdmj`
 - 帳號識別碼：`@941hfdmj`（**LINE 系統配發的 Basic ID**）
-- 對外公開的 ID：**尚未確認**
+- 對外公開的 ID：**就是 `@941hfdmj`**（`2026-09-27` 經 Messaging API 確認她沒有自訂 Premium ID）
+- 加好友網址：`https://line.me/R/ti/p/@941hfdmj`；要短網址可在 OA Manager 的「增加好友工具」產生 `lin.ee/...`
 
-⚠️ **確認對外 ID 之前，不要把 `@941hfdmj` 放到官網或任何對外素材上。**
-希望之光那邊踩過同一題：`@290ykfry` 是系統配發的 Basic ID，`@happy139` 才是
-自訂的 Premium ID，兩者是同一個帳號。她這邊可能也有一組自訂 ID。
-
-需要向她確認三件事：對外要公開的 LINE ID、加好友網址（`https://lin.ee/...`）、
-以及帳號的顯示名稱。三項齊了才動官網。
+早先這裡寫「確認對外 ID 之前不要公開 `@941hfdmj`」，理由是希望之光有過 Basic ID／Premium ID 兩組並存的情況。
+她這邊查過只有 Basic ID，所以那道限制已解除。
 
 ## 已確認狀態
 
@@ -38,7 +35,7 @@ Messaging API、自動回應訊息、AI 聊天機器人（β）、圖文選單�
 一般帳號改名後 7 天內不能再改；認證帳號不能自行改，要走 LINE 的審核表單。
 改完後同步更新公司端 `line.json` 的 `displayName`。
 
-## Messaging API（`2026-09-27` 決定接，尚未啟用）
+## Messaging API（`2026-09-27` 已啟用，權杖已封存）
 
 mamasan 決定經營自己的 LINE 私域，Darren 決定接 Messaging API。API 本身免費；推播與群發計入方案則數
 （輕用量 NT$0／月、200 則），回覆、歡迎訊息、1:1 聊天、自動回應不計。

@@ -15,6 +15,7 @@
     "candles-lp:pack": "node scripts/build-candles-lp-plugin.cjs && powershell -NoProfile -ExecutionPolicy Bypass -File wp-plugins/pack.ps1 -PluginName hopelight-candles-lp",
     "candles-lp:check": "node scripts/install-candles-lp.cjs",
     "candles-lp:install": "node scripts/install-candles-lp.cjs --apply",
+    "candles-lp:shao": "node scripts/build-candles-lp-shao.cjs",
     "audit": "node scripts/audit-access.cjs",
     "audit:visible": "node scripts/audit-access.cjs --visible",
     "instagram:audit": "node scripts/inspect-instagram-access.cjs",

@@ -13,6 +13,22 @@
 
 兩張都帶著頂端的「內部草稿」橫幅，未經老師確認前不對外發布。
 
+## 第二個出口：媽媽燒（`mamasan.three-quarters.net/shao/candles/`）
+
+`2026-09-27` 起，同一份正本也放在 mamasan 官網的「媽媽燒」。**正本只有這一份**；改這裡的 HTML 或圖片之後，
+兩個出口都要重新產生：
+
+```powershell
+# 在 website-admin/
+npm run candles-lp:pack; npm run candles-lp:install   # HopeBox /candles
+npm run candles-lp:shao                                # 媽媽燒，寫進 mamasan.three-quarters.net，由那個 repo push 上線
+```
+
+`candles-lp:shao` 只換通路相關的部分：詢問按鈕改成 mamasan 的 LINE `@941hfdmj`（她分潤，客人不能導到希望之光的 LINE）、
+品牌標示、聯絡方式、頁尾、配色。每個替換點都要求在正本裡剛好出現預期的次數，換完後若還留有 `lin.ee/vG7eI1Dv`、
+`happy139`、`hopebox.com.tw` 或希望之光的 IG 就停下。**改到開場品牌列、下單段落、聯絡方式或頁尾時，
+記得同步改 `scripts/build-candles-lp-shao.cjs` 的替換規則**，否則它會拒絕產生。
+
 ## 改稿之後怎麼重新發布
 
 **一定要指定既有的 Artifact URL。** 從一個沒發布過這張頁面的對話重新發布時，

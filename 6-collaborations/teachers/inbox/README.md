@@ -38,6 +38,7 @@
 
 | 收件日期 | 專案／批次 | 數量 | 歸檔位置 | 狀態 |
 |---|---|---:|---|---|
+| 2026-09-27 | Tiffany／蠟燭 LP 開場動畫（Gemini 生成，`mood-lit.jpg` 的動態版） | 1 | [`../tiffany-hope-light/website-admin/landing-pages/candidates/`](../tiffany-hope-light/website-admin/landing-pages/candidates/) | 已驗證歸檔並清空；轉檔後用於 LP v0.8 草稿開場，見 LP README v0.8 |
 | 2026-09-26 | Tiffany／蠟燭 LP「這一批」候選圖（實拍的 AI 重繪版） | 1 | [`../tiffany-hope-light/website-admin/landing-pages/candidates/`](../tiffany-hope-light/website-admin/landing-pages/candidates/) | 已驗證歸檔並清空；**未採用**，原因見 LP README v0.7 |
 | 2026-09-09 | Tiffany／合作範圍與下一階段對齊 | 2 | [`../tiffany-hope-light/2026-09-collaboration-alignment`](../tiffany-hope-light/2026-09-collaboration-alignment) | 原始 bytes 已驗證歸檔至公司 Drive；repo 留摘要與 hash；inbox 已清空 |
 | 2026-09-09 | Tiffany／2027 人生節奏小聚海報修訂 | 3 | [`../tiffany-hope-light/content/event-posters/2026-10-life-rhythm-2027`](../tiffany-hope-light/content/event-posters/2026-10-life-rhythm-2027) | 已驗證歸檔並清空；逐檔對照見專案 README |

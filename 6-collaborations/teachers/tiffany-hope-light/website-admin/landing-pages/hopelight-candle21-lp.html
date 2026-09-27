@@ -50,6 +50,7 @@
 
   *{box-sizing:border-box}
   body{
+    margin:0;
     overflow-x:hidden;
     overflow-x:clip;
     background:var(--ground);
@@ -84,9 +85,38 @@
     }
     .rail a:hover,.rail a[aria-current="true"]{color:var(--gold)}
     .rail a[aria-current="true"]::before{width:2rem}
+    .rail{transition:opacity .3s ease}
+    .rail.over-cover{opacity:0;pointer-events:none}
   }
 
-  .hero{position:relative;padding:3.75rem 0 2.5rem}
+  /* 開場：一打開先看到燭光，價格留到往下捲之後 */
+  .cover{
+    position:relative;height:88vh;height:88svh;min-height:30rem;max-height:62rem;
+    overflow:hidden;background:#1E150C;color:#FBF6EC;
+    display:flex;align-items:flex-end;
+  }
+  .cover video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+  .cover::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(to top,rgba(20,13,6,.82) 0%,rgba(20,13,6,.45) 38%,rgba(20,13,6,0) 66%);
+  }
+  .cover-text{
+    position:relative;z-index:1;width:100%;max-width:44rem;margin:0 auto;
+    padding:0 1.5rem 2.2rem;text-shadow:0 1px 12px rgba(0,0,0,.45);
+  }
+  .cover .eyebrow{color:#E8C78A}
+  .cover h1{margin-bottom:1.3rem}
+  .cover-next{
+    display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;
+    font-size:var(--step--1);letter-spacing:.12em;color:#F1E6D2;
+  }
+  .cover-next::after{
+    content:"";width:1px;height:1.6rem;background:currentColor;
+    animation:cover-drip 2.4s ease-in-out infinite;transform-origin:top;
+  }
+  @keyframes cover-drip{0%{transform:scaleY(0);opacity:0}40%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+  .hero{position:relative;padding:2.75rem 0 2.5rem;border-top:0}
   .hero::before{
     content:"";position:absolute;inset:-5rem -40vw auto -40vw;height:28rem;z-index:-1;
     background:radial-gradient(48% 42% at 50% 32%,var(--glow),transparent 70%);
@@ -249,6 +279,18 @@
   }
 </style>
 
+<header class="cover" id="top">
+  <video muted playsinline preload="auto" aria-hidden="true"
+         poster="assets/candle21/cover-candle-poster.jpg">
+    <source src="assets/candle21/cover-candle.mp4" type="video/mp4">
+  </video>
+  <div class="cover-text">
+    <p class="eyebrow">希望之光 Hope Light</p>
+    <h1>給自己 21 次，<br>重新回到自己的時間</h1>
+    <a class="cover-next" href="#intro">往下看</a>
+  </div>
+</header>
+
 <div class="shell">
   <nav class="rail" aria-label="章節導覽">
     <ol>
@@ -265,9 +307,7 @@
   </nav>
 
   <main>
-    <header class="hero" id="top">
-      <p class="eyebrow">希望之光 Hope Light</p>
-      <h1>給自己 21 次，<br>重新回到自己的時間</h1>
+    <section class="hero" id="intro">
       <p class="lede">10 款頻率蠟燭，任選 21 顆。不知道怎麼選，可以先跟老師聊 10 分鐘，再決定。</p>
       <div class="hero-price">
         <span class="amt">NT$2,980</span>
@@ -303,7 +343,7 @@
         </div>
         <figcaption>示意：用這一批的實品照片，排出一種 21 顆的配法。同款可以重複，怎麼配由你決定。</figcaption>
       </figure>
-    </header>
+    </section>
 
     <section id="batch">
       <p class="label">為什麼是這一批</p>
@@ -386,8 +426,8 @@
       <p class="label">點燃之後</p>
       <h2>點燃的，不只是蠟燭</h2>
       <figure class="mood">
-        <img src="assets/candle21/mood-lit.jpg" width="960" height="660" loading="lazy"
-             alt="點燃的頻率蠟燭放在木片底座上，周圍有晶石與乾燥花草">
+        <img src="assets/candle21/mood-lit-protect.jpg" width="960" height="660" loading="lazy"
+             alt="點燃的頻率蠟燭放在木片底座上，旁邊有鼠尾草束、黑色晶石與小銅鈴">
         <figcaption>情境示意</figcaption>
       </figure>
       <ul class="ritual">
@@ -498,6 +538,27 @@
 </div>
 
 <script>
+  (function () {
+    // 開場影片只播一次，停在最後一格；減少動態時只顯示封面圖。
+    var video = document.querySelector('.cover video');
+    if (!video) return;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!still) {
+      video.muted = true;
+      var playing = video.play();
+      if (playing && playing.catch) { playing.catch(function () {}); }
+    }
+  })();
+
+  (function () {
+    var rail = document.querySelector('.rail');
+    var cover = document.querySelector('.cover');
+    if (!rail || !cover || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (entries) {
+      rail.classList.toggle('over-cover', entries[0].intersectionRatio > 0.35);
+    }, { threshold: [0, 0.35, 1] }).observe(cover);
+  })();
+
   (function () {
     var links = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
     if (!links.length || !('IntersectionObserver' in window)) return;

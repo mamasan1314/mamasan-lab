@@ -9,7 +9,7 @@
 | 檔案 | 主題 | Artifact | 最後發布 | 狀態 |
 |---|---|---|---|---|
 | [`hopelight-course-lp-mvp.html`](./hopelight-course-lp-mvp.html) | 兩日／三日課程 | <https://claude.ai/code/artifact/0c5f6de3-919a-41cb-8bad-fbf93c4de1f6> | 2026-09-04 | 草稿 v0.1，六處 `待確認` 卡在等老師 |
-| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | Artifact：2026-09-24（v0.6）<br>官網：2026-09-26（v0.7） | **定稿**，已拿掉草稿橫幅。上線位置為官網 `/candles`（外掛 `hopelight-candles-lp`，見下方〈上官網〉）；Artifact 只作審稿，**停在 v0.6 未跟上**，要看現況以官網為準 |
+| [`hopelight-candle21-lp.html`](./hopelight-candle21-lp.html) | 21 顆頻率蠟燭限定組 | <https://claude.ai/code/artifact/441f1c0a-8dd9-4e7c-9cba-2ded8110f9ba> | Artifact：2026-09-24（v0.6）<br>官網：2026-09-26（v0.7） | 官網是 **v0.7 定稿**。**本檔已是 v0.8 草稿（開場動畫），尚未上官網**，等 mamasan 看過；在那之前不要跑 `candles-lp:pack`／`install`，否則草稿會直接上線。上線位置為官網 `/candles`（外掛 `hopelight-candles-lp`，見下方〈上官網〉）；Artifact 只作審稿，**停在 v0.6 未跟上** |
 
 兩張都帶著頂端的「內部草稿」橫幅，未經老師確認前不對外發布。
 
@@ -70,6 +70,25 @@ npm run candles-lp:install  # 上傳並啟用，最後以未登入方式驗收 /
 
 ## 版本紀錄
 
+- **v0.8**（2026-09-27，**草稿，未上官網**）：開場改成燭光動畫，價格移到第二屏。
+  - mamasan 不希望一打開就看到價錢（Darren 轉述）。Darren 請 Gemini 做了一支 10 秒動畫，問適不適合放首頁。
+  - 比對後這支影片是 `mood-lit.jpg` 的動態版：Gemini 把「點燃之後」那張靜態圖（`candle-intro-139/source/05.jpg`，
+    吸引顧客那張）做成影片，右下角的蓮花圖示原圖就有，不是 Gemini 浮水印。
+  - 新增開場 `.cover`：滿版影片＋「希望之光 Hope Light／給自己 21 次，重新回到自己的時間」＋「往下看」，
+    高 88svh，讓下一屏露出一截文字、暗示可以往下捲。原本開場的說明、NT$2,980、LINE 按鈕與 21 顆配法示意整段往下移一屏，
+    **內容一字未改**。桌機的左側章節導覽在開場畫面上先隱藏，捲過開場才出現。
+  - 影片：`cover-candle.mp4`（1280×720、10 秒、H.264、**去掉聲音**、faststart，1.1 MB，`fa47b615…8a689c`），
+    從原檔 `candidates/candle21-cover-gemini-animated-2026-09-27.mp4`（3.0 MB，`e9578d14…d8fba6`）轉出。
+    **只播一次、停在最後一格，不循環**：頭尾不接（第一格湯匙正在撒金箔、最後一格湯匙已離開），循環會跳一下。
+    封面圖 `cover-candle-poster.jpg` 是第 0 格（`3c54ee67…861d8ee`），自動播放被擋（例如 iPhone 省電模式）或使用者
+    設定「減少動態」時就顯示這張，和影片開頭同一格，開始播時不會跳。
+  - 「點燃之後」換圖：原本的 `mood-lit.jpg` 就是影片的來源，同一頁出現兩次會很明顯。改用 `candle-intro-139/source/06.jpg`
+    （小人退散那張，點燃中；`cfe5d7c6…6f2e02`）裁掉上方烘字 → `mood-lit-protect.jpg`（960×660，`14d80c11…2973ef5`）。
+    `mood-lit.jpg` 已從 `assets/` 移除（原圖仍是 `source/05.jpg`）。
+  - 手機（390px 寬）的畫面：影片是橫的，直立手機只看得到中間那一段，蠟燭剛好填滿寬度；解析度夠用但偏柔。
+    要更銳利，得請 Gemini 直接出一支**直式**的。
+  - 驗證：headless Edge 截圖 390×844（用 iframe 模擬，因為 headless 視窗有最小寬度）與 1440×900；第一屏沒有價格，
+    頁面引用的 14 個檔案都在 `assets/candle21/`。**未上官網、未發布 Artifact、未經 mamasan 看過。**
 - **v0.7**（2026-09-26，官網已更新；Artifact 未重新發布）：「這一批」的圖由實拍換成情境示意圖。
   - Darren 要換這一格的圖，交來一張候選圖。比對後它是**現有實拍的 AI 重繪版**：蠟燭位置與包裝袋皺褶
     和 `batch-real.jpg` 對得上，背景換成古書、鼠尾草、水晶、四葉草吊飾，標籤字也變形了（例如

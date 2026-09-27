@@ -131,7 +131,8 @@
 
   .hero{position:relative;padding:2.75rem 0 2.5rem;border-top:0}
   .hero::before{
-    content:"";position:absolute;inset:-5rem -40vw auto -40vw;height:28rem;z-index:-1;
+    /* 左右剛好延伸到螢幕邊緣，不超出：超出的部分在手機上會變成可以往右滑的空白 */
+    content:"";position:absolute;inset:-5rem calc(50% - 50vw) auto calc(50% - 50vw);height:28rem;z-index:-1;
     background:radial-gradient(48% 42% at 50% 32%,var(--glow),transparent 70%);
     pointer-events:none;
   }

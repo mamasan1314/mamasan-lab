@@ -4,6 +4,9 @@
 - 需求來源：mamasan 2026-09-21 轉述 Tiffany 的構想＋一張手繪 UI 草圖；同日 Tiffany 補三項需求（見下方 v0.2）。
 - 改寫層級：**L2**（依草圖重建為可操作介面；草圖本身只有版位，沒有文字內容）。
 - 產出：[`prototype/customer-search.html`](./prototype/customer-search.html)
+- 對外使用（2026-09-30，Darren 決定）：`screenshots/` 三張 v0.8 截圖放上公司官網 `three-quarters.net` 的首頁與服務頁
+  （`darrenfiy.github.io` `2f607e7`），當作「小型本機系統」的案例。頁面標示「示範稿・虛構資料」「正式版製作中」，
+  沒有寫成正式版或已驗收。官網服務頁寫著「非公開的成果先問過客戶」：推送前應經 mamasan 讓 Tiffany 知道；截至本行寫入時未記錄她已知道。
 - 線上示範（Artifact，分享設定為「知道連結的人可看」；同一網址更新即生效，2026-09-26 已更新為 v0.8，服務端 Version 10）：https://claude.ai/artifact/4LraTb9j6z56mqBnMZxjfG
 
 ## 對應草圖的版位

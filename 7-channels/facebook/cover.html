@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<!-- 宇宙媽媽燒粉專封面，1640×624。重新產生：node render.mjs cover.html cover.jpg 1640 624（見 README） -->
+<style>
+  html, body { margin: 0; width: 1640px; height: 624px; overflow: hidden; }
+  body {
+    position: relative;
+    font-family: Georgia, "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+    color: #f7ecdc;
+    background:
+      radial-gradient(circle at 70% 50%, rgba(217, 164, 75, 0.30), transparent 26%),
+      radial-gradient(2px 2px at 20% 20%, rgba(247, 236, 220, 0.8), transparent 60%),
+      radial-gradient(2px 2px at 44% 80%, rgba(217, 164, 75, 0.9), transparent 60%),
+      radial-gradient(1.5px 1.5px at 58% 14%, rgba(247, 236, 220, 0.7), transparent 60%),
+      radial-gradient(2px 2px at 88% 78%, rgba(217, 164, 75, 0.9), transparent 60%),
+      radial-gradient(1.5px 1.5px at 93% 22%, rgba(247, 236, 220, 0.7), transparent 60%),
+      radial-gradient(1.5px 1.5px at 8% 70%, rgba(217, 164, 75, 0.8), transparent 60%),
+      linear-gradient(160deg, #3d0e19 0%, #2a0911 55%, #1c060c 100%);
+  }
+  /* 手機只顯示中間約 1110px，左右各裁掉約 265px；左下角會被大頭貼蓋住。重要內容都放在中間 */
+  .text { position: absolute; left: 285px; top: 150px; width: 640px; }
+  .eyebrow { font-size: 26px; letter-spacing: 0.3em; color: #d9a44b; margin: 0 0 26px; }
+  h1 { font-size: 54px; line-height: 1.5; letter-spacing: 0.04em; margin: 0 0 26px; font-weight: bold; white-space: nowrap; }
+  .line { font-size: 30px; color: #d9a44b; margin: 0; letter-spacing: 0.08em; }
+  .candle {
+    position: absolute; left: 925px; top: 92px; width: 440px; height: 440px; border-radius: 50%;
+    background: url("../../../mamasan.three-quarters.net/shao/candles/assets/candle21/mood-lit-protect.jpg") 50% 45% / cover;
+    box-shadow: 0 0 0 3px #d9a44b, 0 0 0 14px rgba(42, 9, 17, 0.9), 0 0 0 16px rgba(217, 164, 75, 0.55), 0 0 90px rgba(217, 164, 75, 0.35);
+  }
+</style>
+</head>
+<body>
+  <div class="text">
+    <p class="eyebrow">宇宙媽媽燒｜身心靈選品</p>
+    <h1>燒蠟燭、燒好物，<br>燒掉你不需要的舊能量。</h1>
+    <p class="line">有種，就來被我燒到。</p>
+  </div>
+  <div class="candle" role="img" aria-label="點燃的蠟燭"></div>
+</body>
+</html>

@@ -38,6 +38,7 @@
 
 | 收件日期 | 專案／批次 | 數量 | 歸檔位置 | 狀態 |
 |---|---|---:|---|---|
+| 2026-09-30 | Tiffany／流年 1–9 蠟燭圖卡（mamasan 以 Gemini 製作） | 9 | 公司 Drive `414 生產部/01 Hope Light（Tiffany）/00 客戶可見/03 影音資產庫/02 mamasan/2026-09-30-流年*.jpg` | 已寫入並回讀 SHA-256／byte length 相符，登記於同庫 `ASSETS.json` revision 12（逐檔 hash、inbox 原名與 QC 註記都在該檔）；inbox 原檔由 Darren 手動刪除（agent 刪除權限被擋），已確認 inbox 只剩 README。流年4 蠟燭用舊款名、流年9 標題少「流年」，待 mamasan 決定 |
 | 2026-09-27 | Tiffany／蠟燭 LP 開場動畫（Gemini 生成，`mood-lit.jpg` 的動態版） | 1 | [`../tiffany-hope-light/website-admin/landing-pages/candidates/`](../tiffany-hope-light/website-admin/landing-pages/candidates/) | 已驗證歸檔並清空；轉檔後用於 LP v0.8 草稿開場，見 LP README v0.8 |
 | 2026-09-26 | Tiffany／蠟燭 LP「這一批」候選圖（實拍的 AI 重繪版） | 1 | [`../tiffany-hope-light/website-admin/landing-pages/candidates/`](../tiffany-hope-light/website-admin/landing-pages/candidates/) | 已驗證歸檔並清空；**未採用**，原因見 LP README v0.7 |
 | 2026-09-09 | Tiffany／合作範圍與下一階段對齊 | 2 | [`../tiffany-hope-light/2026-09-collaboration-alignment`](../tiffany-hope-light/2026-09-collaboration-alignment) | 原始 bytes 已驗證歸檔至公司 Drive；repo 留摘要與 hash；inbox 已清空 |

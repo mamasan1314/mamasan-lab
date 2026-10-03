@@ -311,10 +311,6 @@ body:has(.lock){overflow:hidden}
 .lockcard .brand{font-size:1.4rem}
 .lockcard form{display:grid;gap:.6rem;text-align:left}
 
-/* 新版提示 */
-.updbar{border-top:1px solid var(--line);background:var(--accent-wash)}
-.updbar-in{max-width:86rem;margin:0 auto;padding-inline:max(16px,1rem);padding-block:.4rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;font-size:.86rem;color:var(--accent-ink)}
-
 .demobar{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-size:.8rem;color:var(--muted);padding-top:1.4rem}
 .demobar::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
 .foot{color:var(--muted);font-size:.78rem;padding-top:1.2rem;border-top:1px solid var(--line);margin-top:1.4rem;display:grid;gap:.2rem}
@@ -406,7 +402,6 @@ body:has(.lock){overflow:hidden}
     </div>
     <div class="casebar" id="caseBar" hidden></div>
   </div>
-  <div class="updbar" id="updBar" hidden></div>
 </header>
 
 <main class="wrap">
@@ -568,7 +563,7 @@ window.__HOPELIGHT_DEMO_VERSION__="v0.9 示範稿（定稿）";
    資料一律經 window.hopelight：
    - 正式版由 preload 提供，存進本機 SQLite；
    - 示範稿由 scripts/demo-api.js 提供，只有虛構資料。
-   info().features 說明這一邊有哪些功能（設定與備份、列印、開啟密碼、自動更新）；沒有的就不顯示按鈕。 */
+   info().features 說明這一邊有哪些功能（設定與備份、列印、開啟密碼）；沒有的就不顯示按鈕。 */
 var api = window.hopelight;
 
 /* ---------- constants ---------- */
@@ -1342,35 +1337,6 @@ function printCase(pdf){
   .then(function(){ el("printView").innerHTML=""; });
 }
 
-/* ---------- 新版提示（只有正式版） ---------- */
-var upd={};
-function renderUpdate(){
-  var bar=el("updBar");
-  if(upd.state!=="ready"){ bar.hidden=true; bar.innerHTML=""; return; }
-  bar.hidden=false;
-  bar.innerHTML='<div class="updbar-in"><span>新版本 '+esc(upd.version||"")+' 已經準備好。關閉程式時會自動更新，資料不受影響。</span>'+
-    '<span class="spacer"></span><button class="btn btn-primary btn-sm" type="button" id="btnUpdNow">現在更新並重新開啟</button></div>';
-}
-el("updBar").addEventListener("click",function(e){
-  var b=e.target.closest("#btnUpdNow"); if(!b)return;
-  b.disabled=true; b.textContent="正在儲存並更新…";
-  flushPending().then(function(){ return api.installUpdate(); }).catch(function(err){
-    b.disabled=false; b.textContent="現在更新並重新開啟";
-    flag("沒有更新成功："+errText(err),true);
-  });
-});
-function updLabel(u){
-  switch(u&&u.state){
-    case "checking": return "正在檢查…";
-    case "none": return "已經是最新版"+(u.at?"（"+u.at+" 檢查）":"");
-    case "downloading": return "正在下載新版 "+(u.version||"")+(u.percent!=null?"（"+u.percent+"%）":"");
-    case "ready": return "新版 "+(u.version||"")+" 已下載好，關閉程式時會自動更新";
-    case "error": return "這次沒有檢查成功（多半是沒有網路），之後會再自動檢查";
-    case "off": return "開發用版本，不檢查更新";
-    default: return "開啟後會自動檢查";
-  }
-}
-
 /* ---------- 設定與備份（只有正式版） ---------- */
 el("btnSettings").addEventListener("click",function(){ openSettings(); });
 function fmtTime(iso){ if(!iso)return "—"; var d=new Date(iso); if(isNaN(d))return iso; return ymd(d)+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"); }
@@ -1384,8 +1350,8 @@ function openSettings(){
   renderSettings();
 }
 function renderSettings(note){
-  Promise.all([api.backupStatus(),api.lockStatus(),api.updateStatus()]).then(function(r){
-    var b=r[0], l=r[1], u=r[2], body=el("setBody"); if(!body)return;
+  Promise.all([api.backupStatus(),api.lockStatus()]).then(function(r){
+    var b=r[0], l=r[1], body=el("setBody"); if(!body)return;
     lockInfo=l;
     var mins=[0,5,10,15,30,60];
     body.innerHTML=
@@ -1427,11 +1393,10 @@ function renderSettings(note){
       '<section class="sect"><h4>程 式</h4>'+
         '<div class="kv">'+
           '<span>版本</span><span>v'+esc(state.info.version)+'</span>'+
-          '<span>更新</span><span id="updState">'+esc(updLabel(u))+'</span>'+
+          '<span>更新</span><span>有新版時，Darren 會把新的安裝檔放到同一個雲端資料夾；下載後點兩下安裝，資料不受影響，換版前也會自動備份</span>'+
           '<span>資料位置</span><span class="path">'+esc(state.info.dataDir)+'</span>'+
         '</div>'+
-        '<div class="row"><button class="btn btn-sm" type="button" data-act="checkupd">檢查更新</button>'+
-          '<button class="btn btn-sm btn-ghost" type="button" data-act="opendata">打開資料夾</button></div>'+
+        '<div class="row"><button class="btn btn-sm btn-ghost" type="button" data-act="opendata">打開資料夾</button></div>'+
       '</section>';
   },function(err){ var body=el("setBody"); if(body)body.innerHTML='<p class="note err">'+esc(errText(err))+'</p>'; });
 }
@@ -1477,9 +1442,6 @@ function onSettingsClick(e){
   } else if(act==="setpw"||act==="changepw"){ showPasswordForm(act==="changepw");
   } else if(act==="clearpw"){ showClearPassword();
   } else if(act==="lock"){ closeModal(); lockNow();
-  } else if(act==="checkupd"){
-    el("updState").textContent="正在檢查…";
-    api.checkForUpdates().then(function(u){ upd=u||upd; el("updState").textContent=updLabel(u); renderUpdate(); });
   }
 }
 function showRestore(r){
@@ -1607,10 +1569,6 @@ if(api.onClientsChanged)api.onClientsChanged(function(list){
 api.info().then(function(info){
   state.info=info||state.info;
   renderFoot();
-  if(has("update")){
-    api.onUpdate(function(u){ upd=u||{}; renderUpdate(); var s=el("updState"); if(s)s.textContent=updLabel(upd); });
-    api.updateStatus().then(function(u){ upd=u||{}; renderUpdate(); });
-  }
   return has("lock")?api.lockStatus():null;
 }).then(function(lock){
   if(lock){ lockInfo=lock; if(lock.locked){ state.locked=true; showLock(false); return; } }

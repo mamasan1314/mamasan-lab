@@ -4,6 +4,7 @@
   "private": true,
   "description": "Reusable HopeBox WordPress access and management helpers",
   "scripts": {
+    "hopebox:api": "node scripts/hopebox-api.cjs",
     "hopebox:login": "node scripts/connect-hopebox.cjs",
     "candle21:audit": "node scripts/audit-candle21.cjs",
     "candle21:test": "php tests/candle21/run.php",

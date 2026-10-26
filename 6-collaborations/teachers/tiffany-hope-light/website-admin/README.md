@@ -17,7 +17,16 @@
 
 ## 已確認狀態
 
-最後完整驗證：2026-09-24（Asia/Taipei）—— `npm run audit` 以 `cached-session` 通過，頁面、商品、外掛、外觀、
+**2026-10-26：現有管理員登入與 API 已接通。** Darren 在專用登入視窗完成登入後，工具以
+`cached-session` 進入後台。API 已驗管理員身分、建立／修改／回讀未公開草稿並刪除本次測試草稿；
+頁面 131「命格計算」可由 API 讀取。當日通用 audit 的頁面列表探測曾失敗，但後續同一帳號的
+頁面 API 讀寫成功，不能把該單項結果解讀成沒有頁面權限。最短用法見下方「API 管理入口」。
+
+藍圖工具在現役 `hopelight-booking/jenny-booking.php`（外掛「HopeLight 完整預約系統」1.7.40），
+後台原始碼編輯器已唯讀確認可開啟，程式含 `hl_blueprint_tool`，編輯欄與儲存按鈕可用；
+尚未儲存任何藍圖程式變更。未來修改先從這裡定位，不再猜是外部排盤服務或 WPCode。
+
+先前完整驗證：2026-09-24（Asia/Taipei）—— `npm run audit` 以 `cached-session` 通過，頁面、商品、外掛、外觀、
 使用者與設定選單都在，`希望之光 CRM` 仍在後台。
 
 **2026-09-24 登入被擋的經過與處理：**公司這台的快取工作階段已過期，工具改用帳密自動登入，
@@ -178,7 +187,49 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 3. 不把帳密、Cookie 或頁面中的私密資料輸出到終端或紀錄檔。
 4. 變更完成後檢查公開頁面，回報實際修改數量與未能處理的例外。
 
-WordPress Application Password 尚未建立。若未來主要工作可以透過 REST API 完成，可另外建立一組可撤銷的應用程式密碼，讓相容的批次工作略過互動式後台登入。
+## API 管理入口（2026-10-26 已接通）
+
+Darren 指定本階段沿現有帳號與系統直接維護；如未來解除合作，再視需要拆分。
+日常讀寫使用現有 WordPress REST API，特殊編輯器沿用 `openHopeBoxAdmin()`。
+
+在本資料夾執行：
+
+```powershell
+npm.cmd run hopebox:api -- status        # 確認 API 身分與頁面編輯權限，不開瀏覽器
+npm.cmd run hopebox:api -- mcp           # 驗本站既有 MCP 握手與能力清單，不執行修改
+```
+
+第一次在另一台 Windows 電腦使用時，先跑 `hopebox:login` 完成人工登入，再執行：
+
+```powershell
+npm.cmd run hopebox:api -- connect
+```
+
+`connect` 只在本機尚無 API 憑證時，沿現有管理員帳號建立一個名為
+`HopeBox local maintenance` 的 Application Password，成功後以 Windows DPAPI 加密保存於
+`%LOCALAPPDATA%\mamasan-lab\hopebox-api\auth.dpapi`。不在 repo 保存憑證、不改原登入密碼；
+此加密檔綁定目前 Windows 使用者，不跨主機複製。需要撤銷時，從 WordPress 使用者個人資料的
+Application Passwords 清單撤銷對應項目。已有檔案時不自行覆寫或輪替。
+
+**這份 DPAPI 本機加密檔不是公司 SOPS／age Vault。** 目前沒有把 HopeBox API 憑證封入
+`Three-Quarters-International/SECURITY/secrets/`，也沒有在公司主機驗證這次 API 接線。
+公司使用相同網站帳密仍可登入網站；API 工具若沿目前作法，須在公司自己的專用視窗登入後
+執行一次 `hopebox:api -- connect`，目前這台的成功不能描述成公司已可直接使用。
+**2026-10-26 Darren 定案：API 憑證不進 Vault，每台電腦各自 `connect` 一組。** Application Password
+本來就設計成一台一組、可個別撤銷；本工具也不讀 Vault。WordPress 現行版本不擋同名，兩台都會叫
+`HopeBox local maintenance`，撤銷時看建立日期與最後使用 IP 分辨。
+
+程式可使用 [`lib/hopebox-api.cjs`](./lib/hopebox-api.cjs) 的 `openHopeBoxApi().request()`，
+傳入例如 `/wp/v2/pages/131?context=edit` 的 REST 路徑；不要把原始 API 回應直接印出或進 Git，
+其中可能含頁面保護密碼、未公開內容或個資。CLI 只輸出連線與驗證摘要。
+
+必要時才跑 `npm.cmd run hopebox:api -- verify-write`：這是實際寫入測試，會建立一份未公開草稿、
+修改並回讀，最後只刪除該次建立且 ID／slug／draft 狀態相符的草稿。
+
+本站既有 MCP 位於 `https://hopebox.com.tw/wp-json/mcp/mcp-adapter-default-server`，
+同一 API 憑證已驗證握手及能力探索。當日可見能力為核心站點資訊、WooCommerce、MailPoet 與
+Jetpack 表單，未列出一般頁面或外掛原始碼編輯能力；目前選 API 作為頁面維護主路徑。
+本站 MCP 的腳本連線已驗，不代表 WordPress.com ChatGPT 外掛或各 AI 客戶端的 MCP 設定已完成。
 
 ## 預約時段批次管理
 

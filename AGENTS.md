@@ -44,8 +44,16 @@ another teacher through mamasan:
    their voice and can bear their name. Structural analysis may remain an
    independent proposal, but it must not be presented as the teacher's approved
    system without acceptance.
-6. Darren's pricing is quoted to mamasan. Teacher-facing pricing, communication,
-   collection, and acceptance belong to mamasan unless a separate written
-   agreement explicitly changes the chain.
+6. Prices prepared by Darren, Codex, or Claude are reference pricing. Since
+   2026-10-26 mamasan negotiates and decides teacher-facing pricing; teacher
+   communication and acceptance also stay with her. Payment routing and the
+   revenue split between Darren and mamasan are kept in Darren's private
+   records, not in this public repository.
 7. Do not describe work as paid, accepted, completed, or a success case unless
    the repository contains evidence for that exact status.
+8. Do not create quotes, price lists, or case pricing files in this public
+   repository. Since 2026-10-26 they live in Darren's private
+   `darrenfiy-studio`: reference price lists in
+   `OFFERINGS/mamasan-partner-menu/`, case quotes and status in
+   `ENGAGEMENTS/mamasan/<case>/`. This repo keeps the collaboration workflow
+   (`subcontracting/translation-qc-workflow.md`) and teacher-side deliverables.

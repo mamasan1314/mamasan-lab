@@ -47,13 +47,14 @@ Darren 每次交給 mamasan 的不是只有成品，至少包含：
 ## 報價流向
 
 ```text
-Darren → mamasan：分包範圍、時程、修改輪數與製作報價
-mamasan → 老師：整合服務、溝通責任、QC／QA 與客戶報價
+Darren → mamasan：製作範圍、時程、修改輪數與參考定價
+mamasan → 老師：談業務、決定報價、溝通、QC／QA 與驗收
 ```
 
-- Darren 的價目是給 mamasan 的成本參考，不是老師端公開售價。
-- mamasan 可加入訪談、翻譯、策略、關係維護、專案管理、驗收與合理利潤。
-- Darren 不繞過 mamasan 向老師報價、收款、追加範圍或承諾交付。
+- 2026-10-26 起（Darren 裁定）：Darren、Codex、Claude 準備的價格都是參考定價，老師端報價由 mamasan 談並決定；
+  不再用「Darren 成本＋mamasan 加價」逐案計算。
+- Darren 與 mamasan 之間怎麼收款、怎麼分，記在 Darren 的私人案件帳，不寫在本 public repo。
+- Darren 不繞過 mamasan 向老師報價、追加範圍或承諾交付。
 - 老師退件先由 mamasan 釐清是需求翻譯、成果品質、作者聲音或新增範圍，再回到 Darren。
 
 ## 案例狀態用語

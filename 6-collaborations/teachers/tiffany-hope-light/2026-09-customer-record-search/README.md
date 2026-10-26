@@ -158,7 +158,7 @@
 
 ## 技術規格與分包報價
 
-見 [`../../../partners/darren/subcontracting/2026-09-hopelight-case-record-system/`](../../../partners/darren/subcontracting/2026-09-hopelight-case-record-system)（內部專案入口）。專業功能與技術細節放在 `spec.md`；供 mamasan 說明方案用的白話版本放在 `quotation.md`。分包價格仍屬 Darren → mamasan，不直接視為 Tiffany 端報價。
+見 [`darrenfiy-studio/ENGAGEMENTS/mamasan/2026-hopelight-case-record-system/`](../../../../../darrenfiy-studio/ENGAGEMENTS/mamasan/2026-hopelight-case-record-system)（內部專案入口，Darren 私人 repo；2026-10-26 自本 repo 搬出）。專業功能與技術細節放在 `spec.md`；供 mamasan 說明方案用的白話版本放在 `quotation.md`。分包價格仍屬 Darren → mamasan，不直接視為 Tiffany 端報價。
 
 ## 風險與待確認
 
@@ -183,4 +183,4 @@
 > 2026-09-26 的「現行」（已由 2026-10-03 取代）：請 Tiffany 看 v0.7 並確認畫面與欄位。
 
 現行（2026-10-03）：示範稿已定稿，不再請 Tiffany 審；正式版 1.0.1 已完成並通過製作端測試，安裝檔與說明放在公司共用雲端硬碟，Darren 分享給她安裝。施作與交付狀態見
-[`../../../partners/darren/subcontracting/2026-09-hopelight-case-record-system/README.md`](../../../partners/darren/subcontracting/2026-09-hopelight-case-record-system/README.md)。
+[`darrenfiy-studio/ENGAGEMENTS/mamasan/2026-hopelight-case-record-system/README.md`](../../../../../darrenfiy-studio/ENGAGEMENTS/mamasan/2026-hopelight-case-record-system/README.md)（Darren 私人 repo）。

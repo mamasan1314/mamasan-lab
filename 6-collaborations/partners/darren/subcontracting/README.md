@@ -1,52 +1,47 @@
-# Darren → mamasan｜數位製作分包
+# Darren → mamasan｜數位製作合作
 
-> **內部文件區，含分包價格，不直接轉傳老師。**
+> **2026-10-26 起，報價、價目與各案價格都不放在這裡**（本 repo 是 public）。
+> 它們在 Darren 的私人 repo `darrenfiy-studio`；這裡只保留合作怎麼走。
 
-mamasan 承接老師端案件後，可以向 Darren 採購製作模組。這一區保存那條商業關係的
-規則、價格與各案文件。教學關係在 [`../ai-builder/`](../ai-builder)，是另一回事。
+mamasan 承接老師端案件後，可以請 Darren 製作。教學關係在 [`../ai-builder/`](../ai-builder)，是另一回事。
 
 ## 誰對誰
 
-- **mamasan（A）是老師端唯一窗口與主承接者。** 需求、報價、確認、變更、收款與驗收都回到她。
-- **Darren 的報價對象是 A，不是老師。** 老師端價格由 A 依整體服務另行提出。
+- **mamasan（A）是老師端唯一窗口與主承接者。** 需求、報價、確認、變更與驗收都回到她。
+- **報價由 A 決定。** Darren 與 AI 準備的價格都是參考定價（見
+  [`translation-qc-workflow.md`](./translation-qc-workflow.md) 報價流向）。
 - Darren 的草稿先交 A；A 完成 QC／QA 並願意承擔後，才由 A 對老師交付。
 
-## 規則文件
+## 合作流程
 
 | 文件 | 用途 |
 |---|---|
-| [`service-map.md`](./service-map.md) | 分包服務地圖、價格帶與責任邊界 |
-| [`subcontract-service-menu.md`](./subcontract-service-menu.md) | 分包價格參考表（標準／試辦）；不是老師端報價單 |
 | [`translation-qc-workflow.md`](./translation-qc-workflow.md) | Darren → mamasan → 老師的翻譯、QC／QA、驗收與報價流向 |
 
-動任何老師端交付物之前，先讀 `translation-qc-workflow.md`。
+動任何老師端交付物之前，先讀它。
 
-## 案件
+## 報價與案件在哪
 
-| 案件 | 老師／品牌 | 狀態 |
-|---|---|---|
-| [`2026-09-hopelight-candle21-lp`](./2026-09-hopelight-candle21-lp) | Tiffany／希望之光 | 報價中；LP v0.2 已完成，等兩項產品確認與 LINE 寫入授權 |
-| [`2026-09-hopelight-case-record-system`](./2026-09-hopelight-case-record-system) | Tiffany／希望之光 | 報價 NT$20,000 本機版，Tiffany 已確認（2026-09-26 Darren 回報）；2026-10-03 示範稿定稿 v0.9、正式版 1.0.1 完成並放上雲端硬碟交付資料夾，待交付與驗收 |
+| 內容 | 位置（`darrenfiy-studio`，私人） |
+|---|---|
+| 參考價目表與服務地圖 | `OFFERINGS/mamasan-partner-menu/` |
+| 各案報價、規格、案件狀態與收款 | `ENGAGEMENTS/mamasan/`（入口是該資料夾的 `README.md`） |
 
-已發生但尚未整理成案件資料夾的：
+新的報價或價目檔一律建在上面兩處，不建在本 repo。
 
-- **2026-08 掌運卡教材整理**——已製作、已交付、**未被老師接受**。
-  交付物在 [`../../../teachers/tiffany-hope-light/2026-08-掌運卡/`](../../../teachers/tiffany-hope-light/2026-08-掌運卡)，
-  分包價格假設與失敗檢討目前寫在 [`service-map.md`](./service-map.md) 與
-  [`../ai-builder/README.md`](../ai-builder/README.md)。若要補一個案件資料夾，就從那兩處搬出來。
+2026-10-26 從本資料夾搬走的檔案（舊連結打不開時，照這張表找）：
 
-## 案件資料夾放什麼
+| 原位置 | 新位置 |
+|---|---|
+| `service-map.md`、`subcontract-service-menu.md` | `OFFERINGS/mamasan-partner-menu/` |
+| `2026-09-hopelight-case-record-system/` | `ENGAGEMENTS/mamasan/2026-hopelight-case-record-system/`（原 README 改名 `case-history.md`） |
+| `2026-09-hopelight-candle21-lp/` | `ENGAGEMENTS/mamasan/2026-hopelight-candle21-lp/` |
+| `2026-10-hopelight-website-maintenance/` | `ENGAGEMENTS/mamasan/2026-hopebox-website-maintenance/` |
 
-`YYYY-MM-案件名/`，內含：
+搬家前已 push 的版本仍留在本 repo 的 Git 歷史裡；搬走只讓之後的價格不再公開。
 
-- `README.md`——這個案子現在卡在哪、範圍、金額、下一步
-- 工作清單與報價
-- 交付紀錄與變更帳本
+## 老師端成品放哪
 
 老師端的實際交付物（網頁、文案、簡報、腳本）仍放在
-[`../../../teachers/`](../../../teachers) 對應的老師資料夾，不複製到這裡。
-這一區只放**商業關係**的文件。
-
-需要持續維護的 App 原始碼也不放在本分包目錄。Darren 個人製作端先由 private
-`darrenfiy-studio/PRODUCTS/` 孵化；若產品需要獨立部署、外部 repo 權限、原始碼交付或自己的
-release 週期，再拆成專屬 private repo。本區只保存分包範圍、報價、交付／驗收狀態與程式正本指標。
+[`../../../teachers/`](../../../teachers) 對應的老師資料夾。需要持續維護的 App 原始碼在
+`darrenfiy-studio/PRODUCTS/`。

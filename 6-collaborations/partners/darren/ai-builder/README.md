@@ -3,9 +3,8 @@
 Status: relationship recorded; first teacher draft delivered 2026-08-26 but not accepted; workflow under revision
 Started: 2026-08-20
 
-> **這個資料夾只放教學關係。** Darren 對 mamasan 的商業製作分包
-> （服務地圖、價格、QC／QA 流程、各案報價）在
-> [`../subcontracting/`](../subcontracting)。老師端的案件不是 AI Builder 的教學對象，
+> **這個資料夾只放教學關係。** Darren 與 mamasan 的製作合作流程在
+> [`../subcontracting/`](../subcontracting)；價格與各案報價在 Darren 的私人 repo `darrenfiy-studio`。老師端的案件不是 AI Builder 的教學對象，
 > 兩條線不混在同一層。
 
 ## 這段關係是什麼
@@ -31,7 +30,7 @@ mamasan 是最早在 Darren 協助下建立自己 repo 的創作者。這次協�
 |---|---|
 | [`../profile.md`](../profile.md) | Darren 目前已被作品證明的能力、可承接範圍與缺口 |
 | [`2026-08-ai-builder-pilot`](./2026-08-ai-builder-pilot) | mamasan 作為第一位候選學員的 n=1 前導實驗 |
-| [`../subcontracting/`](../subcontracting) | **商業分包**：服務地圖、價格、QC／QA 流程與各案報價。與本資料夾是兩條不同的關係 |
+| [`../subcontracting/`](../subcontracting) | **製作合作**：QC／QA 與報價流向；價格與各案報價在 Darren 私人 repo。與本資料夾是兩條不同的關係 |
 | [Clarity／清晰度](https://github.com/darrenfiy/Three-Realms-Academy/tree/main/PROGRAMS/clarity) | 從 mamasan／Tiffany 合作壓力長出的通用定位工具與對話 agent；正典在 Academy |
 
 AI Builder 的課程正典仍在 Three Realms Academy：
@@ -52,7 +51,7 @@ AI Builder 的學習關係與商業案件分開處理。當 A 對接她身邊的
 - Darren 若陪同會議，角色是陪同與技術可行性支援，不與 A 並列為接案主角。
 - A 接案後若需要 Darren 製作，由 A 與 Darren 另談分包範圍、時程與費用。
 - A 對老師報價前，應先把可能發包給 Darren 的製作預算納入，不先承諾功能再要求 Darren 吸收。
-- A 可以在製作成本上加入自己的訪談、策略、溝通、專案管理與合理利潤，再形成給老師的整合報價。
+- A 可以在製作成本上加入自己的訪談、策略、溝通、專案管理與合理利潤，再形成給老師的整合報價。（2026-10-26 起改為：Darren 與 AI 的價格都是參考定價，老師端報價由 A 決定；見 [`translation-qc-workflow.md`](../subcontracting/translation-qc-workflow.md) 報價流向。）
 - Darren 先把草稿、變更帳本與新增內容清單交給 A；A 完成 QC／QA 並願意承擔後，才由 A 對老師交付。
 - Darren 的報價對象是 A，不是老師；老師端價格由 A 依整體服務另行提出。
 
@@ -70,7 +69,7 @@ AI Builder 的學習關係與商業案件分開處理。當 A 對接她身邊的
 - **重大改寫可回查。** 每個新增規則、命名與教學設計都要附來源與理由，不能只交成品。
 - **A 核准後才交老師。** A 必須理解 Darren 做了什麼、判斷是否仍是老師聽得進去的聲音，並完成 QC／QA。
 
-現有價目改列為 **Darren 對 A 的分包參考價**；不是 Tiffany 的報價，也不能寫成已向 Tiffany 收費。首案是否採 NT$5,000 分包價、後續是否採 NT$12,000／NT$18,000，仍由 A 與 Darren 另行確認。
+現有價目改列為 **Darren 對 A 的分包參考價**；不是 Tiffany 的報價，也不能寫成已向 Tiffany 收費。首案價格假設記在 Darren 私人 repo 的參考價目（2026-10-26 起不放本 repo）。
 
 ### 案例對外使用
 

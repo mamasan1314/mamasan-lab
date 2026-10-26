@@ -5,7 +5,7 @@ Darren 和 `mamasan-lab` 之間有**兩條不同的關係**，不要混在一起
 | 關係 | 是什麼 | 誰是對象 | 位置 |
 |---|---|---|---|
 | **AI Builder 教學** | Darren 帶場、mamasan 學習與 AI 一起建造；留下什麼由 mamasan 決定與簽名 | mamasan 本人 | [`ai-builder/`](./ai-builder) |
-| **數位製作分包** | mamasan 承接老師端案件後，向 Darren 採購製作模組 | mamasan 作為主承接者 | [`subcontracting/`](./subcontracting) |
+| **數位製作合作** | mamasan 承接老師端案件後，請 Darren 製作 | mamasan 作為主承接者 | [`subcontracting/`](./subcontracting)（合作流程；報價與案件在 Darren 私人 repo） |
 
 ## 為什麼要分開
 
@@ -27,5 +27,5 @@ Darren 和 `mamasan-lab` 之間有**兩條不同的關係**，不要混在一起
 ## 邊界
 
 - 本資料夾不是合作契約、分潤約定或課程報名。
-- 分包價格是 Darren 對 mamasan 的報價，不是老師端售價；不得描述成老師已接受的條件。
+- Darren 與 AI 準備的價格都是參考定價，老師端報價由 mamasan 決定（2026-10-26 起）；價格與各案報價放在 Darren 的私人 repo `darrenfiy-studio`，不放這裡。
 - 案例對外使用前另行徵得同意；未被接受的交付不作為實績。
